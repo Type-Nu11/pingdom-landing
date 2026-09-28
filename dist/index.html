@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <title>핑덤 — 한국에서 갈 곳을 더 쉽게</title>
+  <meta name="description" content="방한 여행자와 로컬을 연결하는 핑덤. 발견부터 확인, 방문까지.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ff176b'/%3E%3Cpath d='M32 10c-12 0-20 9-20 20 0 14 20 26 20 26s20-12 20-26c0-11-8-20-20-20z' fill='white'/%3E%3Ccircle cx='32' cy='29' r='8' fill='%23ff176b'/%3E%3C/svg%3E">
+  <link rel="preload" href="assets/pretendard-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+  <header class="header">
+    <a class="logo" href="#about" aria-label="핑덤 처음으로">pingDom<span>✳</span></a>
+    <nav aria-label="주요 메뉴"><a href="#about">플랫폼</a><a href="#why">배경</a><a href="#features">기능</a><a href="#team">팀</a></nav>
+    <span class="header-note">LOCAL TOGETHER.</span>
+  </header>
+  <main id="main">
+    <section class="hero" id="about" aria-labelledby="hero-title">
+      <div class="hero-art" aria-hidden="true"><img src="assets/pingdom-pin.png" alt="" width="1254" height="1254" fetchpriority="high"></div>
+      <div class="hero-copy"><p class="label">A NEW WAY TO EXPLORE KOREA</p><h1 id="hero-title"><span>한국에서</span><span>갈 곳을</span><span class="accent">더 쉽게.</span></h1></div>
+      <div class="hero-bottom"><p>방한 여행자와 로컬을 잇는<br><strong>발견부터 방문까지, 핑덤.</strong></p><a class="round-link" href="#why" aria-label="기획 배경으로 이동">↓</a></div>
+      <div class="hero-index" aria-hidden="true">01 — 04</div>
+    </section>
+    <div class="experience-rail" aria-label="핑덤의 경험"><span>발견 <i>↗</i></span><span>확인 <i>↗</i></span><span>방문 <i>↗</i></span><span>연결 <i>✳</i></span></div>
+    <section class="why section" id="why" aria-labelledby="why-title">
+      <div class="section-top"><span class="label">02 / WHY PINGDOM</span><span class="small-mark" aria-hidden="true">↗</span></div>
+      <div class="why-heading"><h2 id="why-title" class="reveal">여행의 설렘 앞에,<br>벽이 없도록.</h2><p class="reveal">읽기 어렵고, 찾기 어렵고,<br>믿기 어려웠던 여행을 바꿉니다.</p></div>
+      <div class="walls">
+        <article class="wall reveal"><span class="wall-no">01</span><h3>언어<span>.</span></h3><p>내 언어로 이해하고.</p><span class="wall-cross" aria-hidden="true">↗</span></article>
+        <article class="wall reveal"><span class="wall-no">02</span><h3>발견<span>.</span></h3><p>취향에 맞게 찾고.</p><span class="wall-cross" aria-hidden="true">↗</span></article>
+        <article class="wall reveal"><span class="wall-no">03</span><h3>확신<span>.</span></h3><p>확인하고 방문하도록.</p><span class="wall-cross" aria-hidden="true">↗</span></article>
+      </div>
+    </section>
+    <section class="features section" id="features" aria-labelledby="features-title">
+      <div class="section-top"><span class="label">03 / THE EXPERIENCE</span><span class="small-mark accent" aria-hidden="true">✳</span></div>
+      <h2 id="features-title" class="reveal">마음이 가는 곳에,<br><span class="accent">발걸음이 닿도록.</span></h2>
+      <div class="feature-tabs" role="tablist" aria-label="핑덤 기능">
+        <button id="feature-tab-0" role="tab" aria-selected="true" aria-controls="feature-panel" data-feature="0"><small>01</small>발견</button>
+        <button id="feature-tab-1" role="tab" aria-selected="false" aria-controls="feature-panel" tabindex="-1" data-feature="1"><small>02</small>확인</button>
+        <button id="feature-tab-2" role="tab" aria-selected="false" aria-controls="feature-panel" tabindex="-1" data-feature="2"><small>03</small>방문</button>
+        <button id="feature-tab-3" role="tab" aria-selected="false" aria-controls="feature-panel" tabindex="-1" data-feature="3"><small>04</small>연결</button>
+      </div>
+      <div class="feature-panel" id="feature-panel" role="tabpanel" aria-labelledby="feature-tab-0" tabindex="0">
+        <div class="feature-copy"><span class="feature-number" aria-hidden="true">01</span><h3 id="feature-title">취향이 이끄는<br>새로운 발견.</h3><p id="feature-description">지금 내 주변, 나에게 맞는 장소.</p><div class="feature-tags" id="feature-tags"><span>지도 탐색</span><span>맞춤 추천</span><span>다국어</span></div></div>
+        <div class="feature-visual"><span class="feature-word" aria-hidden="true">FIND.</span><div class="phone-duo"><img class="phone-secondary" id="feature-secondary" src="assets/app-map.webp" alt="핑덤 주변 지도 화면" width="800" height="1636" loading="lazy"><img class="phone-primary" id="feature-screen" src="assets/app-discover.webp" alt="핑덤 취향별 장소 추천 화면" width="800" height="1636" loading="lazy"></div><span class="screen-label">PINGDOM APP</span></div>
+      </div>
+      <div class="trust reveal"><h3>확인할수록,<br>더 믿을 수 있게.</h3><p><span>상점주 제공</span><i>→</i><span>방문자 확인</span><i>→</i><strong>핑덤 검증</strong></p></div>
+      <div class="ecosystem">
+        <div class="ecosystem-heading reveal"><h3>하나의 연결.<br>더 넓은 가능성.</h3><p>여행자의 탐색부터, 로컬의 운영까지.</p></div>
+        <div class="ecosystem-grid">
+          <figure class="service reveal"><div class="service-image"><img src="assets/web-merchant.webp" alt="상점주 매장 관리 화면" width="1200" height="645" loading="lazy"></div><figcaption><span>상점주</span><small>매장 · 쿠폰 · 예약 관리</small></figcaption></figure>
+          <figure class="service reveal"><div class="service-image"><img src="assets/web-admin.webp" alt="핑덤 관리자 대시보드" width="1200" height="645" loading="lazy"></div><figcaption><span>관리자</span><small>장소 · 사업자 검증</small></figcaption></figure>
+          <figure class="service reveal"><div class="service-image"><img src="assets/web-consulting.webp" alt="핑덤 AI 상권 컨설팅 화면" width="1200" height="645" loading="lazy"></div><figcaption><span>AI 컨설팅</span><small>상권 분석 · 보고서</small></figcaption></figure>
+        </div>
+        <p class="ai-line reveal"><span>Pingdom AI</span> 찾고 싶은 장소를, 한 문장으로. <i aria-hidden="true">↗</i></p>
+      </div>
+    </section>
+    <section class="team section" id="team" aria-labelledby="team-title">
+      <div class="section-top"><span class="label">04 / TYPE:NULL</span><span class="team-count">7 PEOPLE. ONE PINGDOM.</span></div>
+      <h2 id="team-title" class="reveal">같은 방향,<br>다른 일곱 시선<span class="accent">.</span></h2>
+      <div class="team-grid">
+        <article class="member reveal"><div class="portrait"><img src="assets/team-woosung.webp" alt="김우성 프로필" width="450" height="338" loading="lazy"><span>01</span></div><h3>김우성</h3><p>PM · 서버 · 상점주 웹</p></article>
+        <article class="member reveal"><div class="portrait"><img src="assets/team-ilgang.webp" alt="김일강 프로필" width="318" height="308" loading="lazy"><span>02</span></div><h3>김일강</h3><p>클라이언트 총괄 · 앱</p></article>
+        <article class="member reveal"><div class="portrait"><img src="assets/team-sungmin.webp" alt="우성민 프로필" width="450" height="600" loading="lazy"><span>03</span></div><h3>우성민</h3><p>디자인 총괄 · 앱</p></article>
+        <article class="member reveal"><div class="portrait"><img src="assets/team-taewoo.webp" alt="김태우 프로필" width="400" height="600" loading="lazy"><span>04</span></div><h3>김태우</h3><p>클라이언트 · 관리자 웹</p></article>
+        <article class="member reveal"><div class="portrait"><img src="assets/team-sunghyuk.webp" alt="조성혁 프로필" width="450" height="600" loading="lazy"><span>05</span></div><h3>조성혁</h3><p>서버 개발</p></article>
+        <article class="member reveal"><div class="portrait"><img src="assets/team-yongin.webp" alt="이용인 프로필" width="450" height="341" loading="lazy"><span>06</span></div><h3>이용인</h3><p>서버 · 인프라</p></article>
+        <article class="member reveal"><div class="portrait"><img src="assets/team-junhyuk.webp" alt="장준혁 프로필" width="450" height="300" loading="lazy"><span>07</span></div><h3>장준혁</h3><p>MCP · 네트워크</p></article>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div><p>한국에서 갈 곳을 더 쉽게.</p><a href="#about" aria-label="맨 위로">↗</a></div><span class="footer-word" aria-hidden="true">pingDom</span><div class="footer-meta"><span>© 2026 TYPE:NULL</span><span>LOCAL DISCOVERIES. REAL CONNECTIONS.</span></div></footer>
+</body>
+</html>
