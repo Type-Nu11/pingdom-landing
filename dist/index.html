@@ -12,9 +12,17 @@
   <script src="app.js" defer></script>
 </head>
 <body>
+  <svg class="brand-filters" aria-hidden="true" width="0" height="0"><defs>
+    <!-- 원본 로고의 색상 차이로 흰 배경과 검은 캡처 테두리만 숨깁니다. -->
+    <filter id="wordmark-cutout" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.108696 -1.108696 0 0 0" result="ink"/>
+      <feFlood flood-color="#ff1956"/>
+      <feComposite in2="ink" operator="in"/>
+    </filter>
+  </defs></svg>
   <a class="skip-link" href="#main">본문 바로가기</a>
   <header class="header">
-    <a class="logo" href="#about" aria-label="핑덤 처음으로">pingDom<span>✳</span></a>
+    <a class="logo" href="#about" aria-label="핑덤 처음으로"><svg class="brand-mark" viewBox="27 45 372 86" aria-hidden="true"><image href="assets/pingdom-wordmark-source.png" width="422" height="162" filter="url(#wordmark-cutout)"/></svg></a>
     <nav aria-label="주요 메뉴"><a href="#about">플랫폼</a><a href="#why">배경</a><a href="#features">기능</a><a href="#team">팀</a></nav>
   </header>
   <main id="main">
@@ -51,7 +59,7 @@
             <button role="tab" id="verify-tab-2" data-verify="2" aria-selected="true" aria-controls="verification-panel"><span>03</span>핑덤 검증</button>
           </div>
         </div>
-        <div class="verification-card reveal" id="verification-panel" role="tabpanel" aria-labelledby="verify-tab-2" tabindex="0"><div class="verification-seal" aria-hidden="true"><span>✓</span></div><p id="verification-en">PINGDOM VERIFIED</p><h4 id="verification-name">핑덤 검증</h4><p id="verification-description">방문자 확인과 이용 기록을 종합해<br> 신뢰도 높은 정보를 구분합니다.</p><div class="verification-card-footer"><span>pingDom</span><span id="verification-count">03 / 03</span></div></div>
+        <div class="verification-card reveal" id="verification-panel" role="tabpanel" aria-labelledby="verify-tab-2" tabindex="0"><div class="verification-seal" aria-hidden="true"><span>✓</span></div><p id="verification-en">PINGDOM VERIFIED</p><h4 id="verification-name">핑덤 검증</h4><p id="verification-description">방문자 확인과 이용 기록을 종합해<br> 신뢰도 높은 정보를 구분합니다.</p><div class="verification-card-footer"><svg class="brand-mark" viewBox="27 45 372 86" role="img" aria-label="PingDom"><image href="assets/pingdom-wordmark-source.png" width="422" height="162" filter="url(#wordmark-cutout)"/></svg><span id="verification-count">03 / 03</span></div></div>
       </section>
     </section>
     <section class="workspace section" aria-labelledby="workspace-title">
@@ -59,7 +67,7 @@
       <div id="workspace-panel" role="tabpanel" aria-labelledby="workspace-tab-0" tabindex="0"><div class="workspace-caption"><h3 id="workspace-name">내 가게를 관리하는 한 곳.</h3><p id="workspace-detail">매장 정보 · 쿠폰 · 예약</p></div><button class="workspace-screen" data-zoom="assets/web-merchant.webp" data-zoom-title="상점주 매장 관리 화면" aria-label="상점주 화면 확대"><img id="workspace-screen" src="assets/web-merchant.webp" alt="핑덤 상점주 매장 관리 화면" width="1200" height="645" loading="lazy"><span class="zoom-label">화면 확대 <span aria-hidden="true">↗</span></span></button></div>
     </section>
     <section class="pingdom-ai section" id="ai" aria-labelledby="ai-title">
-      <div class="ai-heading"><h2 id="ai-title">Pingdom <span>AI</span></h2><div class="ai-tabs" role="tablist" aria-label="핑덤 AI 서비스"><button role="tab" id="ai-tab-0" data-ai="0" aria-selected="true" aria-controls="ai-panel">여행자 AI</button><button role="tab" id="ai-tab-1" data-ai="1" aria-selected="false" aria-controls="ai-panel" tabindex="-1">상권 컨설팅</button></div></div>
+      <div class="ai-heading"><h2 id="ai-title" aria-label="PingDom AI"><svg class="brand-mark" viewBox="27 45 372 86" aria-hidden="true"><image href="assets/pingdom-wordmark-source.png" width="422" height="162" filter="url(#wordmark-cutout)"/></svg><span>AI</span></h2><div class="ai-tabs" role="tablist" aria-label="핑덤 AI 서비스"><button role="tab" id="ai-tab-0" data-ai="0" aria-selected="true" aria-controls="ai-panel">여행자 AI</button><button role="tab" id="ai-tab-1" data-ai="1" aria-selected="false" aria-controls="ai-panel" tabindex="-1">상권 컨설팅</button></div></div>
       <div class="ai-panel" id="ai-panel" role="tabpanel" aria-labelledby="ai-tab-0" tabindex="0">
         <div class="ai-copy"><h3 id="ai-headline">찾고 싶은 곳을,<br> 말하는 대로.</h3><p id="ai-description">위치, 평점, 영업 여부.<br> 여러 조건을 한 번의 질문으로.</p></div>
         <div class="ai-demo" id="ai-demo"><span class="example-label">기능 예시</span><div class="ai-question"><p>내 주변에 평점이 4.8점 이상이고<br> 지금 영업 중인 음식점을 찾아줘.</p><span aria-hidden="true">↑</span></div><div class="ai-answer"><span class="ai-symbol" aria-hidden="true">✳</span><h4>지금 갈 수 있는 곳을<br> 함께 찾아볼까요?</h4><div class="ai-conditions"><div><span>위치</span><strong>내 주변</strong></div><div><span>평점</span><strong>4.8<span>+</span></strong></div><div><span>영업 상태</span><strong>영업 중</strong></div></div><p>원하는 조건에 맞춰, 장소 탐색을 더 간편하게.</p></div></div>
@@ -84,6 +92,6 @@
     </section>
   </main>
   <dialog id="screen-dialog" aria-labelledby="dialog-title"><div class="dialog-bar"><h2 id="dialog-title">화면 확대</h2><div><button id="zoom-toggle" aria-pressed="false">원본 크기</button><button id="dialog-close" aria-label="확대 화면 닫기">닫기 ×</button></div></div><div class="dialog-image"><img id="dialog-screen" src="assets/web-merchant.webp" alt="" width="1200" height="645"></div></dialog>
-  <footer class="footer"><div><p>한국에서 갈 곳을 더 쉽게.</p><a href="#about" aria-label="맨 위로">↗</a></div><span class="footer-word" aria-hidden="true">pingDom</span><div class="footer-meta"><span>© 2026 TYPE:NULL</span></div></footer>
+  <footer class="footer"><div><p>한국에서 갈 곳을 더 쉽게.</p><a href="#about" aria-label="맨 위로">↗</a></div><div class="footer-word"><svg class="brand-mark" viewBox="27 45 372 86" role="img" aria-label="PingDom"><image href="assets/pingdom-wordmark-source.png" width="422" height="162" filter="url(#wordmark-cutout)"/></svg></div><div class="footer-meta"><span>© 2026 TYPE:NULL</span></div></footer>
 </body>
 </html>
