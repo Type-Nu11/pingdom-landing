@@ -1,4 +1,4 @@
-// 기존 링의 색과 위치를 도착점으로 공유해 꽃잎, 먼지, 금속 표면이 이어집니다.
+// 기존 링의 색과 위치를 도착점으로 공유해 입자, 잔광, 금속 표면이 이어집니다.
 const noise = `
 float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
 float noise(vec2 p) {
@@ -48,10 +48,10 @@ void main() {
   vec3 p=flight(aTarget*uImage,aSeed,uTime);
   gl_Position=project(p.xy);
   float glint=step(.992,aSeed.z);
-  gl_PointSize=uDpr*(1.2+aSeed.y*1.3+glint*4.0)*p.z;
+  gl_PointSize=uDpr*(1.5+aSeed.y*1.5+glint*3.0)*p.z;
   float alpha=smoothstep(.1,.4,uTime)*(1.0-material(uTime,aTarget+.5))*(1.0-smoothstep(3.8,4.35,uTime));
   vec3 tint=mix(aColor.rgb,vec3(1.0,.5,.78),.5);
-  vColor=vec4(tint,alpha*aColor.a*.7);
+  vColor=vec4(tint,alpha*aColor.a*.86);
 }
 `;
 const particleFragment = `
@@ -64,51 +64,39 @@ void main() {
   gl_FragColor=vec4(vColor.rgb,vColor.a*(core+glow));
 }
 `;
-const petalVertex = `${vertexCommon}${flight}
+const glintVertex = `${vertexCommon}${flight}
 attribute vec2 aCorner,aTarget;
 attribute vec3 aSeed;
 varying vec2 vUv;
-varying vec3 vTint;
-varying float vAlpha,vLight;
+varying vec4 vColor;
 void main() {
   float settle=smoothstep(2.0,3.85,uTime);
-  float foreground=step(.91,aSeed.y);
   vec3 p=flight(aTarget*uImage,aSeed,uTime);
-  // 소수의 전경 꽃잎은 링을 지나 화면 밖으로 빠져나가 원근감을 만듭니다.
-  float exit=smoothstep(2.1+aSeed.x*.5,4.65,uTime)*foreground;
-  p.xy+=vec2((aSeed.z-.45)*uViewport.x*2.0,uViewport.y*.95)*exit;
-  float size=(9.0+aSeed.y*23.0+foreground*25.0)*min(1.0,uViewport.x/800.0);
-  size*=p.z*mix(1.0,.06,settle*(1.0-foreground));
-  float tumble=aSeed.z*6.28+uTime*(3.5+aSeed.x*3.0);
-  vec2 local=aCorner;
-  local.x*=.2+.8*abs(cos(tumble));
-  local.y+=sin(local.x*2.8+tumble)*.16;
-  local=rotate(local,aSeed.x*6.28+uTime*(aSeed.z-.5)*3.5);
-  gl_Position=project(p.xy+local*size);
+  vec2 velocity=flight(aTarget*uImage,aSeed,uTime+.025).xy-p.xy;
+  // 바람을 따라 늘어나는 짧은 잔광만 남기고, 정착하면 작은 점으로 줄입니다.
+  float speed=min(length(velocity),18.0);
+  float lengthPx=mix(2.0+aSeed.y*4.0+speed*.65,1.2,settle);
+  float widthPx=(.7+aSeed.z*1.0)*p.z;
+  float angle=atan(velocity.y,velocity.x+.0001)+sin(uTime*3.0+aSeed.x*15.0)*.12*(1.0-settle);
+  float scale=min(1.0,uViewport.x/700.0);
+  vec2 local=rotate(aCorner*vec2(lengthPx,widthPx)*scale,angle);
+  gl_Position=project(p.xy+local);
   vUv=aCorner;
-  vLight=.58+.42*abs(sin(tumble+.8));
-  vTint=mix(vec3(1.0,.1,.46),vec3(1.0,.73,.86),aSeed.z);
-  float dissolve=material(uTime,aTarget+.5)*(1.0-foreground);
-  vAlpha=smoothstep(.05,.3,uTime)*(1.0-dissolve)*(1.0-smoothstep(4.05,4.8,uTime))*.9;
+  vec3 tint=mix(vec3(1.0,.14,.5),vec3(1.0,.8,.94),aSeed.z);
+  float formed=material(uTime,aTarget+.5);
+  float alpha=smoothstep(.05,.35,uTime)*(1.0-formed)*(1.0-smoothstep(4.05,4.5,uTime));
+  vColor=vec4(tint,alpha*(.4+.5*aSeed.y));
 }
 `;
-const petalFragment = `
+const glintFragment = `
 precision mediump float;
 varying vec2 vUv;
-varying vec3 vTint;
-varying float vAlpha,vLight;
+varying vec4 vColor;
 void main() {
-  vec2 p=vUv;
-  // 갈라진 꽃잎 끝과 가는 밑동을 셰이더로 그려 추가 이미지 요청을 줄입니다.
-  float y=(p.y+.9)/1.75;
-  float width=.68*pow(max(0.0,sin(clamp(y,0.0,1.0)*3.14159)),.65)*(.55+.55*y);
-  float edge=width-abs(p.x);
-  float notch=smoothstep(.6,.88,p.y)*(1.0-smoothstep(.01,.19,abs(p.x)));
-  float alpha=smoothstep(-.025,.035,edge)*(1.0-notch)*step(0.0,y)*step(y,1.0);
-  float fold=pow(1.0-clamp(abs(p.x+.1*p.y)*2.2,0.0,1.0),5.0);
-  vec3 color=vTint*vLight+vec3(.3,.22,.26)*fold;
-  color*=.82+.18*y;
-  gl_FragColor=vec4(color,alpha*vAlpha);
+  float radius=length(vUv);
+  float core=1.0-smoothstep(.08,.65,radius);
+  float halo=(1.0-smoothstep(.25,1.0,radius))*.22;
+  gl_FragColor=vec4(vColor.rgb,vColor.a*(core+halo));
 }
 `;
 const materialVertex = `${vertexCommon}
@@ -206,24 +194,24 @@ export function createRingFormation(canvas, image, model, hero) {
       attribute(particleProgram, 'aColor', colors, 4),
       attribute(particleProgram, 'aSeed', seeds, 3)
     ]);
-    // 큰 꽃잎은 삼각형으로 그려 기기별 point-size 제한을 피합니다.
-    const petalTargets = [], petalSeeds = [], corners = [];
-    const petalCount = mobile ? 360 : 720;
+    // 속도에 따른 잔광은 삼각형으로 그려 기기별 point-size 제한을 피합니다.
+    const glintTargets = [], glintSeeds = [], corners = [];
+    const glintCount = mobile ? 480 : 960;
     const quad = [-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1];
-    for (let i = 0; i < petalCount; i++) {
+    for (let i = 0; i < glintCount; i++) {
       const target = Math.floor(random()*positions.length/2)*2;
-      const petalSeed = [random(), random(), random()];
+      const glintSeed = [random(), random(), random()];
       for (let j = 0; j < 6; j++) {
-        petalTargets.push(positions[target], positions[target+1]);
-        petalSeeds.push(...petalSeed);
+        glintTargets.push(positions[target], positions[target+1]);
+        glintSeeds.push(...glintSeed);
         corners.push(quad[j*2], quad[j*2+1]);
       }
     }
-    const petalProgram = program(petalVertex, petalFragment);
-    const petals = pass(petalProgram, [
-      attribute(petalProgram, 'aTarget', petalTargets, 2),
-      attribute(petalProgram, 'aSeed', petalSeeds, 3),
-      attribute(petalProgram, 'aCorner', corners, 2)
+    const glintProgram = program(glintVertex, glintFragment);
+    const glints = pass(glintProgram, [
+      attribute(glintProgram, 'aTarget', glintTargets, 2),
+      attribute(glintProgram, 'aSeed', glintSeeds, 3),
+      attribute(glintProgram, 'aCorner', corners, 2)
     ]);
     const materialProgram = program(materialVertex, materialFragment);
     const material = pass(materialProgram, [attribute(materialProgram, 'aPosition', [-.5,-.5, .5,-.5, -.5,.5, -.5,.5, .5,-.5, .5,.5], 2)]);
@@ -252,8 +240,7 @@ export function createRingFormation(canvas, image, model, hero) {
         draw(material, time, gl.TRIANGLES, 6);
         gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
         draw(particles, time, gl.POINTS, positions.length/2);
-        gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-        draw(petals, time, gl.TRIANGLES, petalCount*6);
+        draw(glints, time, gl.TRIANGLES, glintCount*6);
       },
       dispose
     };
