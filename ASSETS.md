@@ -13,5 +13,18 @@ Use case: stylized-concept. Asset type: premium landing page hero for Pingdom, a
 ## 브랜드 워드마크
 
 - `dist/assets/pingdom-wordmark-source.png`: 사용자가 제공한 PingDom 로고 스크린샷 원본. 변경 없이 복사해 사용.
-- HTML의 `wordmark-cutout` 필터가 흰 배경과 검은 캡처 테두리를 숨기며, 원본 윤곽과 색상 프로필을 sRGB로 변환한 `#ff1956`을 표시합니다. 헤더, 검증 카드, AI 제목, 푸터에서 동일하게 사용합니다.
+- HTML의 `wordmark-cutout` 필터가 흰 배경과 검은 캡처 테두리를 숨기며, 원본 윤곽과 색상 프로필을 sRGB로 변환한 `#ff1956`을 표시합니다. 현재 헤더에만 사용합니다. AI 제목과 푸터는 텍스트로 구성합니다.
 - 내장 ImageGen 배경 추출을 검토했으나 원본 색상·가장자리 차이로 채택하지 않았습니다. 검토 프롬프트: 원본 PingDom 글자 형태·간격·색상을 유지하고 흰 배경과 검은 캡처 테두리만 제거, 투명 배경. 실제 사이트에는 생성 결과가 아닌 첨부 원본을 사용합니다.
+
+## 원본 해상도 화면
+
+- `app-*-source.png`: 사용자 제공 타입널 포트폴리오 PDF 19–23쪽의 1800×3680 이미지 스트림을 직접 추출했습니다. 확대 보간이나 AI 재생성을 하지 않았습니다.
+- `web-admin-source.png`: 포트폴리오 24쪽의 1864×1003 원본 이미지.
+- `web-merchant-source.png`: 포트폴리오 29쪽의 1866×1003 원본 이미지.
+- `ai-traveler-slide.png`: 발표자료 23쪽의 실제 AI 대화 예시 영역을 1764×934로 추출했습니다.
+- `ai-consulting-slide.png`: 발표자료 19쪽의 상권 컨설팅 및 분석 보고서 영역을 1820×800으로 추출했습니다.
+
+## 도시 배경
+
+- `seoul-dusk.png`: 내장 ImageGen으로 생성한 1774×887 장식용 히어로 배경. 서울에서 영감을 받은 장면이며 특정 장소의 실제 사진으로 제시하지 않습니다. 기존 `pingdom-pin.png`를 대신합니다.
+- 프롬프트: Cinematic wide hero background for Pingdom, a Korea local travel discovery landing page. Seoul-inspired blue-hour rooftop view over a quiet Korean urban neighborhood, layered dark charcoal rooftops, contemporary towers and a distant hill and slender tower on the far right, warm windows and restrained muted magenta reflections. Editorial travel photography, nuanced midnight-blue shadows, natural film grain and atmospheric depth. Ultra-wide 2:1 landscape, city concentrated on the right and lower third, quiet dark negative space on the left for white Korean typography. No foreground people, readable text, logos, map pins, watermarks, captions or UI. Conceptual Seoul-inspired background, not a claim of a specific exact place.
