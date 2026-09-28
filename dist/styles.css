@@ -24,7 +24,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .hero-art{position:absolute;z-index:-2;inset:-3%;transform:translate3d(0,var(--scroll-y,0px),0);will-change:transform}
 .hero-art img{width:100%;height:100%;object-fit:cover;object-position:center;transform:translate(var(--pointer-x,0px),var(--pointer-y,0px));transition:transform 1.2s var(--ease)}
 .hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#03080f8c,transparent 68%),linear-gradient(0deg,#05090dcc,transparent 28%)}
-.hero-model{position:absolute;top:52%;right:6%;width:min(65vw,940px);translate:0 -50%;pointer-events:none;transform:translate3d(calc(var(--pointer-x,0px)*3),calc(var(--pointer-y,0px)*3),0);transition:transform 1.2s var(--ease)}
+.hero-model{position:absolute;top:52%;right:0;width:min(48vw,720px);translate:0 -50%;pointer-events:none;transform:translate3d(calc(var(--pointer-x,0px)*3),calc(var(--pointer-y,0px)*3),0);transition:transform 1.2s var(--ease)}
 .hero-model img{width:100%;height:auto;animation:hero-in 1.4s var(--ease) both}
 .hero-copy{position:relative;z-index:1;width:65%;pointer-events:none}
 h1{font-size:clamp(76px,8.3vw,138px);font-weight:690;letter-spacing:-.065em;line-height:1.07;margin:0;text-shadow:0 4px 40px #0003}
@@ -168,7 +168,7 @@ h2{font-size:clamp(45px,5.4vw,86px);letter-spacing:-.045em;line-height:1.15;font
 .dialog-image.is-zoomed img{width:auto;min-width:100%}
 .dialog-image.is-phone{background:#101013}.dialog-image.is-phone:not(.is-zoomed) img{width:auto;height:calc(94svh - 81px);max-width:100%;object-fit:contain}
 body.dialog-open{overflow:hidden}
-@media(min-width:1700px){.hero-model{right:17%}.section{padding-left:max(5%,calc((100vw - 1600px)/2));padding-right:max(5%,calc((100vw - 1600px)/2))}}
+@media(min-width:1700px){.section{padding-left:max(5%,calc((100vw - 1600px)/2));padding-right:max(5%,calc((100vw - 1600px)/2))}}
 @media(max-width:1100px){
  .hero{min-height:730px;padding-top:155px}.hero-copy{width:75%}.header nav{gap:35px}
  .why{grid-template-columns:1fr;gap:45px;padding-top:90px;padding-bottom:90px}.why h2{font-size:55px}.barrier-line{grid-template-columns:1fr 1.2fr}.barrier-line h3{font-size:39px}
