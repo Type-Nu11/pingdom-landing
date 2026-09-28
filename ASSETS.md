@@ -32,7 +32,7 @@ Use case: stylized-concept. Asset type: premium landing page hero for Pingdom, a
 
 ## 현재 비주얼과 UI
 
-- `pingdom-pin-opaque.png`: 기존 핀을 ImageGen으로 편집한 1254×1254 RGBA. 외부 배경과 중앙 구멍만 투명하며 크롬 표면은 불투명합니다. 형태와 핑크 반사광을 유지했습니다. 현재 히어로에 사용합니다.
+- `pingdom-pin-opaque.png`: 기존 핀을 ImageGen으로 편집한 1254×1254 RGBA. 외부 배경과 중앙 구멍만 투명하며 크롬 표면은 불투명합니다. 형태와 핑크 반사광을 유지했습니다. 이전 히어로에 사용했던 자료로 보관합니다.
 - 편집 프롬프트 핵심: Remove only the black outside background and the central pin hole to true alpha. Preserve the exact pin silhouette, polished chrome body, magenta reflections, lighting and opaque metallic surfaces. No translucent metal, no background glow, no text.
 - `ai-places-triptych.png`: ImageGen으로 생성한 2172×724 이미지. 카페·식당·팝업의 세 장면을 같은 너비로 구성하고 CSS에서 각 장면을 표시합니다. 특정 실제 매장 사진이 아닌 소개용 가상 장면이며 UI에도 예시로 표시합니다.
 - 생성 프롬프트 핵심: Three equal square editorial photographs in a seamless horizontal triptych: a quiet sunlit Seoul-inspired cafe, an intimate Korean neighborhood restaurant, and a contemporary pop-up exhibition space. Restrained warm neutral palette, subtle magenta accents, realistic materials. No people, letters, brand logos or watermarks. Fictional illustrative locations.
@@ -46,4 +46,9 @@ Use case: stylized-concept. Asset type: premium landing page hero for Pingdom, a
 - 위 운영 화면 6개는 PDF의 원본 이미지 스트림을 직접 추출했습니다. 이미지 내 텍스트를 AI로 재생성하지 않았습니다.
 - 팀 사진은 원본 파일을 유지하고 사용자의 최신 교정에 따라 김일강에는 `presentation-yongin.png`, 이용인에는 `presentation-ilgang.png`를 연결합니다. 파일명은 최초 추출 시점의 식별자로 유지합니다.
 
-- 히어로 보조 구체와 회전 궤도는 CSS 그라데이션·테두리·키프레임으로 구현한 장식입니다. 기존 핀과 도시 이미지를 유지하며 새 사진이나 프로필 이미지는 생성하지 않았습니다.
+- 히어로 보조 구체와 회전 궤도는 CSS 그라데이션·테두리·키프레임으로 구현한 장식입니다. 이전 히어로의 기록이며, 현재 화면에서는 제거했습니다.
+
+## 리본형 히어로 재구성
+
+- `dist/assets/pingdom-portal.png`: 내장 ImageGen으로 생성한 1345×1170 RGBA 입체 리본 조형. 공식 로고가 아닌 장식용 비주얼이며, 흰 글자와 중앙 조형이 겹치는 첫 화면에 사용합니다. 동일 이미지를 확대·흐림 처리해 배경 깊이를 만듭니다.
+- 프롬프트: Use case: stylized-concept. Transparent centerpiece for Pingdom. One sculptural flowing ribbon loop, an abstract portal suggesting discovery and connection, with an asymmetric open center. Wide folded iridescent metallic glass, sinuous flowing folds, twisting diagonally from bottom left to top right. Hot pink and fuchsia edges, lilac and violet reflections, black chrome, pearl-white highlights and a restrained amber edge. Dramatic gallery studio lighting, high-end CGI. Entire sculpture visible, centered, three-quarter perspective, broad oval silhouette. True transparent background around and inside the hollow center; opaque solid surfaces. No map pin, spheres, city, text, logos, UI, orbit rings or separate bubbles.
