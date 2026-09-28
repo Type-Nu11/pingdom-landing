@@ -69,14 +69,14 @@ test('정상 종료 후 잠금 클래스와 임시 효과를 해제하고 한 �
   const f = fixture(); f.start(); await tick();
   assert.equal(f.classes.has('intro-playing'), true);
   assert.ok(f.animations.length > 0);
-  f.advance(1200); f.advance(4700); await tick();
+  f.advance(1200); f.advance(5300); await tick();
   assert.equal(f.classes.has('intro-pending'), false);
   assert.equal(f.classes.has('intro-playing'), false);
   assert.equal(f.classes.has('intro-complete'), true);
   assert.ok(f.animations.every(animation => animation.cancelled));
   assert.equal(f.frames.size, 0);
   assert.equal(f.disposed, 1);
-  assert.deepEqual(f.rendered, [1.2, 4.7]);
+  assert.deepEqual(f.rendered, [1.2, 5.3]);
   f.emit(f.window, 'pingdom:intro-finish');
   assert.equal(f.completed, 1);
 });

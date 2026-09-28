@@ -1,4 +1,4 @@
-import { createRingFormation } from './ring-particles.mjs?v=3';
+import { createRingFormation } from './ring-particles.mjs?v=petals-1';
 
 export function startHeroIntro({ hero, reducedMotion, onComplete }) {
   const root = document.documentElement;
@@ -55,24 +55,24 @@ export function startHeroIntro({ hero, reducedMotion, onComplete }) {
       animation.finished.catch(() => {});
       animations.push(animation);
     }
-    animate('.hero-art', [{ opacity: 0 }, { opacity: 1 }], 1400, 2200);
-    animate('.hero-light', [{ opacity: 0 }, { opacity: .6 }], 1400, 2400);
+    animate('.hero-art', [{ opacity: 0 }, { opacity: 1 }], 1500, 1100);
+    animate('.hero-light', [{ opacity: 0 }, { opacity: .6 }], 1800, 1400);
     animate('.hero-line-top', [
       { opacity: 0, transform: 'translate3d(-12px,18px,0)' },
       { opacity: 1, transform: 'translate3d(0,0,0)' }
-    ], 900, 3100);
+    ], 900, 3700);
     animate('.hero-line-bottom', [
       { opacity: 0, transform: 'translate3d(16px,-12px,0)' },
       { opacity: 1, transform: 'translate3d(0,0,0)' }
-    ], 900, 3400);
-    animate('.header', [{ opacity: 0 }, { opacity: 1 }], 750, 3750);
-    animate('.hero-bottom', [{ opacity: 0 }, { opacity: 1 }], 650, 4050);
+    ], 900, 3950);
+    animate('.header', [{ opacity: 0 }, { opacity: 1 }], 750, 4350);
+    animate('.hero-bottom', [{ opacity: 0 }, { opacity: 1 }], 650, 4550);
     root.classList.add('intro-playing');
     function render(now) {
       if (ended) return;
       const elapsed = (now-startTime)/1000;
       try { formation.render(elapsed); } catch { finish(); return; }
-      if (elapsed >= 4.7) { finish(); return; }
+      if (elapsed >= 5.3) { finish(); return; }
       frame = requestAnimationFrame(render);
     }
     frame = requestAnimationFrame(render);
