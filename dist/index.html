@@ -23,7 +23,6 @@
         window.dispatchEvent(new Event('pingdom:intro-end'));
       };
       window.addEventListener('pingdom:intro-finish', finish, { once: true });
-      document.addEventListener('click', event => { if (event.target.closest('#intro-skip')) finish(); });
       window.addEventListener('keydown', event => { if (event.key === 'Escape' || event.key === 'Tab') finish(); });
       window.addEventListener('wheel', finish, { passive: true, once: true });
       window.addEventListener('touchmove', finish, { passive: true, once: true });
@@ -31,12 +30,12 @@
       window.addEventListener('scroll', () => { if (window.scrollY > 40) finish(); }, { passive: true });
       reduced.addEventListener('change', () => { if (reduced.matches) finish(); });
       // 모듈 로딩이 실패하더라도 본문과 스크롤은 반드시 복구합니다.
-      fallback = setTimeout(finish, 6500);
+      fallback = setTimeout(finish, 7500);
     })();
   </script>
   <link rel="preload" href="assets/pretendard-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=cinematic-intro-1">
-  <script type="module" src="app.js?v=cinematic-intro-1"></script>
+  <link rel="stylesheet" href="styles.css?v=particle-intro-3">
+  <script type="module" src="app.js?v=particle-intro-3"></script>
 </head>
 <body>
   <svg class="brand-filters" aria-hidden="true" width="0" height="0"><defs>
@@ -47,12 +46,6 @@
       <feComposite in2="ink" operator="in"/>
     </filter>
   </defs></svg>
-  <div class="intro-screen" aria-hidden="true">
-    <div class="intro-shutter intro-shutter-left"></div><div class="intro-shutter intro-shutter-right"></div>
-    <div class="intro-beam"></div>
-    <div class="intro-wordmark"><svg class="brand-mark" viewBox="27 45 372 86"><image href="assets/pingdom-wordmark-source.png" width="422" height="162" filter="url(#wordmark-cutout)"/></svg></div>
-  </div>
-  <button class="intro-skip" id="intro-skip" type="button">인트로 건너뛰기</button>
   <a class="skip-link" href="#main">본문 바로가기</a>
   <header class="header">
     <a class="logo" href="#about" aria-label="핑덤 처음으로"><svg class="brand-mark" viewBox="27 45 372 86" aria-hidden="true"><image href="assets/pingdom-wordmark-source.png" width="422" height="162" filter="url(#wordmark-cutout)"/></svg></a>
@@ -62,6 +55,7 @@
     <section class="hero" id="about" aria-labelledby="hero-title">
       <div class="hero-art" aria-hidden="true"><img src="assets/pingdom-portal.png" alt="" width="1345" height="1170"></div>
       <div class="hero-light" aria-hidden="true"></div>
+      <canvas class="intro-particles" aria-hidden="true"></canvas>
       <div class="hero-copy"><h1 id="hero-title"><span class="hero-line-top">한국에서 갈 곳을</span> <span class="hero-line-bottom">더 쉽게<span class="hero-period">.</span></span></h1></div>
       <div class="hero-model" aria-hidden="true"><div class="portal-float"><img src="assets/pingdom-portal.png" alt="" width="1345" height="1170" fetchpriority="high"></div></div>
       <div class="hero-bottom"><p class="hero-caption"><span>방한 여행자와 로컬을 잇는</span><strong>발견부터 방문까지, 핑덤.</strong></p><div class="hero-bottom-actions"><a href="#why" class="hero-explore">핑덤 알아보기</a><button class="motion-toggle" id="motion-toggle" aria-label="첫 화면 애니메이션 멈추기" aria-pressed="false"><span aria-hidden="true"></span></button></div></div>

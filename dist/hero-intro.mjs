@@ -1,30 +1,41 @@
+import { createRingFormation } from './ring-particles.mjs?v=3';
+
 export function startHeroIntro({ hero, reducedMotion, onComplete }) {
   const root = document.documentElement;
   if (!root.classList.contains('intro-pending')) return;
-  let ended = false;
-  let readyTimeout;
+  const canvas = hero.querySelector('.intro-particles');
+  let ended = false, readyTimeout, frame, formation;
   const animations = [];
   const finish = () => window.dispatchEvent(new Event('pingdom:intro-finish'));
+  if (!canvas) { finish(); onComplete(); return; }
   const endForMotion = () => { if (reducedMotion.matches) finish(); };
+  const endWhenHidden = () => { if (document.hidden && formation) finish(); };
   function cleanup() {
     if (ended) return;
     ended = true;
     clearTimeout(readyTimeout);
-    animations.forEach(animation => animation.cancel());
+    cancelAnimationFrame(frame);
+    canvas.removeEventListener('webglcontextlost', finish);
+    window.removeEventListener('resize', finish);
+    document.removeEventListener('visibilitychange', endWhenHidden);
     reducedMotion.removeEventListener('change', endForMotion);
     window.removeEventListener('pingdom:intro-end', cleanup);
+    animations.forEach(animation => animation.cancel());
+    formation?.dispose();
     onComplete();
   }
   window.addEventListener('pingdom:intro-end', cleanup);
   reducedMotion.addEventListener('change', endForMotion);
+  canvas.addEventListener('webglcontextlost', finish);
+  document.addEventListener('visibilitychange', endWhenHidden);
   if (reducedMotion.matches || window.scrollY > 40) { finish(); return; }
 
   const image = hero.querySelector('.hero-model img');
-  // 느린 이미지/폰트가 페이지 진입을 계속 막지 않도록 준비 시간을 제한합니다.
+  // 이미지가 늦거나 GPU를 사용할 수 없어도 첫 화면을 계속 가리지 않습니다.
   const readiness = Promise.all([Promise.resolve().then(() => image.decode()), document.fonts.ready]);
   Promise.race([
     readiness,
-    new Promise(resolve => { readyTimeout = setTimeout(resolve, 800); })
+    new Promise(resolve => { readyTimeout = setTimeout(resolve, 1200); })
   ]).then(() => {
     if (ended || !root.classList.contains('intro-pending')) return;
     if (!image.complete || !image.naturalWidth) { finish(); return; }
@@ -32,56 +43,38 @@ export function startHeroIntro({ hero, reducedMotion, onComplete }) {
   }, finish).finally(() => clearTimeout(readyTimeout));
 
   function play() {
-    const mobile = window.matchMedia('(max-width: 700px)').matches;
-    const restingY = mobile ? 7 : 9;
-    const restingAngle = mobile ? -6 : -7;
+    formation = createRingFormation(canvas, image, hero.querySelector('.hero-model'), hero);
+    window.addEventListener('resize', finish);
     const startTime = document.timeline.currentTime;
-    function animate(selector, keyframes, duration, delay = 0, easing = 'cubic-bezier(.22,1,.36,1)') {
-      const animation = document.querySelector(selector).animate(keyframes, { duration, delay, easing, fill: 'both' });
+    function animate(selector, keyframes, duration, delay) {
+      const animation = document.querySelector(selector).animate(keyframes, {
+        duration, delay, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'both'
+      });
       animation.startTime = startTime;
+      // 중간 해제는 정상적인 종료 경로이므로 취소 Promise를 처리합니다.
+      animation.finished.catch(() => {});
       animations.push(animation);
     }
-    animate('.intro-wordmark', [
-      { opacity: 0, transform: 'scale(.86)', offset: 0 },
-      { opacity: 1, transform: 'scale(1)', offset: .3 },
-      { opacity: 1, transform: 'scale(1.02)', offset: .65 },
-      { opacity: 0, transform: 'scale(1.18)', offset: 1 }
-    ], 1150);
-    animate('.intro-beam', [
-      { opacity: 0, transform: 'scaleY(0)', offset: 0 },
-      { opacity: .65, transform: 'scaleY(1)', offset: .45 },
-      { opacity: 0, transform: 'scaleY(1)', offset: 1 }
-    ], 1100, 250);
-    for (const side of ['left', 'right']) {
-      animate('.intro-shutter-' + side, [
-        { transform: 'translateX(0)' },
-        { transform: 'translateX(' + (side === 'left' ? '-102%' : '102%') + ')' }
-      ], 1200, 650, 'cubic-bezier(.76,0,.24,1)');
-    }
-    animate('.portal-float', [
-      { opacity: .3, transform: `translate3d(-8vw,8vh,0) rotate(-64deg) scale(${mobile ? 2.8 : 3.6})`, offset: 0 },
-      { opacity: 1, transform: 'translate3d(4vw,-3vh,0) rotate(-28deg) scale(1.9)', offset: .4 },
-      { opacity: 1, transform: `translate3d(0,${restingY}px,0) rotate(-5deg) scale(.98)`, offset: .8 },
-      { opacity: 1, transform: `translate3d(0,${restingY}px,0) rotate(${restingAngle}deg) scale(1)`, offset: 1 }
-    ], 2500, 450, 'cubic-bezier(.3,.05,.2,1)');
+    animate('.hero-art', [{ opacity: 0 }, { opacity: 1 }], 1400, 2200);
+    animate('.hero-light', [{ opacity: 0 }, { opacity: .6 }], 1400, 2400);
     animate('.hero-line-top', [
-      { opacity: 0, transform: 'translate3d(-55px,30px,0) rotate(-2deg)' },
-      { opacity: 1, transform: 'translate3d(0,0,0) rotate(0)' }
-    ], 850, 1800);
+      { opacity: 0, transform: 'translate3d(-12px,18px,0)' },
+      { opacity: 1, transform: 'translate3d(0,0,0)' }
+    ], 900, 3100);
     animate('.hero-line-bottom', [
-      { opacity: 0, transform: 'translate3d(75px,60px,0) rotate(3deg)' },
-      { opacity: 1, transform: 'translate3d(0,0,0) rotate(0)' }
-    ], 850, 2100);
-    animate('.header', [
-      { opacity: 0, transform: 'translateY(-18px)' },
-      { opacity: 1, transform: 'translateY(0)' }
-    ], 650, 2350);
-    animate('.hero-bottom', [
-      { opacity: 0, transform: 'translateY(20px)' },
-      { opacity: 1, transform: 'translateY(0)' }
-    ], 550, 2650);
+      { opacity: 0, transform: 'translate3d(16px,-12px,0)' },
+      { opacity: 1, transform: 'translate3d(0,0,0)' }
+    ], 900, 3400);
+    animate('.header', [{ opacity: 0 }, { opacity: 1 }], 750, 3750);
+    animate('.hero-bottom', [{ opacity: 0 }, { opacity: 1 }], 650, 4050);
     root.classList.add('intro-playing');
-    // 모든 효과를 함께 해제해 텍스트에 변환 레이어나 임시 스타일을 남기지 않습니다.
-    Promise.all(animations.map(animation => animation.finished)).then(finish, finish);
+    function render(now) {
+      if (ended) return;
+      const elapsed = (now-startTime)/1000;
+      try { formation.render(elapsed); } catch { finish(); return; }
+      if (elapsed >= 4.7) { finish(); return; }
+      frame = requestAnimationFrame(render);
+    }
+    frame = requestAnimationFrame(render);
   }
 }
