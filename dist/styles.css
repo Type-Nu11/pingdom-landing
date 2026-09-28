@@ -27,11 +27,11 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .hero-light{position:absolute;inset:9% -15% -12%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 52% 42%,#7b167844,transparent 49%);animation:light-shift 14s ease-in-out infinite alternate}
 .hero-copy{position:absolute;inset:0;pointer-events:none;z-index:3}
 h1{margin:0;font-weight:740;letter-spacing:-.065em;line-height:1.03;color:#f8f4fb}
-h1>span{display:block;position:absolute;animation:hero-in 1.3s var(--ease) both}
-.hero-line-top{top:16%;left:7%;font-size:clamp(62px,7.3vw,122px);letter-spacing:-.055em;white-space:nowrap}
+h1>span{display:block;position:absolute;animation:hero-in 1.3s var(--ease) backwards}
+.hero-line-top{top:12%;left:7%;font-size:clamp(62px,7.3vw,122px);font-weight:700;line-height:1.16;letter-spacing:0;white-space:nowrap;text-shadow:0 2px 12px #09070e}
 .hero-line-bottom{bottom:14%;right:7%;font-size:clamp(116px,14.7vw,238px);font-weight:790;animation-delay:.14s;white-space:nowrap;line-height:.98;text-shadow:0 4px 28px #09070e66}
 .hero-period{color:#ff377f}
-.hero-model{position:absolute;top:48%;left:51%;width:min(58vw,810px);translate:-50% -50%;z-index:2;pointer-events:none;transform:translate3d(calc(var(--pointer-x,0px)*2.4),calc(var(--pointer-y,0px)*2.4),0);transition:transform 1.2s var(--ease)}
+.hero-model{position:absolute;top:52%;left:51%;width:min(58vw,810px);translate:-50% -50%;z-index:2;pointer-events:none;transform:translate3d(calc(var(--pointer-x,0px)*2.4),calc(var(--pointer-y,0px)*2.4),0);transition:transform 1.2s var(--ease)}
 .hero-model img{width:100%;height:auto;animation:sculpture-in 1.6s var(--ease) both;filter:drop-shadow(0 22px 40px #14091855)}
 .portal-float{animation:portal-drift 12s ease-in-out infinite;transform-origin:center;will-change:transform}
 @keyframes portal-drift{0%,100%{transform:translate3d(0,9px,0) rotate(-7deg)}50%{transform:translate3d(16px,-11px,0) rotate(3deg)}}
@@ -190,7 +190,7 @@ body.dialog-open{overflow:hidden}
 }
 @media(max-width:700px){
  .header{height:76px;padding:0 6%}.logo{width:112px}.header nav{gap:18px;font-size:14px}
- .hero{height:100svh;min-height:740px;max-height:880px}.hero-copy{inset:0}.hero-line-top{top:20%;left:6%;font-size:clamp(36px,8.8vw,63px);letter-spacing:-.065em}.hero-line-bottom{bottom:24%;right:6%;font-size:clamp(83px,23vw,151px);line-height:1.02;letter-spacing:-.07em}.hero-model{top:45%;left:50%;width:min(96vw,650px);translate:-50% -50%;transform:none}.hero-art{inset:-5% -80%}.hero-art img{opacity:.25;filter:blur(38px)}.hero-light{inset:12% -55% 5%}.portal-float{animation-name:portal-drift-mobile}.hero-bottom{left:6%;right:6%;bottom:32px;align-items:flex-end;gap:16px}.hero-caption>span{font-size:14px}.hero-caption strong{font-size:18px}.hero-bottom-actions{gap:0}.hero-explore{display:none}.motion-toggle{width:36px;height:36px;flex-shrink:0}
+ .hero{height:100svh;min-height:740px;max-height:880px}.hero-copy{inset:0}.hero-line-top{top:16%;left:6%;font-size:clamp(36px,8.8vw,63px);letter-spacing:0}.hero-line-bottom{bottom:24%;right:6%;font-size:clamp(83px,23vw,151px);line-height:1.02;letter-spacing:-.07em}.hero-model{top:45%;left:50%;width:min(96vw,650px);translate:-50% -50%;transform:none}.hero-art{inset:-5% -80%}.hero-art img{opacity:.25;filter:blur(38px)}.hero-light{inset:12% -55% 5%}.portal-float{animation-name:portal-drift-mobile}.hero-bottom{left:6%;right:6%;bottom:32px;align-items:flex-end;gap:16px}.hero-caption>span{font-size:14px}.hero-caption strong{font-size:18px}.hero-bottom-actions{gap:0}.hero-explore{display:none}.motion-toggle{width:36px;height:36px;flex-shrink:0}
  .section{padding:68px 6%}h2{font-size:clamp(36px,8.8vw,58px);letter-spacing:-.045em}.why{gap:38px}.why h2{font-size:clamp(36px,8.8vw,55px)}
  .barrier-line{padding:24px 0;gap:14px;grid-template-columns:95px minmax(0,1fr)}.old-way{font-size:15px}.barrier-line h3{font-size:clamp(30px,8.7vw,47px);letter-spacing:-.06em}.barrier-line h3:after{height:4px;margin-top:6px}
  .feature-tabs{margin-top:32px}.feature-tabs button{font-size:18px;padding:19px 0;gap:12px}.feature-tabs small{font-size:12px}
