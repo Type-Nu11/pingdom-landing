@@ -28,7 +28,7 @@
   <main id="main">
     <section class="hero" id="about" aria-labelledby="hero-title">
       <div class="hero-art" aria-hidden="true"><img src="assets/seoul-dusk.png" alt="" width="1774" height="887" fetchpriority="high"></div>
-      <div class="hero-model" aria-hidden="true"><img src="assets/pingdom-pin.png" alt="" width="1254" height="1254" fetchpriority="high"></div>
+      <div class="hero-model" aria-hidden="true"><img src="assets/pingdom-pin-opaque.png" alt="" width="1254" height="1254" fetchpriority="high"></div>
       <div class="hero-copy"><h1 id="hero-title"><span>한국에서</span><span>갈 곳을</span><span class="accent">더 쉽게.</span></h1></div>
       <div class="hero-bottom"><p>방한 여행자와 로컬을 잇는<br> <strong>발견부터 방문까지, 핑덤.</strong></p><a class="round-link" href="#why" aria-label="기획 배경으로 이동">↓</a></div>
     </section>
@@ -64,32 +64,57 @@
         </ol>
       </section>
     </section>
-    <section class="workspace section" aria-labelledby="workspace-title">
-      <div class="workspace-heading"><h2 id="workspace-title" class="reveal">로컬의 운영도,<br> 더 명확하게.</h2><div class="workspace-tabs" role="tablist" aria-label="운영 화면 선택"><button role="tab" id="workspace-tab-0" data-workspace="0" aria-selected="true" aria-controls="workspace-panel">상점주</button><button role="tab" id="workspace-tab-1" data-workspace="1" aria-selected="false" aria-controls="workspace-panel" tabindex="-1">관리자</button></div></div>
-      <div id="workspace-panel" role="tabpanel" aria-labelledby="workspace-tab-0" tabindex="0"><div class="workspace-caption"><h3 id="workspace-name">내 가게를 관리하는 한 곳.</h3><p id="workspace-detail">매장 정보 · 쿠폰 · 예약</p></div><button class="workspace-screen" data-zoom="assets/web-merchant-source.png" data-zoom-title="상점주 매장 관리 화면" aria-label="상점주 화면 확대"><img id="workspace-screen" src="assets/web-merchant-source.png" alt="핑덤 상점주 매장 관리 화면" width="1866" height="1003" loading="lazy"><span class="zoom-label">화면 확대 <span aria-hidden="true">↗</span></span></button></div>
+    <section class="workspace section" id="workspace" aria-labelledby="workspace-title">
+      <div class="workspace-heading"><h2 id="workspace-title" class="reveal">로컬을 움직이는<br>두 개의 시선.</h2><div class="workspace-tabs" role="tablist" aria-label="운영 화면 선택"><button role="tab" id="workspace-tab-0" data-workspace="0" aria-selected="true" aria-controls="workspace-panel">상점주</button><button role="tab" id="workspace-tab-1" data-workspace="1" aria-selected="false" aria-controls="workspace-panel" tabindex="-1">관리자</button></div></div>
+      <div class="workspace-panel" id="workspace-panel" role="tabpanel" aria-labelledby="workspace-tab-0" tabindex="0">
+        <div class="workspace-copy"><h3 id="workspace-name">내 가게의 시작부터,<br>새로운 방문까지.</h3><p id="workspace-detail">매장을 알리고, 혜택을 전하고.<br>로컬의 운영을 한곳에서.</p><div class="workspace-features" aria-label="운영 기능 선택"><button data-workspace-feature="0" aria-pressed="true"><span>01</span><strong>장소 등록</strong><span class="workspace-indicator" aria-hidden="true">↗</span></button><button data-workspace-feature="1" aria-pressed="false"><span>02</span><strong>이벤트 관리</strong><span class="workspace-indicator" aria-hidden="true">↗</span></button><button data-workspace-feature="2" aria-pressed="false"><span>03</span><strong>운영 권한</strong><span class="workspace-indicator" aria-hidden="true">↗</span></button></div></div>
+        <div class="workspace-stage"><div class="workspace-browser"><div class="browser-toolbar" aria-hidden="true"><i></i><i></i><i></i><span id="workspace-browser-label">상점주 센터</span></div><button class="workspace-screen" data-zoom="assets/merchant-register.png" data-zoom-title="상점주 신규 장소 등록 화면" aria-label="상점주 신규 장소 등록 화면 확대"><img id="workspace-screen" src="assets/merchant-register.png" alt="매장 정보와 위치를 입력하는 실제 상점주 신규 장소 등록 화면" width="1864" height="1004" loading="lazy"><span class="zoom-label">원본 보기 <span aria-hidden="true">↗</span></span></button></div><p id="workspace-screen-caption">장소 정보와 위치를 입력해, 내 가게를 핑덤에.</p></div>
+      </div>
     </section>
     <section class="pingdom-ai section" id="ai" aria-labelledby="ai-title">
       <div class="ai-heading"><h2 id="ai-title">Pingdom <span>AI</span></h2><div class="ai-tabs" role="tablist" aria-label="AI 서비스 선택"><button role="tab" id="ai-tab-0" data-ai="0" aria-selected="true" aria-controls="ai-panel">여행자 AI</button><button role="tab" id="ai-tab-1" data-ai="1" aria-selected="false" aria-controls="ai-panel" tabindex="-1">상권 컨설팅</button></div></div>
       <div class="ai-panel" id="ai-panel" role="tabpanel" aria-labelledby="ai-tab-0" tabindex="0">
-        <div class="ai-copy"><h3 id="ai-headline">찾고 싶은 곳을, 말하는 대로.</h3><p id="ai-description">위치부터 평점, 영업 여부까지.<br> 여러 조건을 한 번의 질문으로.</p></div>
-        <div class="ai-demo" id="ai-demo"><button class="presentation-screen" data-zoom="assets/ai-traveler-slide.png" data-zoom-title="발표자료의 Pingdom AI 대화 예시" aria-label="Pingdom AI 발표자료 화면 확대"><img id="ai-screen" src="assets/ai-traveler-slide.png" alt="평점 4.8 이상이며 영업 중인 주변 음식점을 요청하면 장소 목록과 설명을 제시하는 발표자료의 AI 대화 예시" width="1764" height="934" loading="lazy"><span class="zoom-label">화면 확대 <span aria-hidden="true">↗</span></span></button><p class="presentation-caption">발표자료의 서비스 시연 화면</p></div>
+        <div class="ai-copy"><h3 id="ai-headline">복잡한 검색 대신,<br>한 번의 대화.</h3><p id="ai-description">장소를 발견하는 더 자연스러운 방법.</p></div>
+        <div class="traveler-demo" id="traveler-demo">
+          <div class="ai-orbit" aria-hidden="true"></div>
+          <div class="ai-question"><span class="question-dot" aria-hidden="true"></span><p id="ai-question-text">내 주변에서 오늘 가볼 만한 장소를 추천해줘.</p><span class="question-send" aria-hidden="true">↑</span></div>
+          <div class="ai-response">
+            <div class="response-heading"><span class="ai-spark" aria-hidden="true">✳</span><span>Pingdom AI</span><span class="demo-label">인터랙션 예시</span></div>
+            <p class="response-intro" id="ai-response-intro" aria-live="polite">취향에 따라 골라보는 세 가지 발견.</p>
+            <div class="place-results" aria-label="추천 장소 예시">
+              <button class="place-card" data-place="0" aria-pressed="true"><span class="place-photo place-photo-cafe" aria-hidden="true"></span><span class="place-type">CAFE</span><strong>햇살이 머무는 카페</strong><span class="place-meta">조용한 공간 · 커피</span><span class="place-check" aria-hidden="true">✓</span></button>
+              <button class="place-card" data-place="1" aria-pressed="false"><span class="place-photo place-photo-dining" aria-hidden="true"></span><span class="place-type">DINING</span><strong>골목 속 작은 식당</strong><span class="place-meta">로컬 다이닝 · 한 끼</span><span class="place-check" aria-hidden="true">✓</span></button>
+              <button class="place-card" data-place="2" aria-pressed="false"><span class="place-photo place-photo-popup" aria-hidden="true"></span><span class="place-type">POP-UP</span><strong>이번 주, 새로운 발견</strong><span class="place-meta">팝업 · 전시</span><span class="place-check" aria-hidden="true">✓</span></button>
+            </div>
+            <div class="place-insight"><span aria-hidden="true">↳</span><p id="place-insight" aria-live="polite">원하는 분위기부터 주변 위치까지, 한 번에 좁혀보세요.</p></div>
+          </div>
+          <div class="ai-suggestions" aria-label="AI 질문 예시"><button data-question="0" aria-pressed="false">조용한 카페</button><button data-question="1" aria-pressed="false">로컬 음식점</button><button data-question="2" aria-pressed="false">색다른 팝업</button></div>
+          <p class="ai-demo-note">질문을 눌러 흐름을 살펴보세요. 장소와 이미지는 서비스 소개를 위한 예시입니다.</p>
+        </div>
+        <div class="consulting-demo" id="consulting-demo" hidden>
+          <div class="consulting-input"><span class="consulting-step">01 — 조건 선택</span><h4>어떤 가게를<br>생각하고 있나요?</h4><label for="consulting-area">관심 지역</label><select id="consulting-area"><option value="성수동">성수동</option><option value="잠실">잠실</option><option value="연남동">연남동</option></select><label for="consulting-business">업종</label><select id="consulting-business"><option value="카페">카페</option><option value="음식점">음식점</option><option value="편의점">편의점</option></select><p>위치와 업종에서 시작해,<br>고객과 운영 시간을 함께 살펴봅니다.</p></div>
+          <div class="report-stack"><div class="report-sheet"><div class="report-top"><span>상권 분석 리포트</span><span>분석 예시</span></div><h4 id="report-title">성수동 · 카페</h4><p class="report-subtitle">가게의 다음 결정을 위한 한 장.</p><div class="report-chart"><div class="report-chart-title">시간대별 방문 흐름 <span>예시</span></div><div class="report-bars" aria-label="시간대별 방문 흐름을 표현한 예시 차트"><div><i style="--bar:42%"></i><span>오전</span></div><div><i style="--bar:72%"></i><span>점심</span></div><div><i style="--bar:94%"></i><span>오후</span></div><div><i style="--bar:60%"></i><span>저녁</span></div></div></div><div class="report-line"><span>살펴볼 고객</span><strong id="report-audience">오래 머무는 고객의 방문 동기</strong></div><div class="report-line"><span>운영의 관점</span><strong id="report-focus">체류 시간과 좌석 구성</strong></div><div class="report-foot"><span>입지 · 유동인구 · 고객 · 운영</span><span>01 / 03</span></div></div></div>
+          <p class="ai-demo-note">조건에 따라 리포트 구성이 바뀌는 예시입니다. 실제 상권 분석 결과가 아닙니다.</p>
+        </div>
       </div>
     </section>
     <section class="team section" id="team" aria-labelledby="team-title">
       <h2 id="team-title" class="reveal">함께 만드는,<br> 핑덤.</h2>
+      <div class="team-layout">
+      <div class="people-tabs" role="tablist" aria-label="팀원 선택">
+        <button role="tab" id="person-tab-0" data-person="0" aria-selected="true" aria-controls="person-panel"><span class="person-index" aria-hidden="true">01</span><span>김우성</span><span class="person-arrow" aria-hidden="true">↗</span></button>
+        <button role="tab" id="person-tab-1" data-person="1" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">02</span><span>김일강</span><span class="person-arrow" aria-hidden="true">↗</span></button>
+        <button role="tab" id="person-tab-2" data-person="2" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">03</span><span>우성민</span><span class="person-arrow" aria-hidden="true">↗</span></button>
+        <button role="tab" id="person-tab-3" data-person="3" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">04</span><span>김태우</span><span class="person-arrow" aria-hidden="true">↗</span></button>
+        <button role="tab" id="person-tab-4" data-person="4" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">05</span><span>조성혁</span><span class="person-arrow" aria-hidden="true">↗</span></button>
+        <button role="tab" id="person-tab-5" data-person="5" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">06</span><span>이용인</span><span class="person-arrow" aria-hidden="true">↗</span></button>
+        <button role="tab" id="person-tab-6" data-person="6" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">07</span><span>장준혁</span><span class="person-arrow" aria-hidden="true">↗</span></button>
+      </div>
       <div class="person-panel" id="person-panel" role="tabpanel" aria-labelledby="person-tab-0" tabindex="0">
-        <div class="person-photo"><img id="person-photo" src="assets/presentation-woosung.png" alt="발표자료의 김우성 프로필" width="164" height="166" loading="lazy"></div>
+        <div class="person-photo"><span id="person-counter" aria-hidden="true">01 / 07</span><img id="person-photo" src="assets/presentation-woosung.png" alt="발표자료의 김우성 프로필" width="164" height="166" loading="lazy"></div>
         <div class="person-intro"><p id="person-role">PM · Server Lead · Web</p><h3 id="person-name">김우성</h3><p id="person-description">핑덤을 직접 기획하고,<br> 서비스의 방향과 개발을 이끕니다.</p></div>
         <ul class="person-work" id="person-work"><li><span>기획</span>서비스 기획 · 프로젝트 진행</li><li><span>서버</span>서버 개발 총괄</li><li><span>웹</span>상점주 웹 개발</li></ul>
       </div>
-      <div class="people-tabs" role="tablist" aria-label="팀원 선택">
-        <button role="tab" id="person-tab-0" data-person="0" aria-selected="true" aria-controls="person-panel"><img src="assets/presentation-woosung.png" alt="" width="164" height="166" loading="lazy"><span>김우성</span></button>
-        <button role="tab" id="person-tab-1" data-person="1" aria-selected="false" aria-controls="person-panel" tabindex="-1"><img src="assets/presentation-ilgang.png" alt="" width="164" height="166" loading="lazy"><span>김일강</span></button>
-        <button role="tab" id="person-tab-2" data-person="2" aria-selected="false" aria-controls="person-panel" tabindex="-1"><img src="assets/presentation-sungmin.png" alt="" width="164" height="166" loading="lazy"><span>우성민</span></button>
-        <button role="tab" id="person-tab-3" data-person="3" aria-selected="false" aria-controls="person-panel" tabindex="-1"><img src="assets/presentation-taewoo.png" alt="" width="164" height="166" loading="lazy"><span>김태우</span></button>
-        <button role="tab" id="person-tab-4" data-person="4" aria-selected="false" aria-controls="person-panel" tabindex="-1"><img src="assets/presentation-sunghyuk.png" alt="" width="164" height="166" loading="lazy"><span>조성혁</span></button>
-        <button role="tab" id="person-tab-5" data-person="5" aria-selected="false" aria-controls="person-panel" tabindex="-1"><img src="assets/presentation-yongin.png" alt="" width="164" height="166" loading="lazy"><span>이용인</span></button>
-        <button role="tab" id="person-tab-6" data-person="6" aria-selected="false" aria-controls="person-panel" tabindex="-1"><img src="assets/presentation-junhyuk.png" alt="" width="164" height="166" loading="lazy"><span>장준혁</span></button>
       </div>
     </section>
   </main>

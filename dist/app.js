@@ -109,52 +109,105 @@ function bindTabs(selector, panelSelector, render) {
   });
 }
 const workspaces = [
-  {image:'web-merchant',name:'내 가게를 관리하는 한 곳.',detail:'매장 정보 · 쿠폰 · 예약',alt:'상점주 매장 관리 화면'},
-  {image:'web-admin',name:'믿을 수 있는 서비스를 뒷받침합니다.',detail:'장소 · 사업자 · 신고 관리',alt:'핑덤 관리자 대시보드'}
+  {name:'내 가게의 시작부터,<br>새로운 방문까지.',detail:'매장을 알리고, 혜택을 전하고.<br>로컬의 운영을 한곳에서.',label:'상점주 센터',features:[
+    {name:'장소 등록',image:'merchant-register.png',alt:'상점주 신규 장소 등록 화면',caption:'장소 정보와 위치를 입력해, 내 가게를 핑덤에.'},
+    {name:'이벤트 관리',image:'merchant-event.png',alt:'상점주 이벤트 관리 화면',caption:'기간과 내용을 정해, 방문하고 싶은 이유를 만듭니다.'},
+    {name:'운영 권한',image:'merchant-claim.png',alt:'상점주 운영 장소 신청 화면',caption:'운영 권한을 신청하고, 처리 상태를 한눈에.'}
+  ]},
+  {name:'정확한 장소 정보,<br>신뢰할 수 있는 운영.',detail:'장소부터 사업자, 데이터 품질까지.<br>서비스의 기준을 지키는 도구.',label:'관리자 콘솔',features:[
+    {name:'장소 관리',image:'admin-places.png',alt:'관리자 지도와 장소 목록 화면',caption:'지도와 장소 목록을 함께 보며 정보를 관리합니다.'},
+    {name:'사업자 검증',image:'admin-owners.png',alt:'관리자 사업자 검증 화면',caption:'신청 정보와 증빙 자료를 확인하고 운영 권한을 검토합니다.'},
+    {name:'데이터 품질',image:'admin-quality.png',alt:'관리자 데이터 품질 관리 화면',caption:'검토가 필요한 정보를 찾아 서비스의 정확도를 높입니다.'}
+  ]}
 ];
+let workspaceIndex = 0;
+function selectWorkspaceFeature(index) {
+  const feature = workspaces[workspaceIndex].features[index];
+  $$('[data-workspace-feature]').forEach((button,i) => button.setAttribute('aria-pressed',String(i===index)));
+  const screen=$('#workspace-screen');
+  screen.src='assets/'+feature.image;
+  screen.alt=feature.alt;
+  screen.parentElement.dataset.zoom=screen.getAttribute('src');
+  screen.parentElement.dataset.zoomTitle=feature.alt;
+  screen.parentElement.setAttribute('aria-label',feature.alt+' 확대');
+  $('#workspace-screen-caption').textContent=feature.caption;
+  animatePanel($('.workspace-browser'));
+}
+$$('[data-workspace-feature]').forEach((button,index)=>button.addEventListener('click',()=>selectWorkspaceFeature(index)));
 bindTabs('[data-workspace]', '#workspace-panel', index => {
-  const workspace = workspaces[index];
-  $('#workspace-name').textContent = workspace.name;
-  $('#workspace-detail').textContent = workspace.detail;
-  $('#workspace-screen').src = 'assets/'+workspace.image+'-source.png';
-  $('#workspace-screen').alt = workspace.alt;
-  const button = $('#workspace-screen').parentElement;
-  button.dataset.zoom = $('#workspace-screen').getAttribute('src');
-  button.dataset.zoomTitle = workspace.alt;
-  button.setAttribute('aria-label',workspace.alt+' 확대');
-  animatePanel($('#workspace-panel'));
+  workspaceIndex=index;
+  const workspace=workspaces[index];
+  $('#workspace-name').innerHTML=workspace.name;
+  $('#workspace-detail').innerHTML=workspace.detail;
+  $('#workspace-browser-label').textContent=workspace.label;
+  $$('[data-workspace-feature] strong').forEach((label,i)=>label.textContent=workspace.features[i].name);
+  selectWorkspaceFeature(0);
+  animatePanel($('.workspace-copy'));
 });
 const aiServices = [
-  {title:'Pingdom <span>AI</span>',headline:'찾고 싶은 곳을, 말하는 대로.',description:'위치부터 평점, 영업 여부까지.<br> 여러 조건을 한 번의 질문으로.',image:'ai-traveler-slide.png',width:1764,height:934,alt:'평점 4.8 이상이며 영업 중인 주변 음식점을 요청하면 장소 목록과 설명을 제시하는 발표자료의 AI 대화 예시',zoomTitle:'발표자료의 Pingdom AI 대화 예시'},
-  {title:'상권 <span>컨설팅</span>',headline:'상권의 가능성을, 데이터로.',description:'가게의 조건을 분석하고,<br> 운영의 다음 결정을 위한 보고서로.',image:'ai-consulting-slide.png',width:1820,height:800,alt:'발표자료의 상권 컨설팅 입력 화면과 상권 및 입지 분석 보고서',zoomTitle:'발표자료의 상권 컨설팅과 분석 보고서'}
+  {title:'Pingdom <span>AI</span>',headline:'복잡한 검색 대신,<br>한 번의 대화.',description:'장소를 발견하는 더 자연스러운 방법.'},
+  {title:'상권 <span>컨설팅</span>',headline:'감각에 데이터를 더해,<br>다음 결정을 명확하게.',description:'내 가게의 조건에서 시작하는 상권 분석.'}
 ];
 bindTabs('[data-ai]', '#ai-panel', index => {
-  const service = aiServices[index];
-  $('#ai-title').innerHTML = service.title;
-  $('#ai-headline').textContent = service.headline;
-  $('#ai-description').innerHTML = service.description;
-  const image = $('#ai-screen');
-  image.src = 'assets/' + service.image;
-  image.alt = service.alt;
-  image.width = service.width;
-  image.height = service.height;
-  image.parentElement.dataset.zoom = image.getAttribute('src');
-  image.parentElement.dataset.zoomTitle = service.zoomTitle;
-  image.parentElement.setAttribute('aria-label',service.zoomTitle+' 확대');
+  const service=aiServices[index];
+  $('#ai-title').innerHTML=service.title;
+  $('#ai-headline').innerHTML=service.headline;
+  $('#ai-description').textContent=service.description;
+  $('#traveler-demo').hidden=index!==0;
+  $('#consulting-demo').hidden=index!==1;
   animatePanel($('#ai-panel'));
 });
+const questionExamples = [
+  {question:'추천한 곳 중, 조용히 쉬어 갈 곳은 어디야?',response:'햇살이 머무는 카페에서 잠시 쉬어 가요.',insight:'원하는 분위기부터 주변 위치까지, 한 번에 좁혀보세요.'},
+  {question:'이 중에서 든든한 한 끼를 즐기고 싶어.',response:'골목 속 작은 식당을 살펴보세요.',insight:'위치와 영업 여부를 함께 물어보면, 방문할 곳을 고르기 쉬워져요.'},
+  {question:'조금 더 색다른 공간도 경험해보고 싶어.',response:'팝업과 전시에서 새로운 하루를 만나보세요.',insight:'취향과 일정을 말해주면, 새로운 장소를 만나는 기준이 생겨요.'}
+];
+function selectExamplePlace(index, scroll=false) {
+  const cards=$$('[data-place]');
+  cards.forEach((card,i)=>card.setAttribute('aria-pressed',String(i===index)));
+  $('#place-insight').textContent=questionExamples[index].insight;
+  if(scroll && innerWidth<=700) {
+    const strip=$('.place-results');
+    strip.scrollTo({left:cards[index].offsetLeft-cards[0].offsetLeft,behavior:reducedMotion.matches?'instant':'smooth'});
+  }
+}
+$$('[data-place]').forEach((button,index)=>button.addEventListener('click',()=>selectExamplePlace(index)));
+$$('[data-question]').forEach((button,index)=>button.addEventListener('click',()=>{
+  $$('[data-question]').forEach((item,i)=>item.setAttribute('aria-pressed',String(i===index)));
+  $('#ai-question-text').textContent=questionExamples[index].question;
+  $('#ai-response-intro').textContent=questionExamples[index].response;
+  selectExamplePlace(index,true);
+  animatePanel($('.ai-question'));
+  animatePanel($('.ai-response'));
+}));
+const reportExamples={
+  '카페':{audience:'오래 머무는 고객의 방문 동기',focus:'체류 시간과 좌석 구성',bars:[42,72,94,60]},
+  '음식점':{audience:'식사 시간에 방문하는 고객',focus:'점심·저녁 수요와 회전율',bars:[28,92,44,85]},
+  '편의점':{audience:'생활 동선 속 반복 방문 고객',focus:'시간대별 수요와 접근성',bars:[65,71,58,89]}
+};
+function updateReport() {
+  const area=$('#consulting-area').value,business=$('#consulting-business').value,report=reportExamples[business];
+  $('#report-title').textContent=area+' · '+business;
+  $('#report-audience').textContent=report.audience;
+  $('#report-focus').textContent=report.focus;
+  $$('.report-bars i').forEach((bar,i)=>bar.style.setProperty('--bar',report.bars[i]+'%'));
+  animatePanel($('.report-sheet'));
+}
+$('#consulting-area').addEventListener('change',updateReport);
+$('#consulting-business').addEventListener('change',updateReport);
 const people = [
   {key:'woosung',name:'김우성',role:'PM · Server Lead · Web',description:'핑덤을 직접 기획하고,<br> 서비스의 방향과 개발을 이끕니다.',work:[['기획','서비스 기획 · 프로젝트 진행'],['서버','서버 개발 총괄'],['웹','상점주 웹 개발']]},
-  {key:'ilgang',name:'김일강',role:'Client Lead · App',description:'클라이언트 개발을 총괄하며,<br> 앱의 경험을 구현합니다.',work:[['총괄','클라이언트 개발 총괄'],['앱','모바일 앱 개발'],['협업','팀원과 기능 문제 해결']]},
+  {key:'ilgang',photo:'presentation-yongin.png',name:'김일강',role:'Client Lead · App',description:'클라이언트 개발을 총괄하며,<br> 앱의 경험을 구현합니다.',work:[['총괄','클라이언트 개발 총괄'],['앱','모바일 앱 개발'],['협업','팀원과 기능 문제 해결']]},
   {key:'sungmin',name:'우성민',role:'Design Lead · App',description:'핑덤의 UX/UI를 설계하고,<br> 앱 개발을 함께 담당합니다.',work:[['디자인','서비스 UX/UI 디자인 총괄'],['앱','모바일 앱 개발']]},
   {key:'taewoo',name:'김태우',role:'Client · Web (Admin)',description:'관리자 웹을 개발해,<br> 서비스 운영을 위한 화면을 만듭니다.',work:[['웹','관리자 웹 개발'],['운영','관리 기능의 웹 화면 구현']]},
   {key:'sunghyuk',name:'조성혁',role:'Server',description:'기획한 기능을 서버에서 구현하고,<br> 개발 과정의 문제를 해결합니다.',work:[['서버','서비스 서버 기능 개발'],['구현','기능 구현과 문제 해결']]},
-  {key:'yongin',name:'이용인',role:'Server · Infrastructure',description:'서버 개발과 AWS 인프라를 맡아,<br> 서비스의 기반을 다집니다.',work:[['서버','서비스 서버 개발'],['인프라','AWS 인프라 구축 · 운영']]},
+  {key:'yongin',photo:'presentation-ilgang.png',name:'이용인',role:'Server · Infrastructure',description:'서버 개발과 AWS 인프라를 맡아,<br> 서비스의 기반을 다집니다.',work:[['서버','서비스 서버 개발'],['인프라','AWS 인프라 구축 · 운영']]},
   {key:'junhyuk',name:'장준혁',role:'MCP · Network',description:'MCP와 네트워크를 연결하고,<br> 서비스 트래픽의 흐름을 다룹니다.',work:[['MCP','MCP 서버 개발'],['네트워크','로드 밸런서 도입'],['운영','트래픽 제어']]}
 ];
 bindTabs('[data-person]', '#person-panel', index => {
   const person = people[index];
-  $('#person-photo').src = 'assets/presentation-'+person.key+'.png';
+  $('#person-photo').src = 'assets/'+(person.photo || 'presentation-'+person.key+'.png');
+  $('#person-counter').textContent = '0'+(index+1)+' / 07';
   $('#person-photo').alt = '발표자료의 '+person.name+' 프로필';
   $('#person-role').textContent = person.role;
   $('#person-name').textContent = person.name;

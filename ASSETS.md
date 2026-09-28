@@ -26,5 +26,22 @@ Use case: stylized-concept. Asset type: premium landing page hero for Pingdom, a
 
 ## 도시 배경
 
-- `seoul-dusk.png`: 내장 ImageGen으로 생성한 1774×887 장식용 히어로 배경. 서울에서 영감을 받은 장면이며 특정 장소의 실제 사진으로 제시하지 않습니다. 기존 `pingdom-pin.png`를 전경에 겹쳐 사용합니다. 원본 핀 이미지를 수정하지 않고 CSS screen 블렌딩으로 도시 배경과 합성합니다.
+- `seoul-dusk.png`: 내장 ImageGen으로 생성한 1774×887 장식용 히어로 배경. 서울에서 영감을 받은 장면이며 특정 장소의 실제 사진으로 제시하지 않습니다. `pingdom-pin-opaque.png`를 전경에 배치하며, 투명 배경을 사용해 금속 표면의 불투명도를 유지합니다.
 - 프롬프트: Cinematic wide hero background for Pingdom, a Korea local travel discovery landing page. Seoul-inspired blue-hour rooftop view over a quiet Korean urban neighborhood, layered dark charcoal rooftops, contemporary towers and a distant hill and slender tower on the far right, warm windows and restrained muted magenta reflections. Editorial travel photography, nuanced midnight-blue shadows, natural film grain and atmospheric depth. Ultra-wide 2:1 landscape, city concentrated on the right and lower third, quiet dark negative space on the left for white Korean typography. No foreground people, readable text, logos, map pins, watermarks, captions or UI. Conceptual Seoul-inspired background, not a claim of a specific exact place.
+
+
+## 현재 비주얼과 UI
+
+- `pingdom-pin-opaque.png`: 기존 핀을 ImageGen으로 편집한 1254×1254 RGBA. 외부 배경과 중앙 구멍만 투명하며 크롬 표면은 불투명합니다. 형태와 핑크 반사광을 유지했습니다. 현재 히어로에 사용합니다.
+- 편집 프롬프트 핵심: Remove only the black outside background and the central pin hole to true alpha. Preserve the exact pin silhouette, polished chrome body, magenta reflections, lighting and opaque metallic surfaces. No translucent metal, no background glow, no text.
+- `ai-places-triptych.png`: ImageGen으로 생성한 2172×724 이미지. 카페·식당·팝업의 세 장면을 같은 너비로 구성하고 CSS에서 각 장면을 표시합니다. 특정 실제 매장 사진이 아닌 소개용 가상 장면이며 UI에도 예시로 표시합니다.
+- 생성 프롬프트 핵심: Three equal square editorial photographs in a seamless horizontal triptych: a quiet sunlit Seoul-inspired cafe, an intimate Korean neighborhood restaurant, and a contemporary pop-up exhibition space. Restrained warm neutral palette, subtle magenta accents, realistic materials. No people, letters, brand logos or watermarks. Fictional illustrative locations.
+- AI 대화·추천 카드·분석 리포트는 HTML/CSS/JavaScript로 구현합니다. `ai-*-slide.png`는 이전 자료로 보관하며 현재 화면에는 표시하지 않습니다.
+- `merchant-register.png`: 포트폴리오 30쪽 X1, 1864×1004.
+- `merchant-event.png`: 포트폴리오 31쪽 X1, 1864×1003.
+- `merchant-claim.png`: 포트폴리오 30쪽 X2, 1865×1003.
+- `admin-places.png`: 포트폴리오 25쪽 X1, 1865×1004.
+- `admin-owners.png`: 포트폴리오 26쪽 X2, 2908×1648.
+- `admin-quality.png`: 포트폴리오 28쪽 X1, 1863×1003.
+- 위 운영 화면 6개는 PDF의 원본 이미지 스트림을 직접 추출했습니다. 이미지 내 텍스트를 AI로 재생성하지 않았습니다.
+- 팀 사진은 원본 파일을 유지하고 사용자의 최신 교정에 따라 김일강에는 `presentation-yongin.png`, 이용인에는 `presentation-ilgang.png`를 연결합니다. 파일명은 최초 추출 시점의 식별자로 유지합니다.
