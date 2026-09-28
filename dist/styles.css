@@ -34,7 +34,7 @@ h1>span{display:block;position:absolute;animation:hero-in 1.3s var(--ease) backw
 .hero-model{position:absolute;top:52%;left:51%;width:min(58vw,810px);translate:-50% -50%;z-index:2;pointer-events:none;transform:translate3d(calc(var(--pointer-x,0px)*2.4),calc(var(--pointer-y,0px)*2.4),0);transition:transform 1.2s var(--ease)}
 .hero-model img{width:100%;height:auto;animation:sculpture-in 1.6s var(--ease) both;filter:drop-shadow(0 22px 40px #14091855)}
 .portal-float{animation:portal-drift 12s ease-in-out infinite;transform-origin:center;will-change:transform}
-@keyframes portal-drift{0%,100%{transform:translate3d(0,9px,0) rotate(-7deg)}50%{transform:translate3d(16px,-11px,0) rotate(3deg)}}
+@keyframes portal-drift{0%,100%{transform:translate3d(0,9px,0) rotate(-7deg)}50%{transform:translate3d(16px,-11px,0) rotate(-7deg)}}
 @keyframes light-shift{from{opacity:.6;transform:translateX(-4%)}to{opacity:1;transform:translateX(5%)}}
 @keyframes sculpture-in{from{opacity:0;transform:scale(.88) rotate(9deg)}to{opacity:1;transform:scale(1) rotate(0)}}
 .hero.motion-paused *{animation-play-state:paused!important}
@@ -224,5 +224,5 @@ body.dialog-open{overflow:hidden}
 
 }
 @media(max-width:360px){.person-panel{grid-template-columns:66px minmax(0,1fr);column-gap:20px}.person-photo img{width:64px;height:64px}.person-intro h3{font-size:39px}.person-intro>p:last-child{font-size:15px}.workspace-features strong{font-size:14px}.ai-response{padding:18px 13px}.demo-label{font-size:8px}.ai-suggestions{gap:6px}.ai-suggestions button{font-size:11px;padding:10px 11px}}
-@keyframes portal-drift-mobile{0%,100%{transform:translateY(7px) rotate(-6deg)}50%{transform:translateY(-9px) rotate(3deg)}}
+@keyframes portal-drift-mobile{0%,100%{transform:translateY(7px) rotate(-6deg)}50%{transform:translateY(-9px) rotate(-6deg)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.js .reveal{opacity:1;transform:none}.hero-art,.hero-model{transform:none!important}.hero-art img{transform:none!important}}

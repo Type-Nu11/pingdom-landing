@@ -6,7 +6,7 @@ float noise(vec2 p) {
   return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);
 }
 float surface(vec2 uv) { return (.65*uv.x+.35*(1.0-uv.y))*.4+noise(uv*32.0)*.45+noise(uv*110.0)*.15; }
-float threshold(float t) { return smoothstep(2.85,4.25,t)*1.15-.07; }
+float threshold(float t) { return smoothstep(2.95,4.3,t)*1.15-.07; }
 float material(float t,vec2 uv) { return smoothstep(surface(uv)-.07,surface(uv)+.07,threshold(t)); }
 vec2 rotate(vec2 p,float a) { return vec2(cos(a)*p.x-sin(a)*p.y,sin(a)*p.x+cos(a)*p.y); }
 `;
@@ -17,26 +17,30 @@ uniform float uTime,uAngle,uDpr;
 ${noise}
 vec4 project(vec2 p) { return vec4((uCenter+p)/uViewport*vec2(2,-2)+vec2(-1,1),0,1); }
 `;
-// 두 대각선의 바람이 링의 회전으로 합류한 뒤, 각 입자의 실제 표면 위치에 정착합니다.
+// 초반의 바람 경로는 링 좌표와 독립적이며, 후반에만 고정된 표면 위치로 수렴합니다.
 const flight = `
 vec2 bezier(vec2 a,vec2 b,vec2 c,vec2 d,float t) {
   float s=1.0-t; return s*s*s*a+3.0*s*s*t*b+3.0*s*t*t*c+t*t*t*d;
 }
 vec3 flight(vec2 target,vec3 seed,float t) {
-  float side=step(.48,seed.z)*2.0-1.0;
-  float delay=seed.x*.7;
-  float arrive=smoothstep(delay,1.8+delay*.5,t);
-  float settle=smoothstep(1.9+seed.y*.3,3.45+seed.x*.35,t);
-  float loose=1.0-settle;
-  vec2 orbit=rotate(target*(1.0+loose*.35),loose*(3.6+seed.y*.3));
-  orbit+=vec2(sin(seed.x*19.0+t*2.7),cos(seed.y*21.0-t*2.2))*loose*uImage.x*.035;
-  vec2 source=vec2(side*uViewport.x*(.7+seed.y*.35),-side*uViewport.y*(.35+seed.x*.45));
-  vec2 bendA=vec2(-side*uViewport.x*.18,-side*uViewport.y*.55);
-  vec2 bendB=vec2(-side*uImage.x*.6,side*uImage.y*.45);
-  vec2 p=bezier(source,bendA,bendB,orbit,arrive);
-  float depth=sin(t*1.7+seed.z*6.28)*(1.0-settle)*190.0;
-  float perspective=800.0/(800.0+depth);
-  return vec3(rotate(p*perspective,uAngle),perspective);
+  float group=floor(seed.z*6.0);
+  float direction=group*1.0472+.25;
+  float phase=clamp((t-seed.x*.65)/2.6,0.0,1.0);
+  vec2 source=vec2(cos(direction)*uViewport.x*.9,sin(direction)*uViewport.y*.9);
+  vec2 bendA=rotate(source,.8)*.72;
+  vec2 bendB=rotate(source,2.5)*.65;
+  vec2 end=(vec2(sin(group*2.3),cos(group*1.7))*.2+vec2(seed.x-.5,seed.y-.5)*.65)*uImage;
+  vec2 wind=bezier(source,bendA,bendB,end,phase);
+  float spread=sin(phase*3.14159);
+  float wave=t*3.2+seed.x*15.0;
+  wind+=vec2(sin(wave+seed.y*9.0),cos(wave*.83+seed.x*7.0))*uImage.x*.065*spread;
+  wind+=vec2(seed.x-.5,seed.y-.5)*uImage*.38*spread;
+  float depth=sin(t*1.5+seed.z*6.28)*310.0+(seed.y-.5)*200.0;
+  float perspective=850.0/(850.0+depth);
+  float field=surface(target/uImage+.5);
+  float captured=smoothstep(2.05+field*.65,3.05+field*.85,t);
+  vec2 p=mix(wind*perspective,rotate(target,uAngle),captured);
+  return vec3(p,mix(perspective,1.0,captured));
 }
 `;
 const particleVertex = `${vertexCommon}${flight}
@@ -48,10 +52,10 @@ void main() {
   vec3 p=flight(aTarget*uImage,aSeed,uTime);
   gl_Position=project(p.xy);
   float glint=step(.992,aSeed.z);
-  gl_PointSize=uDpr*(1.5+aSeed.y*1.5+glint*3.0)*p.z;
+  gl_PointSize=uDpr*(1.7+aSeed.y*1.8+glint*5.0)*p.z;
   float alpha=smoothstep(.1,.4,uTime)*(1.0-material(uTime,aTarget+.5))*(1.0-smoothstep(3.8,4.35,uTime));
-  vec3 tint=mix(aColor.rgb,vec3(1.0,.5,.78),.5);
-  vColor=vec4(tint,alpha*aColor.a*.86);
+  vec3 tint=mix(aColor.rgb,vec3(1.0,.24,.58),.5);
+  vColor=vec4(tint,alpha*aColor.a*.42);
 }
 `;
 const particleFragment = `
@@ -75,8 +79,8 @@ void main() {
   vec2 velocity=flight(aTarget*uImage,aSeed,uTime+.025).xy-p.xy;
   // 바람을 따라 늘어나는 짧은 잔광만 남기고, 정착하면 작은 점으로 줄입니다.
   float speed=min(length(velocity),18.0);
-  float lengthPx=mix(2.0+aSeed.y*4.0+speed*.65,1.2,settle);
-  float widthPx=(.7+aSeed.z*1.0)*p.z;
+  float lengthPx=mix(3.0+aSeed.y*5.0+speed*1.2,1.2,settle);
+  float widthPx=(1.15+aSeed.z*1.5)*p.z;
   float angle=atan(velocity.y,velocity.x+.0001)+sin(uTime*3.0+aSeed.x*15.0)*.12*(1.0-settle);
   float scale=min(1.0,uViewport.x/700.0);
   vec2 local=rotate(aCorner*vec2(lengthPx,widthPx)*scale,angle);
@@ -97,6 +101,61 @@ void main() {
   float core=1.0-smoothstep(.08,.65,radius);
   float halo=(1.0-smoothstep(.25,1.0,radius))*.22;
   gl_FragColor=vec4(vColor.rgb,vColor.a*(core+halo));
+}
+`;
+const trailVertex = `${vertexCommon}${flight}
+attribute vec2 aTarget,aTrail;
+attribute vec3 aSeed;
+varying vec2 vTrail;
+varying vec4 vColor;
+void main() {
+  float age=aTrail.x;
+  float time=max(0.0,uTime-age*(.22+aSeed.y*.22));
+  vec3 p=flight(aTarget*uImage,aSeed,time);
+  vec2 velocity=flight(aTarget*uImage,aSeed,time+.015).xy-p.xy;
+  vec2 normal=vec2(-velocity.y,velocity.x)/max(length(velocity),.001);
+  float width=(.75+aSeed.x*1.2)*sin(age*3.14159)*min(1.0,uViewport.x/700.0);
+  gl_Position=project(p.xy+normal*aTrail.y*width);
+  vTrail=aTrail;
+  vec3 tint=mix(vec3(1.0,.08,.38),vec3(.72,.6,1.0),aSeed.z);
+  float alpha=smoothstep(.05,.4,uTime)*(1.0-smoothstep(3.15,3.95,uTime));
+  vColor=vec4(tint,alpha*(.35+aSeed.y*.45));
+}
+`;
+const trailFragment = `
+precision mediump float;
+varying vec2 vTrail;
+varying vec4 vColor;
+void main() {
+  float edge=1.0-smoothstep(.25,1.0,abs(vTrail.y));
+  gl_FragColor=vec4(vColor.rgb,vColor.a*edge*pow(1.0-vTrail.x,1.4));
+}
+`;
+const screenVertex = `
+attribute vec2 aPosition;
+varying vec2 vUv;
+void main() { vUv=aPosition*.5+.5; gl_Position=vec4(aPosition,0,1); }
+`;
+const blurFragment = `
+precision mediump float;
+uniform sampler2D uTexture;
+uniform vec2 uStep;
+varying vec2 vUv;
+void main() {
+  vec4 color=texture2D(uTexture,vUv)*.227027;
+  color+=(texture2D(uTexture,vUv+uStep*1.384615)+texture2D(uTexture,vUv-uStep*1.384615))*.316216;
+  color+=(texture2D(uTexture,vUv+uStep*3.230769)+texture2D(uTexture,vUv-uStep*3.230769))*.070270;
+  gl_FragColor=color;
+}
+`;
+const compositeFragment = `
+precision mediump float;
+uniform sampler2D uScene,uGlow;
+varying vec2 vUv;
+void main() {
+  vec4 scene=texture2D(uScene,vUv);
+  vec4 glow=texture2D(uGlow,vUv);
+  gl_FragColor=vec4((scene.rgb+glow.rgb*1.65)/(vec3(1.0)+(scene.rgb+glow.rgb*1.65)*.65),clamp(scene.a+glow.a,0.0,1.0));
 }
 `;
 const materialVertex = `${vertexCommon}
@@ -122,11 +181,12 @@ void main() {
 export function createRingFormation(canvas, image, model, hero) {
   const gl = canvas.getContext('webgl', { alpha: true, antialias: false, depth: false, premultipliedAlpha: true });
   if (!gl) throw new Error('Ring formation needs WebGL');
-  const shaders = [], programs = [], buffers = [], textures = [];
+  const shaders = [], programs = [], buffers = [], textures = [], framebuffers = [];
   let disposed = false;
   function dispose() {
     if (disposed) return;
     disposed = true;
+    framebuffers.forEach(framebuffer => gl.deleteFramebuffer(framebuffer));
     buffers.forEach(buffer => gl.deleteBuffer(buffer));
     textures.forEach(texture => gl.deleteTexture(texture));
     programs.forEach(program => gl.deleteProgram(program));
@@ -174,7 +234,7 @@ export function createRingFormation(canvas, image, model, hero) {
 
     // 색상 샘플링은 초기화 때만 수행하고 매 프레임의 입자 계산은 GPU에서 처리합니다.
     const sample = document.createElement('canvas');
-    sample.width = mobile ? 280 : 440; sample.height = Math.round(sample.width * image.naturalHeight / image.naturalWidth);
+    sample.width = mobile ? 380 : 720; sample.height = Math.round(sample.width * image.naturalHeight / image.naturalWidth);
     const context = sample.getContext('2d', { willReadFrequently: true });
     context.drawImage(image, 0, 0, sample.width, sample.height);
     const pixels = context.getImageData(0, 0, sample.width, sample.height).data;
@@ -184,9 +244,11 @@ export function createRingFormation(canvas, image, model, hero) {
     for (let y = 0; y < sample.height; y += 2) for (let x = 0; x < sample.width; x += 2) {
       const index = (y*sample.width+x)*4;
       if (pixels[index+3] < 100) continue;
-      positions.push((x+random()*1.8)/sample.width-.5, (y+random()*1.8)/sample.height-.5);
-      colors.push(pixels[index]/255, pixels[index+1]/255, pixels[index+2]/255, pixels[index+3]/255);
-      seeds.push(random(), random(), random());
+      for (let copy = 0; copy < (mobile ? 1 : 2); copy++) {
+        positions.push((x+random()*1.8)/sample.width-.5, (y+random()*1.8)/sample.height-.5);
+        colors.push(pixels[index]/255, pixels[index+1]/255, pixels[index+2]/255, pixels[index+3]/255);
+        seeds.push(random(), random(), random());
+      }
     }
     const particleProgram = program(particleVertex, particleFragment);
     const particles = pass(particleProgram, [
@@ -196,7 +258,7 @@ export function createRingFormation(canvas, image, model, hero) {
     ]);
     // 속도에 따른 잔광은 삼각형으로 그려 기기별 point-size 제한을 피합니다.
     const glintTargets = [], glintSeeds = [], corners = [];
-    const glintCount = mobile ? 480 : 960;
+    const glintCount = mobile ? 900 : 3000;
     const quad = [-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1];
     for (let i = 0; i < glintCount; i++) {
       const target = Math.floor(random()*positions.length/2)*2;
@@ -212,6 +274,25 @@ export function createRingFormation(canvas, image, model, hero) {
       attribute(glintProgram, 'aTarget', glintTargets, 2),
       attribute(glintProgram, 'aSeed', glintSeeds, 3),
       attribute(glintProgram, 'aCorner', corners, 2)
+    ]);
+    const trailTargets = [], trailSeeds = [], trailCoordinates = [];
+    const trailCount = mobile ? 70 : 180, segments = 20;
+    for (let i = 0; i < trailCount; i++) {
+      const target = Math.floor(random()*positions.length/2)*2;
+      const seed = [random(), random(), random()];
+      for (let j = 0; j < segments; j++) {
+        for (const [age, side] of [[j,-1],[j,1],[j+1,-1],[j+1,-1],[j,1],[j+1,1]]) {
+          trailTargets.push(positions[target],positions[target+1]);
+          trailSeeds.push(...seed);
+          trailCoordinates.push(age/segments,side);
+        }
+      }
+    }
+    const trailProgram = program(trailVertex, trailFragment);
+    const trails = pass(trailProgram, [
+      attribute(trailProgram, 'aTarget', trailTargets, 2),
+      attribute(trailProgram, 'aSeed', trailSeeds, 3),
+      attribute(trailProgram, 'aTrail', trailCoordinates, 2)
     ]);
     const materialProgram = program(materialVertex, materialFragment);
     const material = pass(materialProgram, [attribute(materialProgram, 'aPosition', [-.5,-.5, .5,-.5, -.5,.5, -.5,.5, .5,-.5, .5,.5], 2)]);
@@ -232,15 +313,67 @@ export function createRingFormation(canvas, image, model, hero) {
       gl.drawArrays(type, 0, count);
       for (const { location } of pass.attributes) gl.disableVertexAttribArray(location);
     }
+    // 잔광은 저해상도에서 두 번만 번지게 해 전체 해상도 다중 블러를 피합니다.
+    function target(w, h) {
+      const texture = gl.createTexture(); textures.push(texture);
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+      const framebuffer = gl.createFramebuffer(); framebuffers.push(framebuffer);
+      gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+      if (gl.checkFramebufferStatus(gl.FRAMEBUFFER) !== gl.FRAMEBUFFER_COMPLETE) throw new Error('Particle framebuffer unavailable');
+      return { texture, framebuffer, w, h };
+    }
+    const scene = target(canvas.width, canvas.height);
+    const glowA = target(Math.max(1,Math.round(canvas.width/4)), Math.max(1,Math.round(canvas.height/4)));
+    const glowB = target(glowA.w, glowA.h);
+    const screen = [-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1];
+    const blurProgram = program(screenVertex, blurFragment);
+    const blur = { program: blurProgram, time: null, attributes: [attribute(blurProgram, 'aPosition', screen, 2)] };
+    const compositeProgram = program(screenVertex, compositeFragment);
+    const composite = { program: compositeProgram, time: null, attributes: [attribute(compositeProgram, 'aPosition', screen, 2)] };
+    const blurStep = gl.getUniformLocation(blurProgram, 'uStep');
+    gl.useProgram(blurProgram); gl.uniform1i(gl.getUniformLocation(blurProgram, 'uTexture'), 0);
+    gl.useProgram(compositeProgram);
+    gl.uniform1i(gl.getUniformLocation(compositeProgram, 'uScene'), 0);
+    gl.uniform1i(gl.getUniformLocation(compositeProgram, 'uGlow'), 1);
+    function blurInto(source, destination, x, y) {
+      gl.bindFramebuffer(gl.FRAMEBUFFER, destination.framebuffer);
+      gl.viewport(0,0,destination.w,destination.h);
+      gl.bindTexture(gl.TEXTURE_2D, source.texture);
+      gl.useProgram(blurProgram); gl.uniform2f(blurStep,x,y);
+      draw(blur,0,gl.TRIANGLES,6);
+    }
     return {
       render(time) {
         if (disposed) return;
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, scene.framebuffer);
+        gl.viewport(0,0,scene.w,scene.h);
         gl.clear(gl.COLOR_BUFFER_BIT);
-        gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-        draw(material, time, gl.TRIANGLES, 6);
+        gl.enable(gl.BLEND);
         gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-        draw(particles, time, gl.POINTS, positions.length/2);
-        draw(glints, time, gl.TRIANGLES, glintCount*6);
+        draw(particles,time,gl.POINTS,positions.length/2);
+        draw(glints,time,gl.TRIANGLES,glintCount*6);
+        draw(trails,time,gl.TRIANGLES,trailCount*segments*6);
+        gl.disable(gl.BLEND);
+        blurInto(scene,glowA,2.5/glowA.w,0);
+        blurInto(glowA,glowB,0,2.5/glowB.h);
+        gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+        gl.viewport(0,0,canvas.width,canvas.height);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.enable(gl.BLEND);
+        gl.bindTexture(gl.TEXTURE_2D,texture);
+        gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+        draw(material,time,gl.TRIANGLES,6);
+        gl.bindTexture(gl.TEXTURE_2D,scene.texture);
+        gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D,glowB.texture);
+        gl.blendFuncSeparate(gl.ONE,gl.ONE,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+        draw(composite,time,gl.TRIANGLES,6);
       },
       dispose
     };
