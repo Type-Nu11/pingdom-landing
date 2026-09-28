@@ -1,4 +1,4 @@
-'use strict';
+import { createImagePanel, warmImages } from './panel-images.mjs';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -9,36 +9,50 @@ const features = [
   { title: '나의 경험이,<br> 다음 사람의 확신.', description: '사진과 태그로 남기는 현장의 이야기.', tags: ['사진 기록', '현장 확인', '방문 기록'], primary: 'app-verify', secondary: 'app-profile', primaryAlt: '핑덤 현장 확인 화면', secondaryAlt: '핑덤 사용자 방문 기록 화면' }
 ];
 const tabs = $$('[data-feature]');
+const featureImages = createImagePanel($('#feature-panel'));
+function featurePaths(index) {
+  return [features[index].primary, features[index].secondary].map(name => 'assets/' + name + '-source.png');
+}
+function warmOnIntent(buttons, paths) {
+  buttons.forEach((button, index) => {
+    const warm = () => warmImages(paths(index));
+    button.addEventListener('pointerenter', warm, { passive: true });
+    button.addEventListener('focus', warm);
+  });
+}
+warmOnIntent(tabs, featurePaths);
 function selectFeature(index, focus = false) {
   const feature = features[index];
   tabs.forEach((tab, i) => {
     tab.setAttribute('aria-selected', String(i === index));
     tab.tabIndex = i === index ? 0 : -1;
   });
-  $('#feature-panel').setAttribute('aria-labelledby', tabs[index].id);
-  $('#feature-title').innerHTML = feature.title;
-  $('#feature-description').textContent = feature.description;
-  $('.feature-number').textContent = '0' + (index + 1);
-  $('#feature-tags').replaceChildren(...feature.tags.map(text => {
-    const span = document.createElement('span');
-    span.textContent = text;
-    return span;
-  }));
-  $('#feature-screen').src = 'assets/' + feature.primary + '-source.png';
-  $('#feature-screen').alt = feature.primaryAlt;
-  $('#feature-secondary').src = 'assets/' + feature.secondary + '-source.png';
-  $('#feature-secondary').alt = feature.secondaryAlt;
-  for (const image of [$('#feature-screen'), $('#feature-secondary')]) {
-    image.parentElement.dataset.zoom = image.getAttribute('src');
-    image.parentElement.dataset.zoomTitle = image.alt;
-    image.parentElement.setAttribute('aria-label', image.alt + ' 확대');
-  }
-  if (!reducedMotion.matches) {
-    for (const element of [$('.phone-duo'), $('.feature-copy')]) {
-      element.getAnimations().forEach(animation => animation.cancel());
-      element.animate([{ opacity: 0, transform: 'translateY(24px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 550, easing: 'cubic-bezier(.22,1,.36,1)' });
+  const [primary, secondary] = featurePaths(index);
+  featureImages.show([
+    { target: $('#feature-screen'), src: primary, alt: feature.primaryAlt },
+    { target: $('#feature-secondary'), src: secondary, alt: feature.secondaryAlt }
+  ], () => {
+    $('#feature-panel').setAttribute('aria-labelledby', tabs[index].id);
+    $('#feature-title').innerHTML = feature.title;
+    $('#feature-description').textContent = feature.description;
+    $('.feature-number').textContent = '0' + (index + 1);
+    $('#feature-tags').replaceChildren(...feature.tags.map(text => {
+      const span = document.createElement('span');
+      span.textContent = text;
+      return span;
+    }));
+    for (const image of [$('#feature-screen'), $('#feature-secondary')]) {
+      image.parentElement.dataset.zoom = image.getAttribute('src');
+      image.parentElement.dataset.zoomTitle = image.alt;
+      image.parentElement.setAttribute('aria-label', image.alt + ' 확대');
     }
-  }
+    if (!reducedMotion.matches) {
+      for (const element of [$('.phone-duo'), $('.feature-copy')]) {
+        element.getAnimations().forEach(animation => animation.cancel());
+        element.animate([{ opacity: 0, transform: 'translateY(24px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 550, easing: 'cubic-bezier(.22,1,.36,1)' });
+      }
+    }
+  });
   if (focus) tabs[index].focus();
 }
 tabs.forEach((tab, index) => tab.addEventListener('click', () => selectFeature(index)));
@@ -142,25 +156,30 @@ const workspaces = [
   ]}
 ];
 let workspaceIndex = 0;
+const workspaceImages = createImagePanel($('.workspace-browser'));
+const workspaceFeatures = $$('[data-workspace-feature]');
 function selectWorkspaceFeature(index) {
-  const feature = workspaces[workspaceIndex].features[index];
-  $$('[data-workspace-feature]').forEach((button,i) => button.setAttribute('aria-pressed',String(i===index)));
-  const screen=$('#workspace-screen');
-  screen.src='assets/'+feature.image;
-  screen.alt=feature.alt;
-  screen.parentElement.dataset.zoom=screen.getAttribute('src');
-  screen.parentElement.dataset.zoomTitle=feature.alt;
-  screen.parentElement.setAttribute('aria-label',feature.alt+' 확대');
-  animatePanel($('.workspace-browser'));
+  const workspace = workspaces[workspaceIndex];
+  const feature = workspace.features[index];
+  workspaceFeatures.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
+  workspaceImages.show([{ target: $('#workspace-screen'), src: 'assets/' + feature.image, alt: feature.alt }], () => {
+    const screen = $('#workspace-screen');
+    screen.parentElement.dataset.zoom = screen.getAttribute('src');
+    screen.parentElement.dataset.zoomTitle = feature.alt;
+    screen.parentElement.setAttribute('aria-label', feature.alt + ' 확대');
+    $('#workspace-browser-label').textContent = workspace.label;
+    animatePanel($('.workspace-browser'));
+  });
 }
-$$('[data-workspace-feature]').forEach((button,index)=>button.addEventListener('click',()=>selectWorkspaceFeature(index)));
+workspaceFeatures.forEach((button, index) => button.addEventListener('click', () => selectWorkspaceFeature(index)));
+warmOnIntent(workspaceFeatures, index => ['assets/' + workspaces[workspaceIndex].features[index].image]);
+warmOnIntent($$('[data-workspace]'), index => ['assets/' + workspaces[index].features[0].image]);
 bindTabs('[data-workspace]', '#workspace-panel', index => {
-  workspaceIndex=index;
-  const workspace=workspaces[index];
-  $('#workspace-name').innerHTML=workspace.name;
-  $('#workspace-detail').innerHTML=workspace.detail;
-  $('#workspace-browser-label').textContent=workspace.label;
-  $$('[data-workspace-feature] strong').forEach((label,i)=>label.textContent=workspace.features[i].name);
+  workspaceIndex = index;
+  const workspace = workspaces[index];
+  $('#workspace-name').innerHTML = workspace.name;
+  $('#workspace-detail').innerHTML = workspace.detail;
+  $$('[data-workspace-feature] strong').forEach((label, i) => label.textContent = workspace.features[i].name);
   selectWorkspaceFeature(0);
   animatePanel($('.workspace-copy'));
 });
@@ -223,40 +242,57 @@ const people = [
   {key:'yongin',photo:'presentation-ilgang.png',name:'이용인',role:'Server · Infrastructure',description:'서버 개발과 AWS 인프라를 맡아,<br> 서비스의 기반을 다집니다.',work:[['서버','서비스 서버 개발'],['인프라','AWS 인프라 구축 · 운영']]},
   {key:'junhyuk',name:'장준혁',role:'MCP · Network',description:'MCP와 네트워크를 연결하고,<br> 서비스 트래픽의 흐름을 다룹니다.',work:[['MCP','MCP 서버 개발'],['네트워크','로드 밸런서 도입'],['운영','트래픽 제어']]}
 ];
+const personImages = createImagePanel($('#person-panel'));
+const personPath = index => 'assets/' + (people[index].photo || 'presentation-' + people[index].key + '.png');
+warmOnIntent($$('[data-person]'), index => [personPath(index)]);
+// 작은 프로필 사진만 팀 영역에 가까워졌을 때 준비합니다.
+const personWarmup = new IntersectionObserver(entries => {
+  if (!entries.some(entry => entry.isIntersecting)) return;
+  warmImages(people.map((_, index) => personPath(index)));
+  personWarmup.disconnect();
+}, { rootMargin: '240px' });
+personWarmup.observe($('#person-panel'));
 bindTabs('[data-person]', '#person-panel', index => {
   const person = people[index];
-  $('#person-photo').src = 'assets/'+(person.photo || 'presentation-'+person.key+'.png');
-  $('#person-counter').textContent = '0'+(index+1)+' / 07';
-  $('#person-photo').alt = '발표자료의 '+person.name+' 프로필';
-  $('#person-role').textContent = person.role;
-  $('#person-name').textContent = person.name;
-  $('#person-description').innerHTML = person.description;
-  $('#person-work').replaceChildren(...person.work.map(([area,description]) => {
-    const item=document.createElement('li');
-    const label=document.createElement('span');label.textContent=area;
-    item.append(label,document.createTextNode(description));return item;
-  }));
-  animatePanel($('#person-panel'));
+  personImages.show([{ target: $('#person-photo'), src: personPath(index), alt: '발표자료의 ' + person.name + ' 프로필' }], () => {
+    $('#person-counter').textContent = '0'+(index+1)+' / 07';
+    $('#person-role').textContent = person.role;
+    $('#person-name').textContent = person.name;
+    $('#person-description').innerHTML = person.description;
+    $('#person-work').replaceChildren(...person.work.map(([area,description]) => {
+      const item=document.createElement('li');
+      const label=document.createElement('span');label.textContent=area;
+      item.append(label,document.createTextNode(description));return item;
+    }));
+    animatePanel($('#person-panel'));
+  });
 });
 const screenDialog = $('#screen-dialog');
+const dialogImages = createImagePanel($('.dialog-image'));
 let zoomTrigger;
 document.addEventListener('click', event => {
   const button=event.target.closest('[data-zoom]');
   if (!button) return;
   zoomTrigger=button;
-  $('#dialog-screen').src=button.dataset.zoom;
-  $('#dialog-screen').alt=button.dataset.zoomTitle;
   $('#dialog-title').textContent=button.dataset.zoomTitle;
   $('.dialog-image').classList.remove('is-zoomed');
   $('.dialog-image').classList.toggle('is-phone', button.closest('.phone-duo') !== null);
   $('#zoom-toggle').setAttribute('aria-pressed','false');
   $('#zoom-toggle').textContent='원본 크기';
   document.body.classList.add('dialog-open');
+  $('#zoom-toggle').disabled = true;
   screenDialog.showModal();
+  dialogImages.show([{ target: $('#dialog-screen'), src: button.dataset.zoom, alt: button.dataset.zoomTitle }], () => {
+    $('#zoom-toggle').disabled = false;
+  });
 });
 $('#dialog-close').addEventListener('click', () => screenDialog.close());
 screenDialog.addEventListener('click', event => {if(event.target===screenDialog)screenDialog.close();});
-screenDialog.addEventListener('close', () => {document.body.classList.remove('dialog-open');zoomTrigger?.focus();});
+screenDialog.addEventListener('close', () => {
+  dialogImages.cancel();
+  document.body.classList.remove('dialog-open');
+  zoomTrigger?.focus();
+});
 $('#zoom-toggle').addEventListener('click', () => {
   const zoomed=$('.dialog-image').classList.toggle('is-zoomed');
   $('#zoom-toggle').setAttribute('aria-pressed',String(zoomed));

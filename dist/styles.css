@@ -171,6 +171,15 @@ h2{font-size:clamp(45px,5.4vw,86px);letter-spacing:-.045em;line-height:1.15;font
 .dialog-image img{width:100%;height:auto;margin:auto;max-width:none}
 .dialog-image.is-zoomed img{width:auto;min-width:100%}
 .dialog-image.is-phone{background:#101013}.dialog-image.is-phone:not(.is-zoomed) img{width:auto;height:calc(94svh - 81px);max-width:100%;object-fit:contain}
+.image-panel{position:relative}
+.image-status{display:none;position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;font-size:14px;padding:20px;color:inherit}
+.image-status button{border:1px solid currentColor;border-radius:24px;background:transparent;color:inherit;padding:10px 20px;cursor:pointer}
+.is-image-loading>.image-status,.is-image-error>.image-status{display:flex}
+.is-image-loading>:not(.image-status),.is-image-error>:not(.image-status){visibility:hidden;pointer-events:none}
+.is-image-loading .image-status:before{content:'';width:26px;height:3px;background:var(--pink);border-radius:2px}
+.dialog-image.is-image-loading,.dialog-image.is-image-error{min-height:55svh;color:#6e5a68}
+.dialog-image.is-phone{color:#eee}
+#zoom-toggle:disabled{opacity:.4;cursor:wait}
 body.dialog-open{overflow:hidden}
 @media(min-width:1700px){.section{padding-left:max(5%,calc((100vw - 1600px)/2));padding-right:max(5%,calc((100vw - 1600px)/2))}}
 @media(max-width:1100px){
