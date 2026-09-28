@@ -45,3 +45,5 @@ Use case: stylized-concept. Asset type: premium landing page hero for Pingdom, a
 - `admin-quality.png`: 포트폴리오 28쪽 X1, 1863×1003.
 - 위 운영 화면 6개는 PDF의 원본 이미지 스트림을 직접 추출했습니다. 이미지 내 텍스트를 AI로 재생성하지 않았습니다.
 - 팀 사진은 원본 파일을 유지하고 사용자의 최신 교정에 따라 김일강에는 `presentation-yongin.png`, 이용인에는 `presentation-ilgang.png`를 연결합니다. 파일명은 최초 추출 시점의 식별자로 유지합니다.
+
+- 히어로 보조 구체와 회전 궤도는 CSS 그라데이션·테두리·키프레임으로 구현한 장식입니다. 기존 핀과 도시 이미지를 유지하며 새 사진이나 프로필 이미지는 생성하지 않았습니다.

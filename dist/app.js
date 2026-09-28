@@ -57,8 +57,29 @@ const revealObserver = new IntersectionObserver(entries => {
 $$('.reveal').forEach(element => revealObserver.observe(element));
 const hero = $('.hero');
 const heroArt = $('.hero-art');
+const motionToggle = $('#motion-toggle');
+let motionPaused = false;
+let heroVisible = true;
+function syncHeroMotion() {
+  const paused = motionPaused || reducedMotion.matches || !heroVisible || document.hidden;
+  hero.classList.toggle('motion-paused', paused);
+  motionToggle.hidden = reducedMotion.matches;
+  motionToggle.setAttribute('aria-pressed', String(motionPaused));
+  motionToggle.setAttribute('aria-label', motionPaused ? '첫 화면 애니메이션 재생' : '첫 화면 애니메이션 멈추기');
+  if (paused) {
+    hero.style.removeProperty('--pointer-x');
+    hero.style.removeProperty('--pointer-y');
+    heroArt.style.removeProperty('--scroll-y');
+  }
+}
+motionToggle.addEventListener('click', () => { motionPaused = !motionPaused; syncHeroMotion(); });
+// 화면 밖에서는 장식 애니메이션을 멈춰 불필요한 렌더링을 줄입니다.
+new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; syncHeroMotion(); }).observe(hero);
+document.addEventListener('visibilitychange', syncHeroMotion);
+reducedMotion.addEventListener('change', syncHeroMotion);
+syncHeroMotion();
 hero.addEventListener('pointermove', event => {
-  if (reducedMotion.matches || event.pointerType !== 'mouse') return;
+  if (reducedMotion.matches || motionPaused || event.pointerType !== 'mouse') return;
   const rect = hero.getBoundingClientRect();
   const x = (event.clientX - rect.left) / rect.width - .5;
   const y = (event.clientY - rect.top) / rect.height - .5;
@@ -70,7 +91,7 @@ hero.addEventListener('pointerleave', () => {
 });
 let scrollQueued = false;
 function updateParallax() {
-  if (!reducedMotion.matches && innerWidth > 700 && scrollY < hero.offsetHeight) {
+  if (!reducedMotion.matches && !motionPaused && innerWidth > 700 && scrollY < hero.offsetHeight) {
     heroArt.style.setProperty('--scroll-y', scrollY * .08 + 'px');
   }
   scrollQueued = false;
@@ -110,14 +131,14 @@ function bindTabs(selector, panelSelector, render) {
 }
 const workspaces = [
   {name:'내 가게의 시작부터,<br>새로운 방문까지.',detail:'매장을 알리고, 혜택을 전하고.<br>로컬의 운영을 한곳에서.',label:'상점주 센터',features:[
-    {name:'장소 등록',image:'merchant-register.png',alt:'상점주 신규 장소 등록 화면',caption:'장소 정보와 위치를 입력해, 내 가게를 핑덤에.'},
-    {name:'이벤트 관리',image:'merchant-event.png',alt:'상점주 이벤트 관리 화면',caption:'기간과 내용을 정해, 방문하고 싶은 이유를 만듭니다.'},
-    {name:'운영 권한',image:'merchant-claim.png',alt:'상점주 운영 장소 신청 화면',caption:'운영 권한을 신청하고, 처리 상태를 한눈에.'}
+    {name:'장소 등록',image:'merchant-register.png',alt:'상점주 신규 장소 등록 화면'},
+    {name:'이벤트 관리',image:'merchant-event.png',alt:'상점주 이벤트 관리 화면'},
+    {name:'운영 권한',image:'merchant-claim.png',alt:'상점주 운영 장소 신청 화면'}
   ]},
   {name:'정확한 장소 정보,<br>신뢰할 수 있는 운영.',detail:'장소부터 사업자, 데이터 품질까지.<br>서비스의 기준을 지키는 도구.',label:'관리자 콘솔',features:[
-    {name:'장소 관리',image:'admin-places.png',alt:'관리자 지도와 장소 목록 화면',caption:'지도와 장소 목록을 함께 보며 정보를 관리합니다.'},
-    {name:'사업자 검증',image:'admin-owners.png',alt:'관리자 사업자 검증 화면',caption:'신청 정보와 증빙 자료를 확인하고 운영 권한을 검토합니다.'},
-    {name:'데이터 품질',image:'admin-quality.png',alt:'관리자 데이터 품질 관리 화면',caption:'검토가 필요한 정보를 찾아 서비스의 정확도를 높입니다.'}
+    {name:'장소 관리',image:'admin-places.png',alt:'관리자 지도와 장소 목록 화면'},
+    {name:'사업자 검증',image:'admin-owners.png',alt:'관리자 사업자 검증 화면'},
+    {name:'데이터 품질',image:'admin-quality.png',alt:'관리자 데이터 품질 관리 화면'}
   ]}
 ];
 let workspaceIndex = 0;
@@ -130,7 +151,6 @@ function selectWorkspaceFeature(index) {
   screen.parentElement.dataset.zoom=screen.getAttribute('src');
   screen.parentElement.dataset.zoomTitle=feature.alt;
   screen.parentElement.setAttribute('aria-label',feature.alt+' 확대');
-  $('#workspace-screen-caption').textContent=feature.caption;
   animatePanel($('.workspace-browser'));
 }
 $$('[data-workspace-feature]').forEach((button,index)=>button.addEventListener('click',()=>selectWorkspaceFeature(index)));
@@ -145,14 +165,13 @@ bindTabs('[data-workspace]', '#workspace-panel', index => {
   animatePanel($('.workspace-copy'));
 });
 const aiServices = [
-  {title:'Pingdom <span>AI</span>',headline:'복잡한 검색 대신,<br>한 번의 대화.',description:'장소를 발견하는 더 자연스러운 방법.'},
-  {title:'상권 <span>컨설팅</span>',headline:'감각에 데이터를 더해,<br>다음 결정을 명확하게.',description:'내 가게의 조건에서 시작하는 상권 분석.'}
+  {title:'Pingdom <span>AI</span>',headline:'복잡한 검색 대신,<br>한 번의 대화.'},
+  {title:'상권 <span>컨설팅</span>',headline:'감각에 데이터를 더해,<br>다음 결정을 명확하게.'}
 ];
 bindTabs('[data-ai]', '#ai-panel', index => {
   const service=aiServices[index];
   $('#ai-title').innerHTML=service.title;
   $('#ai-headline').innerHTML=service.headline;
-  $('#ai-description').textContent=service.description;
   $('#traveler-demo').hidden=index!==0;
   $('#consulting-demo').hidden=index!==1;
   animatePanel($('#ai-panel'));
