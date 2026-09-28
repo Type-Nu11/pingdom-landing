@@ -1,4 +1,5 @@
 import { createImagePanel, warmImages } from './panel-images.mjs';
+import { startHeroIntro } from './hero-intro.mjs';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -75,7 +76,7 @@ const motionToggle = $('#motion-toggle');
 let motionPaused = false;
 let heroVisible = true;
 function syncHeroMotion() {
-  const paused = motionPaused || reducedMotion.matches || !heroVisible || document.hidden;
+  const paused = motionPaused || reducedMotion.matches || !heroVisible || document.hidden || document.documentElement.classList.contains('intro-pending');
   hero.classList.toggle('motion-paused', paused);
   motionToggle.hidden = reducedMotion.matches;
   motionToggle.setAttribute('aria-pressed', String(motionPaused));
@@ -93,7 +94,7 @@ document.addEventListener('visibilitychange', syncHeroMotion);
 reducedMotion.addEventListener('change', syncHeroMotion);
 syncHeroMotion();
 hero.addEventListener('pointermove', event => {
-  if (reducedMotion.matches || motionPaused || event.pointerType !== 'mouse') return;
+  if (reducedMotion.matches || motionPaused || event.pointerType !== 'mouse' || document.documentElement.classList.contains('intro-pending')) return;
   const rect = hero.getBoundingClientRect();
   const x = (event.clientX - rect.left) / rect.width - .5;
   const y = (event.clientY - rect.top) / rect.height - .5;
@@ -105,7 +106,7 @@ hero.addEventListener('pointerleave', () => {
 });
 let scrollQueued = false;
 function updateParallax() {
-  if (!reducedMotion.matches && !motionPaused && innerWidth > 700 && scrollY < hero.offsetHeight) {
+  if (!reducedMotion.matches && !motionPaused && !document.documentElement.classList.contains('intro-pending') && innerWidth > 700 && scrollY < hero.offsetHeight) {
     heroArt.style.setProperty('--scroll-y', scrollY * .08 + 'px');
   }
   scrollQueued = false;
@@ -121,6 +122,8 @@ reducedMotion.addEventListener('change', () => {
     document.getAnimations().forEach(animation => animation.cancel());
   }
 });
+
+startHeroIntro({ hero, reducedMotion, onComplete: syncHeroMotion });
 
 function animatePanel(element) {
   if (reducedMotion.matches) return;
