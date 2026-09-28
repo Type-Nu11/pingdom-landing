@@ -5,9 +5,9 @@ float noise(vec2 p) {
   vec2 i=floor(p),f=fract(p); f=f*f*(3.0-2.0*f);
   return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);
 }
-float surface(vec2 uv) { return (.65*uv.x+.35*(1.0-uv.y))*.4+noise(uv*32.0)*.45+noise(uv*110.0)*.15; }
-float threshold(float t) { return smoothstep(2.95,4.3,t)*1.15-.07; }
-float material(float t,vec2 uv) { return smoothstep(surface(uv)-.07,surface(uv)+.07,threshold(t)); }
+float surface(vec2 uv) { return uv.x*.83+noise(uv*32.0)*.12+noise(uv*110.0)*.05; }
+float arrival(float field) { return .9+field*1.6; }
+float material(float t,vec2 uv) { float landed=arrival(surface(uv)); return smoothstep(landed+.05,landed+.3,t); }
 vec2 rotate(vec2 p,float a) { return vec2(cos(a)*p.x-sin(a)*p.y,sin(a)*p.x+cos(a)*p.y); }
 `;
 const vertexCommon = `
@@ -17,30 +17,24 @@ uniform float uTime,uAngle,uDpr;
 ${noise}
 vec4 project(vec2 p) { return vec4((uCenter+p)/uViewport*vec2(2,-2)+vec2(-1,1),0,1); }
 `;
-// 초반의 바람 경로는 링 좌표와 독립적이며, 후반에만 고정된 표면 위치로 수렴합니다.
+// 모든 입자가 왼쪽의 한 줄기에서 출발하고, 표면의 왼쪽부터 차례로 정착합니다.
 const flight = `
 vec2 bezier(vec2 a,vec2 b,vec2 c,vec2 d,float t) {
   float s=1.0-t; return s*s*s*a+3.0*s*s*t*b+3.0*s*t*t*c+t*t*t*d;
 }
 vec3 flight(vec2 target,vec3 seed,float t) {
-  float group=floor(seed.z*6.0);
-  float direction=group*1.0472+.25;
-  float phase=clamp((t-seed.x*.65)/2.6,0.0,1.0);
-  vec2 source=vec2(cos(direction)*uViewport.x*.9,sin(direction)*uViewport.y*.9);
-  vec2 bendA=rotate(source,.8)*.72;
-  vec2 bendB=rotate(source,2.5)*.65;
-  vec2 end=(vec2(sin(group*2.3),cos(group*1.7))*.2+vec2(seed.x-.5,seed.y-.5)*.65)*uImage;
-  vec2 wind=bezier(source,bendA,bendB,end,phase);
-  float spread=sin(phase*3.14159);
-  float wave=t*3.2+seed.x*15.0;
-  wind+=vec2(sin(wave+seed.y*9.0),cos(wave*.83+seed.x*7.0))*uImage.x*.065*spread;
-  wind+=vec2(seed.x-.5,seed.y-.5)*uImage*.38*spread;
-  float depth=sin(t*1.5+seed.z*6.28)*310.0+(seed.y-.5)*200.0;
-  float perspective=850.0/(850.0+depth);
   float field=surface(target/uImage+.5);
-  float captured=smoothstep(2.05+field*.65,3.05+field*.85,t);
-  vec2 p=mix(wind*perspective,rotate(target,uAngle),captured);
-  return vec3(p,mix(perspective,1.0,captured));
+  float phase=clamp((t-(arrival(field)-1.12))/1.12,0.0,1.0);
+  vec2 destination=rotate(target,uAngle);
+  vec2 source=vec2(-uCenter.x-uViewport.x*(.15+seed.x*.08),uImage.y*(-.13+(seed.y-.5)*.1));
+  vec2 bendA=vec2(-uImage.x*.8,-uImage.y*.22+(seed.y-.5)*uImage.y*.06);
+  vec2 bendB=destination-vec2(uImage.x*.23,0.0);
+  vec2 p=bezier(source,bendA,bendB,destination,phase);
+  float loose=sin(phase*3.14159);
+  p.y+=sin(t*7.0+seed.x*17.0+seed.z*9.0)*uImage.y*.026*loose;
+  float perspective=1.0+(seed.z-.5)*loose*.55;
+  p=mix(destination,p,perspective);
+  return vec3(p,perspective);
 }
 `;
 const particleVertex = `${vertexCommon}${flight}
@@ -53,7 +47,7 @@ void main() {
   gl_Position=project(p.xy);
   float glint=step(.992,aSeed.z);
   gl_PointSize=uDpr*(1.7+aSeed.y*1.8+glint*5.0)*p.z;
-  float alpha=smoothstep(.1,.4,uTime)*(1.0-material(uTime,aTarget+.5))*(1.0-smoothstep(3.8,4.35,uTime));
+  float alpha=smoothstep(.1,.4,uTime)*(1.0-material(uTime,aTarget+.5))*(1.0-smoothstep(2.7,3.1,uTime));
   vec3 tint=mix(aColor.rgb,vec3(1.0,.24,.58),.5);
   vColor=vec4(tint,alpha*aColor.a*.42);
 }
@@ -74,7 +68,7 @@ attribute vec3 aSeed;
 varying vec2 vUv;
 varying vec4 vColor;
 void main() {
-  float settle=smoothstep(2.0,3.85,uTime);
+  float settle=smoothstep(arrival(surface(aTarget+.5))-.2,arrival(surface(aTarget+.5)),uTime);
   vec3 p=flight(aTarget*uImage,aSeed,uTime);
   vec2 velocity=flight(aTarget*uImage,aSeed,uTime+.025).xy-p.xy;
   // 바람을 따라 늘어나는 짧은 잔광만 남기고, 정착하면 작은 점으로 줄입니다.
@@ -88,7 +82,7 @@ void main() {
   vUv=aCorner;
   vec3 tint=mix(vec3(1.0,.14,.5),vec3(1.0,.8,.94),aSeed.z);
   float formed=material(uTime,aTarget+.5);
-  float alpha=smoothstep(.05,.35,uTime)*(1.0-formed)*(1.0-smoothstep(4.05,4.5,uTime));
+  float alpha=smoothstep(.05,.35,uTime)*(1.0-formed)*(1.0-smoothstep(2.8,3.2,uTime));
   vColor=vec4(tint,alpha*(.4+.5*aSeed.y));
 }
 `;
@@ -118,7 +112,7 @@ void main() {
   gl_Position=project(p.xy+normal*aTrail.y*width);
   vTrail=aTrail;
   vec3 tint=mix(vec3(1.0,.08,.38),vec3(.72,.6,1.0),aSeed.z);
-  float alpha=smoothstep(.05,.4,uTime)*(1.0-smoothstep(3.15,3.95,uTime));
+  float alpha=smoothstep(.05,.4,uTime)*(1.0-smoothstep(2.45,3.0,uTime));
   vColor=vec4(tint,alpha*(.35+aSeed.y*.45));
 }
 `;
@@ -173,7 +167,7 @@ void main() {
   vec4 color=texture2D(uTexture,vUv);
   if(color.a<.005) discard;
   float field=surface(vUv);
-  float edge=(1.0-smoothstep(0.0,.065,abs(field-threshold(uTime))))*.42;
+  float edge=(1.0-smoothstep(0.0,.065,abs(uTime-(arrival(field)+.16))))*.42;
   gl_FragColor=vec4(color.rgb+vec3(1.0,.26,.55)*edge,color.a*material(uTime,vUv));
 }
 `;
