@@ -62,11 +62,11 @@ hero.addEventListener('pointermove', event => {
   const rect = hero.getBoundingClientRect();
   const x = (event.clientX - rect.left) / rect.width - .5;
   const y = (event.clientY - rect.top) / rect.height - .5;
-  heroArt.style.setProperty('--pointer-x', x * 10 + 'px');
-  heroArt.style.setProperty('--pointer-y', y * 8 + 'px');
+  hero.style.setProperty('--pointer-x', x * 10 + 'px');
+  hero.style.setProperty('--pointer-y', y * 8 + 'px');
 });
 hero.addEventListener('pointerleave', () => {
-  ['--pointer-x', '--pointer-y'].forEach(property => heroArt.style.removeProperty(property));
+  ['--pointer-x', '--pointer-y'].forEach(property => hero.style.removeProperty(property));
 });
 let scrollQueued = false;
 function updateParallax() {
@@ -80,6 +80,7 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 reducedMotion.addEventListener('change', () => {
   if (reducedMotion.matches) {
+    hero.removeAttribute('style');
     heroArt.removeAttribute('style');
     $$('.reveal').forEach(element => element.classList.add('is-visible'));
     document.getAnimations().forEach(animation => animation.cancel());

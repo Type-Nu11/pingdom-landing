@@ -26,5 +26,5 @@ Use case: stylized-concept. Asset type: premium landing page hero for Pingdom, a
 
 ## 도시 배경
 
-- `seoul-dusk.png`: 내장 ImageGen으로 생성한 1774×887 장식용 히어로 배경. 서울에서 영감을 받은 장면이며 특정 장소의 실제 사진으로 제시하지 않습니다. 기존 `pingdom-pin.png`를 대신합니다.
+- `seoul-dusk.png`: 내장 ImageGen으로 생성한 1774×887 장식용 히어로 배경. 서울에서 영감을 받은 장면이며 특정 장소의 실제 사진으로 제시하지 않습니다. 기존 `pingdom-pin.png`를 전경에 겹쳐 사용합니다. 원본 핀 이미지를 수정하지 않고 CSS screen 블렌딩으로 도시 배경과 합성합니다.
 - 프롬프트: Cinematic wide hero background for Pingdom, a Korea local travel discovery landing page. Seoul-inspired blue-hour rooftop view over a quiet Korean urban neighborhood, layered dark charcoal rooftops, contemporary towers and a distant hill and slender tower on the far right, warm windows and restrained muted magenta reflections. Editorial travel photography, nuanced midnight-blue shadows, natural film grain and atmospheric depth. Ultra-wide 2:1 landscape, city concentrated on the right and lower third, quiet dark negative space on the left for white Korean typography. No foreground people, readable text, logos, map pins, watermarks, captions or UI. Conceptual Seoul-inspired background, not a claim of a specific exact place.
