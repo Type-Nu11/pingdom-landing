@@ -255,7 +255,12 @@ void main() {
   if(color.a<.005) discard;
   float field=surface(vUv,vGlyph);
   float edge=exp(-pow((uTime-field-.34)/.18,2.0))*.28;
-  gl_FragColor=vec4(color.rgb+vec3(1.0,0.098039,0.337255)*edge,color.a*material(uTime,vUv,vGlyph));
+  vec3 surfaceColor=color.rgb+vec3(1.0,0.098039,0.337255)*edge;
+  // 완성 뒤 .portal-float의 CSS 필터와 일치시켜 전환 순간의 색 변화를 막습니다.
+  float luma=dot(surfaceColor,vec3(.213,.715,.072));
+  vec3 toned=mix(vec3(luma),surfaceColor,.84);
+  toned=clamp((toned*.94-.5)*.94+.5,0.0,1.0);
+  gl_FragColor=vec4(toned,color.a*material(uTime,vUv,vGlyph));
 }
 `;
 

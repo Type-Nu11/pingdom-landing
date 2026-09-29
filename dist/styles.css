@@ -31,7 +31,7 @@ h1>span{display:block;position:absolute;animation:hero-in 1.3s var(--ease) backw
 .hero-period{color:var(--pink)}
 .hero-model{position:absolute;top:49%;left:50%;width:min(84.6vw,1440px);translate:-50% -50%;z-index:2;pointer-events:none;transform:none}
 .hero-model img{width:100%;height:auto;animation:sculpture-in 1.6s var(--ease) both;filter:drop-shadow(0 22px 40px #14091855)}
-.portal-float{position:relative;transform:none;transform-origin:center}
+.portal-float{position:relative;transform:none;transform-origin:center;filter:saturate(.84) brightness(.94) contrast(.94)}
 .ring-flow-canvas{position:absolute;inset:-6%;width:112%;height:112%;display:block;opacity:0;pointer-events:none}
 .ring-flow-ready .ring-flow-canvas{opacity:1}
 .ring-flow-ready .hero-model img{opacity:0;animation:none}

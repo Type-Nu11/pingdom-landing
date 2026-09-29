@@ -21,7 +21,7 @@ void main() {
   vec2 uv=vUv+wave*enter*edge;
   if(any(lessThan(uv,vec2(0.0)))||any(greaterThan(uv,vec2(1.0)))) discard;
   vec4 surface=texture2D(uTexture,uv);
-  float sheen=pow(.5+.5*cos(vUv.x*9.0-phase-vUv.y*2.0),12.0)*.055;
+  float sheen=pow(.5+.5*cos(vUv.x*9.0-phase-vUv.y*2.0),12.0)*.028;
   float light=1.0+enter*edge*sheen;
   gl_FragColor=vec4(surface.rgb*light,surface.a);
 }
