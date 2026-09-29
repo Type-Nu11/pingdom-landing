@@ -84,7 +84,7 @@ function seekPosition(button) {
 }
 
 // 문서의 native scroll만 관찰하며 히어로 재생이나 휠·터치 입력은 소유하지 않습니다.
-export function createCinematicScroll({ root = document, view = window, reducedMotion = view.matchMedia('(prefers-reduced-motion: reduce)') } = {}) {
+export function createCinematicScroll({ root = document, view = window, reducedMotion = view.matchMedia('(prefers-reduced-motion: reduce)'), minWidth = 0 } = {}) {
   const html = root.documentElement;
   const motions = new Map(), controls = new Map(), progressStyles = new Map(), observed = new Set();
   const supported = typeof view.requestAnimationFrame === 'function' && typeof view.cancelAnimationFrame === 'function';
@@ -223,7 +223,7 @@ export function createCinematicScroll({ root = document, view = window, reducedM
 
   function syncMotion() {
     if (destroyed) return;
-    enabled = supported && !reducedMotion.matches;
+    enabled = supported && !reducedMotion.matches && view.innerWidth >= minWidth;
     html.classList.toggle('cinema-ready', enabled);
     if (!enabled) {
       cancelFrame();
@@ -260,7 +260,7 @@ export function createCinematicScroll({ root = document, view = window, reducedM
 
   readTargets().forEach(restoreOriginal => restoreOriginal());
   view.addEventListener('scroll', onScroll, { passive: true });
-  view.addEventListener('resize', refresh, { passive: true });
+  view.addEventListener('resize', syncMotion, { passive: true });
   view.addEventListener('pagehide', onPageHide);
   view.addEventListener('pageshow', onPageShow);
   root.addEventListener('visibilitychange', onVisibility);
@@ -279,7 +279,7 @@ export function createCinematicScroll({ root = document, view = window, reducedM
       resizeObserver?.disconnect();
       imageObserver?.disconnect();
       view.removeEventListener('scroll', onScroll);
-      view.removeEventListener('resize', refresh);
+      view.removeEventListener('resize', syncMotion);
       view.removeEventListener('pagehide', onPageHide);
       view.removeEventListener('pageshow', onPageShow);
       root.removeEventListener('visibilitychange', onVisibility);

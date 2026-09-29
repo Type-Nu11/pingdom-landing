@@ -1,85 +1,65 @@
-/* Native scroll provides the clock. Without the controller every chapter stays readable. */
-.cinema-scene{position:relative;margin:0;padding:0;overflow:visible}
-.scene-stage{position:relative;isolation:isolate;padding:100px 6%}
-.scene-skip{display:none}
-.cinema-ready .scene-skip{display:block;position:absolute;top:16px;left:16px;z-index:50;transform:translateY(-180%);padding:12px 18px;border:0;border-radius:8px;background:#FF1956;color:white;font-size:14px}
-.cinema-ready .scene-skip:focus{transform:none}
-.scene-eyebrow{display:block;font-size:11px;font-weight:550;letter-spacing:.14em;line-height:1.5}
-.arrival-scene{background:var(--paper);color:var(--ink)}
-.arrival-heading{text-align:center;padding:70px 0 120px}
-.arrival-heading h2{font-size:clamp(44px,6.7vw,104px);letter-spacing:-.065em;line-height:1.17;margin:27px 0}
-.arrival-heading h2 span{color:var(--pink)}
-.arrival-heading p{font-size:19px;color:#787678;margin:30px 0 0}
-.journey-scene{background:#080808;color:var(--paper)}
-.journey-chapter{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:50px}
-.journey-chapter h2{font-size:14px;font-weight:500;letter-spacing:-.01em;color:#99959c}
-.journey-seeks{display:none;gap:25px}
-.journey-seeks button{background:none;border:0;padding:12px 0;color:#848188;font-size:14px}
-.journey-seeks small{font-size:10px;padding-right:8px}
-.journey-seeks [aria-current=step]{color:var(--pink)}
-.journey-step{display:grid;grid-template-columns:1fr 1.3fr;gap:5%;align-items:center;min-height:720px;padding:70px 0}
-.journey-copy .scene-eyebrow{color:var(--pink);letter-spacing:.08em}
-.journey-copy h3{font-size:clamp(38px,4.25vw,68px);font-weight:650;letter-spacing:-.055em;line-height:1.24;margin:28px 0}
-.journey-copy p{font-size:18px;color:#a5a0a9;line-height:1.7;margin:0 0 32px}
-.journey-tags{font-size:12px;color:#807c84;letter-spacing:.01em}
-.journey-devices{position:relative;min-height:580px;perspective:1400px}
-.journey-device{position:absolute;width:48%;top:0;left:0}
-.journey-device.device-front{left:45%;top:45px;z-index:2}
-.journey-device button{background:transparent;border:0;padding:0;width:100%;display:block;cursor:zoom-in}
-.journey-device img{width:100%;height:auto;filter:drop-shadow(0 30px 35px #0006)}
-.journey-progress{display:none}
-.trust-interlude{background:#080808;color:var(--paper);padding:120px 8% 150px}
-.trust-interlude>.scene-eyebrow{color:#817a83}
-.trust-interlude h2{font-size:clamp(36px,5.2vw,78px);letter-spacing:-.05em;line-height:1.22;margin:28px 0 65px}.trust-interlude h2 span{color:var(--pink)}
-.trust-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:55px}.trust-columns>div{border-top:1px solid #383339;padding-top:24px}.trust-columns span{font-size:11px;color:var(--pink)}.trust-columns h3{font-size:24px;font-weight:550;letter-spacing:-.035em;margin:22px 0 14px}.trust-columns p{font-size:15px;line-height:1.7;color:#9e96a0;margin:0}
-.cinema-ready .cinema-scene>.scene-stage{position:sticky;top:0;height:100svh;padding:0;overflow:hidden}
-.cinema-ready [data-motion]{transform-origin:center;backface-visibility:hidden}
-.cinema-ready .arrival-scene{height:280svh}
-.cinema-ready .arrival-heading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 5%;z-index:1;pointer-events:none}
-.cinema-ready .arrival-heading h2{margin:24px 0 4px}
-.cinema-ready .journey-scene{height:660svh}
-.cinema-ready .journey-chapter{position:absolute;top:34px;left:6%;right:6%;z-index:20;padding:0}
-.cinema-ready .journey-seeks{display:flex}
-.cinema-ready .journey-step{position:absolute;inset:0;display:block;min-height:0;padding:0}
-.cinema-ready .journey-copy{position:absolute;left:8%;top:50%;translate:0 -50%;width:39%;z-index:4}
-.cinema-ready .journey-devices{position:absolute;inset:0;min-height:0}
-.cinema-ready .journey-device{width:min(23vw,34svh);left:61%;top:47%;translate:-50% -50%;z-index:1}
-.cinema-ready .journey-device.device-front{left:79%;top:56%;z-index:2}
-.cinema-ready .journey-progress{display:block;position:absolute;bottom:28px;left:6%;right:6%;height:1px;background:#ffffff20;z-index:20}
-.cinema-ready .journey-progress i{display:block;height:1px;width:100%;background:var(--pink);transform:scaleX(var(--scene-progress,0));transform-origin:left}
-@media(max-width:700px){
- .scene-stage{padding:65px 6%}.scene-eyebrow{font-size:10px;letter-spacing:.1em}
- .arrival-heading{padding:90px 0}.arrival-heading h2{font-size:clamp(34px,9.5vw,60px)}.arrival-heading p{font-size:14px;line-height:1.8}
- .journey-step{grid-template-columns:1fr;min-height:0;gap:45px;padding:45px 0 80px}.journey-copy h3{font-size:36px;margin:18px 0}.journey-copy p{font-size:15px;margin-bottom:20px}.journey-tags{font-size:10px}
- .journey-devices{min-height:105vw}.journey-device{width:43%;left:3%}.journey-device.device-front{left:51%;top:30px}
- .trust-interlude{padding:80px 7%}.trust-interlude h2{font-size:36px;margin-bottom:45px}.trust-columns{grid-template-columns:1fr;gap:30px}.trust-columns h3{font-size:23px;margin:14px 0 10px}
- .cinema-ready .journey-scene{height:640svh}.cinema-ready .journey-chapter{top:20px;left:7%;right:7%;display:block}.cinema-ready .journey-chapter h2{font-size:11px;color:#777079}.cinema-ready .journey-seeks{gap:23px;margin-top:5px;justify-content:space-between}.journey-seeks button{font-size:12px}.journey-seeks small{font-size:9px;padding-right:5px}
- .cinema-ready .journey-copy{left:8%;top:14%;translate:none;width:84%}.cinema-ready .journey-copy h3{font-size:clamp(29px,8vw,42px);margin:12px 0 10px}.cinema-ready .journey-copy p{font-size:14px;margin-bottom:14px}.cinema-ready .journey-copy .scene-eyebrow{font-size:10px}
- .cinema-ready .journey-device{width:min(42vw,25svh);left:29%;top:58%}.cinema-ready .journey-device.device-front{left:73%;top:62%}.cinema-ready .journey-progress{bottom:20px}
-}
-@media(max-height:620px) and (min-width:701px){
- .cinema-ready .journey-copy h3{font-size:39px}.cinema-ready .journey-copy p{font-size:15px}.cinema-ready .journey-device{width:31svh}.arrival-heading h2{font-size:60px}
-}
-/* 장소 사진은 흩어졌다 한곳에 모이고, 길이 열리듯 화면 밖으로 나갑니다. */
+/* 본문은 항상 문서에 남고, 스크롤은 제품 이미지의 자세와 경로만 바꿉니다. */
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important}
-.arrival-night{display:none}.arrival-places{display:flex;justify-content:center;gap:24px;padding-bottom:70px}.arrival-place{width:27%;max-width:360px;border-radius:26px;overflow:hidden}.arrival-place .place-photo{display:block;height:auto;aspect-ratio:1;margin:0}.arrival-place img{object-fit:cover}
-.cinema-ready .arrival-scene{height:240svh;background:var(--paper)}
-.cinema-ready .arrival-night{display:block;position:absolute;inset:0;background:#080808}
-.cinema-ready .arrival-heading{z-index:3;mix-blend-mode:normal}
-.cinema-ready .arrival-places{position:absolute;inset:0;perspective:1200px;display:block;padding:0;z-index:2}
-.cinema-ready .arrival-place{position:absolute;width:min(27vw,38svh);left:50%;top:50%;translate:-50% -50%;max-width:none;box-shadow:0 24px 60px #0002}
-.cinema-ready .arrival-place-1{z-index:2}
-.cinema-ready .journey-chapter{justify-content:flex-end}
-@media(max-width:700px){
- .arrival-places{gap:12px}.arrival-place{border-radius:15px;width:29%}
- .cinema-ready .arrival-place{width:51vw;border-radius:22px}
- .cinema-ready .arrival-scene{height:220svh}
- .cinema-ready .journey-chapter{display:flex}
- .cinema-ready .journey-seeks{width:100%;margin-top:0}
- .cinema-ready .journey-copy{top:12%}
-}
-
+.product-intro{background:#f5f4f1;color:#19171b;padding:120px 7%;position:relative}
+.product-intro-inner{max-width:1380px;margin:0 auto}
+.product-kicker{display:flex;gap:18px;align-items:center;font-size:16px;font-weight:600;letter-spacing:-.025em;margin:0 0 28px;color:var(--pink)}
+.product-kicker>span{font-size:12px;letter-spacing:.04em}
+.product-intro h2{font-size:clamp(48px,5.4vw,84px);letter-spacing:-.06em;line-height:1.24;font-weight:710;margin:0;max-width:1000px}
+.product-intro h2 span{color:#969196}
+.product-intro-description{font-size:20px;line-height:1.85;letter-spacing:-.035em;margin:35px 0 0;color:#646067}
+.product-story{position:relative;background:#f5f4f1}
+.product-nav{height:60px;position:sticky;top:0;z-index:30;display:flex;justify-content:center;align-items:center;gap:clamp(40px,6vw,96px);background:#f5f4f1f2;backdrop-filter:blur(14px);border-bottom:1px solid #ddd9dd;color:#6b666e}
+.product-nav a{font-size:14px;padding:18px 4px;transition:color .25s}
+.product-nav a:hover,.product-nav a[aria-current]{color:var(--pink)}
+.product-chapter{position:relative;background:#f5f4f1;color:#19171b;scroll-margin-top:36px}
+.product-stage{position:relative;max-width:1600px;margin:0 auto;padding:105px 7%;display:grid;grid-template-columns:.95fr 1.05fr;align-items:center;column-gap:4%;isolation:isolate}
+.product-copy{position:relative;z-index:3;min-width:0}
+.product-copy h3{font-size:clamp(42px,4.35vw,70px);letter-spacing:-.06em;line-height:1.24;font-weight:710;margin:0 0 30px}
+.product-copy h3 span{color:var(--pink)}
+.product-description{font-size:clamp(17px,1.42vw,22px);line-height:1.85;color:#6c656d;letter-spacing:-.035em;margin:0}
+.product-visual{position:relative;min-width:0;perspective:1400px;isolation:isolate}
+.product-handsets{display:flex;align-items:center;justify-content:center;gap:20px;position:relative;z-index:2;perspective:1400px;padding:26px 0 40px}
+.product-handset{width:46%;max-width:285px;margin:0;min-width:0;transform-origin:center;backface-visibility:hidden}
+.product-handset.handset-secondary{margin-top:72px}
+.product-handset button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;transition:translate .3s}
+.product-handset button:hover{translate:0 -5px}
+.product-handset img{width:100%;height:auto;filter:drop-shadow(0 26px 20px #35293224)}
+.product-handset figcaption{text-align:center;font-size:12px;letter-spacing:-.015em;color:#89818a;padding-top:18px}
+.product-orbit{position:absolute;inset:-8% -18%;z-index:0;pointer-events:none;transform-origin:center}
+.product-orbit:before{content:'';position:absolute;width:67%;aspect-ratio:1;border-radius:50%;left:20%;top:15%;background:radial-gradient(ellipse,#ff195618,transparent 68%)}
+.product-orbit svg{width:100%;height:100%;overflow:visible}
+.product-orbit .route-base{stroke:#ff195618;stroke-width:1.5}
+.product-orbit .route-light{stroke:#ff1956;stroke-opacity:.5;stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0}
+.product-orbit .route-tracer{display:none}
+.product-orbit circle{fill:#ff1956;filter:drop-shadow(0 0 8px #ff195680)}
+.chapter-dark{background:#151319;color:#f5f2f6}
+.chapter-dark .product-description{color:#aca4b1}
+.chapter-dark .product-handset figcaption{color:#8f8498}
+.chapter-dark .product-handset img{filter:drop-shadow(0 26px 25px #0007)}
+.chapter-dark .product-orbit .route-base{stroke:#ff195636}
+.chapter-dark .product-orbit .route-light{stroke:#ff4275;stroke-opacity:.7}
+.chapter-dark .product-orbit:before{background:radial-gradient(ellipse,#ff19561d,transparent 68%)}
+.chapter-visit{background:#f2eeeb}
+.chapter-record{background:#11151b}
+.product-chapter-line{display:none}
+.product-trust{padding:130px 7%;display:grid;grid-template-columns:1fr 1fr;gap:9%;align-items:center;background:#f5f4f1;color:#19171b}
+.product-trust h2{font-size:clamp(40px,4vw,64px);line-height:1.27;letter-spacing:-.055em}
+.product-trust-list>div{padding:26px 0;border-top:1px solid #d6d0d6}
+.product-trust-list h3{font-size:24px;font-weight:600;letter-spacing:-.04em;margin:0 0 13px}
+.product-trust-list p{font-size:16px;color:#79717b;margin:0;line-height:1.6}
 .place-photo img{object-fit:cover}
-html:not(.cinema-ready) .journey-devices{display:grid;grid-template-columns:1fr 1fr;gap:3%;min-height:0;align-items:start}
-html:not(.cinema-ready) .journey-device{position:relative;inset:auto;width:100%}
-html:not(.cinema-ready) .journey-device.device-front{margin-top:45px}
+/* 2.6 화면 길이의 독립 장면. 설명은 시작부터 끝까지 유지하고 기기는 28% 지점에서 정착합니다. */
+.cinema-ready .product-chapter{height:260svh}
+.cinema-ready .product-stage{position:sticky;top:60px;height:calc(100svh - 60px);min-height:540px;padding-top:36px;padding-bottom:42px;overflow:hidden}
+.cinema-ready .product-handset{width:min(18vw,29.8svh);max-width:285px}
+.cinema-ready .product-handsets{gap:min(2.1vw,34px);padding:0 0 20px}
+.cinema-ready .product-handset.handset-secondary{margin-top:48px}
+.cinema-ready .product-orbit .route-light{stroke-dashoffset:clamp(0,calc(1 - var(--scene-progress,0)*1.6),1)}
+.cinema-ready .product-orbit .route-tracer{display:block;stroke:#ff1956;stroke-opacity:.65;stroke-width:7;stroke-linecap:round;stroke-dasharray:.045 .955;stroke-dashoffset:calc(.1 - var(--scene-progress,0)*1.5);filter:blur(3px)}
+.cinema-ready .product-chapter-line{display:block;position:absolute;bottom:24px;left:7%;width:34%;height:1px;background:#b0a6b033}
+.cinema-ready .product-chapter-line i{display:block;width:100%;height:100%;background:var(--pink);transform:scaleX(var(--scene-progress,0));transform-origin:left}
+@media(min-width:1600px){.product-stage{column-gap:7%}.product-copy h3{font-size:74px}.product-description{font-size:21px}}
+@media(max-width:1100px) and (min-width:900px){.product-stage{padding-left:5%;padding-right:5%;column-gap:2%;grid-template-columns:1fr 1fr}.product-copy h3{font-size:43px}.product-description{font-size:16px}.product-kicker{font-size:14px}.cinema-ready .product-handset{width:min(19vw,29svh)}}
+@media(max-height:700px) and (min-width:900px){.cinema-ready .product-stage{min-height:0}.product-copy h3{font-size:clamp(38px,4vw,60px)}.product-copy .product-kicker{margin-bottom:18px}.product-copy .product-description{font-size:16px}.cinema-ready .product-handset{width:27.2svh}.product-handset figcaption{padding-top:10px}}
+/* 좁은 화면과 모션 감소 환경의 안전한 일반 문서 배치. */
+@media(max-width:899px){.product-intro{padding:80px 6% 0}.product-intro h2{font-size:clamp(34px,6vw,54px)}.product-intro-description{font-size:17px;margin-bottom:60px}.product-kicker{font-size:14px}.product-nav{position:relative;gap:0;justify-content:space-evenly}.product-nav a{font-size:12px}.product-stage{display:block;padding:80px 7% 70px;overflow:hidden}.product-copy h3{font-size:clamp(36px,6vw,54px)}.product-description{font-size:16px}.product-visual{max-width:570px;margin:40px auto 0}.product-handsets{gap:18px}.product-handset{width:43%}.product-handset.handset-secondary{margin-top:40px}.product-trust{padding:80px 7%;display:block}.product-trust h2{font-size:36px}.product-trust-list{margin-top:45px}}

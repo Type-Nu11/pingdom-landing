@@ -120,7 +120,7 @@ function element(attributes = {}, { top = 0, height = 100, operations = [] } = {
   return node;
 }
 
-function fixture(t, { reduced = false, width = 1200, motionValue = motion, mobileMotion, secondScene = false, sceneProgressValue, sceneProgressPriority = '' } = {}) {
+function fixture(t, { reduced = false, width = 1200, minWidth, motionValue = motion, mobileMotion, secondScene = false, sceneProgressValue, sceneProgressPriority = '' } = {}) {
   const operations = [];
   const html = element({}, { operations });
   const scene = element({ 'data-scene': '', id: 'intro' }, { top: -1000, height: 3000, operations });
@@ -181,7 +181,7 @@ function fixture(t, { reduced = false, width = 1200, motionValue = motion, mobil
     cancelAnimationFrame: id => frames.delete(id),
     scrollTo: options => scrolls.push(options)
   });
-  const controller = createCinematicScroll({ root, view, reducedMotion });
+  const controller = createCinematicScroll({ root, view, reducedMotion, minWidth });
   t.after(() => controller.destroy());
   return {
     controller, root, view, html, scene, actor, scenes, actors, reducedMotion,
@@ -380,6 +380,56 @@ test('모션 감소는 시작 시 프레임을 요청하지 않고 실행 중 �
   assert.equal(f.frames.size, 1);
   f.frame();
   assert.equal(opacity(f.actor), 1);
+  assert.equal(f.frames.size, 0);
+});
+
+test('최소 폭보다 좁게 시작하면 콘텐츠를 유지하고 갱신 이벤트에도 모션을 예약하지 않는다', t => {
+  const f = fixture(t, { width: 899, minWidth: 900 });
+  assert.equal(f.html.classList.contains('cinema-ready'), false);
+  assertOriginal(f.actor);
+  assert.equal(f.frames.size, 0);
+  f.scroll();
+  f.view.innerWidth = 700;
+  f.emit(f.view, 'resize');
+  f.controller.refresh();
+  f.observers.forEach(observer => observer.callback([{ target: f.scene }]));
+  f.frame();
+  assertOriginal(f.actor);
+  assert.equal(f.scene.reads, 0);
+  assert.equal(f.frames.size, 0);
+});
+
+test('PC에서 좁은 화면으로 바뀌면 원본과 RAF를 복구하고 최소 폭 경계에서 최신 위치로 재개한다', t => {
+  const f = fixture(t, { minWidth: 900, sceneProgressValue: '.375', sceneProgressPriority: 'important' });
+  f.scene.rect.top = 0;
+  f.frame();
+  assert.equal(f.actor.inert, true);
+  assert.equal(f.actor.style.visibility, 'hidden');
+  f.scroll();
+  assert.equal(f.frames.size, 1);
+
+  f.view.innerWidth = 899;
+  f.emit(f.view, 'resize');
+  assert.equal(f.frames.size, 0);
+  assert.equal(f.html.classList.contains('cinema-ready'), false);
+  assertOriginal(f.actor);
+  assert.equal(f.scene.style.getPropertyValue('--scene-progress'), '.375');
+  assert.equal(f.scene.style.getPropertyPriority('--scene-progress'), 'important');
+  f.scene.rect.top = -500;
+  f.scroll();
+  assert.equal(f.frames.size, 0);
+
+  f.view.innerWidth = 900;
+  f.emit(f.view, 'resize');
+  f.emit(f.view, 'resize');
+  assert.equal(f.html.classList.contains('cinema-ready'), true);
+  assert.equal(f.frames.size, 1);
+  f.frame();
+  assert.equal(opacity(f.actor), .5);
+  assert.deepEqual(translation(f.actor), [-225, 100]);
+  assert.equal(f.actor.style.visibility, 'visible');
+  assert.equal(f.actor.inert, false);
+  assert.equal(Number(f.scene.style.getPropertyValue('--scene-progress')), .25);
   assert.equal(f.frames.size, 0);
 });
 

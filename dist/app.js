@@ -2,7 +2,7 @@ import { createImagePanel, warmImages } from './panel-images.mjs';
 import { startHeroIntro } from './hero-intro.mjs?v=traffic-gold-1';
 import { createRingFlow } from './ring-flow.mjs?v=halftone-1';
 import { createHeroBackground } from './hero-background.mjs?v=traffic-1';
-import { createCinematicScroll } from './cinematic-scroll.mjs?v=1';
+import { createCinematicScroll } from './cinematic-scroll.mjs?v=readable-2';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -14,7 +14,17 @@ function warmOnIntent(buttons, paths) {
   });
 }
 document.documentElement.classList.add('js');
-const scrollStory = createCinematicScroll({ reducedMotion });
+const scrollStory = createCinematicScroll({ reducedMotion, minWidth: 900 });
+const productLinks = $$('.product-nav a');
+const chapterObserver = new IntersectionObserver(entries => {
+  const active = entries.find(entry => entry.isIntersecting);
+  if (!active) return;
+  productLinks.forEach(link => {
+    if (link.hash === '#' + active.target.id) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+}, { rootMargin: '-35% 0px -55% 0px' });
+$$('.product-chapter').forEach(chapter => chapterObserver.observe(chapter));
 const hero = $('.hero');
 const ringFlow = createRingFlow({ hero, reducedMotion });
 const heroBackground = createHeroBackground({ hero, reducedMotion });
