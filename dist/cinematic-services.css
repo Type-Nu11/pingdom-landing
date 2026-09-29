@@ -1,0 +1,199 @@
+/* Interactive panels own their content; the surrounding layers own scroll motion. */
+.service-scene.section,.intelligence-scene.section{padding:0;overflow:visible}
+.service-scene{background:#eeede9;color:#17131a}
+.intelligence-scene{background:#101013;color:#f6f1f5}
+.service-scene>.scene-stage,.intelligence-scene>.scene-stage{padding:100px 6%;isolation:isolate}
+.service-scene .service-title h2{font-size:clamp(42px,5.2vw,80px);letter-spacing:-.06em;line-height:1.16;margin:22px 0 35px}
+.service-scene .service-controls{width:max-content}
+.service-scene .service-proof{display:none;pointer-events:none}
+.service-scene .workspace-panel{margin-top:50px}
+.intelligence-scene .intelligence-title h2{font-size:clamp(58px,8vw,120px);font-weight:640;letter-spacing:-.065em;line-height:1.1;margin:20px 0 32px}
+.intelligence-scene .intelligence-title h2>span{color:#FF1956}
+.intelligence-scene .intelligence-controls{width:max-content}
+.intelligence-scene .intelligence-backdrop,.intelligence-scene .intelligence-card-flight{display:none}
+.intelligence-scene>.scene-stage{background:linear-gradient(#101013d9,#101013e6),url(assets/ai-traveler-background.webp) center/cover}
+.intelligence-scene.is-consulting>.scene-stage{background-image:linear-gradient(#101013d9,#101013e6),url(assets/ai-consulting-background.webp)}
+
+
+/* These are scene layouts only after the motion controller has initialized. */
+.cinema-ready .service-scene,.cinema-ready .intelligence-scene{height:400svh}
+.cinema-ready .service-scene>.scene-stage,.cinema-ready .intelligence-scene>.scene-stage{position:sticky;top:0;height:100svh;padding:0;overflow:hidden}
+.cinema-ready .service-scene>.scene-stage{--service-browser-width:min(62vw,1000px,112svh);perspective:1600px}
+.cinema-ready .service-scene .service-title{position:absolute;top:7svh;left:6%;z-index:5;transform-origin:top left;pointer-events:none}
+.cinema-ready .service-scene .service-title h2{font-size:clamp(70px,8.7vw,140px);line-height:1.15;letter-spacing:-.065em;margin:20px 0 0}
+.cinema-ready .service-scene .service-controls{position:absolute;right:6%;top:8svh;z-index:8}
+.cinema-ready .service-scene .workspace-tabs{margin:0;background:#eeede9c9}
+.cinema-ready .service-scene .service-proof{display:block;position:absolute;right:6%;top:29svh;width:var(--service-browser-width);overflow:hidden;border:1px solid #ffffffb0;border-radius:12px;background:#fff;box-shadow:0 30px 75px #35253124;z-index:2}
+.cinema-ready .service-scene .service-proof-merchant{z-index:3}
+.cinema-ready .service-scene .service-proof>img{display:block;width:100%;height:auto;aspect-ratio:1864/1004;object-fit:cover;object-position:top}
+.cinema-ready .service-scene .service-live{position:absolute;left:6%;right:6%;top:29svh;z-index:4}
+.cinema-ready .service-scene .workspace-panel{grid-template-columns:minmax(0,1fr) var(--service-browser-width);gap:4vw;align-items:start;margin:0}
+.cinema-ready .service-scene .workspace-copy{padding-top:2svh}
+.cinema-ready .service-scene .workspace-copy h3{font-size:clamp(25px,2.15vw,34px);line-height:1.35;margin-bottom:16px}
+.cinema-ready .service-scene .workspace-copy>p{font-size:clamp(14px,1.15vw,17px);margin-bottom:20px}
+.cinema-ready .service-scene .workspace-features button{padding:16px 0;gap:15px}
+.cinema-ready .service-scene .workspace-features strong{font-size:18px}
+.cinema-ready .service-scene .workspace-stage{padding:0;width:100%}
+.cinema-ready .service-scene .workspace-stage:before{display:none}
+.cinema-ready .service-scene .workspace-browser{box-shadow:0 30px 75px #35253124}
+.cinema-ready .intelligence-scene>.scene-stage{background:#101013;perspective:1600px}
+.cinema-ready .intelligence-scene .intelligence-backdrop{display:block;position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.cinema-ready .intelligence-scene .ai-backdrops{position:absolute;inset:0}
+.cinema-ready .intelligence-scene .ai-backdrop-traveler{opacity:.48}
+.cinema-ready .intelligence-scene.is-consulting .ai-backdrop-traveler{opacity:0}
+.cinema-ready .intelligence-scene.is-consulting .ai-backdrop-consulting{opacity:.46}
+.cinema-ready .intelligence-scene .ai-backdrops:after{background:linear-gradient(180deg,#10101366,transparent 35%,#10101377),linear-gradient(90deg,#10101360,transparent 65%)}
+.cinema-ready .intelligence-scene .intelligence-title{position:absolute;top:7svh;left:6%;z-index:5;transform-origin:top left;pointer-events:none}
+.cinema-ready .intelligence-scene .intelligence-title h2{font-size:clamp(82px,13vw,204px);margin:20px 0 0;white-space:nowrap}
+.cinema-ready .intelligence-scene .intelligence-controls{position:absolute;right:6%;top:8svh;z-index:8}
+.cinema-ready .intelligence-scene .ai-tabs{margin:0;background:#10101388}
+.cinema-ready .intelligence-scene .intelligence-card-flight{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;position:absolute;top:42svh;right:7.7%;width:57%;z-index:3;pointer-events:none}
+.cinema-ready .intelligence-scene .intelligence-photo{border-radius:10px;box-shadow:0 25px 60px #0004;min-width:0}
+.cinema-ready .intelligence-scene .intelligence-photo .place-photo{height:clamp(130px,21svh,230px);margin:0;border-radius:10px}
+.cinema-ready .intelligence-scene .intelligence-live{position:absolute;top:25svh;left:6%;right:6%;z-index:4}
+.cinema-ready .intelligence-scene .ai-panel{display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,1fr);gap:5%;align-items:start;margin:0}
+.cinema-ready .intelligence-scene .ai-copy{margin:0;padding-top:7svh}
+.cinema-ready .intelligence-scene .ai-copy h3{font-size:clamp(27px,2.55vw,41px);line-height:1.35}
+.cinema-ready .intelligence-scene .traveler-demo{width:100%;min-width:0}
+.cinema-ready .intelligence-scene .ai-question{width:91%;padding:16px 20px;margin-bottom:18px;gap:12px}
+.cinema-ready .intelligence-scene .ai-question p{font-size:clamp(15px,1.25vw,19px)}
+.cinema-ready .intelligence-scene .ai-response{padding:20px 24px 17px}
+.cinema-ready .intelligence-scene .response-heading{font-size:16px}
+.cinema-ready .intelligence-scene .ai-logo{width:27px;height:27px}
+.cinema-ready .intelligence-scene .response-intro{font-size:clamp(16px,1.45vw,21px);line-height:1.5;margin:16px 0}
+.cinema-ready .intelligence-scene .place-results{gap:14px}
+.cinema-ready .intelligence-scene .place-photo{height:clamp(95px,15svh,156px);margin-bottom:13px}
+.cinema-ready .intelligence-scene .place-card{padding-bottom:11px}
+.cinema-ready .intelligence-scene .place-card strong{font-size:clamp(14px,1.28vw,19px)}
+.cinema-ready .intelligence-scene .place-type{font-size:9px;margin-bottom:6px}
+.cinema-ready .intelligence-scene .place-meta{font-size:11px;margin-top:5px}
+.cinema-ready .intelligence-scene .place-insight{margin-top:12px}
+.cinema-ready .intelligence-scene .place-insight p{font-size:12px}
+.cinema-ready .intelligence-scene .ai-suggestions{margin-top:15px;gap:8px}
+.cinema-ready .intelligence-scene .ai-suggestions button{font-size:12px;padding:9px 16px}
+.cinema-ready .intelligence-scene .ai-demo-note{font-size:10px;margin-top:11px}
+.cinema-ready .intelligence-scene.is-consulting .ai-panel{grid-template-columns:minmax(0,.42fr) minmax(0,1fr)}
+.cinema-ready .intelligence-scene.is-consulting .ai-copy h3{font-size:clamp(23px,2.25vw,35px)}
+.cinema-ready .intelligence-scene .consulting-demo{width:100%;grid-template-columns:.8fr 1.2fr;gap:20px 7%;align-items:start}
+.cinema-ready .intelligence-scene .consulting-summary{padding-top:20px}
+.cinema-ready .intelligence-scene .consulting-summary h4{font-size:clamp(23px,2.1vw,33px);margin:20px 0 25px}
+.cinema-ready .intelligence-scene .consulting-facts>div{padding:14px 0}
+.cinema-ready .intelligence-scene .consulting-facts dt{font-size:12px;margin-bottom:7px}
+.cinema-ready .intelligence-scene .consulting-facts dd{font-size:20px}
+.cinema-ready .intelligence-scene .consulting-summary>p{font-size:13px;margin-top:23px}
+.cinema-ready .intelligence-scene .report-sheet{padding:24px}
+.cinema-ready .intelligence-scene .report-sheet h4{font-size:29px;margin-top:23px}
+.cinema-ready .intelligence-scene .report-subtitle{font-size:12px;margin-bottom:22px}
+.cinema-ready .intelligence-scene .report-bars{height:clamp(80px,13svh,140px);gap:15px}
+.cinema-ready .intelligence-scene .report-line{gap:14px;padding:12px 0}
+.cinema-ready .intelligence-scene .report-line>span{font-size:9px}
+.cinema-ready .intelligence-scene .report-line strong{font-size:11px}
+.cinema-ready .intelligence-scene .report-foot{font-size:8px;padding-top:14px}
+
+@media(max-width:1000px) and (min-width:701px){
+ .cinema-ready .service-scene>.scene-stage{--service-browser-width:58vw}
+ .cinema-ready .service-scene .workspace-panel{gap:3vw}
+ .cinema-ready .service-scene .workspace-copy h3{font-size:24px}
+ .cinema-ready .intelligence-scene .intelligence-live{top:24svh}
+ .cinema-ready .intelligence-scene .ai-panel{grid-template-columns:1fr;gap:22px}
+ .cinema-ready .intelligence-scene .ai-copy{padding:0}
+ .cinema-ready .intelligence-scene .ai-copy h3{font-size:25px}
+ .cinema-ready .intelligence-scene .ai-copy h3 br{display:none}
+ .cinema-ready .intelligence-scene .ai-question{width:75%}
+ .cinema-ready .intelligence-scene .place-photo{height:14svh}
+ .cinema-ready .intelligence-scene.is-consulting .ai-panel{grid-template-columns:1fr}
+ .cinema-ready .intelligence-scene .consulting-demo{grid-template-columns:1fr 1.2fr}
+}
+@media(max-width:700px){
+ .service-scene>.scene-stage,.intelligence-scene>.scene-stage{padding:70px 6%}
+ .service-scene .service-title h2{font-size:40px;margin-top:20px}
+ .service-scene .workspace-tabs,.intelligence-scene .ai-tabs{margin-top:0}
+ .service-scene .workspace-panel{margin-top:32px}
+ .intelligence-scene .intelligence-title h2{font-size:60px}
+ .cinema-ready .service-scene,.cinema-ready .intelligence-scene{height:300svh}
+ .cinema-ready .service-scene>.scene-stage{--service-browser-width:88vw}
+ .cinema-ready .service-scene .service-title{top:7svh}
+ .cinema-ready .service-scene .service-title h2{font-size:clamp(42px,11.7vw,76px);margin-top:16px}
+ .cinema-ready .service-scene .service-controls{top:22svh;left:6%;right:auto}
+ .cinema-ready .service-scene .workspace-tabs button{padding:9px 22px;font-size:13px}
+ .cinema-ready .service-scene .service-proof{top:55svh;right:6%;border-radius:8px}
+ .cinema-ready .service-scene .service-live{top:31svh}
+ .cinema-ready .service-scene .workspace-panel{display:flex;flex-direction:column;gap:0;align-items:stretch}
+ .cinema-ready .service-scene .workspace-copy{height:24svh;padding:0;display:grid;grid-template-columns:1fr 1fr;align-content:start;gap:14px 16px}
+ .cinema-ready .service-scene .workspace-copy h3{font-size:clamp(21px,5.7vw,29px);margin:0;line-height:1.3}
+ .cinema-ready .service-scene .workspace-copy>p{font-size:12px;line-height:1.75;margin:0;align-self:center}
+ .cinema-ready .service-scene .workspace-features{grid-column:1/-1;gap:15px}
+ .cinema-ready .service-scene .workspace-features button{padding:10px 0;gap:0}
+ .cinema-ready .service-scene .workspace-features button>span:first-child{font-size:9px;margin-bottom:7px}
+ .cinema-ready .service-scene .workspace-features strong{font-size:14px}
+ .cinema-ready .service-scene .workspace-browser{border-radius:8px}
+ .cinema-ready .service-scene .browser-toolbar{padding:8px 10px}
+ .cinema-ready .intelligence-scene .intelligence-title{top:6svh}
+ .cinema-ready .intelligence-scene .intelligence-title h2{font-size:clamp(60px,16vw,96px);margin-top:15px}
+ .cinema-ready .intelligence-scene .intelligence-controls{top:17svh;left:6%;right:auto}
+ .cinema-ready .intelligence-scene .ai-tabs button{padding:9px 17px;font-size:12px}
+ .cinema-ready .intelligence-scene .intelligence-card-flight{top:49svh;left:6%;right:6%;width:auto;gap:9px}
+ .cinema-ready .intelligence-scene .intelligence-photo{border-radius:7px}
+ .cinema-ready .intelligence-scene .intelligence-photo .place-photo{height:39vw;margin:0;border-radius:7px}
+ .cinema-ready .intelligence-scene .intelligence-live{top:25svh;bottom:4svh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#6c5265 transparent;padding:0 0 4px;overscroll-behavior-y:auto}
+ .cinema-ready .intelligence-scene .ai-panel,.cinema-ready .intelligence-scene.is-consulting .ai-panel{display:block}
+ .cinema-ready .intelligence-scene .ai-copy{padding:0;margin-bottom:18px}
+ .cinema-ready .intelligence-scene .ai-copy h3{font-size:25px;line-height:1.3}
+ .cinema-ready .intelligence-scene .ai-question{width:95%;padding:13px 14px;margin-bottom:14px}
+ .cinema-ready .intelligence-scene .ai-question p{font-size:13px}
+ .cinema-ready .intelligence-scene .ai-response{padding:16px 15px 14px;border-radius:4px 18px 18px 18px}
+ .cinema-ready .intelligence-scene .response-heading{font-size:14px}
+ .cinema-ready .intelligence-scene .ai-logo{width:23px;height:23px}
+ .cinema-ready .intelligence-scene .demo-label{font-size:8px}
+ .cinema-ready .intelligence-scene .response-intro{font-size:16px;margin:13px 0}
+ .cinema-ready .intelligence-scene .place-results{gap:12px;padding-bottom:8px}
+ .cinema-ready .intelligence-scene .place-card{flex-basis:71%;padding-bottom:10px}
+ .cinema-ready .intelligence-scene .place-photo{height:clamp(86px,13svh,126px);margin-bottom:10px}
+ .cinema-ready .intelligence-scene .place-card strong{font-size:17px}
+ .cinema-ready .intelligence-scene .place-type{font-size:8px}
+ .cinema-ready .intelligence-scene .place-meta{font-size:11px}
+ .cinema-ready .intelligence-scene .place-check{width:23px;height:23px;top:8px;right:8px;font-size:12px}
+ .cinema-ready .intelligence-scene .place-insight{margin-top:9px}
+ .cinema-ready .intelligence-scene .place-insight p{font-size:11px}
+ .cinema-ready .intelligence-scene .ai-suggestions{gap:6px;margin-top:12px}
+ .cinema-ready .intelligence-scene .ai-suggestions button{padding:8px 12px;font-size:11px}
+ .cinema-ready .intelligence-scene .ai-demo-note{font-size:9px;line-height:1.6;margin-top:8px}
+ .cinema-ready .intelligence-scene .consulting-demo{grid-template-columns:1fr;gap:23px}
+ .cinema-ready .intelligence-scene.is-consulting .ai-copy h3{font-size:23px}
+ .cinema-ready .intelligence-scene .consulting-summary{padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+ .cinema-ready .intelligence-scene .consulting-label{grid-column:1/-1;font-size:11px}
+ .cinema-ready .intelligence-scene .consulting-summary h4{font-size:23px;margin:0;grid-row:2/4}
+ .cinema-ready .intelligence-scene .consulting-facts{gap:16px}
+ .cinema-ready .intelligence-scene .consulting-facts>div{padding:0 0 10px}
+ .cinema-ready .intelligence-scene .consulting-facts dt{font-size:10px}
+ .cinema-ready .intelligence-scene .consulting-facts dd{font-size:17px}
+ .cinema-ready .intelligence-scene .consulting-summary>p{font-size:10px;line-height:1.7;margin:0}
+ .cinema-ready .intelligence-scene .report-sheet{padding:22px}
+ .cinema-ready .intelligence-scene .report-sheet h4{font-size:27px;margin-top:20px}
+ .cinema-ready .intelligence-scene .report-bars{height:105px}
+ .cinema-ready .intelligence-scene.is-consulting .ai-copy{display:none}
+ .cinema-ready .intelligence-scene .consulting-summary h4,.cinema-ready .intelligence-scene .consulting-label{display:none}
+ .cinema-ready .intelligence-scene .consulting-facts{display:flex;gap:26px}
+}
+@media(max-height:650px) and (min-width:701px){
+ .cinema-ready .service-scene .service-live{top:30svh;bottom:4svh;overflow-y:auto}
+ .cinema-ready .service-scene .workspace-copy h3{font-size:22px}
+ .cinema-ready .service-scene .workspace-copy>p{font-size:12px;margin-bottom:10px}
+ .cinema-ready .service-scene .workspace-features button{padding:9px 0}
+ .cinema-ready .service-scene .workspace-features strong{font-size:15px}
+ .cinema-ready .intelligence-scene .intelligence-live{top:25svh;bottom:4svh;overflow-y:auto;padding:0 8px 8px 0}
+ .cinema-ready .intelligence-scene .ai-copy{padding-top:3svh}
+ .cinema-ready .intelligence-scene .ai-copy h3{font-size:25px}
+ .cinema-ready .intelligence-scene .place-photo{height:80px}
+}
+@media(prefers-reduced-motion:reduce){
+ .cinema-ready .service-scene,.cinema-ready .intelligence-scene{height:auto}
+ .cinema-ready .service-scene>.scene-stage,.cinema-ready .intelligence-scene>.scene-stage{position:relative;height:auto;min-height:0;padding:70px 6%;overflow:visible}
+ .cinema-ready .service-scene [data-motion],.cinema-ready .intelligence-scene [data-motion]{transform:none!important;opacity:1!important;visibility:visible!important}
+ .cinema-ready .service-scene .service-proof,.cinema-ready .intelligence-scene .intelligence-backdrop,.cinema-ready .intelligence-scene .intelligence-card-flight{display:none}
+ .cinema-ready .service-scene .service-title,.cinema-ready .service-scene .service-controls,.cinema-ready .service-scene .service-live,.cinema-ready .intelligence-scene .intelligence-title,.cinema-ready .intelligence-scene .intelligence-controls,.cinema-ready .intelligence-scene .intelligence-live{position:relative;inset:auto;overflow:visible;margin-bottom:30px}
+ .cinema-ready .service-scene .workspace-panel{display:grid;grid-template-columns:1fr;gap:30px}
+ .cinema-ready .service-scene .workspace-copy{height:auto}
+ .cinema-ready .intelligence-scene .ai-panel,.cinema-ready .intelligence-scene.is-consulting .ai-panel{display:block}
+ .cinema-ready .intelligence-scene .ai-copy{margin-bottom:30px}
+}

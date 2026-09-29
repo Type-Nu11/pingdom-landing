@@ -31,8 +31,10 @@
     })();
   </script>
   <link rel="preload" href="assets/pingdom-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=scroll-story-1">
-  <script type="module" src="app.js?v=scroll-story-1"></script>
+  <link rel="stylesheet" href="styles.css?v=cinema-1">
+  <link rel="stylesheet" href="cinematic.css?v=1">
+  <link rel="stylesheet" href="cinematic-services.css?v=1">
+  <script type="module" src="app.js?v=cinema-1"></script>
 </head>
 <body>
   <svg class="brand-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
@@ -59,107 +61,131 @@
       <div class="hero-model" aria-hidden="true"><div class="portal-float"><img src="assets/pingdom-wordmark-chrome.webp" alt="" width="2172" height="724" fetchpriority="high"><canvas class="ring-flow-canvas" aria-hidden="true"></canvas></div></div>
       <div class="hero-bottom"><a class="scroll-cue" href="#why" aria-label="아래 내용 보기"><span class="scroll-cue-label" aria-hidden="true">SCROLL</span><span class="scroll-cue-icon" aria-hidden="true"><svg viewBox="0 0 20 30" fill="none"><path d="M10 3v23M4 20l6 6 6-6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
     </section>
-    <section class="why section" id="why" data-scroll-story aria-labelledby="why-title">
-      <div class="why-frame">
-      <h2 id="why-title" data-reveal="title">여행의 설렘 앞에,<br> 벽이 없도록.</h2>
-      <div class="barrier-story">
-        <div class="barrier-line" data-story-step data-reveal="copy" style="--reveal-delay:0ms"><span class="old-way">낯선 언어</span><h3>내 언어로.</h3></div>
-        <div class="barrier-line" data-story-step data-reveal="copy" style="--reveal-delay:120ms"><span class="old-way">막연한 검색</span><h3>내 취향대로.</h3></div>
-        <div class="barrier-line" data-story-step data-reveal="copy" style="--reveal-delay:240ms"><span class="old-way">불확실한 정보</span><h3>확신을 갖고.</h3></div>
-      </div>
-      </div>
-    </section>
-    <section class="features section" id="features" aria-labelledby="features-title">
-      <h2 id="features-title" data-reveal="title">마음이 가는 곳에,<br> <span class="accent">발걸음이 닿도록.</span></h2>
-      <div class="feature-tabs" data-reveal="controls" style="--reveal-delay:100ms" role="tablist" aria-label="핑덤 기능">
-        <button id="feature-tab-0" role="tab" aria-selected="true" aria-controls="feature-panel" data-feature="0"><small>01</small>발견</button>
-        <button id="feature-tab-1" role="tab" aria-selected="false" aria-controls="feature-panel" tabindex="-1" data-feature="1"><small>02</small>확인</button>
-        <button id="feature-tab-2" role="tab" aria-selected="false" aria-controls="feature-panel" tabindex="-1" data-feature="2"><small>03</small>방문</button>
-        <button id="feature-tab-3" role="tab" aria-selected="false" aria-controls="feature-panel" tabindex="-1" data-feature="3"><small>04</small>연결</button>
-      </div>
-      <div class="feature-panel" id="feature-panel" role="tabpanel" aria-labelledby="feature-tab-0" tabindex="0">
-        <div class="feature-copy-reveal" data-reveal="copy" style="--reveal-delay:180ms"><div class="feature-copy"><span class="feature-number" aria-hidden="true">01</span><h3 id="feature-title">취향이 이끄는<br> 새로운 발견.</h3><p id="feature-description">지금 내 주변, 나에게 맞는 장소.</p><div class="feature-tags" id="feature-tags"><span>지도 탐색</span><span>맞춤 추천</span><span>다국어</span></div></div></div>
-        <div class="feature-visual" data-scroll-media><div class="scroll-media-content"><div class="phone-duo">
-          <div class="phone-reveal" data-reveal="media" style="--reveal-delay:240ms"><button class="phone-secondary" data-zoom="assets/app-map-source.png" data-zoom-title="핑덤 주변 지도 화면" aria-label="핑덤 주변 지도 화면 확대"><img id="feature-secondary" src="assets/app-map-preview.webp" alt="핑덤 주변 지도 화면" width="1800" height="3680" loading="lazy"></button></div>
-          <div class="phone-reveal" data-reveal="media" style="--reveal-delay:380ms"><button class="phone-primary" data-zoom="assets/app-discover-source.png" data-zoom-title="핑덤 취향별 장소 추천 화면" aria-label="핑덤 취향별 장소 추천 화면 확대"><img id="feature-screen" src="assets/app-discover-preview.webp" alt="핑덤 취향별 장소 추천 화면" width="1800" height="3680" loading="lazy"></button></div>
-        </div></div></div>
-      </div>
-      <section class="verification" aria-labelledby="verification-title">
-        <div class="verification-copy" data-reveal="copy"><h3 id="verification-title">믿을 수 있는 정보는,<br> <span class="accent">확인에서 시작됩니다.</span></h3></div>
-        <ol class="verification-list">
-          <li data-reveal="copy" style="--reveal-delay:0ms"><span class="verification-step" aria-hidden="true">01</span><div><h4>상점주 제공</h4><p>매장을 가장 잘 아는 상점주의 정보.</p></div></li>
-          <li data-reveal="copy" style="--reveal-delay:120ms"><span class="verification-step" aria-hidden="true">02</span><div><h4>방문자 확인</h4><p>사진과 태그로 더하는 현장의 경험.</p></div></li>
-          <li data-reveal="copy" style="--reveal-delay:240ms"><span class="verification-step" aria-hidden="true">03</span><div><h4>핑덤 검증</h4><p>방문과 이용 기록을 종합한 신뢰 정보.</p></div></li>
-        </ol>
-      </section>
-    </section>
-    <section class="workspace section" id="workspace" aria-labelledby="workspace-title">
-      <div class="workspace-heading"><h2 id="workspace-title" data-reveal="title">로컬을 움직이는<br>두 개의 시선.</h2><div class="workspace-tabs" data-reveal="controls" style="--reveal-delay:100ms" role="tablist" aria-label="운영 화면 선택"><button role="tab" id="workspace-tab-0" data-workspace="0" aria-selected="true" aria-controls="workspace-panel">상점주</button><button role="tab" id="workspace-tab-1" data-workspace="1" aria-selected="false" aria-controls="workspace-panel" tabindex="-1">관리자</button></div></div>
-      <div class="workspace-panel" id="workspace-panel" role="tabpanel" aria-labelledby="workspace-tab-0" tabindex="0">
-        <div class="workspace-copy-reveal" data-reveal="copy" style="--reveal-delay:180ms"><div class="workspace-copy"><h3 id="workspace-name">내 가게의 시작부터,<br>새로운 방문까지.</h3><p id="workspace-detail">매장을 알리고, 혜택을 전하고.<br>로컬의 운영을 한곳에서.</p><div class="workspace-features" aria-label="운영 기능 선택"><button data-workspace-feature="0" aria-pressed="true"><span>01</span><strong>장소 등록</strong></button><button data-workspace-feature="1" aria-pressed="false"><span>02</span><strong>이벤트 관리</strong></button><button data-workspace-feature="2" aria-pressed="false"><span>03</span><strong>운영 권한</strong></button></div></div></div>
-        <div class="workspace-stage" data-scroll-media><div class="scroll-media-content"><div class="workspace-media-reveal" data-reveal="media" style="--reveal-delay:300ms"><div class="workspace-browser"><div class="browser-toolbar" aria-hidden="true"><i></i><i></i><i></i><span id="workspace-browser-label">상점주 센터</span></div><button class="workspace-screen" data-zoom="assets/merchant-register.png" data-zoom-title="상점주 신규 장소 등록 화면" aria-label="상점주 신규 장소 등록 화면 확대"><img id="workspace-screen" src="assets/merchant-register.png" alt="매장 정보와 위치를 입력하는 실제 상점주 신규 장소 등록 화면" width="1864" height="1004" loading="lazy"></button></div></div></div></div>
-      </div>
-    </section>
-    <section class="pingdom-ai section" id="ai" aria-labelledby="ai-title">
-      <div class="ai-backdrops" aria-hidden="true">
-        <img class="ai-backdrop ai-backdrop-traveler" src="assets/ai-traveler-background.webp" srcset="assets/ai-traveler-background-mobile.webp 960w, assets/ai-traveler-background.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" loading="lazy" decoding="async" fetchpriority="low">
-        <img class="ai-backdrop ai-backdrop-consulting" src="assets/ai-consulting-background.webp" srcset="assets/ai-consulting-background-mobile.webp 960w, assets/ai-consulting-background.webp 1672w" sizes="100vw" alt="" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
-      </div>
-      <div class="ai-heading"><h2 id="ai-title" data-reveal="title">Pingdom <span>AI</span></h2><div class="ai-tabs" data-reveal="controls" style="--reveal-delay:100ms" role="tablist" aria-label="AI 서비스 선택"><button role="tab" id="ai-tab-0" data-ai="0" aria-selected="true" aria-controls="ai-panel">여행자 AI</button><button role="tab" id="ai-tab-1" data-ai="1" aria-selected="false" aria-controls="ai-panel" tabindex="-1">상권 컨설팅</button></div></div>
-      <div class="ai-panel" id="ai-panel" role="tabpanel" aria-labelledby="ai-tab-0" tabindex="0">
-        <div class="ai-copy" data-reveal="copy" style="--reveal-delay:180ms"><h3 id="ai-headline">복잡한 검색 대신,<br>한 번의 대화.</h3></div>
-        <div class="traveler-demo" id="traveler-demo">
-          <div class="ai-question-reveal" data-reveal="copy" style="--reveal-delay:240ms"><div class="ai-question"><span class="question-dot" aria-hidden="true"></span><p id="ai-question-text">내 주변에서 오늘 가볼 만한 장소를 추천해줘.</p></div></div>
-          <div class="ai-response-reveal" data-reveal="copy" style="--reveal-delay:360ms"><div class="ai-response">
-            <div class="response-heading"><svg class="ai-logo" viewBox="60 37 258 258" aria-hidden="true"><image href="assets/pingdom-ai-symbol-source.png" width="364" height="350" filter="url(#ai-symbol-color)"/></svg><span>Pingdom AI</span><span class="demo-label">인터랙션 예시</span></div>
-            <p class="response-intro" id="ai-response-intro" aria-live="polite">취향에 따라 골라보는 세 가지 발견.</p>
-            <div class="place-results-media" data-scroll-media><div class="scroll-media-content"><div class="place-results" aria-label="추천 장소 예시">
-              <button class="place-card" data-reveal="media" style="--reveal-delay:440ms" data-place="0" aria-pressed="true"><span class="place-photo place-photo-cafe" aria-hidden="true"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span><span class="place-type">CAFE</span><strong>햇살이 머무는 카페</strong><span class="place-meta">조용한 공간 · 커피</span><span class="place-check" aria-hidden="true">✓</span></button>
-              <button class="place-card" data-reveal="media" style="--reveal-delay:540ms" data-place="1" aria-pressed="false"><span class="place-photo place-photo-dining" aria-hidden="true"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span><span class="place-type">DINING</span><strong>골목 속 작은 식당</strong><span class="place-meta">로컬 다이닝 · 한 끼</span><span class="place-check" aria-hidden="true">✓</span></button>
-              <button class="place-card" data-reveal="media" style="--reveal-delay:640ms" data-place="2" aria-pressed="false"><span class="place-photo place-photo-popup" aria-hidden="true"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span><span class="place-type">POP-UP</span><strong>이번 주, 새로운 발견</strong><span class="place-meta">팝업 · 전시</span><span class="place-check" aria-hidden="true">✓</span></button>
-            </div></div></div>
-            <div class="place-insight"><p id="place-insight" aria-live="polite">원하는 분위기부터 주변 위치까지, 한 번에 좁혀보세요.</p></div>
-          </div></div>
-          <div class="ai-suggestions" data-reveal="controls" style="--reveal-delay:520ms" aria-label="AI 질문 예시"><button data-question="0" aria-pressed="false">조용한 카페</button><button data-question="1" aria-pressed="false">로컬 음식점</button><button data-question="2" aria-pressed="false">색다른 팝업</button></div>
-          <p class="ai-demo-note" data-reveal="copy" style="--reveal-delay:580ms">질문을 눌러 흐름을 살펴보세요. 장소와 이미지는 서비스 소개를 위한 예시입니다.</p>
+    <section class="cinema-scene arrival-scene" id="why" data-scene aria-labelledby="why-title">
+      <div class="scene-stage">
+        <div class="arrival-night" aria-hidden="true" data-motion='[{"at":0.14,"o":0},{"at":0.65,"o":1}]'></div>
+        <div class="arrival-heading" data-motion='[{"at":0,"y":0,"o":1},{"at":0.22,"y":-0.21,"o":1},{"at":0.53,"y":-0.48,"o":0}]'><h2 id="why-title">여행의 설렘 앞에,<br><span>벽이 없도록.</span></h2></div>
+        <div class="arrival-places" aria-hidden="true">
+          <div class="arrival-place arrival-place-0" data-motion='[{"at":0,"x":-0.5,"y":0.85,"s":0.6,"r":-24,"o":0},{"at":0.06,"x":-0.5,"y":0.85,"s":0.6,"r":-24,"o":1},{"at":0.4,"x":-0.25,"y":0.13,"s":1,"r":-12,"o":1},{"at":0.65,"x":-0.055,"y":0,"s":1.15,"r":-2.4,"o":1},{"at":0.98,"x":-1.05,"y":-0.35,"s":1.8,"r":-30,"o":1}]'><span class="place-photo place-photo-cafe"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span></div>
+          <div class="arrival-place arrival-place-1" data-motion='[{"at":0,"x":0,"y":0.98,"s":0.6,"r":14,"o":0},{"at":0.06,"x":0,"y":0.98,"s":0.6,"r":14,"o":1},{"at":0.4,"x":0,"y":0.07,"s":1,"r":7,"o":1},{"at":0.65,"x":0.0,"y":0,"s":1.15,"r":1.4,"o":1},{"at":0.98,"x":0.05,"y":-1.3,"s":1.8,"r":12,"o":1}]'><span class="place-photo place-photo-dining"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span></div>
+          <div class="arrival-place arrival-place-2" data-motion='[{"at":0,"x":0.5,"y":1.11,"s":0.6,"r":32,"o":0},{"at":0.06,"x":0.5,"y":1.11,"s":0.6,"r":32,"o":1},{"at":0.4,"x":0.25,"y":0.13,"s":1,"r":16,"o":1},{"at":0.65,"x":0.055,"y":0,"s":1.15,"r":3.2,"o":1},{"at":0.98,"x":1.1,"y":0.35,"s":1.8,"r":30,"o":1}]'><span class="place-photo place-photo-popup"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span></div>
         </div>
-        <div class="consulting-demo" id="consulting-demo" hidden>
-          <div class="consulting-summary" data-reveal="copy" style="--reveal-delay:200ms">
-            <span class="consulting-label">분석 대상</span>
-            <h4>내 가게를 위한<br>상권 분석.</h4>
-            <dl class="consulting-facts">
-              <div><dt>관심 지역</dt><dd>성수동</dd></div>
-              <div><dt>업종</dt><dd>카페</dd></div>
-            </dl>
-            <p>위치와 업종에서 시작해,<br>고객과 운영 시간을 함께 살펴봅니다.</p>
+      </div>
+    </section>
+    <section class="cinema-scene journey-scene" id="features" data-scene aria-labelledby="features-title">
+      <div class="scene-stage">
+        <button class="scene-skip" data-scene-shortcut data-seek="0.2">기능 화면 바로 보기</button>
+        <div class="journey-chapter" data-motion='[{"at":0,"o":0},{"at":0.12,"o":0},{"at":0.19,"o":1}]'><h2 id="features-title" class="sr-only">핑덤 기능</h2><nav class="journey-seeks" aria-label="여정 장면 선택"><button data-seek="0.2"><small>01</small>발견</button><button data-seek="0.4"><small>02</small>확인</button><button data-seek="0.64"><small>03</small>방문</button><button data-seek="0.9"><small>04</small>연결</button></nav></div>
+        <article class="journey-step journey-step-0" aria-labelledby="journey-title-0" data-motion='[{"at":0,"x":0,"s":1,"o":1},{"at":0.25,"x":0,"s":1,"o":1},{"at":0.34,"x":-1.15,"s":0.82,"o":1},{"at":0.341,"x":-1.15,"s":0.82,"o":0}]'>
+          <div class="journey-copy" data-motion='[{"at":0,"y":0.2,"o":0},{"at":0.1,"y":0.12,"o":0},{"at":0.19,"y":0,"o":1}]'>
+            <h3 id="journey-title-0">취향이 이끄는<br>새로운 발견.</h3><p>지금 내 주변, 나에게 맞는 장소.</p>
           </div>
-          <div class="report-scroll" data-scroll-media><div class="scroll-media-content"><div class="report-stack" data-reveal="media" style="--reveal-delay:340ms">
-            <article class="report-sheet" aria-labelledby="report-title">
-              <div class="report-top"><span>상권 분석 리포트</span><span>분석 예시</span></div>
-              <h4 id="report-title">성수동 · 카페</h4>
-              <p class="report-subtitle">가게의 다음 결정을 위한 한 장.</p>
-              <div class="report-chart">
-                <div class="report-chart-title">시간대별 방문 흐름 <span>예시</span></div>
-                <div class="report-bars" role="img" aria-label="오후 방문이 가장 많은 시간대별 방문 흐름 예시">
-                  <div><i style="--bar:42%"></i><span>오전</span></div>
-                  <div><i style="--bar:72%"></i><span>점심</span></div>
-                  <div><i style="--bar:94%"></i><span>오후</span></div>
-                  <div><i style="--bar:60%"></i><span>저녁</span></div>
+          <div class="journey-devices">
+            <div class="journey-device device-back" data-motion='[{"at":0,"x":-0.08,"y":0.35,"s":4.6,"r":0},{"at":0.18,"x":0,"y":0,"s":1,"r":-6}]' data-motion-mobile='[{"at":0,"x":0.14,"y":0.1,"s":4.6,"r":0},{"at":0.18,"x":0,"y":0,"s":1,"r":-6}]'><button data-phone data-zoom="assets/app-map-source.png" data-zoom-title="핑덤 주변 지도 화면" aria-label="핑덤 주변 지도 화면 확대"><img src="assets/app-map-preview.webp" width="960" height="1963" alt="핑덤 주변 지도 화면" loading="lazy" decoding="async"></button></div>
+            <div class="journey-device device-front" data-motion='[{"at":0,"x":0.5,"y":0.4,"s":0.65,"r":18,"o":0},{"at":0.12,"x":0.2,"y":0.1,"s":0.85,"r":10,"o":0},{"at":0.21,"x":0,"y":0,"s":1,"r":4,"o":1}]'><button data-phone data-zoom="assets/app-discover-source.png" data-zoom-title="핑덤 취향별 장소 추천 화면" aria-label="핑덤 취향별 장소 추천 화면 확대"><img src="assets/app-discover-preview.webp" width="960" height="1963" alt="핑덤 취향별 장소 추천 화면" loading="lazy" decoding="async"></button></div>
+          </div>
+        </article>
+        <article class="journey-step journey-step-1" aria-labelledby="journey-title-1" data-motion='[{"at":0.25,"x":1.15,"s":0.82,"o":0},{"at":0.251,"x":1.15,"s":0.82,"o":1},{"at":0.35,"x":0,"s":1,"o":1},{"at":0.49,"x":0,"s":1,"o":1},{"at":0.58,"x":-1.15,"s":0.82,"o":1},{"at":0.581,"x":-1.15,"s":0.82,"o":0}]'>
+          <div class="journey-copy">
+            <h3 id="journey-title-1">가기 전에,<br>확신을 한 겹 더.</h3><p>영업 정보부터 방문자의 태그까지.</p>
+          </div>
+          <div class="journey-devices">
+            <div class="journey-device device-back" data-motion='[{"at":0.25,"x":0.18,"y":-0.15,"r":-18,"s":0.85},{"at":0.35,"x":0,"y":0,"r":-6,"s":1}]'><button data-phone data-zoom="assets/app-reviews-source.png" data-zoom-title="핑덤 방문자 후기 화면" aria-label="핑덤 방문자 후기 화면 확대"><img src="assets/app-reviews-preview.webp" width="960" height="1963" alt="핑덤 방문자 후기 화면" loading="lazy" decoding="async"></button></div>
+            <div class="journey-device device-front" data-motion='[{"at":0.25,"x":0.36,"y":0.2,"r":16,"s":0.85},{"at":0.35,"x":0,"y":0,"r":4,"s":1}]'><button data-phone data-zoom="assets/app-place-source.png" data-zoom-title="핑덤 장소 상세 정보 화면" aria-label="핑덤 장소 상세 정보 화면 확대"><img src="assets/app-place-preview.webp" width="960" height="1963" alt="핑덤 장소 상세 정보 화면" loading="lazy" decoding="async"></button></div>
+          </div>
+        </article>
+        <article class="journey-step journey-step-2" aria-labelledby="journey-title-2" data-motion='[{"at":0.49,"x":1.15,"s":0.82,"o":0},{"at":0.491,"x":1.15,"s":0.82,"o":1},{"at":0.59,"x":0,"s":1,"o":1},{"at":0.73,"x":0,"s":1,"o":1},{"at":0.82,"x":-1.15,"s":0.82,"o":1},{"at":0.821,"x":-1.15,"s":0.82,"o":0}]'>
+          <div class="journey-copy">
+            <h3 id="journey-title-2">마음에 들었다면,<br>이번에는 직접.</h3><p>쿠폰을 챙기고, 예약하고, 출발.</p>
+          </div>
+          <div class="journey-devices">
+            <div class="journey-device device-back" data-motion='[{"at":0.49,"x":0.18,"y":-0.15,"r":-18,"s":0.85},{"at":0.59,"x":0,"y":0,"r":-6,"s":1}]'><button data-phone data-zoom="assets/app-coupons-source.png" data-zoom-title="핑덤 쿠폰 관리 화면" aria-label="핑덤 쿠폰 관리 화면 확대"><img src="assets/app-coupons-preview.webp" width="960" height="1963" alt="핑덤 쿠폰 관리 화면" loading="lazy" decoding="async"></button></div>
+            <div class="journey-device device-front" data-motion='[{"at":0.49,"x":0.36,"y":0.2,"r":16,"s":0.85},{"at":0.59,"x":0,"y":0,"r":4,"s":1}]'><button data-phone data-zoom="assets/app-booking-source.png" data-zoom-title="핑덤 날짜와 인원 예약 화면" aria-label="핑덤 날짜와 인원 예약 화면 확대"><img src="assets/app-booking-preview.webp" width="960" height="1963" alt="핑덤 날짜와 인원 예약 화면" loading="lazy" decoding="async"></button></div>
+          </div>
+        </article>
+        <article class="journey-step journey-step-3" aria-labelledby="journey-title-3" data-motion='[{"at":0.73,"x":1.15,"s":0.82,"o":0},{"at":0.731,"x":1.15,"s":0.82,"o":1},{"at":0.83,"x":0,"s":1,"o":1},{"at":1,"x":0,"s":1,"o":1}]'>
+          <div class="journey-copy">
+            <h3 id="journey-title-3">나의 경험이,<br>다음 사람의 확신.</h3><p>사진과 태그로 남기는 현장의 이야기.</p>
+          </div>
+          <div class="journey-devices">
+            <div class="journey-device device-back" data-motion='[{"at":0.73,"x":0.18,"y":-0.15,"r":-18,"s":0.85},{"at":0.83,"x":0,"y":0,"r":-6,"s":1}]'><button data-phone data-zoom="assets/app-profile-source.png" data-zoom-title="핑덤 사용자 방문 기록 화면" aria-label="핑덤 사용자 방문 기록 화면 확대"><img src="assets/app-profile-preview.webp" width="960" height="1963" alt="핑덤 사용자 방문 기록 화면" loading="lazy" decoding="async"></button></div>
+            <div class="journey-device device-front" data-motion='[{"at":0.73,"x":0.36,"y":0.2,"r":16,"s":0.85},{"at":0.83,"x":0,"y":0,"r":4,"s":1}]'><button data-phone data-zoom="assets/app-verify-source.png" data-zoom-title="핑덤 현장 확인 화면" aria-label="핑덤 현장 확인 화면 확대"><img src="assets/app-verify-preview.webp" width="960" height="1963" alt="핑덤 현장 확인 화면" loading="lazy" decoding="async"></button></div>
+          </div>
+        </article>
+        <div class="journey-progress" aria-hidden="true"><i></i></div>
+      </div>
+    </section>
+    <section class="trust-interlude" aria-labelledby="verification-title">
+      <h2 id="verification-title">정보는 <span>믿을 수 있게.</span></h2>
+      <div class="trust-columns"><div><span>01</span><h3>상점주 제공</h3><p>매장을 가장 잘 아는 상점주의 정보.</p></div><div><span>02</span><h3>방문자 확인</h3><p>사진과 태그로 더하는 현장의 경험.</p></div><div><span>03</span><h3>핑덤 검증</h3><p>방문과 이용 기록을 종합한 신뢰 정보.</p></div></div>
+    </section>
+    <section class="cinema-scene service-scene workspace section" id="workspace" data-scene aria-labelledby="workspace-title">
+      <div class="scene-stage">
+        <button class="scene-skip" data-scene-shortcut data-seek="0.85">운영 화면 바로 보기</button>
+        <div class="service-title" data-motion='[{"at":0,"y":0.19,"s":1,"o":1},{"at":0.19,"y":0.13,"s":1,"o":1},{"at":0.58,"y":-0.025,"s":0.46,"o":1},{"at":1,"y":-0.025,"s":0.46,"o":1}]' data-motion-mobile='[{"at":0,"y":0.16,"s":1,"o":1},{"at":0.2,"y":0.11,"s":1,"o":1},{"at":0.58,"y":-0.01,"s":0.66,"o":1},{"at":1,"y":-0.01,"s":0.66,"o":1}]'>
+          <h2 id="workspace-title">로컬을 움직이는<br>두 개의 시선.</h2>
+        </div>
+        <div class="service-controls" data-motion='[{"at":0,"y":0.04,"o":0},{"at":0.73,"y":0.04,"o":0},{"at":0.79,"y":0,"o":1}]'>
+          <div class="workspace-tabs" role="tablist" aria-label="운영 화면 선택"><button role="tab" id="workspace-tab-0" data-workspace="0" aria-selected="true" aria-controls="workspace-panel">상점주</button><button role="tab" id="workspace-tab-1" data-workspace="1" aria-selected="false" aria-controls="workspace-panel" tabindex="-1">관리자</button></div>
+        </div>
+        <div class="service-proof service-proof-admin" aria-hidden="true" data-motion='[{"at":0,"x":0.31,"y":0.53,"s":0.76,"r":15,"rx":9,"ry":-8,"o":0},{"at":0.19,"x":0.16,"y":0.18,"s":0.86,"r":11,"rx":7,"ry":-6,"o":1},{"at":0.4,"x":0.02,"y":-0.07,"s":0.92,"r":7,"rx":3,"ry":-3,"o":1},{"at":0.62,"x":0.24,"y":-0.13,"s":0.85,"r":11,"rx":0,"ry":0,"o":0}]' data-motion-mobile='[{"at":0,"x":0.38,"y":0.28,"s":0.84,"r":15,"o":0},{"at":0.19,"x":0.1,"y":0.07,"s":0.95,"r":9,"o":1},{"at":0.4,"x":0.04,"y":-0.08,"s":0.92,"r":6,"o":1},{"at":0.62,"x":0.5,"y":-0.1,"s":0.88,"r":10,"o":0}]'>
+          <div class="browser-toolbar"><i></i><i></i><i></i><span>관리자 센터</span></div><img src="assets/admin-places.png" alt="" width="1864" height="1004" loading="lazy" decoding="async">
+        </div>
+        <div class="service-proof service-proof-merchant" aria-hidden="true" data-motion='[{"at":0,"x":-0.24,"y":0.53,"s":0.8,"r":-15,"rx":12,"ry":8,"o":0},{"at":0.16,"x":-0.12,"y":0.19,"s":0.94,"r":-10,"rx":8,"ry":5,"o":1},{"at":0.37,"x":-0.2,"y":0.045,"s":0.94,"r":-7,"rx":4,"ry":3,"o":1},{"at":0.59,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":1},{"at":0.72,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":0}]' data-motion-mobile='[{"at":0,"x":-0.32,"y":0.35,"s":0.83,"r":-15,"o":0},{"at":0.16,"x":-0.08,"y":0.025,"s":1,"r":-9,"o":1},{"at":0.37,"x":-0.05,"y":0.065,"s":1.04,"r":-6,"o":1},{"at":0.59,"x":0,"y":0,"s":1,"r":0,"o":1},{"at":0.72,"x":0,"y":0,"s":1,"r":0,"o":0}]'>
+          <div class="browser-toolbar"><i></i><i></i><i></i><span>상점주 센터</span></div><img src="assets/merchant-register.png" alt="" width="1864" height="1004" loading="lazy" decoding="async">
+        </div>
+        <div class="service-live" data-motion='[{"at":0,"y":0,"o":0},{"at":0.58,"y":0,"o":0},{"at":0.7,"y":0,"o":1},{"at":1,"y":0,"o":1}]'>
+          <div class="workspace-panel" id="workspace-panel" role="tabpanel" aria-labelledby="workspace-tab-0" tabindex="0">
+            <div class="workspace-copy"><h3 id="workspace-name">내 가게의 시작부터,<br>새로운 방문까지.</h3><p id="workspace-detail">매장을 알리고, 혜택을 전하고.<br>로컬의 운영을 한곳에서.</p><div class="workspace-features" aria-label="운영 기능 선택"><button data-workspace-feature="0" aria-pressed="true"><span>01</span><strong>장소 등록</strong></button><button data-workspace-feature="1" aria-pressed="false"><span>02</span><strong>이벤트 관리</strong></button><button data-workspace-feature="2" aria-pressed="false"><span>03</span><strong>운영 권한</strong></button></div></div>
+            <div class="workspace-stage"><div class="workspace-browser"><div class="browser-toolbar" aria-hidden="true"><i></i><i></i><i></i><span id="workspace-browser-label">상점주 센터</span></div><button class="workspace-screen" data-zoom="assets/merchant-register.png" data-zoom-title="상점주 신규 장소 등록 화면" aria-label="상점주 신규 장소 등록 화면 확대"><img id="workspace-screen" src="assets/merchant-register.png" alt="매장 정보와 위치를 입력하는 실제 상점주 신규 장소 등록 화면" width="1864" height="1004" loading="lazy" decoding="async"></button></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cinema-scene intelligence-scene pingdom-ai section" id="ai" data-scene aria-labelledby="ai-title">
+      <div class="scene-stage">
+        <button class="scene-skip" data-scene-shortcut data-seek="0.85">AI 서비스 바로 보기</button>
+        <div class="intelligence-backdrop" aria-hidden="true">
+          <div class="ai-backdrops"><img class="ai-backdrop ai-backdrop-traveler" src="assets/ai-traveler-background.webp" srcset="assets/ai-traveler-background-mobile.webp 960w, assets/ai-traveler-background.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" loading="lazy" decoding="async" fetchpriority="low"><img class="ai-backdrop ai-backdrop-consulting" src="assets/ai-consulting-background.webp" srcset="assets/ai-consulting-background-mobile.webp 960w, assets/ai-consulting-background.webp 1672w" sizes="100vw" alt="" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low"></div>
+        </div>
+        <div class="intelligence-title" data-motion='[{"at":0,"y":0.025,"s":1,"o":1},{"at":0.18,"y":0.025,"s":1,"o":1},{"at":0.6,"y":0,"s":0.48,"o":1},{"at":1,"y":0,"s":0.48,"o":1}]' data-motion-mobile='[{"at":0,"y":0.03,"s":1,"o":1},{"at":0.18,"y":0.03,"s":1,"o":1},{"at":0.6,"y":0,"s":0.7,"o":1},{"at":1,"y":0,"s":0.7,"o":1}]'><h2 id="ai-title">Pingdom <span>AI</span></h2></div>
+        <div class="intelligence-controls" data-motion='[{"at":0,"y":0.04,"o":0},{"at":0.75,"y":0.04,"o":0},{"at":0.81,"y":0,"o":1}]'><div class="ai-tabs" role="tablist" aria-label="AI 서비스 선택"><button role="tab" id="ai-tab-0" data-ai="0" aria-selected="true" aria-controls="ai-panel">여행자 AI</button><button role="tab" id="ai-tab-1" data-ai="1" aria-selected="false" aria-controls="ai-panel" tabindex="-1">상권 컨설팅</button></div></div>
+        <div class="intelligence-card-flight" aria-hidden="true">
+          <div class="intelligence-photo" data-motion='[{"at":0,"x":-0.26,"y":0.045,"s":1.52,"r":0,"rx":0,"ry":0,"o":1},{"at":0.2,"x":-0.26,"y":0.045,"s":1.52,"r":0,"rx":0,"ry":0,"o":1},{"at":0.4,"x":-0.17,"y":0.07,"s":1.25,"r":-8,"rx":7,"ry":-18,"o":1},{"at":0.6,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":1},{"at":0.73,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":0}]' data-motion-mobile='[{"at":0,"x":-0.025,"y":-0.075,"s":1.16,"r":0,"rx":0,"ry":0,"o":1},{"at":0.2,"x":-0.025,"y":-0.075,"s":1.16,"r":0,"rx":0,"ry":0,"o":1},{"at":0.4,"x":-0.065,"y":-0.025,"s":1.08,"r":-8,"rx":7,"ry":-18,"o":1},{"at":0.6,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":1},{"at":0.73,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":0}]'><span class="place-photo place-photo-cafe"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span></div>
+          <div class="intelligence-photo" data-motion='[{"at":0,"x":-0.18,"y":0.045,"s":1.52,"r":0,"rx":0,"ry":0,"o":1},{"at":0.22,"x":-0.18,"y":0.045,"s":1.52,"r":0,"rx":0,"ry":0,"o":1},{"at":0.43,"x":-0.08,"y":0.12,"s":1.18,"r":3,"rx":-10,"ry":8,"o":1},{"at":0.62,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":1},{"at":0.73,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":0}]' data-motion-mobile='[{"at":0,"x":0.0,"y":-0.075,"s":1.16,"r":0,"rx":0,"ry":0,"o":1},{"at":0.22,"x":0.0,"y":-0.075,"s":1.16,"r":0,"rx":0,"ry":0,"o":1},{"at":0.43,"x":0.0,"y":0.035,"s":1.08,"r":3,"rx":-10,"ry":8,"o":1},{"at":0.62,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":1},{"at":0.73,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":0}]'><span class="place-photo place-photo-dining"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span></div>
+          <div class="intelligence-photo" data-motion='[{"at":0,"x":-0.1,"y":0.045,"s":1.52,"r":0,"rx":0,"ry":0,"o":1},{"at":0.24,"x":-0.1,"y":0.045,"s":1.52,"r":0,"rx":0,"ry":0,"o":1},{"at":0.46,"x":0.02,"y":-0.015,"s":1.2,"r":8,"rx":6,"ry":18,"o":1},{"at":0.64,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":1},{"at":0.73,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":0}]' data-motion-mobile='[{"at":0,"x":0.025,"y":-0.075,"s":1.16,"r":0,"rx":0,"ry":0,"o":1},{"at":0.24,"x":0.025,"y":-0.075,"s":1.16,"r":0,"rx":0,"ry":0,"o":1},{"at":0.46,"x":0.065,"y":-0.025,"s":1.08,"r":8,"rx":6,"ry":18,"o":1},{"at":0.64,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":1},{"at":0.73,"x":0,"y":0,"s":1,"r":0,"rx":0,"ry":0,"o":0}]'><span class="place-photo place-photo-popup"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span></div>
+        </div>
+        <div class="intelligence-live" data-motion='[{"at":0,"y":0.025,"o":0},{"at":0.59,"y":0.025,"o":0},{"at":0.74,"y":0,"o":1},{"at":1,"y":0,"o":1}]'>
+          <div class="ai-panel" id="ai-panel" role="tabpanel" aria-labelledby="ai-tab-0" tabindex="0">
+            <div class="ai-copy"><h3 id="ai-headline">복잡한 검색 대신,<br>한 번의 대화.</h3></div>
+            <div class="traveler-demo" id="traveler-demo">
+              <div class="ai-question"><span class="question-dot" aria-hidden="true"></span><p id="ai-question-text">내 주변에서 오늘 가볼 만한 장소를 추천해줘.</p></div>
+              <div class="ai-response">
+                <div class="response-heading"><svg class="ai-logo" viewBox="60 37 258 258" aria-hidden="true"><image href="assets/pingdom-ai-symbol-source.png" width="364" height="350" filter="url(#ai-symbol-color)"/></svg><span>Pingdom AI</span><span class="demo-label">인터랙션 예시</span></div>
+                <p class="response-intro" id="ai-response-intro" aria-live="polite">취향에 따라 골라보는 세 가지 발견.</p>
+                <div class="place-results" aria-label="추천 장소 예시">
+                  <button class="place-card" data-place="0" aria-pressed="true"><span class="place-photo place-photo-cafe" aria-hidden="true"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span><span class="place-type">CAFE</span><strong>햇살이 머무는 카페</strong><span class="place-meta">조용한 공간 · 커피</span><span class="place-check" aria-hidden="true">✓</span></button>
+                  <button class="place-card" data-place="1" aria-pressed="false"><span class="place-photo place-photo-dining" aria-hidden="true"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span><span class="place-type">DINING</span><strong>골목 속 작은 식당</strong><span class="place-meta">로컬 다이닝 · 한 끼</span><span class="place-check" aria-hidden="true">✓</span></button>
+                  <button class="place-card" data-place="2" aria-pressed="false"><span class="place-photo place-photo-popup" aria-hidden="true"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span><span class="place-type">POP-UP</span><strong>이번 주, 새로운 발견</strong><span class="place-meta">팝업 · 전시</span><span class="place-check" aria-hidden="true">✓</span></button>
                 </div>
+                <div class="place-insight"><p id="place-insight" aria-live="polite">원하는 분위기부터 주변 위치까지, 한 번에 좁혀보세요.</p></div>
               </div>
-              <div class="report-line"><span>살펴볼 고객</span><strong>오래 머무는 고객의 방문 동기</strong></div>
-              <div class="report-line"><span>운영의 관점</span><strong>체류 시간과 좌석 구성</strong></div>
-              <div class="report-foot"><span>입지 · 유동인구 · 고객 · 운영</span></div>
-            </article>
-          </div></div></div>
-          <p class="ai-demo-note" data-reveal="copy" style="--reveal-delay:580ms">서비스 소개를 위한 리포트 예시이며, 실제 상권 분석 결과가 아닙니다.</p>
+              <div class="ai-suggestions" aria-label="AI 질문 예시"><button data-question="0" aria-pressed="false">조용한 카페</button><button data-question="1" aria-pressed="false">로컬 음식점</button><button data-question="2" aria-pressed="false">색다른 팝업</button></div>
+              <p class="ai-demo-note">장소와 이미지는 서비스 소개를 위한 예시입니다.</p>
+            </div>
+            <div class="consulting-demo" id="consulting-demo" hidden>
+              <div class="consulting-summary"><span class="consulting-label">분석 대상</span><h4>내 가게를 위한<br>상권 분석.</h4><dl class="consulting-facts"><div><dt>관심 지역</dt><dd>성수동</dd></div><div><dt>업종</dt><dd>카페</dd></div></dl><p>위치와 업종에서 시작해,<br>고객과 운영 시간을 함께 살펴봅니다.</p></div>
+              <div class="report-stack"><article class="report-sheet" aria-labelledby="report-title"><div class="report-top"><span>상권 분석 리포트</span><span>분석 예시</span></div><h4 id="report-title">성수동 · 카페</h4><p class="report-subtitle">가게의 다음 결정을 위한 한 장.</p><div class="report-chart"><div class="report-chart-title">시간대별 방문 흐름 <span>예시</span></div><div class="report-bars" role="img" aria-label="오후 방문이 가장 많은 시간대별 방문 흐름 예시"><div><i style="--bar:42%"></i><span>오전</span></div><div><i style="--bar:72%"></i><span>점심</span></div><div><i style="--bar:94%"></i><span>오후</span></div><div><i style="--bar:60%"></i><span>저녁</span></div></div></div><div class="report-line"><span>살펴볼 고객</span><strong>오래 머무는 고객의 방문 동기</strong></div><div class="report-line"><span>운영의 관점</span><strong>체류 시간과 좌석 구성</strong></div><div class="report-foot"><span>입지 · 유동인구 · 고객 · 운영</span></div></article></div>
+              <p class="ai-demo-note">서비스 소개를 위한 리포트 예시이며, 실제 상권 분석 결과가 아닙니다.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
     <section class="team section" id="team" aria-labelledby="team-title">
-      <h2 id="team-title" data-reveal="title">함께 만드는,<br> 핑덤.</h2>
+      <h2 id="team-title">함께 만드는,<br> 핑덤.</h2>
       <div class="team-layout">
-      <div class="people-tabs" data-reveal="controls" style="--reveal-delay:100ms" role="tablist" aria-label="팀원 선택">
+      <div class="people-tabs" role="tablist" aria-label="팀원 선택">
         <button role="tab" id="person-tab-0" data-person="0" aria-selected="true" aria-controls="person-panel"><span class="person-index" aria-hidden="true">01</span><span>김우성</span></button>
         <button role="tab" id="person-tab-1" data-person="1" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">02</span><span>김일강</span></button>
         <button role="tab" id="person-tab-2" data-person="2" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">03</span><span>우성민</span></button>
@@ -169,14 +195,14 @@
         <button role="tab" id="person-tab-6" data-person="6" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">07</span><span>장준혁</span></button>
       </div>
       <div class="person-panel" id="person-panel" role="tabpanel" aria-labelledby="person-tab-0" tabindex="0">
-        <div class="person-photo" data-reveal="media" style="--reveal-delay:320ms"><img id="person-photo" src="assets/presentation-woosung.png" alt="발표자료의 김우성 프로필" width="164" height="166" loading="lazy"><span id="person-counter" aria-hidden="true">01 / 07</span></div>
-        <div class="person-intro" data-reveal="copy" style="--reveal-delay:220ms"><p id="person-role">PM · Server Lead · Web</p><h3 id="person-name">김우성</h3><p id="person-description">핑덤을 직접 기획하고,<br> 서비스의 방향과 개발을 이끕니다.</p></div>
-        <ul class="person-work" data-reveal="copy" style="--reveal-delay:380ms" id="person-work"><li><span>기획</span>서비스 기획 · 프로젝트 진행</li><li><span>서버</span>서버 개발 총괄</li><li><span>웹</span>상점주 웹 개발</li></ul>
+        <div class="person-photo"><img id="person-photo" src="assets/presentation-woosung.png" alt="발표자료의 김우성 프로필" width="164" height="166" loading="lazy"><span id="person-counter" aria-hidden="true">01 / 07</span></div>
+        <div class="person-intro"><p id="person-role">PM · Server Lead · Web</p><h3 id="person-name">김우성</h3><p id="person-description">핑덤을 직접 기획하고,<br> 서비스의 방향과 개발을 이끕니다.</p></div>
+        <ul class="person-work" id="person-work"><li><span>기획</span>서비스 기획 · 프로젝트 진행</li><li><span>서버</span>서버 개발 총괄</li><li><span>웹</span>상점주 웹 개발</li></ul>
       </div>
       </div>
     </section>
   </main>
   <dialog id="screen-dialog" aria-labelledby="dialog-title"><div class="dialog-bar"><h2 id="dialog-title">화면 확대</h2><div><button id="zoom-toggle" aria-pressed="false">원본 크기</button><button id="dialog-close" aria-label="확대 화면 닫기">닫기 ×</button></div></div><div class="dialog-image"><img id="dialog-screen" alt="" width="1866" height="1003"></div></dialog>
-  <footer class="footer"><div data-reveal="copy"><p>한국에서 갈 곳을 더 쉽게.</p><a href="#about">처음으로</a></div><div class="footer-word" data-reveal="title" style="--reveal-delay:140ms" aria-label="Pingdom">pingdom<span>.</span></div><div class="footer-meta" data-reveal="copy" style="--reveal-delay:240ms"><span>© 2026 TYPE:NULL</span><a class="footer-contact" href="mailto:azunox9@gmail.com">contact : azunox9@gmail.com</a></div></footer>
+  <footer class="footer"><div><p>한국에서 갈 곳을 더 쉽게.</p><a href="#about">처음으로</a></div><div class="footer-word" aria-label="Pingdom">pingdom<span>.</span></div><div class="footer-meta"><span>© 2026 TYPE:NULL</span><a class="footer-contact" href="mailto:azunox9@gmail.com">contact : azunox9@gmail.com</a></div></footer>
 </body>
 </html>
