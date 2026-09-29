@@ -1,6 +1,6 @@
 import { createImagePanel, warmImages } from './panel-images.mjs';
 import { startHeroIntro } from './hero-intro.mjs?v=traffic-gold-1';
-import { createRingFlow } from './ring-flow.mjs?v=traffic-1';
+import { createRingFlow } from './ring-flow.mjs?v=halftone-1';
 import { createHeroBackground } from './hero-background.mjs?v=traffic-1';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
@@ -73,13 +73,13 @@ const revealObserver = new IntersectionObserver(entries => {
 }, { threshold: .12 });
 $$('.reveal').forEach(element => revealObserver.observe(element));
 const hero = $('.hero');
-const ringFlow = createRingFlow({ hero });
+const ringFlow = createRingFlow({ hero, reducedMotion });
 const heroBackground = createHeroBackground({ hero, reducedMotion });
 let heroVisible = false;
 function syncHeroMotion() {
   const introPending = document.documentElement.classList.contains('intro-pending');
-  const paused = reducedMotion.matches || !heroVisible || document.hidden || introPending;
-  hero.classList.toggle('motion-paused', paused);
+  const paused = !heroVisible || document.hidden || introPending;
+  hero.classList.toggle('motion-paused', paused || reducedMotion.matches);
   ringFlow.setPaused(paused);
   heroBackground.sync({ visible: heroVisible, introPending });
 }
@@ -88,7 +88,10 @@ new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; sync
 document.addEventListener('visibilitychange', syncHeroMotion);
 reducedMotion.addEventListener('change', syncHeroMotion);
 window.addEventListener('pageshow', syncHeroMotion);
-window.addEventListener('pagehide', () => heroBackground.sync({ visible: false, introPending: false }));
+window.addEventListener('pagehide', () => {
+  ringFlow.setPaused(true);
+  heroBackground.sync({ visible: false, introPending: false });
+});
 syncHeroMotion();
 reducedMotion.addEventListener('change', () => {
   if (reducedMotion.matches) {
