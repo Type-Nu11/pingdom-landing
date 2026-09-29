@@ -5,9 +5,19 @@ float noise(vec2 p) {
   vec2 i=floor(p),f=fract(p); f=f*f*(3.0-2.0*f);
   return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);
 }
-float surface(vec2 uv) { return uv.x*.83+noise(uv*32.0)*.12+noise(uv*110.0)*.05; }
-float arrival(float field) { return .9+field*1.6; }
-float material(float t,vec2 uv) { float landed=arrival(surface(uv)); return smoothstep(landed+.05,landed+.3,t); }
+vec2 ringSpace(vec2 uv) {
+  vec2 p=uv-.5;
+  return vec2(.913089*p.x-.407760*p.y,(.407760*p.x+.913089*p.y)*1.4);
+}
+float surface(vec2 uv) {
+  vec2 p=ringSpace(uv);
+  float arc=acos(clamp(-p.x/max(length(p),.001),-1.0,1.0));
+  return 2.05+arc*.43+noise(uv*7.0)*.42+noise(uv*29.0)*.17;
+}
+float material(float t,vec2 uv) {
+  float landed=surface(uv);
+  return smoothstep(landed+.04,landed+.55,t);
+}
 vec2 rotate(vec2 p,float a) { return vec2(cos(a)*p.x-sin(a)*p.y,sin(a)*p.x+cos(a)*p.y); }
 `;
 const vertexCommon = `
@@ -17,24 +27,48 @@ uniform float uTime,uAngle,uDpr;
 ${noise}
 vec4 project(vec2 p) { return vec4((uCenter+p)/uViewport*vec2(2,-2)+vec2(-1,1),0,1); }
 `;
-// 모든 입자가 왼쪽의 한 줄기에서 출발하고, 표면의 왼쪽부터 차례로 정착합니다.
+// 한쪽에서 유입된 흐름이 곡면의 양쪽으로 갈라집니다. 접합부의 속도를 공유해 경로가 꺾이지 않습니다.
 const flight = `
+vec2 fromRing(vec2 p) { p.y/=1.4; return rotate(rotate(p,-.42)*uImage,uAngle); }
 vec2 bezier(vec2 a,vec2 b,vec2 c,vec2 d,float t) {
   float s=1.0-t; return s*s*s*a+3.0*s*s*t*b+3.0*s*t*t*c+t*t*t*d;
 }
 vec3 flight(vec2 target,vec3 seed,float t) {
-  float field=surface(target/uImage+.5);
-  float phase=clamp((t-(arrival(field)-1.12))/1.12,0.0,1.0);
-  vec2 destination=rotate(target,uAngle);
-  vec2 source=vec2(-uCenter.x-uViewport.x*(.15+seed.x*.08),uImage.y*(-.13+(seed.y-.5)*.1));
-  vec2 bendA=vec2(-uImage.x*.8,-uImage.y*.22+(seed.y-.5)*uImage.y*.06);
-  vec2 bendB=destination-vec2(uImage.x*.23,0.0);
-  vec2 p=bezier(source,bendA,bendB,destination,phase);
-  float loose=sin(phase*3.14159);
-  p.y+=sin(t*7.0+seed.x*17.0+seed.z*9.0)*uImage.y*.026*loose;
-  float perspective=1.0+(seed.z-.5)*loose*.55;
-  p=mix(destination,p,perspective);
-  return vec3(p,perspective);
+  vec2 uv=target/uImage+.5;
+  vec2 polar=ringSpace(uv);
+  float radius=length(polar);
+  float arc=acos(clamp(-polar.x/max(radius,.001),-1.0,1.0));
+  float side=polar.y<0.0 ? 1.0 : -1.0;
+  float birth=.04+seed.z*.42;
+  float entryTime=.8+seed.x*.36;
+  float landing=surface(uv)-.12+seed.y*.28;
+  float duration=landing-entryTime;
+  float entryRadius=.48+seed.z*.035;
+  vec2 entry=fromRing(vec2(-entryRadius,0.0));
+  vec2 source=vec2(-uCenter.x-uViewport.x*(.08+seed.y*.16),uImage.y*(.12+(seed.x-.5)*.14));
+  vec2 controlA=vec2(-uImage.x*.7,uImage.y*(.26+(seed.z-.5)*.12));
+  // 진입 곡선과 곡면 경로의 접선을 맞춰 접합부에서도 속도를 연속으로 유지합니다.
+  vec2 velocity=fromRing(vec2(-(radius-entryRadius),-side*entryRadius*arc))*3.0/duration;
+  vec2 controlB=entry-velocity*(entryTime-birth)/3.0;
+  float entering=clamp((t-birth)/(entryTime-birth),0.0,1.0);
+  vec2 incoming=bezier(source,controlA,controlB,entry,entering);
+  float phase=clamp((t-entryTime)/duration,0.0,1.0);
+  float capture=1.0-pow(1.0-phase,3.0);
+  float angle=3.14159265+side*arc*capture;
+  float r=mix(entryRadius,radius,capture);
+  vec2 orbit=fromRing(vec2(cos(angle),sin(angle))*r);
+  vec2 p=t<entryTime ? incoming : orbit;
+  float progress=clamp((t-birth)/(landing-birth),0.0,1.0);
+  float free=pow(sin(progress*3.14159265),2.0);
+  float wave=t*2.4+seed.x*6.283185;
+  vec2 current=vec2(
+    sin(wave+polar.y*11.0)+.4*sin(wave*1.7+seed.z*9.0),
+    cos(wave*.87+polar.x*8.0)+.35*sin(wave*1.43+seed.y*11.0)
+  );
+  p+=current*uImage.y*(.013+seed.z*.022)*free;
+  float depth=1.0+sin(progress*3.14159265)*(seed.z-.5)*.65;
+  p*=1.0+(depth-1.0)*.16;
+  return vec3(p,depth);
 }
 `;
 const particleVertex = `${vertexCommon}${flight}
@@ -42,24 +76,28 @@ attribute vec2 aTarget;
 attribute vec4 aColor;
 attribute vec3 aSeed;
 varying vec4 vColor;
+varying float vSoft;
 void main() {
   vec3 p=flight(aTarget*uImage,aSeed,uTime);
   gl_Position=project(p.xy);
   float glint=step(.992,aSeed.z);
-  gl_PointSize=uDpr*(1.7+aSeed.y*1.8+glint*5.0)*p.z;
-  float alpha=smoothstep(.1,.4,uTime)*(1.0-material(uTime,aTarget+.5))*(1.0-smoothstep(2.7,3.1,uTime));
-  vec3 tint=mix(aColor.rgb,vec3(1.0,.24,.58),.5);
-  vColor=vec4(tint,alpha*aColor.a*.42);
+  vSoft=step(.976,aSeed.z)*(1.0-glint);
+  gl_PointSize=uDpr*(.9+aSeed.y*1.65+glint*3.8+vSoft*11.0)*p.z;
+  float alpha=smoothstep(.1,.4,uTime)*(1.0-material(uTime,aTarget+.5))*(1.0-smoothstep(4.25,4.85,uTime));
+  vec3 tint=mix(aColor.rgb,vec3(1.0,.12,.42),.3);
+  vColor=vec4(tint,alpha*aColor.a*(.2+.16*aSeed.z)*mix(1.0,.12,vSoft));
 }
 `;
 const particleFragment = `
 precision mediump float;
 varying vec4 vColor;
+varying float vSoft;
 void main() {
   float r=length(gl_PointCoord-.5)*2.0;
   float core=1.0-smoothstep(.08,.72,r);
   float glow=(1.0-smoothstep(.2,1.0,r))*.18;
-  gl_FragColor=vec4(vColor.rgb,vColor.a*(core+glow));
+  float shape=mix(core+glow,exp(-r*r*4.5)*(1.0-smoothstep(.6,1.0,r)),vSoft);
+  gl_FragColor=vec4(vColor.rgb,vColor.a*shape);
 }
 `;
 const glintVertex = `${vertexCommon}${flight}
@@ -68,13 +106,13 @@ attribute vec3 aSeed;
 varying vec2 vUv;
 varying vec4 vColor;
 void main() {
-  float settle=smoothstep(arrival(surface(aTarget+.5))-.2,arrival(surface(aTarget+.5)),uTime);
+  float settle=smoothstep(surface(aTarget+.5)-.55,surface(aTarget+.5)+.05,uTime);
   vec3 p=flight(aTarget*uImage,aSeed,uTime);
   vec2 velocity=flight(aTarget*uImage,aSeed,uTime+.025).xy-p.xy;
   // 바람을 따라 늘어나는 짧은 잔광만 남기고, 정착하면 작은 점으로 줄입니다.
-  float speed=min(length(velocity),18.0);
-  float lengthPx=mix(3.0+aSeed.y*5.0+speed*1.2,1.2,settle);
-  float widthPx=(1.15+aSeed.z*1.5)*p.z;
+  float speed=min(length(velocity),15.0);
+  float lengthPx=mix(1.6+aSeed.y*2.5+speed*.75,1.2,settle);
+  float widthPx=(.65+aSeed.z*.85)*p.z;
   float angle=atan(velocity.y,velocity.x+.0001)+sin(uTime*3.0+aSeed.x*15.0)*.12*(1.0-settle);
   float scale=min(1.0,uViewport.x/700.0);
   vec2 local=rotate(aCorner*vec2(lengthPx,widthPx)*scale,angle);
@@ -82,8 +120,8 @@ void main() {
   vUv=aCorner;
   vec3 tint=mix(vec3(1.0,.14,.5),vec3(1.0,.8,.94),aSeed.z);
   float formed=material(uTime,aTarget+.5);
-  float alpha=smoothstep(.05,.35,uTime)*(1.0-formed)*(1.0-smoothstep(2.8,3.2,uTime));
-  vColor=vec4(tint,alpha*(.4+.5*aSeed.y));
+  float alpha=smoothstep(.05,.35,uTime)*(1.0-formed)*(1.0-smoothstep(4.3,4.9,uTime));
+  vColor=vec4(tint,alpha*(.18+.45*aSeed.y));
 }
 `;
 const glintFragment = `
@@ -104,16 +142,17 @@ varying vec2 vTrail;
 varying vec4 vColor;
 void main() {
   float age=aTrail.x;
-  float time=max(0.0,uTime-age*(.22+aSeed.y*.22));
+  float time=max(0.0,uTime-age*(.18+aSeed.y*.42));
   vec3 p=flight(aTarget*uImage,aSeed,time);
   vec2 velocity=flight(aTarget*uImage,aSeed,time+.015).xy-p.xy;
   vec2 normal=vec2(-velocity.y,velocity.x)/max(length(velocity),.001);
-  float width=(.75+aSeed.x*1.2)*sin(age*3.14159)*min(1.0,uViewport.x/700.0);
+  float leader=step(.97,aSeed.z);
+  float width=(.35+aSeed.x*.75+leader*1.2)*sin(age*3.14159)*min(1.0,uViewport.x/700.0);
   gl_Position=project(p.xy+normal*aTrail.y*width);
   vTrail=aTrail;
   vec3 tint=mix(vec3(1.0,.08,.38),vec3(.72,.6,1.0),aSeed.z);
-  float alpha=smoothstep(.05,.4,uTime)*(1.0-smoothstep(2.45,3.0,uTime));
-  vColor=vec4(tint,alpha*(.35+aSeed.y*.45));
+  float alpha=smoothstep(.05,.4,uTime)*(1.0-material(uTime,aTarget+.5))*(1.0-smoothstep(4.1,4.8,uTime));
+  vColor=vec4(tint,alpha*(.18+aSeed.y*.32+leader*.75));
 }
 `;
 const trailFragment = `
@@ -149,7 +188,7 @@ varying vec2 vUv;
 void main() {
   vec4 scene=texture2D(uScene,vUv);
   vec4 glow=texture2D(uGlow,vUv);
-  gl_FragColor=vec4((scene.rgb+glow.rgb*1.65)/(vec3(1.0)+(scene.rgb+glow.rgb*1.65)*.65),clamp(scene.a+glow.a,0.0,1.0));
+  gl_FragColor=vec4((scene.rgb+glow.rgb*2.1)/(vec3(1.0)+(scene.rgb+glow.rgb*2.1)*.65),clamp(scene.a+glow.a,0.0,1.0));
 }
 `;
 const materialVertex = `${vertexCommon}
@@ -167,7 +206,7 @@ void main() {
   vec4 color=texture2D(uTexture,vUv);
   if(color.a<.005) discard;
   float field=surface(vUv);
-  float edge=(1.0-smoothstep(0.0,.065,abs(uTime-(arrival(field)+.16))))*.42;
+  float edge=(1.0-smoothstep(0.0,.17,abs(uTime-(field+.25))))*.65;
   gl_FragColor=vec4(color.rgb+vec3(1.0,.26,.55)*edge,color.a*material(uTime,vUv));
 }
 `;
@@ -252,7 +291,7 @@ export function createRingFormation(canvas, image, model, hero) {
     ]);
     // 속도에 따른 잔광은 삼각형으로 그려 기기별 point-size 제한을 피합니다.
     const glintTargets = [], glintSeeds = [], corners = [];
-    const glintCount = mobile ? 900 : 3000;
+    const glintCount = mobile ? 600 : 1800;
     const quad = [-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1];
     for (let i = 0; i < glintCount; i++) {
       const target = Math.floor(random()*positions.length/2)*2;
@@ -270,7 +309,7 @@ export function createRingFormation(canvas, image, model, hero) {
       attribute(glintProgram, 'aCorner', corners, 2)
     ]);
     const trailTargets = [], trailSeeds = [], trailCoordinates = [];
-    const trailCount = mobile ? 70 : 180, segments = 20;
+    const trailCount = mobile ? 70 : 210, segments = 28;
     for (let i = 0; i < trailCount; i++) {
       const target = Math.floor(random()*positions.length/2)*2;
       const seed = [random(), random(), random()];
