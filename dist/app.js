@@ -1,6 +1,7 @@
 import { createImagePanel, warmImages } from './panel-images.mjs';
-import { startHeroIntro } from './hero-intro.mjs?v=tone-1';
-import { createRingFlow } from './ring-flow.mjs?v=tone-1';
+import { startHeroIntro } from './hero-intro.mjs?v=traffic-1';
+import { createRingFlow } from './ring-flow.mjs?v=traffic-1';
+import { createHeroBackground } from './hero-background.mjs?v=traffic-1';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -72,49 +73,25 @@ const revealObserver = new IntersectionObserver(entries => {
 }, { threshold: .12 });
 $$('.reveal').forEach(element => revealObserver.observe(element));
 const hero = $('.hero');
-const heroArt = $('.hero-art');
 const ringFlow = createRingFlow({ hero });
+const heroBackground = createHeroBackground({ hero, reducedMotion });
 let heroVisible = false;
 function syncHeroMotion() {
-  const paused = reducedMotion.matches || !heroVisible || document.hidden || document.documentElement.classList.contains('intro-pending');
+  const introPending = document.documentElement.classList.contains('intro-pending');
+  const paused = reducedMotion.matches || !heroVisible || document.hidden || introPending;
   hero.classList.toggle('motion-paused', paused);
   ringFlow.setPaused(paused);
-  if (paused) {
-    hero.style.removeProperty('--pointer-x');
-    hero.style.removeProperty('--pointer-y');
-    heroArt.style.removeProperty('--scroll-y');
-  }
+  heroBackground.sync({ visible: heroVisible, introPending });
 }
 // 화면 밖에서는 장식 애니메이션을 멈춰 불필요한 렌더링을 줄입니다.
 new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; syncHeroMotion(); }).observe(hero);
 document.addEventListener('visibilitychange', syncHeroMotion);
 reducedMotion.addEventListener('change', syncHeroMotion);
+window.addEventListener('pageshow', syncHeroMotion);
+window.addEventListener('pagehide', () => heroBackground.sync({ visible: false, introPending: false }));
 syncHeroMotion();
-hero.addEventListener('pointermove', event => {
-  if (reducedMotion.matches || event.pointerType !== 'mouse' || document.documentElement.classList.contains('intro-pending')) return;
-  const rect = hero.getBoundingClientRect();
-  const x = (event.clientX - rect.left) / rect.width - .5;
-  const y = (event.clientY - rect.top) / rect.height - .5;
-  hero.style.setProperty('--pointer-x', x * 10 + 'px');
-  hero.style.setProperty('--pointer-y', y * 8 + 'px');
-});
-hero.addEventListener('pointerleave', () => {
-  ['--pointer-x', '--pointer-y'].forEach(property => hero.style.removeProperty(property));
-});
-let scrollQueued = false;
-function updateParallax() {
-  if (!reducedMotion.matches && !document.documentElement.classList.contains('intro-pending') && innerWidth > 700 && scrollY < hero.offsetHeight) {
-    heroArt.style.setProperty('--scroll-y', scrollY * .08 + 'px');
-  }
-  scrollQueued = false;
-}
-window.addEventListener('scroll', () => {
-  if (!scrollQueued) { requestAnimationFrame(updateParallax); scrollQueued = true; }
-}, { passive: true });
 reducedMotion.addEventListener('change', () => {
   if (reducedMotion.matches) {
-    hero.removeAttribute('style');
-    heroArt.removeAttribute('style');
     $$('.reveal').forEach(element => element.classList.add('is-visible'));
     document.getAnimations().forEach(animation => animation.cancel());
   }

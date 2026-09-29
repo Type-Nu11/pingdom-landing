@@ -1,0 +1,7 @@
+{
+  "duration": 8,
+  "assertions": [
+    { "kind": "keepsMoving", "withinSelector": "#vehicle-streams", "maxStaticSec": 0.6 },
+    { "kind": "appearsBy", "selector": "#plate", "bySec": 0 }
+  ]
+}

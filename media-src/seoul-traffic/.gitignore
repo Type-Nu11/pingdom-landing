@@ -1,0 +1,7 @@
+node_modules/
+.hyperframes/
+snapshots/
+renders/
+check-report.json
+keyframes-report.json
+.thumbnails/

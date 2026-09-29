@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" data-resolution="landscape">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0c1725; }
+    #root { width: 100%; height: 100%; position: relative; overflow: hidden; }
+    .clip, #plate, #traffic { position: absolute; inset: 0; width: 100%; height: 100%; }
+    #plate { object-fit: fill; }
+    #traffic { overflow: hidden; }
+    .vehicle { will-change: transform; }
+  </style>
+</head>
+<body>
+  <div data-hf-id="hf-ovpj" id="root" data-composition-id="seoul-traffic" data-start="0" data-duration="8" data-width="1920" data-height="1080">
+      <img data-hf-id="hf-oaaf" id="plate" src="assets/plate.png" alt="" class="clip" data-start="0" data-duration="8" data-track-index="0">
+      <svg data-hf-id="hf-6xn9" id="traffic" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-layout-allow-overflow="" class="clip" data-start="0" data-duration="8" data-track-index="1">
+        <defs data-hf-id="hf-mh0t">
+          <filter data-hf-id="hf-g07n" id="light-halo" filterUnits="userSpaceOnUse" x="-550" y="-30" width="1100" height="60"><fegaussianblur data-hf-id="hf-9juv" stdDeviation="2.1" /></filter>
+          <filter data-hf-id="hf-kz9g" id="road-reflection" filterUnits="userSpaceOnUse" x="-550" y="-30" width="1100" height="60"><fegaussianblur data-hf-id="hf-cj8o" stdDeviation="1.2 2.7" /></filter>
+        </defs>
+        <g data-hf-id="hf-mhka" id="vehicle-streams" data-layout-allow-overflow="" />
+      </svg>
+  </div>
+  <script>
+    const NS = 'http://www.w3.org/2000/svg';
+    const defs = document.querySelector('defs');
+    const streams = document.getElementById('vehicle-streams');
+    const WIDTH = 1920, HEIGHT = 1080, DURATION = 8, PAD = 520, SPAN = WIDTH + PAD * 2;
+    const sx = WIDTH / 1672, sy = HEIGHT / 941;
+    let seed = 29092026;
+    const rand = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296; };
+    function node(tag, attrs, parent) {
+      const el = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([name, value]) => el.setAttribute(name, value));
+      parent.appendChild(el); return el;
+    }
+    // Plate-space quadratic follows the slightly sagging elevated roadway.
+    const roadY = (x, lane) => {
+      const u = x / WIDTH;
+      return (691 + 94 * u - 40 * u * u + lane) * sy;
+    };
+    const roadAngle = x => Math.atan(((94 - 80 * x / WIDTH) * sy) / WIDTH) * 180 / Math.PI;
+    const lanes = [0, 6.9, 13.8, 22.0, 28.0, 34.0];
+    const vehicles = [];
+    const tl = gsap.timeline({ paused: true });
+    lanes.forEach((lane, laneIndex) => {
+      const direction = laneIndex < 3 ? -1 : 1;
+      const isTail = direction === 1;
+      const perLane = 7;
+      for (let i = 0; i < perLane; i++) {
+        const index = vehicles.length;
+        const length = (90 + rand() * 225) * sx;
+        const intensity = .64 + rand() * .27;
+        const cycles = 1 + ((laneIndex + i) % 2);
+        const initialX = -PAD + ((i + rand() * .58) / perLane) * SPAN;
+        const color = isTail ? '#ff4938' : (rand() > .35 ? '#fff4df' : '#ffd8a2');
+        const core = isTail ? '#ffc0a5' : '#fffdf3';
+        const grad = node('linearGradient', { id: `trail-${index}`, gradientUnits: 'userSpaceOnUse', x1: -direction * length, y1: 0, x2: 0, y2: 0 }, defs);
+        [[0,0],[.14,.18],[.52,.58],[.84,.84],[1,1]].forEach(([offset,opacity]) => node('stop', { offset, 'stop-color': color, 'stop-opacity': opacity }, grad));
+        const group = node('g', { id: `vehicle-${index}`, class: 'vehicle', 'data-layout-allow-overflow': '', opacity: intensity }, streams);
+        const tailX = -direction * length;
+        const pair = 1.65;
+        // Reflections remain subtle, broad, and strictly below each moving light pair.
+        node('path', { d: `M ${tailX} 4.2 L 0 4.2`, stroke: `url(#trail-${index})`, 'stroke-width': isTail ? 5.8 : 7.3, opacity: isTail ? .14 : .11, filter: 'url(#road-reflection)', fill: 'none' }, group);
+        [-pair, pair].forEach(y => {
+          node('path', { d: `M ${tailX} ${y} L 0 ${y}`, stroke: `url(#trail-${index})`, 'stroke-width': 4.4, opacity: .45, filter: 'url(#light-halo)', fill: 'none' }, group);
+          node('path', { d: `M ${tailX} ${y} L 0 ${y}`, stroke: `url(#trail-${index})`, 'stroke-width': isTail ? 1.25 : 1.45, opacity: .93, fill: 'none', 'stroke-linecap': 'round' }, group);
+          node('path', { d: `M ${tailX * .47} ${y} L 0 ${y}`, stroke: core, 'stroke-width': .5, opacity: .62, fill: 'none', 'stroke-linecap': 'round' }, group);
+          node('ellipse', { cx: 0, cy: y, rx: isTail ? 1.7 : 2.1, ry: .76, fill: core, opacity: .9 }, group);
+        });
+        const wrapX = value => (((parseFloat(value) + PAD) % SPAN + SPAN) % SPAN - PAD);
+        const position = { x: initialX };
+        const align = () => {
+          const x = wrapX(position.x);
+          group.setAttribute('transform', `translate(${x} ${roadY(x, lane)}) rotate(${roadAngle(x)})`);
+        };
+        align();
+        tl.fromTo(position, { x: initialX }, { x: initialX + direction * SPAN * cycles, duration: DURATION, ease: 'none', onUpdate: align }, 0);
+        vehicles.push({ id: group.id, lane: laneIndex, length, cycles, direction, initialX });
+      }
+    });
+    window.trafficSpec = { duration: DURATION, width: WIDTH, height: HEIGHT, vehicles };
+    window.__timelines = window.__timelines || {};
+    window.__timelines['seoul-traffic'] = tl;
+    tl.seek(0);
+  </script>
+</body>
+</html>

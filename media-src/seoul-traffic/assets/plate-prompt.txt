@@ -1,0 +1,10 @@
+Provider: built-in image_gen
+Intent: Photographic Seoul night cityscape plate for a seamless website traffic background video.
+Reference: User-attached 2026-09-29 20:14:21 Seoul expressway screenshot.
+Generated source: exec-d67ebbee-8893-41b7-9c3d-1fdf5c9995d3.png
+
+Use case: photorealistic-natural. Asset type: clean photographic background plate for a premium travel website cinematic time-lapse video, 1920x1080 landscape composition.
+The attached image is a composition/mood reference only: elevated nighttime view across Seoul office towers and an urban elevated expressway.
+Create a polished, genuinely photographic high-resolution nighttime Seoul cityscape, midnight navy-black sky, dense Korean modern office buildings with varied small illuminated windows, realistic white and warm amber light, restrained burgundy red accents. Camera completely level, locked rooftop viewpoint, subtle atmospheric distance, excellent architectural detail, natural cinematic contrast, no excessive neon sci-fi color.
+Very important for subsequent animation: a clearly visible broad elevated expressway with 3 lanes in each direction crosses the ENTIRE frame from the left edge at 68% image height to the right edge at 73% image height, almost horizontal with a gentle curve and realistic perspective. Highway asphalt must be EMPTY of visible cars and empty of light trails, softly lit lane markings and low barrier. No obstruction or building over the roadway. There are a few receding side streets in the city behind it. Buildings stay mostly in middle of frame, darkest sky and edges provide negative space. The lower foreground is dark, subtle supports and city depth. Billboard panels should have only subtle abstract luminous panels and no readable branding.
+Keep it photographic, not miniature, not a 3D render. No title, typography, logo, watermark, gradients from a graphic design, particles, artificial streaks, no readable signage. The upcoming animated traffic trails will be added separately, so NO cars and NO light trails on the main road.
