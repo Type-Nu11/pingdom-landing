@@ -68,9 +68,11 @@ h2{font-size:clamp(45px,5.4vw,86px);letter-spacing:-.045em;line-height:1.15;font
 .feature-tags span{font-size:14px;color:#bcb1bb;border-bottom:1px solid #6b6069;padding-bottom:7px}
 .feature-visual{min-height:640px;position:relative;background:radial-gradient(ellipse at 55% 90%,#64203f55,transparent 65%);isolation:isolate;padding:25px 25px 35px}
 .phone-duo{display:flex;align-items:flex-start;justify-content:center;gap:30px;max-width:100%;margin:auto}
-.phone-duo button{display:block;width:255px;max-width:47%;flex-shrink:0;padding:0;border:0;border-radius:38px;background:none;cursor:zoom-in;transition:translate .4s var(--ease)}
+.phone-duo button{display:block;width:255px;max-width:47%;flex-shrink:0;padding:0;border:0;border-radius:38px;background:none;cursor:zoom-in;transition:translate .4s var(--ease);filter:drop-shadow(0 25px 28px #0006)}
 .phone-duo button:hover{translate:0 -8px}
-.phone-duo img{width:100%;height:auto;filter:drop-shadow(0 25px 28px #0006)}
+.phone-duo img{width:100%;height:auto}
+/* 프로필 원본의 하단 프레임 밖 흰 조각만 가리며 확대 화면에도 같은 윤곽을 적용합니다. */
+img[src$="app-profile-preview.webp"],img[src$="app-profile-source.png"]{clip-path:inset(0 round 0 0 23.6% 23.6% / 0 0 11.55% 11.55%)}
 .phone-primary{margin-top:52px}
 .footer{padding:55px 5% 26px;background:#0b0b0d;color:var(--paper);overflow:hidden}
 .footer>div:first-child{display:flex;align-items:center;justify-content:space-between}
