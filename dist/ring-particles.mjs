@@ -88,8 +88,8 @@ void main() {
   float scatter=smoothstep(.12,.65,age);
   gl_PointSize=uDpr*(.72+aSeed.y*1.25+(spark*3.5+vSoft*12.0)*scatter)*p.z;
   float alpha=airborne(aTarget,aOrigin,uTime);
-  vec3 ink=mix(vec3(.965,.941,.988),vec3(1.0,.09,.42),step(uDotStart,aOrigin.x));
-  vec3 tint=mix(ink,mix(aColor.rgb,vec3(1.0,.06,.36),.38),smoothstep(.06,.62,age));
+  vec3 ink=mix(vec3(.965,.941,.988),vec3(1.0,0.098039,0.337255),step(uDotStart,aOrigin.x));
+  vec3 tint=mix(ink,mix(aColor.rgb,vec3(1.0,0.098039,0.337255),.38),smoothstep(.06,.62,age));
   float shimmer=.8+.2*sin(aSeed.x*63.0+uTime*5.0);
   vColor=vec4(tint,alpha*aColor.a*(.43+.32*aSeed.z)*shimmer*mix(1.0,.09,vSoft));
 }
@@ -121,7 +121,7 @@ void main() {
   float scale=min(1.0,uViewport.x/700.0);
   gl_Position=project(p.xy+rotate(aCorner*vec2(lengthPx,widthPx)*scale,angle));
   vUv=aCorner;
-  vec3 tint=mix(vec3(1.0,.12,.43),vec3(.9,.78,1.0),aSeed.z);
+  vec3 tint=mix(vec3(1.0,0.098039,0.337255),vec3(.9,.78,1.0),aSeed.z);
   float alpha=airborne(aTarget,aOrigin,uTime)*smoothstep(.04,.32,uTime-release(aOrigin));
   vColor=vec4(tint,alpha*(.24+.45*aSeed.y));
 }
@@ -151,7 +151,7 @@ void main() {
   float width=(.25+aSeed.x*.6)*sin(age*3.14159)*min(1.0,uViewport.x/700.0);
   gl_Position=project(p.xy+normal*aTrail.y*width);
   vTrail=aTrail;
-  vec3 tint=mix(vec3(1.0,.055,.31),vec3(.73,.57,1.0),aSeed.z);
+  vec3 tint=mix(vec3(1.0,0.098039,0.337255),vec3(.73,.57,1.0),aSeed.z);
   float alpha=airborne(aTarget,aOrigin,uTime)*smoothstep(.04,.35,time-release(aOrigin));
   vColor=vec4(tint,alpha*(.1+aSeed.y*.27));
 }
@@ -231,7 +231,7 @@ void main() {
   if(color.a<.005) discard;
   float field=surface(vUv);
   float edge=exp(-pow((uTime-field-.34)/.18,2.0))*.28;
-  gl_FragColor=vec4(color.rgb+vec3(1.0,.24,.51)*edge,color.a*material(uTime,vUv));
+  gl_FragColor=vec4(color.rgb+vec3(1.0,0.098039,0.337255)*edge,color.a*material(uTime,vUv));
 }
 `;
 
@@ -309,7 +309,7 @@ export function createRingFormation(canvas, image, model, hero) {
     wordContext.textAlign = 'left'; wordContext.textBaseline = 'alphabetic';
     wordContext.fillStyle = '#f6f0fc';
     wordContext.fillText('pingdom', textLeft, baseline);
-    wordContext.fillStyle = '#ff176b';
+    wordContext.fillStyle = '#FF1956';
     wordContext.fillText('.', dotX, baseline);
     const wordPixels = wordContext.getImageData(0, 0, 1400, 420).data;
     const wordPoints = [];

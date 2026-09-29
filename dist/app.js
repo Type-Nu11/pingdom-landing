@@ -1,5 +1,5 @@
 import { createImagePanel, warmImages } from './panel-images.mjs';
-import { startHeroIntro } from './hero-intro.mjs?v=perf-2';
+import { startHeroIntro } from './hero-intro.mjs?v=brand-1';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');

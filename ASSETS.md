@@ -57,3 +57,8 @@ Use case: stylized-concept. Asset type: premium landing page hero for Pingdom, a
 
 - `dist/assets/pingdom-portal.png`: 내장 ImageGen으로 생성한 1345×1170 RGBA 입체 리본 조형. 공식 로고가 아닌 장식용 비주얼이며, 흰 글자와 중앙 조형이 겹치는 첫 화면에 사용합니다. 동일 이미지를 확대·흐림 처리해 배경 깊이를 만듭니다.
 - 프롬프트: Use case: stylized-concept. Transparent centerpiece for Pingdom. One sculptural flowing ribbon loop, an abstract portal suggesting discovery and connection, with an asymmetric open center. Wide folded iridescent metallic glass, sinuous flowing folds, twisting diagonally from bottom left to top right. Hot pink and fuchsia edges, lilac and violet reflections, black chrome, pearl-white highlights and a restrained amber edge. Dramatic gallery studio lighting, high-end CGI. Entire sculpture visible, centered, three-quarter perspective, broad oval silhouette. True transparent background around and inside the hollow center; opaque solid surfaces. No map pin, spheres, city, text, logos, UI, orbit rings or separate bubbles.
+
+## Pingdom AI 심볼
+
+- `dist/assets/pingdom-ai-symbol-source.png`: 사용자가 2026-09-29 제공한 심볼 스크린샷 원본을 변경 없이 보관합니다.
+- AI 제목과 응답 카드에서 동일한 원본을 사용합니다. SVG 필터로 무채색 배경의 표시만 제거하고, 전경을 `#FF1956`으로 표시합니다. 도형을 재생성하거나 원본 파일을 수정하지 않습니다.

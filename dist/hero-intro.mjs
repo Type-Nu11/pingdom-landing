@@ -1,4 +1,4 @@
-import { createRingFormation } from './ring-particles.mjs?v=perf-2';
+import { createRingFormation } from './ring-particles.mjs?v=brand-1';
 
 export function startHeroIntro({ hero, reducedMotion, onComplete }) {
   const root = document.documentElement;

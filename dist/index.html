@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#080808">
   <title>핑덤 — 한국에서 갈 곳을 더 쉽게</title>
   <meta name="description" content="방한 여행자와 로컬을 연결하는 핑덤. 발견부터 확인, 방문까지.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ff176b'/%3E%3Cpath d='M32 10c-12 0-20 9-20 20 0 14 20 26 20 26s20-12 20-26c0-11-8-20-20-20z' fill='white'/%3E%3Ccircle cx='32' cy='29' r='8' fill='%23ff176b'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23FF1956'/%3E%3Cpath d='M32 10c-12 0-20 9-20 20 0 14 20 26 20 26s20-12 20-26c0-11-8-20-20-20z' fill='white'/%3E%3Ccircle cx='32' cy='29' r='8' fill='%23FF1956'/%3E%3C/svg%3E">
   <script>
     (() => {
       const root = document.documentElement;
@@ -34,10 +34,20 @@
     })();
   </script>
   <link rel="preload" href="assets/pingdom-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=perf-2">
-  <script type="module" src="app.js?v=perf-2"></script>
+  <link rel="stylesheet" href="styles.css?v=brand-1">
+  <script type="module" src="app.js?v=brand-1"></script>
 </head>
 <body>
+  <svg class="brand-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- 원본의 무채색 배경은 투명하게 표시하고 심볼 윤곽에 브랜드 색을 적용합니다. -->
+      <filter id="ai-symbol-color" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  1.108696 -1.108696 0 0 0" result="symbol-mask"/>
+        <feFlood flood-color="#FF1956"/>
+        <feComposite in2="symbol-mask" operator="in"/>
+      </filter>
+    </defs>
+  </svg>
   <a class="skip-link" href="#main">본문 바로가기</a>
   <header class="header">
     <nav aria-label="주요 메뉴"><a href="#why">배경</a><a href="#features">기능</a><a href="#team">팀</a></nav>
@@ -91,14 +101,14 @@
       </div>
     </section>
     <section class="pingdom-ai section" id="ai" aria-labelledby="ai-title">
-      <div class="ai-heading"><h2 id="ai-title">Pingdom <span>AI</span></h2><div class="ai-tabs" role="tablist" aria-label="AI 서비스 선택"><button role="tab" id="ai-tab-0" data-ai="0" aria-selected="true" aria-controls="ai-panel">여행자 AI</button><button role="tab" id="ai-tab-1" data-ai="1" aria-selected="false" aria-controls="ai-panel" tabindex="-1">상권 컨설팅</button></div></div>
+      <div class="ai-heading"><div class="ai-brand"><svg class="ai-logo ai-logo-heading" viewBox="60 37 258 258" aria-hidden="true"><image href="assets/pingdom-ai-symbol-source.png" width="364" height="350" filter="url(#ai-symbol-color)"/></svg><h2 id="ai-title">Pingdom <span>AI</span></h2></div><div class="ai-tabs" role="tablist" aria-label="AI 서비스 선택"><button role="tab" id="ai-tab-0" data-ai="0" aria-selected="true" aria-controls="ai-panel">여행자 AI</button><button role="tab" id="ai-tab-1" data-ai="1" aria-selected="false" aria-controls="ai-panel" tabindex="-1">상권 컨설팅</button></div></div>
       <div class="ai-panel" id="ai-panel" role="tabpanel" aria-labelledby="ai-tab-0" tabindex="0">
         <div class="ai-copy"><h3 id="ai-headline">복잡한 검색 대신,<br>한 번의 대화.</h3></div>
         <div class="traveler-demo" id="traveler-demo">
           <div class="ai-orbit" aria-hidden="true"></div>
           <div class="ai-question"><span class="question-dot" aria-hidden="true"></span><p id="ai-question-text">내 주변에서 오늘 가볼 만한 장소를 추천해줘.</p></div>
           <div class="ai-response">
-            <div class="response-heading"><span class="ai-spark" aria-hidden="true">✳</span><span>Pingdom AI</span><span class="demo-label">인터랙션 예시</span></div>
+            <div class="response-heading"><svg class="ai-logo" viewBox="60 37 258 258" aria-hidden="true"><image href="assets/pingdom-ai-symbol-source.png" width="364" height="350" filter="url(#ai-symbol-color)"/></svg><span>Pingdom AI</span><span class="demo-label">인터랙션 예시</span></div>
             <p class="response-intro" id="ai-response-intro" aria-live="polite">취향에 따라 골라보는 세 가지 발견.</p>
             <div class="place-results" aria-label="추천 장소 예시">
               <button class="place-card" data-place="0" aria-pressed="true"><span class="place-photo place-photo-cafe" aria-hidden="true"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span><span class="place-type">CAFE</span><strong>햇살이 머무는 카페</strong><span class="place-meta">조용한 공간 · 커피</span><span class="place-check" aria-hidden="true">✓</span></button>
