@@ -190,6 +190,7 @@ bindTabs('[data-ai]', '#ai-panel', index => {
   $('#ai-headline').innerHTML=service.headline;
   $('#traveler-demo').hidden=index!==0;
   $('#consulting-demo').hidden=index!==1;
+  $('#ai').classList.toggle('is-consulting',index===1);
   animatePanel($('#ai-panel'));
 });
 const questionExamples = [
