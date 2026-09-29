@@ -215,21 +215,6 @@ $$('[data-question]').forEach((button,index)=>button.addEventListener('click',()
   animatePanel($('.ai-question'));
   animatePanel($('.ai-response'));
 }));
-const reportExamples={
-  '카페':{audience:'오래 머무는 고객의 방문 동기',focus:'체류 시간과 좌석 구성',bars:[42,72,94,60]},
-  '음식점':{audience:'식사 시간에 방문하는 고객',focus:'점심·저녁 수요와 회전율',bars:[28,92,44,85]},
-  '편의점':{audience:'생활 동선 속 반복 방문 고객',focus:'시간대별 수요와 접근성',bars:[65,71,58,89]}
-};
-function updateReport() {
-  const area=$('#consulting-area').value,business=$('#consulting-business').value,report=reportExamples[business];
-  $('#report-title').textContent=area+' · '+business;
-  $('#report-audience').textContent=report.audience;
-  $('#report-focus').textContent=report.focus;
-  $$('.report-bars i').forEach((bar,i)=>bar.style.setProperty('--bar',report.bars[i]+'%'));
-  animatePanel($('.report-sheet'));
-}
-$('#consulting-area').addEventListener('change',updateReport);
-$('#consulting-business').addEventListener('change',updateReport);
 const people = [
   {key:'woosung',name:'김우성',role:'PM · Server Lead · Web',description:'핑덤을 직접 기획하고,<br> 서비스의 방향과 개발을 이끕니다.',work:[['기획','서비스 기획 · 프로젝트 진행'],['서버','서버 개발 총괄'],['웹','상점주 웹 개발']]},
   {key:'ilgang',photo:'presentation-yongin.png',name:'김일강',role:'Client Lead · App',description:'클라이언트 개발을 총괄하며,<br> 앱의 경험을 구현합니다.',work:[['총괄','클라이언트 개발 총괄'],['앱','모바일 앱 개발'],['협업','팀원과 기능 문제 해결']]},
