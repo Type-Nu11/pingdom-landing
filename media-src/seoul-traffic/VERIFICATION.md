@@ -1,5 +1,27 @@
 # 검증 결과
 
+## 원래 고가도로 장노출 버전
+
+- 원래 `assets/plate.png` 서울 skyline·직선 고가도로로 복원했다. 원본 파일은 017074c와 SHA-256 `acf5556418f405125176259e43a7364d7075c0114d5c402e2efe69916710f87e`까지 동일하다.
+- 기존 roadY와 6차선 위치를 유지한다. 24개 연속 가닥·950–1650px 잔광·가닥당 4개 pulse가 8초에 4·5·6회 순환한다. 교차로·X 궤적은 제거했다.
+- HyperFrames pin probe: 0.8.91 최신, 변경 없음. history bracket `ba3e10a9` 사용.
+- 초기 `snapshots/highway-exposure-layout/frame-00-at-1.3s.png`를 부모 작업자가 확인한 뒤 같은 구도로 render를 진행했다.
+- `npx hyperframes check --snapshots --at 0,1.3,4,7.966 --json`: lint/runtime/layout/motion 오류 0·경고 0, 실제 Chromium motion 161샘플 통과. 4초 snapshot에서도 빛의 도로 정합을 확인했다.
+- HyperFrames 실제 render: 240프레임·8초, screenshot capture / hardware GPU, 10.8초 소요.
+- 최종 desktop 1920×1080 / 998,879 bytes, mobile 720×1080 / 394,489 bytes, poster 1920×1080 / 281,894 bytes. 파일명은 `seoul-traffic-*-highway-exposure`이며 이전 출력은 보존했다.
+- 최종 MP4 두 개 모두 ffprobe H.264/yuv420p/30fps/8.000초/240프레임/audio 없음. atom 순서 ftyp → moov → free → mdat로 faststart 확인.
+- 최종 인코딩 프레임 `renders/compressed-highway-exposure-check.png`에서 원본 구도·긴 금빛 가닥을 확인했다. 도로 영역의 루프 이음새 변화량 3.82/255, 일반 연속 프레임 중앙값 3.20/255·최댓값 3.52/255였다. t=0과 t=8은 정수 주기 계산상 같지만 인코딩 결과의 픽셀 동일성을 주장하지 않는다.
+- README에 최종 render·비트레이트 제한 압축·mobile crop·Sharp WebP 재현 명령을 반영했다. 사이트 검증은 부모 작업자 담당이다.
+
+## 원래 고가도로 장노출 웹 통합 검증
+
+- 부모 작업자가 실제 IAB 1446px 데스크톱에서 intro-complete, 새 desktop-highway-exposure source, readyState=4·paused=false·duration=8초를 확인했다.
+- 원래 첨부 사진과 배경이 일치하며 글씨 가독성·가로 넘침 없음을 확인했다.
+- 부모 작업자가 실제 IAB 390×844 모바일에서도 새 mobile-highway-exposure source, intro-complete, readyState=4·paused=false·duration=8초, 가로 넘침 없음을 확인했다.
+- 데스크톱·모바일에서 원본 배경·도로 위 빛·글씨 가독성을 확인했으며, 콘솔 오류·경고는 0이다.
+- 화면 증거: `review/traffic-highway-exposure-desktop.png`, `review/traffic-highway-exposure-mobile.png`.
+- 사이트는 자산 경로만 교체하고 JavaScript·CSS를 변경하지 않아 기존 단위 테스트를 반복하지 않았다.
+
 ## 교차로 장노출 버전
 
 - 사용자 참고의 연속 곡선 장노출을 반영해 새 intersection plate와 4개 경로·56개 가닥으로 수정했다. 850–1550px 잔광, 좁은 흰 코어, 금빛 halo, 일부 warm red와 왼쪽 전경 수목 가림을 적용했다.

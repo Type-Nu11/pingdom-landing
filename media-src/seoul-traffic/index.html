@@ -15,7 +15,7 @@
 </head>
 <body>
   <div id="root" data-composition-id="seoul-traffic" data-start="0" data-duration="8" data-width="1920" data-height="1080">
-    <img id="plate" class="clip" data-start="0" data-duration="8" data-track-index="0" src="assets/intersection-plate.png" alt="">
+    <img id="plate" class="clip" data-start="0" data-duration="8" data-track-index="0" src="assets/plate.png" alt="">
     <canvas id="exposure" class="clip" data-start="0" data-duration="8" data-track-index="1" width="1920" height="1080" data-layout-allow-overflow></canvas>
     <svg id="traffic" class="clip" data-start="0" data-duration="8" data-track-index="2" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-layout-allow-overflow><g id="vehicle-streams"></g></svg>
   </div>
@@ -29,45 +29,30 @@
     const rand = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296; };
     const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
     const mod = (v,m) => ((v%m)+m)%m;
-    function cubic(segment,t) {
-      const [a,b,c,d]=segment, u=1-t;
-      return {x:u*u*u*a[0]+3*u*u*t*b[0]+3*u*t*t*c[0]+t*t*t*d[0],y:u*u*u*a[1]+3*u*u*t*b[1]+3*u*t*t*c[1]+t*t*t*d[1]};
-    }
-    // Lane guides are authored in the untouched 1672x941 plate coordinate system.
-    const routes = [
-      {name:'northwest-southeast', segments:[ [[-120,174],[190,286],[470,364],[740,486]], [[740,486],[1040,612],[1370,718],[1830,889]] ], lanes:[-90,-67,-44,-21,24,50,77,104], fibers:3, depth:t=>.16+.84*t},
-      {name:'northeast-southwest', segments:[ [[1070,196],[1162,248],[1202,348],[1208,416]], [[1208,416],[1216,507],[882,555],[645,620]], [[645,620],[387,691],[164,733],[-160,807]] ], lanes:[-92,-60,-29,27,59,90], fibers:3, depth:t=>.2+.8*t},
-      {name:'southwest-southeast-turn', segments:[ [[-170,750],[237,657],[515,601],[766,549]], [[766,549],[998,502],[1105,580],[1317,692]], [[1317,692],[1482,779],[1660,854],[1800,915]] ], lanes:[-28,-11,7,25], fibers:2, depth:t=>.76+.24*t},
-      {name:'southeast-northeast-turn', segments:[ [[1780,865],[1450,758],[1118,681],[1100,460]], [[1100,460],[1085,340],[1130,271],[1070,196]] ], lanes:[-9,7,21], fibers:2, depth:t=>1-.8*t}
-    ];
+    // Original plate-space road profile, matching the six lanes in revision 017074c.
+    const roadY=(x,lane)=>{const u=x/WIDTH;return (691+94*u-40*u*u+lane)*sy;};
+    const lanes=[0,6.9,13.8,22,28,34];
     const tracks=[];
-    routes.forEach((route, routeIndex) => route.lanes.forEach((offset,laneIndex) => {
-      for(let fiber=0;fiber<route.fibers;fiber++) {
-        const points=[], count=route.segments.length*125;
-        const separation=(fiber-(route.fibers-1)/2)*3.0;
-        for(let i=0;i<=count;i++) {
-          const t=i/count, v=t*route.segments.length, j=Math.min(route.segments.length-1,Math.floor(v)), local=Math.min(1,v-j);
-          const p=cubic(route.segments[j],local);
-          const lo=cubic(route.segments[j],Math.max(0,local-.002)), hi=cubic(route.segments[j],Math.min(1,local+.002));
-          const dx=hi.x-lo.x,dy=hi.y-lo.y,n=Math.hypot(dx,dy)||1, depth=route.depth(t);
-          const lateral=(offset+separation)*depth;
-          points.push({x:(p.x-dy/n*lateral)*sx,y:(p.y+dx/n*lateral)*sy,depth,s:0});
+    lanes.forEach((lane,laneIndex)=>{
+      for(let fiber=0;fiber<4;fiber++) {
+        const points=[], separation=(fiber-1.5)*1.35;
+        for(let i=0;i<=280;i++) {
+          const x=-140+i/280*(WIDTH+280);
+          points.push({x,y:roadY(x,lane+separation),depth:.85,s:0});
         }
         for(let i=1;i<points.length;i++)points[i].s=points[i-1].s+Math.hypot(points[i].x-points[i-1].x,points[i].y-points[i-1].y);
-        const length=points.at(-1).s, direction=laneIndex<route.lanes.length/2?1:-1;
-        const red=direction<0 && (tracks.length%8===0);
-        const palette=red?[[252,105,61],[255,135,80]]:[[255,207,107],[255,226,163],[255,238,199],[247,190,79]];
-        const rgb=palette[Math.floor(rand()*palette.length)], tail=850+rand()*700, guard=1750, period=length+guard*2;
-        const heads=[];
-        const phase=rand()*period,cycles=3+(tracks.length%3);
-        for(let pulse=0;pulse<3;pulse++) {
+        const length=points.at(-1).s,direction=laneIndex<3?-1:1;
+        const palette=[[255,201,86],[255,224,152],[255,238,202],[249,187,66]];
+        const rgb=palette[Math.floor(rand()*palette.length)],tail=950+rand()*700,guard=1800,period=length+guard*2;
+        const heads=[],phase=rand()*period,cycles=4+(tracks.length%3);
+        for(let pulse=0;pulse<4;pulse++) {
           const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');
-          dot.setAttribute('r','.7');dot.setAttribute('fill',red?'#ffe0be':'#fff3d6');dot.setAttribute('data-layout-allow-overflow','');lights.appendChild(dot);
-          heads.push({phase:phase+pulse*period/3,dot});
+          dot.setAttribute('r','.7');dot.setAttribute('fill','#fff3d6');dot.setAttribute('data-layout-allow-overflow','');lights.appendChild(dot);
+          heads.push({phase:phase+pulse*period/4,dot});
         }
-        tracks.push({name:route.name,points,length,direction,rgb,tail,guard,period,cycles,heads,grain:rand()*6.28,weight:.78+rand()*.22,red});
+        tracks.push({name:'original-elevated-highway',points,length,direction,rgb,tail,guard,period,cycles,heads,weight:.82+rand()*.18,red:false});
       }
-    }));
+    });
     function pointAt(track,s) {
       const p=track.points;
       if(s<=0)return p[0];if(s>=track.length)return p.at(-1);
@@ -90,10 +75,14 @@
     }
     function draw(time) {
       ctx.clearRect(0,0,WIDTH,HEIGHT);ctx.globalCompositeOperation='screen';
+      ctx.save();ctx.beginPath();
+      for(let i=0;i<=96;i++){const x=i/96*WIDTH;if(i===0)ctx.moveTo(x,roadY(x,-6));else ctx.lineTo(x,roadY(x,-6));}
+      for(let i=96;i>=0;i--){const x=i/96*WIDTH;ctx.lineTo(x,roadY(x,38));}
+      ctx.closePath();ctx.clip();
       for(const track of tracks) {
         const [r,g,b]=track.rgb, rgb=`${r},${g},${b}`;
         // One filled ribbon eliminates seams between independently rasterized line segments.
-        ribbon(track.points,d=>1.1+d*1.0,`rgba(${rgb},${.27*track.weight})`);
+        ribbon(track.points,d=>.5+d*.6,`rgba(${rgb},${.27*track.weight})`);
         for(const head of track.heads) {
           const s=mod(head.phase+track.direction*time/DURATION*track.cycles*track.period,track.period)-track.guard;
           const headPoint=pointAt(track,clamp(s,0,track.length));
@@ -121,21 +110,17 @@
             }
             return g;
           };
-          ribbon(points,d=>3.5+d*7,gradient(false,.25),2.1);
-          ribbon(points,d=>1.25+d*2.4,gradient(false,.9));
-          ribbon(points,d=>.6+d*1.05,gradient(true,.95));
+          ribbon(points,d=>2.2+d*3.8,gradient(false,.3),1.45);
+          ribbon(points,d=>1.0+d*1.2,gradient(false,.9));
+          ribbon(points,d=>.38+d*.48,gradient(true,.95));
         }
       }
-      // Foreground foliage occludes the light layer while the original photo stays untouched.
-      ctx.filter='blur(1px)';ctx.globalCompositeOperation='destination-out';ctx.fillStyle='#000';
-      ctx.beginPath();ctx.moveTo(0,667*sy);
-      [[38,706],[67,739],[84,779],[71,824],[146,841],[171,871],[212,913],[250,941],[0,941]].forEach(([x,y])=>ctx.lineTo(x*sx,y*sy));ctx.closePath();ctx.fill();
-      ctx.filter='none';
+      ctx.filter='none';ctx.restore();
     }
     const state={time:0};draw(0);
     const tl=gsap.timeline({paused:true});
     tl.to(state,{time:DURATION,duration:DURATION,ease:'none',onUpdate:()=>draw(state.time)},0);
-    window.trafficSpec={duration:DURATION,width:WIDTH,height:HEIGHT,style:'continuous-long-exposure',tracks:tracks.length,routeNames:routes.map(r=>r.name)};
+    window.trafficSpec={duration:DURATION,width:WIDTH,height:HEIGHT,style:'highway-long-exposure',tracks:tracks.length,lanes:lanes.length,roadProfile:'691+94*u-40*u*u'};
     window.__timelines=window.__timelines||{};
     window.__timelines['seoul-traffic']=tl;
   </script>

@@ -12,20 +12,20 @@ angle: photographic-loop
 
 ## Intent
 
-Pingdom 배경용 8초 무음 고정 카메라 야경 루프. 사용자 참고사진처럼 넓은 서울 교차로를 따라 금빛·따뜻한 흰색·일부 붉은 빛이 길고 연속된 장노출 궤적으로 흐른다.
+원래 서울 skyline과 직선 고가도로 사진에 긴 금빛 장노출을 적용한 Pingdom 배경용 8초 무음 루프. 사진·도로 구도는 유지하고 높은 밀도의 긴 빛과 빠른 pulse만 추가한다.
 
 ## Assets
 
-- assets/intersection-plate.png — 새로 생성한 조감 교차로 야경. 원본 이미지는 편집하지 않는다.
-- assets/intersection-plate-prompt.txt — 생성 근거.
+- assets/plate.png — 원래 고정 배경. 이미지 자체는 변경하지 않는다.
+- assets/plate-prompt.txt — 원래 생성 근거.
 
 ## Customizations
 
-- 원근감 있는 4개 경로와 56개 연속 광원 가닥. 850–1550px 잔광, 좁은 흰 코어, 작은 diffuse halo.
-- 고정 seed와 정수 회전 주기. 8초/30fps seamless loop.
-- 1920×1080 desktop MP4, 중앙 crop 720×1080 mobile MP4, WebP poster. 새 파일명은 `seoul-traffic-*-exposure`.
-- UI·문자·로고·음악·카메라 이동 없음. 기존 영상 자산은 보존한다.
+- 기존 도로 기울기와 6차선 유지. 24개 연속 가닥, 950–1650px 잔광, 좁은 흰 코어, 금빛 halo.
+- 고정 seed·정수 주기. 8초/30fps seamless loop.
+- 1920×1080 desktop MP4, 중앙 720×1080 mobile MP4, WebP poster. 새 이름 `seoul-traffic-*-highway-exposure`.
+- UI·문자·로고·음악·카메라 이동 없음. 교차로 구도는 사용하지 않는다. 기존 출력은 보존한다.
 
 ## Notes
 
-사용자의 영상 수정 요청에 따라 로컬 render까지 수행한다. 배포와 commit은 부모 작업자 담당이다.
+스냅샷 확인 후 최종 render를 수행한다. 사이트 통합·commit·배포는 부모 작업자 담당이다.
