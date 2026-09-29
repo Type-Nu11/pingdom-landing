@@ -1,6 +1,6 @@
 import { createImagePanel, warmImages } from './panel-images.mjs';
-import { startHeroIntro } from './hero-intro.mjs?v=pin-2';
-import { createRingFlow } from './ring-flow.mjs?v=pin-1';
+import { startHeroIntro } from './hero-intro.mjs?v=wordmark-1';
+import { createRingFlow } from './ring-flow.mjs?v=wordmark-1';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');

@@ -13,22 +13,16 @@ uniform sampler2D uTexture;
 uniform float uTime;
 varying vec2 vUv;
 void main() {
-  vec2 p=vUv-vec2(.5,.37);
-  float radius=length(p);
-  float angle=atan(p.y,p.x);
-  float phase=uTime*.48;
+  float phase=uTime*.42;
   float enter=smoothstep(0.0,2.4,uTime);
-  float band=smoothstep(.11,.19,radius)*(1.0-smoothstep(.36,.49,radius));
-  float crossSection=clamp((radius-.245)/.095,-1.0,1.0);
-  // 핀의 자세와 뾰족한 끝은 고정하고 상단 금속 띠 안에서 비틀림을 순환시킵니다.
-  float torsion=(.035*sin(angle-phase)+.065*crossSection*sin(2.0*angle-phase))*enter*band;
-  float fold=(.006*sin(2.0*angle-phase)+.003*sin(3.0*angle-phase*.5+.7))*enter*band;
-  vec2 samplePoint=vec2(cos(angle+torsion),sin(angle+torsion))*(radius+fold);
-  vec2 uv=samplePoint+vec2(.5,.37);
+  float edge=smoothstep(0.0,.08,vUv.x)*(1.0-smoothstep(.92,1.0,vUv.x));
+  // 글자의 가독성을 지키면서 금속 표면에 작은 파동과 반사광만 순환시킵니다.
+  vec2 wave=vec2(.0015*sin(vUv.y*9.0+phase),.004*sin(vUv.x*12.0-phase));
+  vec2 uv=vUv+wave*enter*edge;
   if(any(lessThan(uv,vec2(0.0)))||any(greaterThan(uv,vec2(1.0)))) discard;
   vec4 surface=texture2D(uTexture,uv);
-  float sheen=pow(.5+.5*cos(2.0*angle-phase-.5),8.0)*.055;
-  float light=1.0+enter*band*(.028*sin(2.0*angle-phase)+sheen);
+  float sheen=pow(.5+.5*cos(vUv.x*9.0-phase-vUv.y*2.0),12.0)*.055;
+  float light=1.0+enter*edge*sheen;
   gl_FragColor=vec4(surface.rgb*light,surface.a);
 }
 `;

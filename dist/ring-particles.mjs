@@ -1,4 +1,4 @@
-// 글자와 핀을 같은 입자의 출발점/도착점으로 사용합니다. 시간만으로 계산해 프레임 누락에도 경로가 이어집니다.
+// 평면 로고와 금속 워드마크를 입자의 출발점/도착점으로 사용합니다. 시간만으로 계산해 프레임 누락에도 경로가 이어집니다.
 const noise = `
 float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
 float noise(vec2 p) {
@@ -7,8 +7,7 @@ float noise(vec2 p) {
 }
 vec2 rotate(vec2 p,float a) { return vec2(cos(a)*p.x-sin(a)*p.y,sin(a)*p.x+cos(a)*p.y); }
 vec2 ringSpace(vec2 uv) {
-  // 핀 상단의 빈 공간을 중심으로 흐르고, 각 입자는 원본 표면 좌표에 정착합니다.
-  return uv-vec2(.5,.37);
+  return uv-vec2(.5);
 }
 float release(vec2 uv) {
   float front=2.02+(1.0-uv.x)*1.04+noise(uv*vec2(7.0,3.0))*.09;
@@ -30,7 +29,7 @@ ${noise}
 vec4 project(vec2 p) { return vec4((uCenter+p)/uViewport*vec2(2,-2)+vec2(-1,1),0,1); }
 `;
 const flight = `
-vec2 fromRing(vec2 p) { return rotate((p+vec2(0.0,-.13))*uImage,uAngle); }
+vec2 fromRing(vec2 p) { return rotate(p*uImage,uAngle); }
 vec3 flight(vec2 target,vec2 origin,vec3 seed,float t) {
   vec2 polar=ringSpace(target+.5);
   float radius=length(polar);
