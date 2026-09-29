@@ -1,4 +1,4 @@
-// 글자와 링을 같은 입자의 출발점/도착점으로 사용합니다. 시간만으로 계산해 프레임 누락에도 경로가 이어집니다.
+// 글자와 핀을 같은 입자의 출발점/도착점으로 사용합니다. 시간만으로 계산해 프레임 누락에도 경로가 이어집니다.
 const noise = `
 float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
 float noise(vec2 p) {
@@ -7,8 +7,8 @@ float noise(vec2 p) {
 }
 vec2 rotate(vec2 p,float a) { return vec2(cos(a)*p.x-sin(a)*p.y,sin(a)*p.x+cos(a)*p.y); }
 vec2 ringSpace(vec2 uv) {
-  vec2 p=uv-.5;
-  return vec2(.913089*p.x-.407760*p.y,(.407760*p.x+.913089*p.y)*1.4);
+  // 핀 상단의 빈 공간을 중심으로 흐르고, 각 입자는 원본 표면 좌표에 정착합니다.
+  return uv-vec2(.5,.37);
 }
 float release(vec2 uv) {
   float front=2.02+(1.0-uv.x)*1.04+noise(uv*vec2(7.0,3.0))*.09;
@@ -30,7 +30,7 @@ ${noise}
 vec4 project(vec2 p) { return vec4((uCenter+p)/uViewport*vec2(2,-2)+vec2(-1,1),0,1); }
 `;
 const flight = `
-vec2 fromRing(vec2 p) { p.y/=1.4; return rotate(rotate(p,-.42)*uImage,uAngle); }
+vec2 fromRing(vec2 p) { return rotate((p+vec2(0.0,-.13))*uImage,uAngle); }
 vec3 flight(vec2 target,vec2 origin,vec3 seed,float t) {
   vec2 polar=ringSpace(target+.5);
   float radius=length(polar);
@@ -285,8 +285,8 @@ export function createRingFormation(canvas, image, model, hero, logo) {
       gl.useProgram(program);
       gl.uniform2f(gl.getUniformLocation(program, 'uViewport'), width, height);
       gl.uniform2f(gl.getUniformLocation(program, 'uImage'), box.width, box.height);
-      gl.uniform2f(gl.getUniformLocation(program, 'uCenter'), box.left-bounds.left+box.width/2, box.top-bounds.top+box.height/2+(mobile ? 7 : 9));
-      gl.uniform1f(gl.getUniformLocation(program, 'uAngle'), (mobile ? -6 : -7)*Math.PI/180);
+      gl.uniform2f(gl.getUniformLocation(program, 'uCenter'), box.left-bounds.left+box.width/2, box.top-bounds.top+box.height/2);
+      gl.uniform1f(gl.getUniformLocation(program, 'uAngle'), 0);
       gl.uniform1f(gl.getUniformLocation(program, 'uDpr'), dpr);
       gl.uniform1f(gl.getUniformLocation(program, 'uDotStart'), dotStart);
       gl.uniform2f(gl.getUniformLocation(program, 'uWord'), wordWidth, wordHeight);

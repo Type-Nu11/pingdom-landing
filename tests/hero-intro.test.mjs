@@ -16,7 +16,7 @@ function fixture({ reduced = false, hash = '', navigation = 'navigate', holdImag
   const classes = new Set();
   const classList = { add: (...values) => values.forEach(value => classes.add(value)), remove: (...values) => values.forEach(value => classes.delete(value)), contains: value => classes.has(value) };
   const reducedMotion = Object.assign(new EventTarget(), { matches: reduced });
-  const window = Object.assign(new EventTarget(), { scrollY: 0, matchMedia: () => reducedMotion });
+  const window = Object.assign(new EventTarget(), { scrollY: 0, innerWidth: 1280, innerHeight: 900, matchMedia: () => reducedMotion });
   const imageLoad = deferred();
   if (!holdImage) imageLoad.resolve();
   const image = { complete: imageReady, naturalWidth: imageReady ? 1345 : 0, decode: () => imageLoad.promise };
@@ -69,7 +69,7 @@ test('동작 줄이기, 뒤로 가기, 하위 섹션 직접 진입은 인트로�
   assert.equal(fixture({ hash: '#about' }).classes.has('intro-pending'), true);
 });
 
-test('정상 종료 후 잠금 클래스와 임시 효과를 해제하고 한 번만 완료한다', async () => {
+test('정상 종료 후 인트로 클래스와 임시 효과를 해제하고 한 번만 완료한다', async () => {
   const f = fixture(); f.start(); await tick();
   assert.equal(f.classes.has('intro-playing'), true);
   assert.ok(f.animations.length > 0);
@@ -167,10 +167,40 @@ test('모듈 로딩 실패 시 제한 시간 후 복구하며 늦은 모듈도 �
   assert.equal(f.animations.length, 0);
 });
 
-test('재생 중 스크롤, 터치, 페이지 복원, 동작 줄이기 전환은 효과를 정리한다', async () => {
-  for (const action of ['wheel', 'touchmove', 'pageshow', 'reduced']) {
+test('준비 전 스크롤 입력과 초기 스크롤 위치는 인트로를 생략하지 않는다', async () => {
+  const f = fixture({ holdImage: true });
+  f.window.scrollY = 240;
+  for (const action of ['wheel', 'touchmove', 'scroll']) f.emit(f.window, action);
+  f.start();
+  f.imageLoad.resolve(); await tick();
+  assert.equal(f.classes.has('intro-playing'), true);
+  assert.equal(f.formationCalls.length, 1);
+  assert.equal(f.completed, 0);
+});
+
+test('재생 중 휠, 터치, 스크롤 입력에도 같은 타임라인을 끝까지 진행한다', async () => {
+  const f = fixture(); f.start(); await tick();
+  f.advance(1000);
+  for (const action of ['wheel', 'touchmove', 'scroll']) {
+    f.window.scrollY += 240;
+    f.emit(f.window, action);
+    assert.equal(f.classes.has('intro-playing'), true);
+    assert.equal(f.frames.size, 1);
+    assert.equal(f.disposed, 0);
+    assert.equal(f.completed, 0);
+  }
+  f.advance(7800); await tick();
+  assert.deepEqual(f.rendered, [1, 7.8]);
+  assert.equal(f.classes.has('intro-pending'), false);
+  assert.equal(f.disposed, 1);
+  assert.equal(f.completed, 1);
+});
+
+test('재생 중 페이지 복원, 동작 줄이기, 탭 숨김은 효과를 정리한다', async () => {
+  for (const action of ['pageshow', 'reduced', 'hidden']) {
     const f = fixture(); f.start(); await tick();
     if (action === 'reduced') { f.reducedMotion.matches = true; f.emit(f.reducedMotion, 'change'); }
+    else if (action === 'hidden') { f.document.hidden = true; f.emit(f.document, 'visibilitychange'); }
     else f.emit(f.window, action, { persisted: true });
     await tick();
     assert.equal(f.classes.has('intro-pending'), false);
@@ -192,12 +222,34 @@ test('GPU를 사용할 수 없거나 재생 중 컨텍스트를 잃으면 본문
   assert.equal(lost.disposed, 1);
 });
 
-test('초기 레이아웃 변경은 허용하고 재생 중 화면 크기가 바뀌면 정리한다', async () => {
+test('초기 레이아웃 변경은 허용하고 재생 중 화면 폭이 바뀌면 정리한다', async () => {
   const f = fixture({ holdImage: true }); f.start();
+  f.window.innerWidth = 1100;
   f.emit(f.window, 'resize'); f.imageLoad.resolve(); await tick();
   assert.equal(f.classes.has('intro-playing'), true);
+  f.window.innerWidth = 900;
   f.emit(f.window, 'resize'); await tick();
   assert.equal(f.classes.has('intro-pending'), false);
   assert.equal(f.frames.size, 0);
+  assert.equal(f.disposed, 1);
+});
+
+test('모바일에서 같은 폭의 높이 변화는 인트로를 취소하거나 다시 시작하지 않는다', async () => {
+  const f = fixture();
+  f.window.innerWidth = 390; f.window.innerHeight = 844;
+  f.start(); await tick();
+  f.advance(1000);
+  for (const height of [760, 844, 780]) {
+    f.window.innerHeight = height;
+    f.emit(f.window, 'resize');
+    assert.equal(f.classes.has('intro-playing'), true);
+    assert.equal(f.frames.size, 1);
+    assert.equal(f.disposed, 0);
+  }
+  f.advance(2000);
+  assert.deepEqual(f.rendered, [1, 2]);
+  assert.equal(f.formationCalls.length, 1);
+  f.advance(7800); await tick();
+  assert.equal(f.completed, 1);
   assert.equal(f.disposed, 1);
 });

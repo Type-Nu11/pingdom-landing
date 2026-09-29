@@ -12,25 +12,19 @@ precision highp float;
 uniform sampler2D uTexture;
 uniform float uTime;
 varying vec2 vUv;
-vec2 turn(vec2 p,float a) {
-  return vec2(cos(a)*p.x-sin(a)*p.y,sin(a)*p.x+cos(a)*p.y);
-}
 void main() {
-  vec2 p=turn(vUv-.5,.42);
-  p.y*=1.4;
+  vec2 p=vUv-vec2(.5,.37);
   float radius=length(p);
   float angle=atan(p.y,p.x);
   float phase=uTime*.48;
   float enter=smoothstep(0.0,2.4,uTime);
-  float band=smoothstep(.13,.25,radius)*(1.0-smoothstep(.62,.78,radius));
-  float crossSection=clamp((radius-.43)/.16,-1.0,1.0);
-  // 링 전체 각도는 고정하고, 두께를 가로지르는 반대 방향의 전단을 순환시킵니다.
-  float torsion=(.052*sin(angle-phase)+.12*crossSection*sin(2.0*angle-phase))*enter*band;
-  float fold=(.022*sin(2.0*angle-phase)+.011*sin(3.0*angle-phase*.5+.7))*enter*band;
-  float roll=.012*crossSection*cos(2.0*angle-phase)*enter*band;
-  vec2 samplePoint=vec2(cos(angle+torsion),sin(angle+torsion))*(radius+fold+roll);
-  samplePoint.y/=1.4;
-  vec2 uv=turn(samplePoint,-.42)+.5;
+  float band=smoothstep(.11,.19,radius)*(1.0-smoothstep(.36,.49,radius));
+  float crossSection=clamp((radius-.245)/.095,-1.0,1.0);
+  // 핀의 자세와 뾰족한 끝은 고정하고 상단 금속 띠 안에서 비틀림을 순환시킵니다.
+  float torsion=(.035*sin(angle-phase)+.065*crossSection*sin(2.0*angle-phase))*enter*band;
+  float fold=(.006*sin(2.0*angle-phase)+.003*sin(3.0*angle-phase*.5+.7))*enter*band;
+  vec2 samplePoint=vec2(cos(angle+torsion),sin(angle+torsion))*(radius+fold);
+  vec2 uv=samplePoint+vec2(.5,.37);
   if(any(lessThan(uv,vec2(0.0)))||any(greaterThan(uv,vec2(1.0)))) discard;
   vec4 surface=texture2D(uTexture,uv);
   float sheen=pow(.5+.5*cos(2.0*angle-phase-.5),8.0)*.055;

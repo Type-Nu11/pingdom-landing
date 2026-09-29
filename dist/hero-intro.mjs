@@ -1,22 +1,24 @@
-import { createRingFormation } from './ring-particles.mjs?v=logo-1';
+import { createRingFormation } from './ring-particles.mjs?v=pin-1';
 
 export function startHeroIntro({ hero, reducedMotion, onComplete }) {
   const root = document.documentElement;
   if (!root.classList.contains('intro-pending')) return;
   const canvas = hero.querySelector('.intro-particles');
-  let ended = false, readyTimeout, frame, formation;
+  let ended = false, readyTimeout, frame, formation, viewportWidth;
   const animations = [];
   const finish = () => window.dispatchEvent(new Event('pingdom:intro-finish'));
   if (!canvas) { finish(); onComplete(); return; }
   const endForMotion = () => { if (reducedMotion.matches) finish(); };
   const endWhenHidden = () => { if (document.hidden && formation) finish(); };
+  // 모바일 주소표시줄로 높이만 바뀌는 동안에는 같은 타임라인을 유지합니다.
+  const endWhenResized = () => { if (window.innerWidth !== viewportWidth) finish(); };
   function cleanup() {
     if (ended) return;
     ended = true;
     clearTimeout(readyTimeout);
     cancelAnimationFrame(frame);
     canvas.removeEventListener('webglcontextlost', finish);
-    window.removeEventListener('resize', finish);
+    window.removeEventListener('resize', endWhenResized);
     document.removeEventListener('visibilitychange', endWhenHidden);
     reducedMotion.removeEventListener('change', endForMotion);
     window.removeEventListener('pingdom:intro-end', cleanup);
@@ -28,7 +30,7 @@ export function startHeroIntro({ hero, reducedMotion, onComplete }) {
   reducedMotion.addEventListener('change', endForMotion);
   canvas.addEventListener('webglcontextlost', finish);
   document.addEventListener('visibilitychange', endWhenHidden);
-  if (reducedMotion.matches || window.scrollY > 40) { finish(); return; }
+  if (reducedMotion.matches) { finish(); return; }
 
   const image = hero.querySelector('.hero-model img');
   const logo = hero.querySelector('.intro-logo-source');
@@ -49,7 +51,8 @@ export function startHeroIntro({ hero, reducedMotion, onComplete }) {
 
   function play() {
     formation = createRingFormation(canvas, image, hero.querySelector('.hero-model'), hero, logo);
-    window.addEventListener('resize', finish);
+    viewportWidth = window.innerWidth;
+    window.addEventListener('resize', endWhenResized);
     const startTime = document.timeline.currentTime;
     function animate(selector, keyframes, duration, delay) {
       const animation = document.querySelector(selector).animate(keyframes, {
