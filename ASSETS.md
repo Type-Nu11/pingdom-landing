@@ -69,3 +69,8 @@ Use case: stylized-concept. Asset type: premium landing page hero for Pingdom, a
 - `dist/assets/ai-consulting-background.webp`, `ai-consulting-background-mobile.webp`: 내장 ImageGen으로 만든 1672×941 도시 배경을 각각 원래 너비와 960px 너비의 WebP로 압축했습니다. CSS 불투명도 38%로 표시하며 실제 장소나 상권 데이터를 나타내지 않는 장식용 이미지입니다. 생성 원본은 `review/generated/consulting-background.png`에 보관합니다.
 - 생성 프롬프트: Use case: stylized-concept. Wide 16:9 decorative background for Pingdom AI commercial-district consulting. A small Seoul-inspired commercial neighborhood viewed obliquely from nearby overhead at night, precise low-rise retail blocks in charcoal glass and dark metal. Opaque ink-black #101013 backdrop. Structures concentrated along the lower frame and right, dark upper-left negative space for website headings. Calm premium architectural editorial 3D render, restrained atmospheric depth. A few delicate #FF1956 light flows trace roads, suggesting commercial connections and pedestrian activity. Readable forms at low display opacity. Conceptual scene, not real data or an actual place. No text, letters, numbers, logos, watermarks, UI, panels, charts, pins, spheres, map symbols, giant landmarks, futuristic megacity, excessive bloom, or large holographic effects.
 - 두 배경은 화면 크기별 `srcset`과 지연 로딩을 사용합니다. 기존 탭의 `.is-consulting` 상태로 표시할 배경을 선택하므로 별도 비동기 이미지 교체 로직은 없습니다.
+
+## 인트로 브랜드 심볼
+
+- `dist/assets/pingdom-intro-symbol-source.png`: 사용자가 2026-09-29 제공한 흰색 P 형태의 로고 스크린샷(342×396)을 변경 없이 보관합니다.
+- 초기화 때만 캔버스에서 캡처의 어두운 무채색 배경을 알파로 분리하고, 원본 윤곽을 `pingdom.` 문구 왼쪽에 배치합니다. 합성한 동일 비트맵을 화면 표시와 입자 출발점 추출에 함께 사용합니다. 로고를 AI로 재생성하지 않습니다.

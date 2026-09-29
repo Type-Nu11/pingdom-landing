@@ -1,4 +1,4 @@
-import { createRingFormation } from './ring-particles.mjs?v=brand-1';
+import { createRingFormation } from './ring-particles.mjs?v=logo-1';
 
 export function startHeroIntro({ hero, reducedMotion, onComplete }) {
   const root = document.documentElement;
@@ -31,19 +31,24 @@ export function startHeroIntro({ hero, reducedMotion, onComplete }) {
   if (reducedMotion.matches || window.scrollY > 40) { finish(); return; }
 
   const image = hero.querySelector('.hero-model img');
+  const logo = hero.querySelector('.intro-logo-source');
   // 이미지가 늦거나 GPU를 사용할 수 없어도 첫 화면을 계속 가리지 않습니다.
-  const readiness = Promise.all([Promise.resolve().then(() => image.decode()), document.fonts.ready]);
+  const readiness = Promise.all([
+    Promise.resolve().then(() => image.decode()),
+    Promise.resolve().then(() => logo.decode()),
+    document.fonts.ready
+  ]);
   Promise.race([
     readiness,
     new Promise(resolve => { readyTimeout = setTimeout(resolve, 1200); })
   ]).then(() => {
     if (ended || !root.classList.contains('intro-pending')) return;
-    if (!image.complete || !image.naturalWidth) { finish(); return; }
+    if (!image.complete || !image.naturalWidth || !logo.complete || !logo.naturalWidth) { finish(); return; }
     try { play(); } catch { finish(); }
   }, finish).finally(() => clearTimeout(readyTimeout));
 
   function play() {
-    formation = createRingFormation(canvas, image, hero.querySelector('.hero-model'), hero);
+    formation = createRingFormation(canvas, image, hero.querySelector('.hero-model'), hero, logo);
     window.addEventListener('resize', finish);
     const startTime = document.timeline.currentTime;
     function animate(selector, keyframes, duration, delay) {

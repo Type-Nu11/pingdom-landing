@@ -53,10 +53,15 @@ function createCanvas2DMock() {
     }),
     fillText() {},
     drawImage() {},
+    putImageData() {},
     getImageData(_x, _y, width, height) {
       const data = new Uint8ClampedArray(width * height * 4);
       // 입자 생성 경로를 통과할 최소 불투명 픽셀을 제공합니다.
       data.set([246, 240, 252, 255]);
+      if (width === 342 && height === 396) {
+        data.set([30, 30, 30, 255]);
+        data.set([255, 255, 255, 255], (width + 1) * 4);
+      }
       return { data };
     }
   };
@@ -102,7 +107,7 @@ test('인트로 가시 구간에 필요한 GPU 패스만 실행하고 기본 fra
   const model = {
     getBoundingClientRect: () => ({ left: 280, top: 180, width: 720, height: 626 })
   };
-  formation = createRingFormation(canvas, image, model, hero);
+  formation = createRingFormation(canvas, image, model, hero, { naturalWidth: 342, naturalHeight: 396 });
 
   for (const [time, expectedDraws] of [[1, 1], [2.5, 7], [4, 6], [5, 7], [7.2, 1]]) {
     await t.test(`${time}초에는 drawArrays ${expectedDraws}회를 실행한다`, () => {

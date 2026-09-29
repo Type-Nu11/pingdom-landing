@@ -235,7 +235,7 @@ void main() {
 }
 `;
 
-export function createRingFormation(canvas, image, model, hero) {
+export function createRingFormation(canvas, image, model, hero, logo) {
   const gl = canvas.getContext('webgl', { alpha: true, antialias: false, depth: false, premultipliedAlpha: true });
   if (!gl) throw new Error('Ring formation needs WebGL');
   const shaders = [], programs = [], buffers = [], textures = [], framebuffers = [];
@@ -294,19 +294,45 @@ export function createRingFormation(canvas, image, model, hero) {
       return { program, attributes, time: gl.getUniformLocation(program, 'uTime') };
     }
 
-    // 텍스처와 입자의 출발점을 같은 글자 비트맵에서 추출해 교체 순간의 윤곽이 일치합니다.
+    // 첨부 원본은 보존하고, 캡처의 무채색 배경만 표시용 알파로 분리합니다.
+    const logoCanvas = document.createElement('canvas');
+    logoCanvas.width = logo.naturalWidth; logoCanvas.height = logo.naturalHeight;
+    const logoContext = logoCanvas.getContext('2d', { willReadFrequently: true });
+    logoContext.drawImage(logo, 0, 0);
+    const logoPixels = logoContext.getImageData(0, 0, logoCanvas.width, logoCanvas.height);
+    const background = Math.max(...logoPixels.data.slice(0, 3));
+    let left = logoCanvas.width, top = logoCanvas.height, right = -1, bottom = -1;
+    for (let y = 0; y < logoCanvas.height; y++) for (let x = 0; x < logoCanvas.width; x++) {
+      const i = (y * logoCanvas.width + x) * 4;
+      const light = Math.max(logoPixels.data[i], logoPixels.data[i + 1], logoPixels.data[i + 2]);
+      const alpha = Math.max(0, (light - background) / (255 - background)) * logoPixels.data[i + 3];
+      logoPixels.data[i] = 246; logoPixels.data[i + 1] = 240; logoPixels.data[i + 2] = 252; logoPixels.data[i + 3] = alpha;
+      if (alpha > 8) { left = Math.min(left, x); top = Math.min(top, y); right = Math.max(right, x); bottom = Math.max(bottom, y); }
+    }
+    if (right < left || bottom < top) throw new Error('Intro symbol unavailable');
+    logoContext.putImageData(logoPixels, 0, 0);
+    const logoWidth = right - left + 1, logoHeight = bottom - top + 1;
+
+    // 로고와 글자를 같은 비트맵에 합성해 두 요소의 윤곽에서 동일한 입자 흐름이 시작됩니다.
     const wordCanvas = document.createElement('canvas');
     wordCanvas.width = 1400; wordCanvas.height = 420;
     const wordContext = wordCanvas.getContext('2d', { willReadFrequently: true });
     wordContext.font = '640 320px PingdomSans, sans-serif';
-    const textWidth = wordContext.measureText('pingdom.').width;
-    wordContext.font = `640 ${320 * 1290 / textWidth}px PingdomSans, sans-serif`;
+    const naturalMetrics = wordContext.measureText('pingdom.');
+    const symbolHeight = (naturalMetrics.actualBoundingBoxAscent + naturalMetrics.actualBoundingBoxDescent) * 1.08;
+    const symbolWidth = symbolHeight * logoWidth / logoHeight;
+    const gap = symbolHeight * .2;
+    const scale = 1290 / (symbolWidth + gap + naturalMetrics.width);
+    wordContext.font = `640 ${320 * scale}px PingdomSans, sans-serif`;
     const metrics = wordContext.measureText('pingdom.');
-    const textLeft = (1400 - metrics.width) / 2;
+    const symbolLeft = (1400 - (symbolWidth + gap) * scale - metrics.width) / 2;
+    const textLeft = symbolLeft + (symbolWidth + gap) * scale;
     const baseline = (420 + metrics.actualBoundingBoxAscent - metrics.actualBoundingBoxDescent) / 2;
     const dotX = textLeft + wordContext.measureText('pingdom').width;
     const dotStart = dotX / 1400;
     wordContext.textAlign = 'left'; wordContext.textBaseline = 'alphabetic';
+    wordContext.drawImage(logoCanvas, left, top, logoWidth, logoHeight,
+      symbolLeft, (420 - symbolHeight * scale) / 2, symbolWidth * scale, symbolHeight * scale);
     wordContext.fillStyle = '#f6f0fc';
     wordContext.fillText('pingdom', textLeft, baseline);
     wordContext.fillStyle = '#FF1956';

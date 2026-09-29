@@ -12,7 +12,7 @@ function deferred() {
   const promise = new Promise((yes, no) => { resolve = yes; reject = no; });
   return { promise, resolve, reject };
 }
-function fixture({ reduced = false, hash = '', navigation = 'navigate', holdImage = false, imageReady = true, gpuAvailable = true } = {}) {
+function fixture({ reduced = false, hash = '', navigation = 'navigate', holdImage = false, imageReady = true, holdLogo = false, logoReady = true, gpuAvailable = true } = {}) {
   const classes = new Set();
   const classList = { add: (...values) => values.forEach(value => classes.add(value)), remove: (...values) => values.forEach(value => classes.delete(value)), contains: value => classes.has(value) };
   const reducedMotion = Object.assign(new EventTarget(), { matches: reduced });
@@ -20,10 +20,13 @@ function fixture({ reduced = false, hash = '', navigation = 'navigate', holdImag
   const imageLoad = deferred();
   if (!holdImage) imageLoad.resolve();
   const image = { complete: imageReady, naturalWidth: imageReady ? 1345 : 0, decode: () => imageLoad.promise };
+  const logoLoad = deferred();
+  if (!holdLogo) logoLoad.resolve();
+  const logo = { complete: logoReady, naturalWidth: logoReady ? 128 : 0, decode: () => logoLoad.promise };
   const animations = [], timers = new Map(), frames = new Map();
   const canvas = new EventTarget();
   let sequence = 0, completed = 0, disposed = 0;
-  const rendered = [];
+  const rendered = [], formationCalls = [];
   const document = Object.assign(new EventTarget(), {
     documentElement: { classList }, fonts: { ready: Promise.resolve() }, timeline: { currentTime: 0 },
     querySelector: () => ({ animate() {
@@ -37,16 +40,17 @@ function fixture({ reduced = false, hash = '', navigation = 'navigate', holdImag
     window, document, Event, location: { hash }, performance: { getEntriesByType: () => [{ type: navigation }] },
     setTimeout: (fn, duration) => { timers.set(++sequence, { fn, duration }); return sequence; }, clearTimeout: id => timers.delete(id),
     requestAnimationFrame: fn => { frames.set(++sequence, fn); return sequence; }, cancelAnimationFrame: id => frames.delete(id),
-    createRingFormation: () => {
+    createRingFormation: (...args) => {
+      formationCalls.push(args);
       if (!gpuAvailable) throw new Error('WebGL unavailable');
       return { render: time => rendered.push(time), dispose: () => disposed++ };
     },
-    hero: { querySelector: selector => selector === '.intro-particles' ? canvas : image }, reducedMotion, onComplete: () => completed++
+    hero: { querySelector: selector => selector === '.intro-particles' ? canvas : selector === '.intro-logo-source' ? logo : image }, reducedMotion, onComplete: () => completed++
   });
   runInContext(bootstrap, context);
   const emit = (target, name, properties = {}) => target.dispatchEvent(Object.assign(new Event(name), properties));
   return {
-    classes, animations, imageLoad, image, window, document, reducedMotion, canvas, frames, rendered,
+    classes, animations, imageLoad, image, logoLoad, logo, window, document, reducedMotion, canvas, frames, rendered, formationCalls,
     start: () => { runInContext(moduleSource, context); runInContext('startHeroIntro({ hero, reducedMotion, onComplete })', context); },
     get completed() { return completed; },
     get disposed() { return disposed; },
@@ -105,6 +109,56 @@ test('디코딩 실패나 이미지 준비 시간 초과 시 즉시 본문을 �
   assert.equal(slow.classes.has('intro-pending'), false);
   slow.imageLoad.resolve(); await tick();
   assert.equal(slow.animations.length, 0);
+});
+
+test('링 이미지가 준비되어도 로고 디코딩을 기다린 뒤 다섯 번째 인자로 전달한다', async () => {
+  const f = fixture({ holdLogo: true }); f.start(); await tick();
+  assert.equal(f.classes.has('intro-pending'), true);
+  assert.equal(f.classes.has('intro-playing'), false);
+  assert.equal(f.formationCalls.length, 0);
+  assert.equal(f.frames.size, 0);
+  f.logoLoad.resolve(); await tick();
+  assert.equal(f.classes.has('intro-playing'), true);
+  assert.equal(f.formationCalls.length, 1);
+  assert.equal(f.formationCalls[0][1], f.image);
+  assert.equal(f.formationCalls[0][4], f.logo);
+});
+
+test('로고 디코딩 실패나 준비 시간 초과 시 본문을 복구하고 늦은 완료를 무시한다', async () => {
+  const failed = fixture({ holdLogo: true }); failed.start();
+  failed.logoLoad.reject(new Error('logo decode failed')); await tick();
+  assert.equal(failed.classes.has('intro-pending'), false);
+  assert.equal(failed.formationCalls.length, 0);
+  assert.equal(failed.completed, 1);
+  const slow = fixture({ holdLogo: true, logoReady: false }); slow.start();
+  slow.expire(1200); await tick();
+  assert.equal(slow.classes.has('intro-pending'), false);
+  assert.equal(slow.formationCalls.length, 0);
+  slow.logo.complete = true; slow.logo.naturalWidth = 128;
+  slow.logoLoad.resolve(); await tick();
+  assert.equal(slow.formationCalls.length, 0);
+  assert.equal(slow.frames.size, 0);
+  assert.equal(slow.completed, 1);
+});
+
+test('로고는 로딩 완료와 유효한 원본 너비를 모두 갖춰야 재생한다', async () => {
+  for (const metadata of [{ complete: false, naturalWidth: 128 }, { complete: true, naturalWidth: 0 }]) {
+    const f = fixture(); Object.assign(f.logo, metadata); f.start(); await tick();
+    assert.equal(f.classes.has('intro-pending'), false);
+    assert.equal(f.formationCalls.length, 0);
+    assert.equal(f.completed, 1);
+  }
+});
+
+test('로고 준비 중 취소하면 늦은 디코딩 완료가 인트로를 다시 시작하지 않는다', async () => {
+  const f = fixture({ holdLogo: true }); f.start(); await tick();
+  f.emit(f.window, 'keydown', { key: 'Escape' });
+  f.logoLoad.resolve(); await tick();
+  assert.equal(f.classes.has('intro-pending'), false);
+  assert.equal(f.formationCalls.length, 0);
+  assert.equal(f.animations.length, 0);
+  assert.equal(f.frames.size, 0);
+  assert.equal(f.completed, 1);
 });
 
 test('모듈 로딩 실패 시 제한 시간 후 복구하며 늦은 모듈도 화면을 다시 잠그지 않는다', async () => {
