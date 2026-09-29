@@ -61,7 +61,7 @@ Use case: stylized-concept. Asset type: premium landing page hero for Pingdom, a
 ## Pingdom AI 심볼
 
 - `dist/assets/pingdom-ai-symbol-source.png`: 사용자가 2026-09-29 제공한 심볼 스크린샷 원본을 변경 없이 보관합니다.
-- AI 제목과 응답 카드에서 동일한 원본을 사용합니다. SVG 필터로 무채색 배경의 표시만 제거하고, 전경을 `#FF1956`으로 표시합니다. 도형을 재생성하거나 원본 파일을 수정하지 않습니다.
+- AI 응답 카드에서 원본을 사용합니다. 섹션 제목 옆 심볼은 사용자 요청으로 제거했습니다. SVG 필터로 무채색 배경의 표시만 제거하고, 전경을 `#FF1956`으로 표시합니다. 도형을 재생성하거나 원본 파일을 수정하지 않습니다.
 
 ## AI 서비스 배경
 
