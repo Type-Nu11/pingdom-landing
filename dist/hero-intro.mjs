@@ -78,7 +78,6 @@ export function startHeroIntro({ hero, reducedMotion, onComplete }) {
       { opacity: 0, transform: 'translate3d(16px,-12px,0)' },
       { opacity: 1, transform: 'translate3d(0,0,0)' }
     ], 1250, 6300);
-    animate('.header', [{ opacity: 0 }, { opacity: 1 }], 950, 6700);
     animate('.hero-bottom', [{ opacity: 0 }, { opacity: 1 }], 850, 6900);
     root.classList.add('intro-playing');
     function render(now) {

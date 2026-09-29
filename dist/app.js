@@ -1,5 +1,5 @@
 import { createImagePanel, warmImages } from './panel-images.mjs';
-import { startHeroIntro } from './hero-intro.mjs?v=traffic-1';
+import { startHeroIntro } from './hero-intro.mjs?v=traffic-gold-1';
 import { createRingFlow } from './ring-flow.mjs?v=traffic-1';
 import { createHeroBackground } from './hero-background.mjs?v=traffic-1';
 const $ = selector => document.querySelector(selector);

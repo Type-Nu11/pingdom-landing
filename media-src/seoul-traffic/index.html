@@ -50,26 +50,26 @@
     lanes.forEach((lane, laneIndex) => {
       const direction = laneIndex < 3 ? -1 : 1;
       const isTail = direction === 1;
-      const perLane = 7;
+      const perLane = 20;
       for (let i = 0; i < perLane; i++) {
         const index = vehicles.length;
-        const length = (90 + rand() * 225) * sx;
-        const intensity = .64 + rand() * .27;
-        const cycles = 1 + ((laneIndex + i) % 2);
+        const length = (130 + rand() * 205) * sx;
+        const intensity = .78 + rand() * .18;
+        const cycles = 3 * (1 + ((laneIndex + i) % 2));
         const initialX = -PAD + ((i + rand() * .58) / perLane) * SPAN;
-        const color = isTail ? '#ff4938' : (rand() > .35 ? '#fff4df' : '#ffd8a2');
-        const core = isTail ? '#ffc0a5' : '#fffdf3';
+        const color = isTail ? (rand() > .45 ? '#f5c565' : '#ffdc91') : (rand() > .4 ? '#ffe3a6' : '#f2cd7b');
+        const core = isTail ? '#ffe4ab' : '#fff1ce';
         const grad = node('linearGradient', { id: `trail-${index}`, gradientUnits: 'userSpaceOnUse', x1: -direction * length, y1: 0, x2: 0, y2: 0 }, defs);
         [[0,0],[.14,.18],[.52,.58],[.84,.84],[1,1]].forEach(([offset,opacity]) => node('stop', { offset, 'stop-color': color, 'stop-opacity': opacity }, grad));
         const group = node('g', { id: `vehicle-${index}`, class: 'vehicle', 'data-layout-allow-overflow': '', opacity: intensity }, streams);
         const tailX = -direction * length;
         const pair = 1.65;
         // Reflections remain subtle, broad, and strictly below each moving light pair.
-        node('path', { d: `M ${tailX} 4.2 L 0 4.2`, stroke: `url(#trail-${index})`, 'stroke-width': isTail ? 5.8 : 7.3, opacity: isTail ? .14 : .11, filter: 'url(#road-reflection)', fill: 'none' }, group);
+        node('path', { d: `M ${tailX} 4.2 L 0 4.2`, stroke: `url(#trail-${index})`, 'stroke-width': isTail ? 5.8 : 7.3, opacity: isTail ? .18 : .15, filter: 'url(#road-reflection)', fill: 'none' }, group);
         [-pair, pair].forEach(y => {
-          node('path', { d: `M ${tailX} ${y} L 0 ${y}`, stroke: `url(#trail-${index})`, 'stroke-width': 4.4, opacity: .45, filter: 'url(#light-halo)', fill: 'none' }, group);
-          node('path', { d: `M ${tailX} ${y} L 0 ${y}`, stroke: `url(#trail-${index})`, 'stroke-width': isTail ? 1.25 : 1.45, opacity: .93, fill: 'none', 'stroke-linecap': 'round' }, group);
-          node('path', { d: `M ${tailX * .47} ${y} L 0 ${y}`, stroke: core, 'stroke-width': .5, opacity: .62, fill: 'none', 'stroke-linecap': 'round' }, group);
+          node('path', { d: `M ${tailX} ${y} L 0 ${y}`, stroke: `url(#trail-${index})`, 'stroke-width': 4.8, opacity: .52, filter: 'url(#light-halo)', fill: 'none' }, group);
+          node('path', { d: `M ${tailX} ${y} L 0 ${y}`, stroke: `url(#trail-${index})`, 'stroke-width': isTail ? 1.45 : 1.65, opacity: .93, fill: 'none', 'stroke-linecap': 'round' }, group);
+          node('path', { d: `M ${tailX * .47} ${y} L 0 ${y}`, stroke: core, 'stroke-width': .6, opacity: .74, fill: 'none', 'stroke-linecap': 'round' }, group);
           node('ellipse', { cx: 0, cy: y, rx: isTail ? 1.7 : 2.1, ry: .76, fill: core, opacity: .9 }, group);
         });
         const wrapX = value => (((parseFloat(value) + PAD) % SPAN + SPAN) % SPAN - PAD);
