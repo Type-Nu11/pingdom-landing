@@ -12,23 +12,20 @@ angle: photographic-loop
 
 ## Intent
 
-Pingdom 랜딩페이지 배경용 8초 무음 고정 카메라 야경 루프. 서울에서 영감을 받은 실사 풍경의 하단 고가도로에 차량 빛이 밝은 금빛과 샴페인색 리본으로 훨씬 빠르고 조밀하게 길게 이어진다.
+Pingdom 배경용 8초 무음 고정 카메라 야경 루프. 사용자 참고사진처럼 넓은 서울 교차로를 따라 금빛·따뜻한 흰색·일부 붉은 빛이 길고 연속된 장노출 궤적으로 흐른다.
 
 ## Assets
 
-- assets/plate.png — 생성한 밤서울 고정 배경. 이미지 자체는 편집하지 않는다.
-- assets/plate-prompt.txt — plate 생성 프롬프트.
+- assets/intersection-plate.png — 새로 생성한 조감 교차로 야경. 원본 이미지는 편집하지 않는다.
+- assets/intersection-plate-prompt.txt — 생성 근거.
 
 ## Customizations
 
-- 양방향 3차선에 약 150–385px 길이의 금빛·샴페인색 차량 라이트 120대. 기존 대비 2.86배 밀도와 3배 속도.
-- 차선 곡률에 정합한 미세한 halo와 아스팔트 반사.
-- 8초/30fps seamless loop, 1920×1080 desktop MP4, 중앙 crop 720×1080 mobile MP4, WebP poster.
+- 원근감 있는 4개 경로와 56개 연속 광원 가닥. 850–1550px 잔광, 좁은 흰 코어, 작은 diffuse halo.
+- 고정 seed와 정수 회전 주기. 8초/30fps seamless loop.
+- 1920×1080 desktop MP4, 중앙 crop 720×1080 mobile MP4, WebP poster. 새 파일명은 `seoul-traffic-*-exposure`.
+- UI·문자·로고·음악·카메라 이동 없음. 기존 영상 자산은 보존한다.
 
 ## Notes
 
-- UI·문자·로고·음악·카메라 이동 없음.
-- 고정 seed와 정수 회전 주기로 프레임을 결정한다.
-- 사용자 영상 제작 요청에 따라 로컬 render까지 수행한다. 배포와 commit은 범위 밖이다.
-
-- 새 결과는 `seoul-traffic-*-gold` 파일로 저장하여 이전 영상을 보존한다.
+사용자의 영상 수정 요청에 따라 로컬 render까지 수행한다. 배포와 commit은 부모 작업자 담당이다.

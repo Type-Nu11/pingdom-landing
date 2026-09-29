@@ -1,5 +1,24 @@
 # 검증 결과
 
+## 교차로 장노출 버전
+
+- 사용자 참고의 연속 곡선 장노출을 반영해 새 intersection plate와 4개 경로·56개 가닥으로 수정했다. 850–1550px 잔광, 좁은 흰 코어, 금빛 halo, 일부 warm red와 왼쪽 전경 수목 가림을 적용했다.
+- pin probe: HyperFrames 0.8.91 최신, 변경 없음. history bracket `8256c196` 사용.
+- `npx hyperframes check --snapshots --at 0,1.3,4,7.966 --json`: lint/runtime/layout/motion 오류 0·경고 0, 실제 Chromium motion 161샘플 통과.
+- 최종 snapshot `snapshots/frame-01-at-1.3s.png`에서 긴 연결·큰 회전·원근 폭·수목 가림을 확인했다. 압축 결과도 `renders/compressed-exposure-check.png`로 확인했다.
+- HyperFrames 실제 render: 240프레임·8초, screenshot capture / hardware GPU, 27.1초 소요.
+- 출력: desktop 1920×1080 / 4,180,139 bytes, mobile 720×1080 / 1,528,668 bytes, poster 1920×1080 / 449,738 bytes. 파일명은 `seoul-traffic-*-exposure`이며 기존 출력은 보존했다.
+- 최종 MP4 두 개는 ffprobe에서 H.264/yuv420p/30fps/8.000초/240프레임/audio 없음 확인. `+faststart`로 moov atom을 mdat 앞으로 배치했다.
+- t=0과 t=8은 정수 주기 계산상 같은 상태다. 최종 인코딩 도로 영역의 마지막→첫 프레임 회색조 변화량은 2.80/255, 일반 연속 프레임 중앙값 2.09/255·최댓값 2.24/255였다. 압축된 첫 I-frame의 차이를 포함하는 수치이며 픽셀 동일성으로 보고하지 않는다.
+- 재생성·최종 비트레이트 제한 압축·중앙 crop·Sharp WebP 명령은 README에 기록했다. 웹 통합·배포 검증은 부모 작업자 범위다.
+
+## 교차로 장노출 웹 통합 검증
+
+- 부모 작업자가 실제 IAB 1446px 데스크톱과 390×844 모바일에서 확인했다.
+- intro-complete, video readyState=4·paused=false, 이미지 정상, 가로 넘침 없음, 콘솔 오류·경고 0.
+- 화면 증거: `review/traffic-exposure-desktop.png`, `review/traffic-exposure-mobile.png`.
+- 사이트 변경은 dist/index.html의 영상·poster 자산 3개 경로 교체이며 기존 본문 상향 위치를 유지했다. 앱 JavaScript와 CSS는 변경하지 않았다.
+
 ## 금빛 고밀도 버전
 
 - 변경: 42대 → 120대(2.86배), 8초당 1·2회 → 3·6회 순환(3배 속도), 금빛·샴페인색 리본. plate와 도로 y 좌표는 변경하지 않았다.

@@ -1,13 +1,9 @@
-# 모션 계획
+# 장노출 교차로 모션
 
-단일 장면, 8초, 1920×1080, 30fps. 시작과 끝에 전환 없이 동일한 흐름을 이어 간다.
+8초·1920×1080·30fps 단일 고정 장면. 사용자 참고의 긴 곡선 노출을 따라 NW↔SE, NE↔SW 주흐름과 두 회전 경로를 만든다. 원거리 폭·간격은 줄이고 가까운 도로의 좁은 흰 코어와 금빛 halo를 강조한다.
 
-catalog 검색 `moving vehicle traffic light trails timelapse highway` 결과는 light transition·echo trail이며 실제 사진의 도로 곡률과 양방향 차선 흐름에 맞는 항목은 없었다. 도로에 정합하는 SVG 차량 라이트 그룹을 직접 작성한다.
+`long exposure curved traffic light trails` catalog 검색에는 도로 사진에 정합하는 항목이 없었다. cubic 경로를 arc length로 샘플링하고 연속 ribbon polygon으로 직접 합성한다. 짧은 막대·분리된 선분 stroke는 사용하지 않는다. 저노출 바탕에 850–1550px 감쇠 잔광과 밝기 덩어리가 이동한다. 일부 반대 방향은 warm red이며 왼쪽 수목은 광원만 가린다.
 
-참조 규칙: hyperframes-animation `svg-path-draw`의 선 기반 광원 구조와 constant-speed `ease: none`, hyperframes-keyframes의 path travel 및 deterministic seek. 각 차량은 정해진 seed로 길이·차선·주기·위상을 갖고, 밝은 코어·halo·도로 반사 묶음 전체가 동일한 좌표를 따른다. 화면 밖 520px 여유 구간에서만 wrap한다. 8초마다 정수 회전을 마쳐 t=0과 t=8이 동일하다.
+단일 GSAP paused timeline, seed 29092026, `ease: none`. 각 흐름이 8초에 3·4·5회 정수 순환하여 t=0과 t=8이 같다. 1750px off-path guard가 잔광보다 길어 wrap은 화면 밖에서 발생한다. 모바일은 중앙 720×1080 crop.
 
-검증: HyperFrames check와 실제 browser snapshot, 0/4/7.967/8초 위치와 pixel loop 검증, 최종 MP4 ffprobe의 해상도·30fps·8초·audio 없음 확인. 모바일은 중앙 720×1080 crop.
-
-## 금빛 고밀도 수정
-
-6차선 각각 20대로 총 120대(이전 42대의 2.86배). 8초당 3회 또는 6회 순환으로 이전 1회·2회 대비 정확히 3배 속도. 모든 차선에 금빛·샴페인색 리본과 밝은 코어를 적용한다. plate와 도로 방정식 및 차선 y 좌표는 변경하지 않는다. 길이는 약 150–385px이며 기존 화면 밖 wrap 여유 520px 안에 들어간다. 새 파일명 -gold로 기존 출력과 분리한다.
+검증: HyperFrames check의 실제 Chromium snapshot·motion, H.264 출력 ffprobe, 인코딩 프레임의 일반 변화량과 루프 이음새 비교. 외부 게시 없이 로컬 렌더만 수행한다.

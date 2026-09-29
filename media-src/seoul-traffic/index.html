@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko" data-resolution="landscape">
 <head>
   <meta charset="UTF-8">
@@ -8,85 +8,136 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0c1725; }
     #root { width: 100%; height: 100%; position: relative; overflow: hidden; }
-    .clip, #plate, #traffic { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .clip { position: absolute; inset: 0; width: 100%; height: 100%; }
     #plate { object-fit: fill; }
-    #traffic { overflow: hidden; }
-    .vehicle { will-change: transform; }
+    #exposure, #traffic { pointer-events: none; }
   </style>
 </head>
 <body>
-  <div data-hf-id="hf-ovpj" id="root" data-composition-id="seoul-traffic" data-start="0" data-duration="8" data-width="1920" data-height="1080">
-      <img data-hf-id="hf-oaaf" id="plate" src="assets/plate.png" alt="" class="clip" data-start="0" data-duration="8" data-track-index="0">
-      <svg data-hf-id="hf-6xn9" id="traffic" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-layout-allow-overflow="" class="clip" data-start="0" data-duration="8" data-track-index="1">
-        <defs data-hf-id="hf-mh0t">
-          <filter data-hf-id="hf-g07n" id="light-halo" filterUnits="userSpaceOnUse" x="-550" y="-30" width="1100" height="60"><fegaussianblur data-hf-id="hf-9juv" stdDeviation="2.1" /></filter>
-          <filter data-hf-id="hf-kz9g" id="road-reflection" filterUnits="userSpaceOnUse" x="-550" y="-30" width="1100" height="60"><fegaussianblur data-hf-id="hf-cj8o" stdDeviation="1.2 2.7" /></filter>
-        </defs>
-        <g data-hf-id="hf-mhka" id="vehicle-streams" data-layout-allow-overflow="" />
-      </svg>
+  <div id="root" data-composition-id="seoul-traffic" data-start="0" data-duration="8" data-width="1920" data-height="1080">
+    <img id="plate" class="clip" data-start="0" data-duration="8" data-track-index="0" src="assets/intersection-plate.png" alt="">
+    <canvas id="exposure" class="clip" data-start="0" data-duration="8" data-track-index="1" width="1920" height="1080" data-layout-allow-overflow></canvas>
+    <svg id="traffic" class="clip" data-start="0" data-duration="8" data-track-index="2" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-layout-allow-overflow><g id="vehicle-streams"></g></svg>
   </div>
   <script>
-    const NS = 'http://www.w3.org/2000/svg';
-    const defs = document.querySelector('defs');
-    const streams = document.getElementById('vehicle-streams');
-    const WIDTH = 1920, HEIGHT = 1080, DURATION = 8, PAD = 520, SPAN = WIDTH + PAD * 2;
+    const WIDTH = 1920, HEIGHT = 1080, DURATION = 8;
     const sx = WIDTH / 1672, sy = HEIGHT / 941;
+    const canvas = document.getElementById('exposure');
+    const ctx = canvas.getContext('2d');
+    const lights = document.getElementById('vehicle-streams');
     let seed = 29092026;
     const rand = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296; };
-    function node(tag, attrs, parent) {
-      const el = document.createElementNS(NS, tag);
-      Object.entries(attrs).forEach(([name, value]) => el.setAttribute(name, value));
-      parent.appendChild(el); return el;
+    const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
+    const mod = (v,m) => ((v%m)+m)%m;
+    function cubic(segment,t) {
+      const [a,b,c,d]=segment, u=1-t;
+      return {x:u*u*u*a[0]+3*u*u*t*b[0]+3*u*t*t*c[0]+t*t*t*d[0],y:u*u*u*a[1]+3*u*u*t*b[1]+3*u*t*t*c[1]+t*t*t*d[1]};
     }
-    // Plate-space quadratic follows the slightly sagging elevated roadway.
-    const roadY = (x, lane) => {
-      const u = x / WIDTH;
-      return (691 + 94 * u - 40 * u * u + lane) * sy;
-    };
-    const roadAngle = x => Math.atan(((94 - 80 * x / WIDTH) * sy) / WIDTH) * 180 / Math.PI;
-    const lanes = [0, 6.9, 13.8, 22.0, 28.0, 34.0];
-    const vehicles = [];
-    const tl = gsap.timeline({ paused: true });
-    lanes.forEach((lane, laneIndex) => {
-      const direction = laneIndex < 3 ? -1 : 1;
-      const isTail = direction === 1;
-      const perLane = 20;
-      for (let i = 0; i < perLane; i++) {
-        const index = vehicles.length;
-        const length = (130 + rand() * 205) * sx;
-        const intensity = .78 + rand() * .18;
-        const cycles = 3 * (1 + ((laneIndex + i) % 2));
-        const initialX = -PAD + ((i + rand() * .58) / perLane) * SPAN;
-        const color = isTail ? (rand() > .45 ? '#f5c565' : '#ffdc91') : (rand() > .4 ? '#ffe3a6' : '#f2cd7b');
-        const core = isTail ? '#ffe4ab' : '#fff1ce';
-        const grad = node('linearGradient', { id: `trail-${index}`, gradientUnits: 'userSpaceOnUse', x1: -direction * length, y1: 0, x2: 0, y2: 0 }, defs);
-        [[0,0],[.14,.18],[.52,.58],[.84,.84],[1,1]].forEach(([offset,opacity]) => node('stop', { offset, 'stop-color': color, 'stop-opacity': opacity }, grad));
-        const group = node('g', { id: `vehicle-${index}`, class: 'vehicle', 'data-layout-allow-overflow': '', opacity: intensity }, streams);
-        const tailX = -direction * length;
-        const pair = 1.65;
-        // Reflections remain subtle, broad, and strictly below each moving light pair.
-        node('path', { d: `M ${tailX} 4.2 L 0 4.2`, stroke: `url(#trail-${index})`, 'stroke-width': isTail ? 5.8 : 7.3, opacity: isTail ? .18 : .15, filter: 'url(#road-reflection)', fill: 'none' }, group);
-        [-pair, pair].forEach(y => {
-          node('path', { d: `M ${tailX} ${y} L 0 ${y}`, stroke: `url(#trail-${index})`, 'stroke-width': 4.8, opacity: .52, filter: 'url(#light-halo)', fill: 'none' }, group);
-          node('path', { d: `M ${tailX} ${y} L 0 ${y}`, stroke: `url(#trail-${index})`, 'stroke-width': isTail ? 1.45 : 1.65, opacity: .93, fill: 'none', 'stroke-linecap': 'round' }, group);
-          node('path', { d: `M ${tailX * .47} ${y} L 0 ${y}`, stroke: core, 'stroke-width': .6, opacity: .74, fill: 'none', 'stroke-linecap': 'round' }, group);
-          node('ellipse', { cx: 0, cy: y, rx: isTail ? 1.7 : 2.1, ry: .76, fill: core, opacity: .9 }, group);
-        });
-        const wrapX = value => (((parseFloat(value) + PAD) % SPAN + SPAN) % SPAN - PAD);
-        const position = { x: initialX };
-        const align = () => {
-          const x = wrapX(position.x);
-          group.setAttribute('transform', `translate(${x} ${roadY(x, lane)}) rotate(${roadAngle(x)})`);
-        };
-        align();
-        tl.fromTo(position, { x: initialX }, { x: initialX + direction * SPAN * cycles, duration: DURATION, ease: 'none', onUpdate: align }, 0);
-        vehicles.push({ id: group.id, lane: laneIndex, length, cycles, direction, initialX });
+    // Lane guides are authored in the untouched 1672x941 plate coordinate system.
+    const routes = [
+      {name:'northwest-southeast', segments:[ [[-120,174],[190,286],[470,364],[740,486]], [[740,486],[1040,612],[1370,718],[1830,889]] ], lanes:[-90,-67,-44,-21,24,50,77,104], fibers:3, depth:t=>.16+.84*t},
+      {name:'northeast-southwest', segments:[ [[1070,196],[1162,248],[1202,348],[1208,416]], [[1208,416],[1216,507],[882,555],[645,620]], [[645,620],[387,691],[164,733],[-160,807]] ], lanes:[-92,-60,-29,27,59,90], fibers:3, depth:t=>.2+.8*t},
+      {name:'southwest-southeast-turn', segments:[ [[-170,750],[237,657],[515,601],[766,549]], [[766,549],[998,502],[1105,580],[1317,692]], [[1317,692],[1482,779],[1660,854],[1800,915]] ], lanes:[-28,-11,7,25], fibers:2, depth:t=>.76+.24*t},
+      {name:'southeast-northeast-turn', segments:[ [[1780,865],[1450,758],[1118,681],[1100,460]], [[1100,460],[1085,340],[1130,271],[1070,196]] ], lanes:[-9,7,21], fibers:2, depth:t=>1-.8*t}
+    ];
+    const tracks=[];
+    routes.forEach((route, routeIndex) => route.lanes.forEach((offset,laneIndex) => {
+      for(let fiber=0;fiber<route.fibers;fiber++) {
+        const points=[], count=route.segments.length*125;
+        const separation=(fiber-(route.fibers-1)/2)*3.0;
+        for(let i=0;i<=count;i++) {
+          const t=i/count, v=t*route.segments.length, j=Math.min(route.segments.length-1,Math.floor(v)), local=Math.min(1,v-j);
+          const p=cubic(route.segments[j],local);
+          const lo=cubic(route.segments[j],Math.max(0,local-.002)), hi=cubic(route.segments[j],Math.min(1,local+.002));
+          const dx=hi.x-lo.x,dy=hi.y-lo.y,n=Math.hypot(dx,dy)||1, depth=route.depth(t);
+          const lateral=(offset+separation)*depth;
+          points.push({x:(p.x-dy/n*lateral)*sx,y:(p.y+dx/n*lateral)*sy,depth,s:0});
+        }
+        for(let i=1;i<points.length;i++)points[i].s=points[i-1].s+Math.hypot(points[i].x-points[i-1].x,points[i].y-points[i-1].y);
+        const length=points.at(-1).s, direction=laneIndex<route.lanes.length/2?1:-1;
+        const red=direction<0 && (tracks.length%8===0);
+        const palette=red?[[252,105,61],[255,135,80]]:[[255,207,107],[255,226,163],[255,238,199],[247,190,79]];
+        const rgb=palette[Math.floor(rand()*palette.length)], tail=850+rand()*700, guard=1750, period=length+guard*2;
+        const heads=[];
+        const phase=rand()*period,cycles=3+(tracks.length%3);
+        for(let pulse=0;pulse<3;pulse++) {
+          const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');
+          dot.setAttribute('r','.7');dot.setAttribute('fill',red?'#ffe0be':'#fff3d6');dot.setAttribute('data-layout-allow-overflow','');lights.appendChild(dot);
+          heads.push({phase:phase+pulse*period/3,dot});
+        }
+        tracks.push({name:route.name,points,length,direction,rgb,tail,guard,period,cycles,heads,grain:rand()*6.28,weight:.78+rand()*.22,red});
       }
-    });
-    window.trafficSpec = { duration: DURATION, width: WIDTH, height: HEIGHT, vehicles };
-    window.__timelines = window.__timelines || {};
-    window.__timelines['seoul-traffic'] = tl;
-    tl.seek(0);
+    }));
+    function pointAt(track,s) {
+      const p=track.points;
+      if(s<=0)return p[0];if(s>=track.length)return p.at(-1);
+      let lo=0,hi=p.length-1;
+      while(hi-lo>1){const mid=(lo+hi)>>1;if(p[mid].s<s)lo=mid;else hi=mid;}
+      const f=(s-p[lo].s)/(p[hi].s-p[lo].s);
+      return {s,x:p[lo].x+(p[hi].x-p[lo].x)*f,y:p[lo].y+(p[hi].y-p[lo].y)*f,depth:p[lo].depth+(p[hi].depth-p[lo].depth)*f};
+    }
+    function ribbon(points, width, style, blur=0) {
+      if(points.length<2)return;
+      const edge=(i,sign)=>{
+        const p=points[i],a=points[Math.max(0,i-1)],b=points[Math.min(points.length-1,i+1)];
+        const dx=b.x-a.x,dy=b.y-a.y,n=Math.hypot(dx,dy)||1,w=width(p.depth)/2;
+        return [p.x-sign*dy/n*w,p.y+sign*dx/n*w];
+      };
+      ctx.beginPath();
+      for(let i=0;i<points.length;i++){const [x,y]=edge(i,1);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}
+      for(let i=points.length-1;i>=0;i--){const [x,y]=edge(i,-1);ctx.lineTo(x,y);}
+      ctx.closePath();ctx.filter=blur?`blur(${blur}px)`:'none';ctx.fillStyle=style;ctx.fill();
+    }
+    function draw(time) {
+      ctx.clearRect(0,0,WIDTH,HEIGHT);ctx.globalCompositeOperation='screen';
+      for(const track of tracks) {
+        const [r,g,b]=track.rgb, rgb=`${r},${g},${b}`;
+        // One filled ribbon eliminates seams between independently rasterized line segments.
+        ribbon(track.points,d=>1.1+d*1.0,`rgba(${rgb},${.27*track.weight})`);
+        for(const head of track.heads) {
+          const s=mod(head.phase+track.direction*time/DURATION*track.cycles*track.period,track.period)-track.guard;
+          const headPoint=pointAt(track,clamp(s,0,track.length));
+          head.dot.setAttribute('cx',headPoint.x);head.dot.setAttribute('cy',headPoint.y);
+          head.dot.setAttribute('r',.4+.6*headPoint.depth);
+          head.dot.setAttribute('opacity',s<0||s>track.length?'0':'.8');
+          const start=s-track.direction*track.tail,end=s+track.direction*80;
+          const low=Math.max(0,Math.min(start,end)),high=Math.min(track.length,Math.max(start,end));
+          if(high<=low)continue;
+          const points=[pointAt(track,low),...track.points.filter(p=>p.s>low&&p.s<high),pointAt(track,high)];
+          const tailPoint=pointAt(track,clamp(start,0,track.length));
+          const tipPoint=pointAt(track,clamp(end,0,track.length));
+          const gradient=(core,opacity)=>{
+            const g=ctx.createLinearGradient(tailPoint.x,tailPoint.y,tipPoint.x,tipPoint.y);
+            const color=core?(track.red?'255,219,172':'255,250,231'):rgb;
+            // Fade according to the uncut exposure, including pulses continuing off screen.
+            const intensityAt=p=>{
+              const distance=(s-p.s)*track.direction;
+              return distance>=0?Math.exp(-distance/(track.tail*.7))*clamp((track.tail-distance)/150,0,1):Math.exp(-Math.pow(distance/44,2));
+            };
+            const ordered=track.direction>0?points:[...points].reverse();
+            for(let i=0;i<=12;i++){
+              const f=i/12,point=ordered[Math.round(f*(ordered.length-1))];
+              g.addColorStop(f,`rgba(${color},${intensityAt(point)*opacity*track.weight})`);
+            }
+            return g;
+          };
+          ribbon(points,d=>3.5+d*7,gradient(false,.25),2.1);
+          ribbon(points,d=>1.25+d*2.4,gradient(false,.9));
+          ribbon(points,d=>.6+d*1.05,gradient(true,.95));
+        }
+      }
+      // Foreground foliage occludes the light layer while the original photo stays untouched.
+      ctx.filter='blur(1px)';ctx.globalCompositeOperation='destination-out';ctx.fillStyle='#000';
+      ctx.beginPath();ctx.moveTo(0,667*sy);
+      [[38,706],[67,739],[84,779],[71,824],[146,841],[171,871],[212,913],[250,941],[0,941]].forEach(([x,y])=>ctx.lineTo(x*sx,y*sy));ctx.closePath();ctx.fill();
+      ctx.filter='none';
+    }
+    const state={time:0};draw(0);
+    const tl=gsap.timeline({paused:true});
+    tl.to(state,{time:DURATION,duration:DURATION,ease:'none',onUpdate:()=>draw(state.time)},0);
+    window.trafficSpec={duration:DURATION,width:WIDTH,height:HEIGHT,style:'continuous-long-exposure',tracks:tracks.length,routeNames:routes.map(r=>r.name)};
+    window.__timelines=window.__timelines||{};
+    window.__timelines['seoul-traffic']=tl;
   </script>
 </body>
 </html>
