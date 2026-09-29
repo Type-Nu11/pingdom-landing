@@ -72,29 +72,23 @@ const revealObserver = new IntersectionObserver(entries => {
 $$('.reveal').forEach(element => revealObserver.observe(element));
 const hero = $('.hero');
 const heroArt = $('.hero-art');
-const motionToggle = $('#motion-toggle');
-let motionPaused = false;
 let heroVisible = true;
 function syncHeroMotion() {
-  const paused = motionPaused || reducedMotion.matches || !heroVisible || document.hidden || document.documentElement.classList.contains('intro-pending');
+  const paused = reducedMotion.matches || !heroVisible || document.hidden || document.documentElement.classList.contains('intro-pending');
   hero.classList.toggle('motion-paused', paused);
-  motionToggle.hidden = reducedMotion.matches;
-  motionToggle.setAttribute('aria-pressed', String(motionPaused));
-  motionToggle.setAttribute('aria-label', motionPaused ? '첫 화면 애니메이션 재생' : '첫 화면 애니메이션 멈추기');
   if (paused) {
     hero.style.removeProperty('--pointer-x');
     hero.style.removeProperty('--pointer-y');
     heroArt.style.removeProperty('--scroll-y');
   }
 }
-motionToggle.addEventListener('click', () => { motionPaused = !motionPaused; syncHeroMotion(); });
 // 화면 밖에서는 장식 애니메이션을 멈춰 불필요한 렌더링을 줄입니다.
 new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; syncHeroMotion(); }).observe(hero);
 document.addEventListener('visibilitychange', syncHeroMotion);
 reducedMotion.addEventListener('change', syncHeroMotion);
 syncHeroMotion();
 hero.addEventListener('pointermove', event => {
-  if (reducedMotion.matches || motionPaused || event.pointerType !== 'mouse' || document.documentElement.classList.contains('intro-pending')) return;
+  if (reducedMotion.matches || event.pointerType !== 'mouse' || document.documentElement.classList.contains('intro-pending')) return;
   const rect = hero.getBoundingClientRect();
   const x = (event.clientX - rect.left) / rect.width - .5;
   const y = (event.clientY - rect.top) / rect.height - .5;
@@ -106,7 +100,7 @@ hero.addEventListener('pointerleave', () => {
 });
 let scrollQueued = false;
 function updateParallax() {
-  if (!reducedMotion.matches && !motionPaused && !document.documentElement.classList.contains('intro-pending') && innerWidth > 700 && scrollY < hero.offsetHeight) {
+  if (!reducedMotion.matches && !document.documentElement.classList.contains('intro-pending') && innerWidth > 700 && scrollY < hero.offsetHeight) {
     heroArt.style.setProperty('--scroll-y', scrollY * .08 + 'px');
   }
   scrollQueued = false;
