@@ -11,7 +11,9 @@ vec2 ringSpace(vec2 uv) {
   return vec2(.913089*p.x-.407760*p.y,(.407760*p.x+.913089*p.y)*1.4);
 }
 float release(vec2 uv) {
-  return 1.05+(1.0-uv.x)*.77+noise(uv*vec2(35.0,12.0))*.2;
+  float front=1.02+(1.0-uv.x)*1.04+noise(uv*vec2(7.0,3.0))*.09;
+  float grain=hash(floor(uv*vec2(700.0,210.0)))*.035;
+  return front+noise(uv*vec2(90.0,27.0))*.025+grain;
 }
 float surface(vec2 uv) {
   vec2 p=ringSpace(uv);
@@ -23,7 +25,7 @@ float material(float t,vec2 uv) { return smoothstep(surface(uv)+.1,surface(uv)+.
 const vertexCommon = `
 precision highp float;
 uniform vec2 uViewport,uImage,uCenter,uWord,uWordCenter;
-uniform float uTime,uAngle,uDpr;
+uniform float uTime,uAngle,uDpr,uDotStart;
 ${noise}
 vec4 project(vec2 p) { return vec4((uCenter+p)/uViewport*vec2(2,-2)+vec2(-1,1),0,1); }
 `;
@@ -34,7 +36,8 @@ vec3 flight(vec2 target,vec2 origin,vec3 seed,float t) {
   float radius=length(polar);
   float born=release(origin);
   float landing=surface(target+.5)+seed.y*.12;
-  float p=clamp((t-born)/(landing-born),0.0,1.0);
+  float age=max(0.0,t-born);
+  float p=clamp(age/(landing-born),0.0,1.0);
   float capture=p*p*p*(p*(p*6.0-15.0)+10.0);
   float free=pow(max(0.0,sin(p*3.14159265)),1.8);
   vec2 source=uWordCenter-uCenter+(origin-.5)*uWord;
@@ -43,7 +46,8 @@ vec3 flight(vec2 target,vec2 origin,vec3 seed,float t) {
   float r=radius+(1.0-capture)*(.21+seed.z*.15);
   vec2 orbit=fromRing(vec2(cos(theta),sin(theta))*r);
   vec2 pos=mix(source,orbit,capture);
-  pos+=vec2(uImage.x*.22,-uImage.y*.22)*free;
+  float spread=smoothstep(420.0,800.0,uViewport.x);
+  pos+=vec2(uImage.x*mix(.10,.22,spread),-uImage.y*.22)*free;
   float lane=floor(seed.x*7.0)/7.0;
   float streamAngle=-1.6+p*6.2+origin.x*.8+lane*.07;
   float streamRadius=.43+lane*.13+.026*sin(p*8.0+lane*3.0);
@@ -54,12 +58,19 @@ vec3 flight(vec2 target,vec2 origin,vec3 seed,float t) {
   vec2 curl=vec2(sin(wave+origin.y*3.0),cos(wave*.91+origin.x*3.0));
   vec2 dust=vec2(sin(t*5.0+seed.y*34.0),cos(t*4.3+seed.z*29.0));
   pos+=(curl*uImage.y*(.01+lane*.008)+dust*uImage.y*.005)*free;
+  // 立ち上がりの低速区間でも文字の縁から剥がれ、静止した粒子の文字が残らないようにします。
+  float peel=smoothstep(0.0,.42,age)*(1.0-smoothstep(.16,.64,p));
+  vec2 wind=vec2(1.0,-.3+.17*sin(origin.x*14.0+origin.y*5.0));
+  pos+=wind*uImage.x*.075*mix(.48,1.0,spread)*(.35+seed.y*1.45)*peel;
+  float loosen=smoothstep(.02,.5,age)*(1.0-smoothstep(.2,.66,p));
+  float filament=sin(origin.y*24.0+origin.x*9.0+seed.x*1.7+age*2.4);
+  pos+=vec2(sin(seed.z*6.28318+age)*.016,filament*.047)*uImage*loosen;
   float depth=1.0+free*(seed.z-.5)*.9;
   return vec3(pos,depth);
 }
 float airborne(vec2 target,vec2 origin,float time) {
   float born=release(origin);
-  return smoothstep(born-.06,born+.12,time)*(1.0-material(time,target+.5));
+  return smoothstep(born-.015,born+.045,time)*(1.0-material(time,target+.5));
 }
 `;
 const particleVertex = `${vertexCommon}${flight}
@@ -73,10 +84,12 @@ void main() {
   gl_Position=project(p.xy);
   float spark=step(.993,aSeed.z);
   vSoft=step(.98,aSeed.z)*(1.0-spark);
-  gl_PointSize=uDpr*(.85+aSeed.y*1.6+spark*3.5+vSoft*12.0)*p.z;
-  float alpha=airborne(aTarget,aOrigin,uTime);
   float age=max(0.0,uTime-release(aOrigin));
-  vec3 tint=mix(vec3(1.0,.87,.98),mix(aColor.rgb,vec3(1.0,.06,.36),.38),smoothstep(.0,.75,age));
+  float scatter=smoothstep(.12,.65,age);
+  gl_PointSize=uDpr*(.72+aSeed.y*1.25+(spark*3.5+vSoft*12.0)*scatter)*p.z;
+  float alpha=airborne(aTarget,aOrigin,uTime);
+  vec3 ink=mix(vec3(.965,.941,.988),vec3(1.0,.09,.42),step(uDotStart,aOrigin.x));
+  vec3 tint=mix(ink,mix(aColor.rgb,vec3(1.0,.06,.36),.38),smoothstep(.06,.62,age));
   float shimmer=.8+.2*sin(aSeed.x*63.0+uTime*5.0);
   vColor=vec4(tint,alpha*aColor.a*(.43+.32*aSeed.z)*shimmer*mix(1.0,.09,vSoft));
 }
@@ -169,9 +182,9 @@ ${noise}
 void main() {
   vec4 word=texture2D(uTexture,vUv);
   float born=release(vUv);
-  float ink=1.0-smoothstep(born-.07,born+.09,uTime);
-  float edge=exp(-pow((uTime-born)/.085,2.0));
-  vec3 color=mix(vec3(.97,.94,1.0),vec3(1.0,.09,.4),edge*.85);
+  float ink=1.0-smoothstep(born-.018,born+.022,uTime);
+  float edge=exp(-pow((uTime-born)/.025,2.0));
+  vec3 color=word.rgb+vec3(.045,.025,.04)*edge;
   gl_FragColor=vec4(color,word.a*ink*smoothstep(.06,.45,uTime));
 }
 `;
@@ -275,6 +288,7 @@ export function createRingFormation(canvas, image, model, hero) {
       gl.uniform2f(gl.getUniformLocation(program, 'uCenter'), box.left-bounds.left+box.width/2, box.top-bounds.top+box.height/2+(mobile ? 7 : 9));
       gl.uniform1f(gl.getUniformLocation(program, 'uAngle'), (mobile ? -6 : -7)*Math.PI/180);
       gl.uniform1f(gl.getUniformLocation(program, 'uDpr'), dpr);
+      gl.uniform1f(gl.getUniformLocation(program, 'uDotStart'), dotStart);
       gl.uniform2f(gl.getUniformLocation(program, 'uWord'), wordWidth, wordHeight);
       gl.uniform2f(gl.getUniformLocation(program, 'uWordCenter'), width / 2, height * .46);
       return { program, attributes, time: gl.getUniformLocation(program, 'uTime') };
@@ -284,12 +298,19 @@ export function createRingFormation(canvas, image, model, hero) {
     const wordCanvas = document.createElement('canvas');
     wordCanvas.width = 1400; wordCanvas.height = 420;
     const wordContext = wordCanvas.getContext('2d', { willReadFrequently: true });
-    wordContext.font = '700 320px Pretendard, sans-serif';
-    const textWidth = wordContext.measureText('Pingdom').width;
-    wordContext.font = `700 ${320 * 1290 / textWidth}px Pretendard, sans-serif`;
-    wordContext.textAlign = 'center'; wordContext.textBaseline = 'middle';
-    wordContext.fillStyle = '#fff';
-    wordContext.fillText('Pingdom', 700, 204);
+    wordContext.font = '640 320px Pretendard, sans-serif';
+    const textWidth = wordContext.measureText('pingdom.').width;
+    wordContext.font = `640 ${320 * 1290 / textWidth}px Pretendard, sans-serif`;
+    const metrics = wordContext.measureText('pingdom.');
+    const textLeft = (1400 - metrics.width) / 2;
+    const baseline = (420 + metrics.actualBoundingBoxAscent - metrics.actualBoundingBoxDescent) / 2;
+    const dotX = textLeft + wordContext.measureText('pingdom').width;
+    const dotStart = dotX / 1400;
+    wordContext.textAlign = 'left'; wordContext.textBaseline = 'alphabetic';
+    wordContext.fillStyle = '#f6f0fc';
+    wordContext.fillText('pingdom', textLeft, baseline);
+    wordContext.fillStyle = '#ff176b';
+    wordContext.fillText('.', dotX, baseline);
     const wordPixels = wordContext.getImageData(0, 0, 1400, 420).data;
     const wordPoints = [];
     for (let y = 0; y < 420; y += 2) for (let x = 0; x < 1400; x += 2) {
