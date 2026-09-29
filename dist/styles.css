@@ -1,6 +1,6 @@
 @font-face{font-family:Pretendard;src:url('assets/pretendard-variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
 :root{--ink:#080808;--paper:#eeede9;--pink:#ff176b;--gray:#8b898b;--ease:cubic-bezier(.22,1,.36,1)}
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-user-select:none;user-select:none}
 html{scroll-behavior:smooth;scroll-padding-top:24px}
 body{margin:0;background:var(--ink);color:var(--paper);font-family:Pretendard,Arial,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
 a{color:inherit;text-decoration:none}
@@ -8,7 +8,6 @@ button{font:inherit;color:inherit;cursor:pointer}
 img{display:block;max-width:100%;height:auto}
 button,a{-webkit-tap-highlight-color:transparent}
 a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--pink);outline-offset:7px}
-::selection{background:var(--pink);color:white}
 .skip-link{position:fixed;clip-path:inset(50%);width:1px;height:1px;overflow:hidden;z-index:100}
 .skip-link:focus{clip-path:none;width:auto;height:auto;top:12px;left:12px;padding:12px;background:var(--pink)}
 .accent{color:var(--pink)}
