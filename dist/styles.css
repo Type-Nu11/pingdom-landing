@@ -1,8 +1,8 @@
-@font-face{font-family:Pretendard;src:url('assets/pretendard-variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:PingdomSans;src:url('assets/pingdom-sans.woff2') format('woff2');font-weight:100 900;font-display:swap}
 :root{--ink:#080808;--paper:#eeede9;--pink:#ff176b;--gray:#8b898b;--ease:cubic-bezier(.22,1,.36,1)}
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none}
 html{scroll-behavior:smooth;scroll-padding-top:24px}
-body{margin:0;background:var(--ink);color:var(--paper);font-family:Pretendard,Arial,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:PingdomSans,Arial,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;cursor:pointer}
 img{display:block;max-width:100%;height:auto}
@@ -145,8 +145,8 @@ h2{font-size:clamp(45px,5.4vw,86px);letter-spacing:-.045em;line-height:1.15;font
 .place-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .place-card{position:relative;display:flex;flex-direction:column;text-align:left;border:0;padding:0 0 16px;background:transparent;color:#2b1b29;border-bottom:2px solid #dcd1d8;transition:transform .3s,border-color .3s}
 .place-card:hover{transform:translateY(-5px)}.place-card[aria-pressed=true]{border-color:#f02269}
-.place-photo{display:block;width:100%;height:205px;border-radius:10px;background-image:url('assets/ai-places-triptych.png');background-size:300% 100%;background-repeat:no-repeat;margin-bottom:18px}
-.place-photo-cafe{background-position:0 50%}.place-photo-dining{background-position:50% 50%}.place-photo-popup{background-position:100% 50%}
+.place-photo{display:block;width:100%;height:205px;border-radius:10px;overflow:hidden;margin-bottom:18px}
+.place-photo img{width:300%;max-width:none;height:100%}.place-photo-dining img{transform:translateX(-33.333333%)}.place-photo-popup img{transform:translateX(-66.666667%)}
 .place-type{font-size:10px;letter-spacing:.16em;color:#9b5480;margin-bottom:8px;font-weight:600}
 .place-card strong{font-size:21px;letter-spacing:-.055em;font-weight:600;line-height:1.4}.place-meta{font-size:14px;color:#86737f;margin-top:7px}
 .place-check{position:absolute;top:12px;right:12px;border-radius:50%;height:30px;width:30px;display:grid;place-items:center;background:#f3246b;color:#fff;opacity:0;transform:scale(.6);transition:opacity .3s,transform .3s}.place-card[aria-pressed=true] .place-check{opacity:1;transform:scale(1)}

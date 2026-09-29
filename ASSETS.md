@@ -1,5 +1,10 @@
 # Assets
 
+- `dist/assets/*-preview.webp`: 앱 PNG 원본을 너비 960px로 축소한 미리보기입니다. 확대 모달에서는 원본 PNG를 사용합니다.
+- `dist/assets/pingdom-portal-lossless.webp`, `ai-places-triptych-lossless.webp`: 같은 이름의 PNG와 해상도·RGBA 픽셀이 동일한 무손실 표시용 파일입니다.
+- `dist/assets/pingdom-sans.woff2`: Pretendard에서 현재 사이트 문구만 추출하고 예약 이름을 사용하지 않도록 내부 이름을 PingdomSans로 변경한 가변 글꼴 서브셋입니다. 원본의 SIL Open Font License를 따르며 원본과 라이선스를 함께 보관합니다. [OFL 웹폰트 이름 안내](https://openfontlicense.org/webfonts-and-reserved-font-names/)에 따라 저작자·라이선스 메타데이터도 보존합니다.
+- 위 최적화 자산은 `scripts/optimize-assets.py`로 재생성합니다. 문구 변경 시 글꼴도 함께 다시 생성해야 합니다.
+
 - `dist/assets/app-*.webp`, `web-*.webp`, `team-*.webp`: 사용자 제공 타입널 포트폴리오 PDF의 실제 화면 및 최초 팀 프로필 이미지.
 - `dist/assets/pretendard-variable.woff2`: Pretendard 1.3.9. SIL Open Font License. 라이선스는 같은 폴더의 Pretendard-LICENSE.txt.
 - `dist/assets/pingdom-pin.png`: 이 프로젝트를 위해 내장 ImageGen으로 생성한 메인 비주얼. 공식 로고를 대체하지 않는 장식용 장소 핀.

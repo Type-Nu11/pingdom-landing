@@ -298,9 +298,9 @@ export function createRingFormation(canvas, image, model, hero) {
     const wordCanvas = document.createElement('canvas');
     wordCanvas.width = 1400; wordCanvas.height = 420;
     const wordContext = wordCanvas.getContext('2d', { willReadFrequently: true });
-    wordContext.font = '640 320px Pretendard, sans-serif';
+    wordContext.font = '640 320px PingdomSans, sans-serif';
     const textWidth = wordContext.measureText('pingdom.').width;
-    wordContext.font = `640 ${320 * 1290 / textWidth}px Pretendard, sans-serif`;
+    wordContext.font = `640 ${320 * 1290 / textWidth}px PingdomSans, sans-serif`;
     const metrics = wordContext.measureText('pingdom.');
     const textLeft = (1400 - metrics.width) / 2;
     const baseline = (420 + metrics.actualBoundingBoxAscent - metrics.actualBoundingBoxDescent) / 2;
@@ -452,31 +452,42 @@ export function createRingFormation(canvas, image, model, hero) {
     return {
       render(time) {
         if (disposed) return;
+        // These bounds enclose release()/surface() visibility, including dissolve edges.
+        // Skip transparent passes without changing particle count, resolution or timing.
+        const showParticles = time >= 2.0 && time < 7.1;
         gl.activeTexture(gl.TEXTURE0);
-        gl.bindFramebuffer(gl.FRAMEBUFFER, scene.framebuffer);
-        gl.viewport(0,0,scene.w,scene.h);
-        gl.clear(gl.COLOR_BUFFER_BIT);
-        gl.enable(gl.BLEND);
-        gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-        draw(particles,time,gl.POINTS,positions.length/2);
-        draw(glints,time,gl.TRIANGLES,glintCount*6);
-        draw(trails,time,gl.TRIANGLES,trailCount*segments*6);
-        gl.disable(gl.BLEND);
-        blurInto(scene,glowA,2.5/glowA.w,0);
-        blurInto(glowA,glowB,0,2.5/glowB.h);
+        if (showParticles) {
+          gl.bindFramebuffer(gl.FRAMEBUFFER, scene.framebuffer);
+          gl.viewport(0,0,scene.w,scene.h);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+          gl.enable(gl.BLEND);
+          gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+          draw(particles,time,gl.POINTS,positions.length/2);
+          draw(glints,time,gl.TRIANGLES,glintCount*6);
+          draw(trails,time,gl.TRIANGLES,trailCount*segments*6);
+          gl.disable(gl.BLEND);
+          blurInto(scene,glowA,2.5/glowA.w,0);
+          blurInto(glowA,glowB,0,2.5/glowB.h);
+        }
         gl.bindFramebuffer(gl.FRAMEBUFFER,null);
         gl.viewport(0,0,canvas.width,canvas.height);
         gl.clear(gl.COLOR_BUFFER_BIT);
         gl.enable(gl.BLEND);
-        gl.bindTexture(gl.TEXTURE_2D,texture);
         gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
-        draw(material,time,gl.TRIANGLES,6);
-        gl.bindTexture(gl.TEXTURE_2D,wordTexture);
-        draw(word,time,gl.TRIANGLES,6);
-        gl.bindTexture(gl.TEXTURE_2D,scene.texture);
-        gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D,glowB.texture);
-        gl.blendFuncSeparate(gl.ONE,gl.ONE,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
-        draw(composite,time,gl.TRIANGLES,6);
+        if (time >= 4.88) {
+          gl.bindTexture(gl.TEXTURE_2D,texture);
+          draw(material,time,gl.TRIANGLES,6);
+        }
+        if (time < 3.24) {
+          gl.bindTexture(gl.TEXTURE_2D,wordTexture);
+          draw(word,time,gl.TRIANGLES,6);
+        }
+        if (showParticles) {
+          gl.bindTexture(gl.TEXTURE_2D,scene.texture);
+          gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D,glowB.texture);
+          gl.blendFuncSeparate(gl.ONE,gl.ONE,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+          draw(composite,time,gl.TRIANGLES,6);
+        }
       },
       dispose
     };

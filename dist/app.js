@@ -1,5 +1,5 @@
 import { createImagePanel, warmImages } from './panel-images.mjs';
-import { startHeroIntro } from './hero-intro.mjs?v=word-3';
+import { startHeroIntro } from './hero-intro.mjs?v=perf-2';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -12,7 +12,7 @@ const features = [
 const tabs = $$('[data-feature]');
 const featureImages = createImagePanel($('#feature-panel'));
 function featurePaths(index) {
-  return [features[index].primary, features[index].secondary].map(name => 'assets/' + name + '-source.png');
+  return [features[index].primary, features[index].secondary].map(name => 'assets/' + name + '-preview.webp');
 }
 function warmOnIntent(buttons, paths) {
   buttons.forEach((button, index) => {
@@ -43,7 +43,7 @@ function selectFeature(index, focus = false) {
       return span;
     }));
     for (const image of [$('#feature-screen'), $('#feature-secondary')]) {
-      image.parentElement.dataset.zoom = image.getAttribute('src');
+      image.parentElement.dataset.zoom = image.getAttribute('src').replace('-preview.webp', '-source.png');
       image.parentElement.dataset.zoomTitle = image.alt;
       image.parentElement.setAttribute('aria-label', image.alt + ' 확대');
     }

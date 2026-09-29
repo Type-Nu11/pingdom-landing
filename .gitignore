@@ -3,3 +3,7 @@
 .DS_Store
 
 review/
+
+.vercel/
+.env*
+.asset-tools/
