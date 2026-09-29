@@ -25,6 +25,11 @@ function fixture({ reduced = false, hash = '', navigation = 'navigate', holdImag
   const logo = { complete: logoReady, naturalWidth: logoReady ? 128 : 0, decode: () => logoLoad.promise };
   const animations = [], timers = new Map(), frames = new Map();
   const canvas = new EventTarget();
+  const model = { clientWidth: 800, clientHeight: 800 };
+  const hero = {
+    clientWidth: 1280, clientHeight: 900,
+    querySelector: selector => selector === '.intro-particles' ? canvas : selector === '.intro-logo-source' ? logo : selector === '.hero-model' ? model : image
+  };
   let sequence = 0, completed = 0, disposed = 0;
   const rendered = [], formationCalls = [];
   const document = Object.assign(new EventTarget(), {
@@ -45,12 +50,12 @@ function fixture({ reduced = false, hash = '', navigation = 'navigate', holdImag
       if (!gpuAvailable) throw new Error('WebGL unavailable');
       return { render: time => rendered.push(time), dispose: () => disposed++ };
     },
-    hero: { querySelector: selector => selector === '.intro-particles' ? canvas : selector === '.intro-logo-source' ? logo : image }, reducedMotion, onComplete: () => completed++
+    hero, reducedMotion, onComplete: () => completed++
   });
   runInContext(bootstrap, context);
   const emit = (target, name, properties = {}) => target.dispatchEvent(Object.assign(new Event(name), properties));
   return {
-    classes, animations, imageLoad, image, logoLoad, logo, window, document, reducedMotion, canvas, frames, rendered, formationCalls,
+    classes, animations, imageLoad, image, logoLoad, logo, window, document, reducedMotion, canvas, hero, model, frames, rendered, formationCalls,
     start: () => { runInContext(moduleSource, context); runInContext('startHeroIntro({ hero, reducedMotion, onComplete })', context); },
     get completed() { return completed; },
     get disposed() { return disposed; },
@@ -234,9 +239,11 @@ test('초기 레이아웃 변경은 허용하고 재생 중 화면 폭이 바뀌
   assert.equal(f.disposed, 1);
 });
 
-test('모바일에서 같은 폭의 높이 변화는 인트로를 취소하거나 다시 시작하지 않는다', async () => {
+test('모바일에서 실제 레이아웃이 유지되는 높이 변화는 인트로를 취소하거나 다시 시작하지 않는다', async () => {
   const f = fixture();
   f.window.innerWidth = 390; f.window.innerHeight = 844;
+  f.hero.clientWidth = 390; f.hero.clientHeight = 844;
+  f.model.clientWidth = 374; f.model.clientHeight = 374;
   f.start(); await tick();
   f.advance(1000);
   for (const height of [760, 844, 780]) {
@@ -252,4 +259,30 @@ test('모바일에서 같은 폭의 높이 변화는 인트로를 취소하거�
   f.advance(7800); await tick();
   assert.equal(f.completed, 1);
   assert.equal(f.disposed, 1);
+});
+
+test('같은 폭의 높이 변경으로 히어로 크기가 달라지면 이전 렌더 좌표를 정리한다', async () => {
+  const f = fixture(); f.start(); await tick();
+  f.window.innerHeight = 700;
+  f.hero.clientHeight = 800;
+  f.emit(f.window, 'resize'); await tick();
+  assert.equal(f.classes.has('intro-pending'), false);
+  assert.equal(f.frames.size, 0);
+  assert.equal(f.disposed, 1);
+  assert.equal(f.completed, 1);
+});
+
+test('히어로 크기가 유지되어도 높이 변경으로 모델만 축소되면 이전 렌더 좌표를 정리한다', async () => {
+  const f = fixture();
+  f.window.innerHeight = 750;
+  f.hero.clientHeight = 800;
+  f.model.clientWidth = 675; f.model.clientHeight = 675;
+  f.start(); await tick();
+  f.window.innerHeight = 700;
+  f.model.clientWidth = 630; f.model.clientHeight = 630;
+  f.emit(f.window, 'resize'); await tick();
+  assert.equal(f.classes.has('intro-pending'), false);
+  assert.equal(f.frames.size, 0);
+  assert.equal(f.disposed, 1);
+  assert.equal(f.completed, 1);
 });

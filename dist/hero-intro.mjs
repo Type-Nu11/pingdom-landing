@@ -4,14 +4,18 @@ export function startHeroIntro({ hero, reducedMotion, onComplete }) {
   const root = document.documentElement;
   if (!root.classList.contains('intro-pending')) return;
   const canvas = hero.querySelector('.intro-particles');
-  let ended = false, readyTimeout, frame, formation, viewportWidth;
+  const model = hero.querySelector('.hero-model');
+  let ended = false, readyTimeout, frame, formation, viewportWidth, layout;
   const animations = [];
   const finish = () => window.dispatchEvent(new Event('pingdom:intro-finish'));
   if (!canvas) { finish(); onComplete(); return; }
   const endForMotion = () => { if (reducedMotion.matches) finish(); };
   const endWhenHidden = () => { if (document.hidden && formation) finish(); };
-  // 모바일 주소표시줄로 높이만 바뀌는 동안에는 같은 타임라인을 유지합니다.
-  const endWhenResized = () => { if (window.innerWidth !== viewportWidth) finish(); };
+  // 주소표시줄 변화는 허용하되 실제 렌더 영역이 달라지면 이전 좌표를 계속 사용하지 않습니다.
+  const endWhenResized = () => {
+    if (window.innerWidth !== viewportWidth || hero.clientWidth !== layout.heroWidth || hero.clientHeight !== layout.heroHeight ||
+      model.clientWidth !== layout.modelWidth || model.clientHeight !== layout.modelHeight) finish();
+  };
   function cleanup() {
     if (ended) return;
     ended = true;
@@ -50,8 +54,9 @@ export function startHeroIntro({ hero, reducedMotion, onComplete }) {
   }, finish).finally(() => clearTimeout(readyTimeout));
 
   function play() {
-    formation = createRingFormation(canvas, image, hero.querySelector('.hero-model'), hero, logo);
+    formation = createRingFormation(canvas, image, model, hero, logo);
     viewportWidth = window.innerWidth;
+    layout = { heroWidth: hero.clientWidth, heroHeight: hero.clientHeight, modelWidth: model.clientWidth, modelHeight: model.clientHeight };
     window.addEventListener('resize', endWhenResized);
     const startTime = document.timeline.currentTime;
     function animate(selector, keyframes, duration, delay) {
