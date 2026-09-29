@@ -2,6 +2,7 @@ import { createImagePanel, warmImages } from './panel-images.mjs';
 import { startHeroIntro } from './hero-intro.mjs?v=traffic-gold-1';
 import { createRingFlow } from './ring-flow.mjs?v=halftone-1';
 import { createHeroBackground } from './hero-background.mjs?v=traffic-1';
+import { createScrollStory } from './scroll-story.mjs?v=scroll-story-1';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -66,12 +67,7 @@ $('.feature-tabs').addEventListener('keydown', event => {
   if (next !== undefined) { event.preventDefault(); selectFeature(next, true); }
 });
 document.documentElement.classList.add('js');
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
-  });
-}, { threshold: .12 });
-$$('.reveal').forEach(element => revealObserver.observe(element));
+const scrollStory = createScrollStory({ reducedMotion });
 const hero = $('.hero');
 const ringFlow = createRingFlow({ hero, reducedMotion });
 const heroBackground = createHeroBackground({ hero, reducedMotion });
@@ -95,7 +91,6 @@ window.addEventListener('pagehide', () => {
 syncHeroMotion();
 reducedMotion.addEventListener('change', () => {
   if (reducedMotion.matches) {
-    $$('.reveal').forEach(element => element.classList.add('is-visible'));
     document.getAnimations().forEach(animation => animation.cancel());
   }
 });
@@ -113,6 +108,7 @@ function bindTabs(selector, panelSelector, render) {
     buttons.forEach((button, i) => { button.setAttribute('aria-selected', String(i === index)); button.tabIndex = i === index ? 0 : -1; });
     $(panelSelector).setAttribute('aria-labelledby', buttons[index].id);
     render(index);
+    scrollStory.refresh();
     if (focus) buttons[index].focus();
   }
   buttons.forEach((button, i) => button.addEventListener('click', () => activate(i)));
