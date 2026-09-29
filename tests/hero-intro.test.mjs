@@ -69,14 +69,14 @@ test('정상 종료 후 잠금 클래스와 임시 효과를 해제하고 한 �
   const f = fixture(); f.start(); await tick();
   assert.equal(f.classes.has('intro-playing'), true);
   assert.ok(f.animations.length > 0);
-  f.advance(1200); f.advance(5400); await tick();
+  f.advance(1200); f.advance(6800); await tick();
   assert.equal(f.classes.has('intro-pending'), false);
   assert.equal(f.classes.has('intro-playing'), false);
   assert.equal(f.classes.has('intro-complete'), true);
   assert.ok(f.animations.every(animation => animation.cancelled));
   assert.equal(f.frames.size, 0);
   assert.equal(f.disposed, 1);
-  assert.deepEqual(f.rendered, [1.2, 5.4]);
+  assert.deepEqual(f.rendered, [1.2, 6.8]);
   f.emit(f.window, 'pingdom:intro-finish');
   assert.equal(f.completed, 1);
 });
@@ -106,7 +106,7 @@ test('디코딩 실패나 이미지 준비 시간 초과 시 즉시 본문을 �
 });
 
 test('모듈 로딩 실패 시 제한 시간 후 복구하며 늦은 모듈도 화면을 다시 잠그지 않는다', async () => {
-  const f = fixture(); f.expire(7500); f.start(); await tick();
+  const f = fixture(); f.expire(9500); f.start(); await tick();
   assert.equal(f.classes.has('intro-pending'), false);
   assert.equal(f.animations.length, 0);
 });
