@@ -11,14 +11,14 @@ vec2 ringSpace(vec2 uv) {
   return vec2(.913089*p.x-.407760*p.y,(.407760*p.x+.913089*p.y)*1.4);
 }
 float release(vec2 uv) {
-  float front=1.02+(1.0-uv.x)*1.04+noise(uv*vec2(7.0,3.0))*.09;
+  float front=2.02+(1.0-uv.x)*1.04+noise(uv*vec2(7.0,3.0))*.09;
   float grain=hash(floor(uv*vec2(700.0,210.0)))*.035;
   return front+noise(uv*vec2(90.0,27.0))*.025+grain;
 }
 float surface(vec2 uv) {
   vec2 p=ringSpace(uv);
   float arc=acos(clamp(-p.x/max(length(p),.001),-1.0,1.0));
-  return 3.78+arc*.36+noise(uv*8.0)*.3+noise(uv*35.0)*.13;
+  return 4.78+arc*.36+noise(uv*8.0)*.3+noise(uv*35.0)*.13;
 }
 float material(float t,vec2 uv) { return smoothstep(surface(uv)+.1,surface(uv)+.75,t); }
 `;
@@ -185,7 +185,7 @@ void main() {
   float ink=1.0-smoothstep(born-.018,born+.022,uTime);
   float edge=exp(-pow((uTime-born)/.025,2.0));
   vec3 color=word.rgb+vec3(.045,.025,.04)*edge;
-  gl_FragColor=vec4(color,word.a*ink*smoothstep(.06,.45,uTime));
+  gl_FragColor=vec4(color,word.a*ink*smoothstep(.06,1.0,uTime));
 }
 `;
 const screenVertex = `
