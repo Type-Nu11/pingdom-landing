@@ -1,5 +1,6 @@
 import { createImagePanel, warmImages } from './panel-images.mjs';
 import { startHeroIntro } from './hero-intro.mjs?v=brand-1';
+import { createRingFlow } from './ring-flow.mjs?v=1';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -72,10 +73,12 @@ const revealObserver = new IntersectionObserver(entries => {
 $$('.reveal').forEach(element => revealObserver.observe(element));
 const hero = $('.hero');
 const heroArt = $('.hero-art');
-let heroVisible = true;
+const ringFlow = createRingFlow({ hero });
+let heroVisible = false;
 function syncHeroMotion() {
   const paused = reducedMotion.matches || !heroVisible || document.hidden || document.documentElement.classList.contains('intro-pending');
   hero.classList.toggle('motion-paused', paused);
+  ringFlow.setPaused(paused);
   if (paused) {
     hero.style.removeProperty('--pointer-x');
     hero.style.removeProperty('--pointer-y');
