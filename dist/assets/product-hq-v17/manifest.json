@@ -1,0 +1,385 @@
+{
+  "revision": 17,
+  "generated_at_utc": "2026-10-01T01:08:15.477Z",
+  "purpose": "첨부된 원본 앱 UI 전체 화면을 보존한 다섯 단말기 소개 자산",
+  "generation_method": "원본 PNG 바이트를 SVG 화면에 그대로 포함하고 단일 기기 프레임만 코드로 작성",
+  "design_viewbox": [
+    0,
+    0,
+    450,
+    920
+  ],
+  "screen_rect": [
+    24,
+    23,
+    402,
+    874
+  ],
+  "screen_radius": 56,
+  "output_dimensions": [
+    2250,
+    4600
+  ],
+  "device_frame_count": 1,
+  "status_row": "원본 UI에 포함된 한 줄만 사용",
+  "dynamic_island_count": 1,
+  "input_ui_regenerated": false,
+  "input_photo_edited": false,
+  "input_content_crop": "비율을 유지한 meet 배치. 공통 기기 화면의 둥근 모서리와 물리적 island만 적용",
+  "transparent_background": true,
+  "display_requirement": {
+    "minimum_native_ui_pixels_per_css_screen_pixel": 2,
+    "maximum_css_device_width": 340,
+    "maximum_css_screen_width": 303.73333333333335,
+    "basis": "2250px 출력 치수가 아닌 첨부 원본 UI의 실제 픽셀 수로 계산"
+  },
+  "renderer": {
+    "name": "sharp/librsvg",
+    "versions": {
+      "aom": "3.15.0",
+      "archive": "3.8.9",
+      "cairo": "1.18.4",
+      "cgif": "0.5.3",
+      "exif": "0.6.26",
+      "expat": "2.8.3",
+      "ffi": "3.8.0",
+      "fontconfig": "2.18.3",
+      "freetype": "2.14.3",
+      "fribidi": "1.0.16",
+      "glib": "2.89.4",
+      "harfbuzz": "14.3.1",
+      "heif": "1.23.2",
+      "highway": "1.4.0",
+      "imagequant": "2.4.1",
+      "lcms": "2.19.1",
+      "mozjpeg": "0826579",
+      "pango": "1.58.2",
+      "pixman": "0.46.4",
+      "png": "1.6.58",
+      "proxy-libintl": "0.5",
+      "rsvg": "2.62.91",
+      "tiff": "4.7.2",
+      "uhdr": "2.0.2",
+      "vips": "8.18.6",
+      "webp": "1.6.0",
+      "xml2": "2.15.3",
+      "zlib-ng": "2.3.3",
+      "sharp": "0.35.4"
+    },
+    "png": "lossless",
+    "webp": "lossless; alpha-zero RGB may be chosen by libwebp. PNG mirrors the final decoded WebP including invisible RGB",
+    "visible_output_pixels_changed_by_transparent_normalization": false
+  },
+  "assets": [
+    {
+      "role": "place",
+      "title": "장소 정보",
+      "basename": "app-place-hq-v17",
+      "source": {
+        "original_filename": "P1.png",
+        "file": "review/app-features-17/phone-ui-src/source-place-v17.png",
+        "bytes": 1562935,
+        "sha256": "9eeb941f5aa75d2db57c8cbc51bb2da77f51907a9988607aabcab1abd1904c34",
+        "dimensions": [
+          1608,
+          3496
+        ],
+        "has_alpha": true,
+        "alpha_extrema": [
+          255,
+          255
+        ],
+        "embedded_png_bytes_identical": true
+      },
+      "svg": {
+        "file": "dist/assets/product-hq-v17/app-place-hq-v17.svg",
+        "bytes": 2086195,
+        "sha256": "94237978753b536aa82c3bf00e91076d6e3ff1797a982bd7570ebfb4feb80d66"
+      },
+      "png": {
+        "file": "dist/assets/product-hq-v17/app-place-hq-v17.png",
+        "bytes": 3703517,
+        "sha256": "c07aa0689d2af49586be25e7b8e7c053153269755d0a7378721893001e460ce6"
+      },
+      "webp": {
+        "file": "dist/assets/product-hq-v17/app-place-hq-v17.webp",
+        "bytes": 1392898,
+        "sha256": "1674462fc9b8ef933d197698ce3a5ec019b749759cba8a6cebbc03c9fafb3804"
+      },
+      "fitted_source_rect": [
+        24,
+        23,
+        402,
+        874
+      ],
+      "source_aspect_preserved": true,
+      "source_content_not_cropped_before_physical_device_clip": true,
+      "actual_ui_intrinsic_width": 1608,
+      "maximum_css_ui_width": 303.73333333333335,
+      "native_ui_pixels_per_css_pixel": 5.294117647058823,
+      "minimum_2x_display_requirement_met": true,
+      "png_webp_rgba_exact": true,
+      "rendered_svg_visible_rgba_equals_output": true,
+      "alpha_zero_only_rgb_change_count": 297127,
+      "decoded_rgba_sha256": "e3be064af7e0ed7ef488c166938b210fc1fe64be9a15834c35de4de037777b01",
+      "transparent_pixel_count": 469319,
+      "partially_transparent_edge_pixel_count": 12404,
+      "outer_corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "embedded_image_count": 1,
+      "device_screen_clip_count": 1
+    },
+    {
+      "role": "community",
+      "title": "커뮤니티",
+      "basename": "app-community-hq-v17",
+      "source": {
+        "original_filename": "P2.png",
+        "file": "review/app-features-17/phone-ui-src/source-community-v17.png",
+        "bytes": 1232525,
+        "sha256": "9a6877662ea7485baee8e942240c5c751789b8c176e81c821734889165a9c8b6",
+        "dimensions": [
+          1608,
+          3496
+        ],
+        "has_alpha": true,
+        "alpha_extrema": [
+          255,
+          255
+        ],
+        "embedded_png_bytes_identical": true
+      },
+      "svg": {
+        "file": "dist/assets/product-hq-v17/app-community-hq-v17.svg",
+        "bytes": 1645645,
+        "sha256": "2c3d9554b87d8bda73dd534e900c10b89576ccbdb768b43e8d874d105764ef77"
+      },
+      "png": {
+        "file": "dist/assets/product-hq-v17/app-community-hq-v17.png",
+        "bytes": 2395314,
+        "sha256": "69e44257431811fce949ec7ea48527b1fb55302f174cd5a2d232c4f9b8ad64d4"
+      },
+      "webp": {
+        "file": "dist/assets/product-hq-v17/app-community-hq-v17.webp",
+        "bytes": 1108422,
+        "sha256": "363d7ceb8d8b45b3ab4fc1274e20f25afb05966139ec8f35e1d031fd8d217180"
+      },
+      "fitted_source_rect": [
+        24,
+        23,
+        402,
+        874
+      ],
+      "source_aspect_preserved": true,
+      "source_content_not_cropped_before_physical_device_clip": true,
+      "actual_ui_intrinsic_width": 1608,
+      "maximum_css_ui_width": 303.73333333333335,
+      "native_ui_pixels_per_css_pixel": 5.294117647058823,
+      "minimum_2x_display_requirement_met": true,
+      "png_webp_rgba_exact": true,
+      "rendered_svg_visible_rgba_equals_output": true,
+      "alpha_zero_only_rgb_change_count": 297127,
+      "decoded_rgba_sha256": "75f0e2cb56ea91b47584078d41c5235f77cd4a157c36e6c4c7c3979154c9b293",
+      "transparent_pixel_count": 469319,
+      "partially_transparent_edge_pixel_count": 12404,
+      "outer_corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "embedded_image_count": 1,
+      "device_screen_clip_count": 1
+    },
+    {
+      "role": "verification",
+      "title": "장소 검증",
+      "basename": "app-verification-hq-v17",
+      "source": {
+        "original_filename": "P3.png",
+        "file": "review/app-features-17/phone-ui-src/source-verification-v17.png",
+        "bytes": 249743,
+        "sha256": "7c549e3b1e023a22853b7c2d1d62976eb84431a195ce4b8d0f0e0b1ba51e90f2",
+        "dimensions": [
+          1608,
+          3512
+        ],
+        "has_alpha": true,
+        "alpha_extrema": [
+          255,
+          255
+        ],
+        "embedded_png_bytes_identical": true
+      },
+      "svg": {
+        "file": "dist/assets/product-hq-v17/app-verification-hq-v17.svg",
+        "bytes": 335271,
+        "sha256": "7b477509fdad6be8222276437bc4c5e2e483596a06ab9dd0b3f6d73f5a727b83"
+      },
+      "png": {
+        "file": "dist/assets/product-hq-v17/app-verification-hq-v17.png",
+        "bytes": 667949,
+        "sha256": "edacf86abc31a3566fc8fca442655c9bdec0074dd8cda1541bf2bba5a99c7f79"
+      },
+      "webp": {
+        "file": "dist/assets/product-hq-v17/app-verification-hq-v17.webp",
+        "bytes": 298004,
+        "sha256": "0fd9131f51295d6a977a70ebe09895fccf9c756e08d9da2e2c20856993839e09"
+      },
+      "fitted_source_rect": [
+        24.915717539863323,
+        23,
+        400.16856492027335,
+        874
+      ],
+      "source_aspect_preserved": true,
+      "source_content_not_cropped_before_physical_device_clip": true,
+      "actual_ui_intrinsic_width": 1608,
+      "maximum_css_ui_width": 302.34958238420654,
+      "native_ui_pixels_per_css_pixel": 5.318347018441243,
+      "minimum_2x_display_requirement_met": true,
+      "png_webp_rgba_exact": true,
+      "rendered_svg_visible_rgba_equals_output": true,
+      "alpha_zero_only_rgb_change_count": 296436,
+      "decoded_rgba_sha256": "bfb1d9f161290adbb3d15c3a6ec409ae3499b52521080afed22c07f1e374cc69",
+      "transparent_pixel_count": 469319,
+      "partially_transparent_edge_pixel_count": 12404,
+      "outer_corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "embedded_image_count": 1,
+      "device_screen_clip_count": 1
+    },
+    {
+      "role": "booking",
+      "title": "예약",
+      "basename": "app-booking-hq-v17",
+      "source": {
+        "original_filename": "ㅖ4.png",
+        "file": "review/app-features-17/phone-ui-src/source-booking-v17.png",
+        "bytes": 246987,
+        "sha256": "780610d7841bc31e5362faaf6f95666e6efd27ca46f5d39a81c1005757be6665",
+        "dimensions": [
+          1608,
+          3496
+        ],
+        "has_alpha": true,
+        "alpha_extrema": [
+          255,
+          255
+        ],
+        "embedded_png_bytes_identical": true
+      },
+      "svg": {
+        "file": "dist/assets/product-hq-v17/app-booking-hq-v17.svg",
+        "bytes": 331581,
+        "sha256": "8c7ff7c65220820b60573647ec45f3eba4dcdac97e3c1ca680e88fe62d873169"
+      },
+      "png": {
+        "file": "dist/assets/product-hq-v17/app-booking-hq-v17.png",
+        "bytes": 675546,
+        "sha256": "37f9f76661bf6d7f8421ed25b0968131796c86da8317340bf32af96e2c39404c"
+      },
+      "webp": {
+        "file": "dist/assets/product-hq-v17/app-booking-hq-v17.webp",
+        "bytes": 298526,
+        "sha256": "ae60e3d0297750de15edd6189ab4bd016dd2c11228fdca86f5ac637676d07029"
+      },
+      "fitted_source_rect": [
+        24,
+        23,
+        402,
+        874
+      ],
+      "source_aspect_preserved": true,
+      "source_content_not_cropped_before_physical_device_clip": true,
+      "actual_ui_intrinsic_width": 1608,
+      "maximum_css_ui_width": 303.73333333333335,
+      "native_ui_pixels_per_css_pixel": 5.294117647058823,
+      "minimum_2x_display_requirement_met": true,
+      "png_webp_rgba_exact": true,
+      "rendered_svg_visible_rgba_equals_output": true,
+      "alpha_zero_only_rgb_change_count": 296436,
+      "decoded_rgba_sha256": "76a11497752d0d1c470ea7f7439729c65be84fa548e9b5b05fe79d2a9cb149e5",
+      "transparent_pixel_count": 469319,
+      "partially_transparent_edge_pixel_count": 12404,
+      "outer_corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "embedded_image_count": 1,
+      "device_screen_clip_count": 1
+    },
+    {
+      "role": "profile",
+      "title": "프로필",
+      "basename": "app-profile-hq-v17",
+      "source": {
+        "original_filename": "P5.png",
+        "file": "review/app-features-17/phone-ui-src/source-profile-v17.png",
+        "bytes": 1255455,
+        "sha256": "785f8b7b80f56bdcac61ea3378212b4dbc2113f31598d0379a805c1b24cf4148",
+        "dimensions": [
+          1608,
+          3496
+        ],
+        "has_alpha": true,
+        "alpha_extrema": [
+          255,
+          255
+        ],
+        "embedded_png_bytes_identical": true
+      },
+      "svg": {
+        "file": "dist/assets/product-hq-v17/app-profile-hq-v17.svg",
+        "bytes": 1676211,
+        "sha256": "316b5dd2af64e0b9083792ce7451261ee75053376aed00d161d94a18bb2809f9"
+      },
+      "png": {
+        "file": "dist/assets/product-hq-v17/app-profile-hq-v17.png",
+        "bytes": 2829443,
+        "sha256": "da0029b9d74016dc03c802c1bf9977f10a21e3fcc5fbb21236acdcd8474ddc8b"
+      },
+      "webp": {
+        "file": "dist/assets/product-hq-v17/app-profile-hq-v17.webp",
+        "bytes": 1105304,
+        "sha256": "62ff2689bedf7fcb0977098e2260fd2ac9b90d53feb42676ef72de6c4e789969"
+      },
+      "fitted_source_rect": [
+        24,
+        23,
+        402,
+        874
+      ],
+      "source_aspect_preserved": true,
+      "source_content_not_cropped_before_physical_device_clip": true,
+      "actual_ui_intrinsic_width": 1608,
+      "maximum_css_ui_width": 303.73333333333335,
+      "native_ui_pixels_per_css_pixel": 5.294117647058823,
+      "minimum_2x_display_requirement_met": true,
+      "png_webp_rgba_exact": true,
+      "rendered_svg_visible_rgba_equals_output": true,
+      "alpha_zero_only_rgb_change_count": 297127,
+      "decoded_rgba_sha256": "c89bb652dc833609bca8e9abb757693fb384ecd4c35a22b24515326b92d50a03",
+      "transparent_pixel_count": 469319,
+      "partially_transparent_edge_pixel_count": 12404,
+      "outer_corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "embedded_image_count": 1,
+      "device_screen_clip_count": 1
+    }
+  ]
+}

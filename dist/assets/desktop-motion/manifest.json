@@ -1,0 +1,52 @@
+[
+  {
+    "file": "merchant-register-panel.webp",
+    "source": "dist/assets/merchant-register.png",
+    "source_size": [
+      1864,
+      1004
+    ],
+    "source_sha256": "8a046e425d8ace3eba694a8479aaadbc7fd67ceadaaf98b80f7e12b2f56236d2",
+    "crop_format": "[x,y,width,height]; source pixels, no resize",
+    "crop": [
+      506,
+      196,
+      1101,
+      500
+    ],
+    "size": [
+      1101,
+      500
+    ],
+    "bytes": 38992,
+    "pixel_exact": true,
+    "encoding": "lossless WebP",
+    "state": "empty-form-before-input",
+    "description": "신규 장소 등록 폼 상단. 새 장소 등록 신청 제목, 장소 검색 입력, 음식점 카테고리, 장소 위치 카드. 장소·주소를 선택하지 않은 입력 전 원본 상태. 하단 소개/연락처 영역은 제외."
+  },
+  {
+    "file": "merchant-event-panel.webp",
+    "source": "dist/assets/merchant-event.png",
+    "source_size": [
+      1864,
+      1003
+    ],
+    "source_sha256": "22faaa21632a6b026fdc625938f0c68bfdcad7594d28233ca2f3f96fc7c62b97",
+    "crop_format": "[x,y,width,height]; source pixels, no resize",
+    "crop": [
+      1025,
+      195,
+      581,
+      635
+    ],
+    "size": [
+      581,
+      635
+    ],
+    "bytes": 8652,
+    "pixel_exact": true,
+    "encoding": "lossless WebP",
+    "state": "empty-form-before-input",
+    "description": "새 이벤트 등록 카드 전체. 연결 장소, 브랜드, 이벤트 제목/소개, 시작/종료 일시, 초안 등록 버튼. 입력 전 빈 폼을 그대로 유지."
+  }
+]

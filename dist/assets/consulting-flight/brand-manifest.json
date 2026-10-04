@@ -1,0 +1,128 @@
+{
+  "version": 11,
+  "source": "User-provided Seoul night photograph used as imagegen reference; three regenerated city panels and NASA textured sphere",
+  "source_dimensions": [
+    900,
+    600
+  ],
+  "source_sha256": "73df6b0fa32d149fd851ff749e5abb0aeb304ef271bb37ffc00e59b40985ec19",
+  "processing": "v10 도시/지구 연출 유지; 내장 imagegen으로 공식 핑 로고 참조 재생성; 공유 투명 PNG/Linear mipmap/DPR2/4K 렌더 후 웹 인코딩",
+  "sources": [
+    {
+      "file": "seoul-night-ultrawide.png",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "sha256": "2db2feaa1f3446d89a05652dd087d2e64a1c48b3ffc2675953e44ff5915ed93f",
+      "bytes": 2919687
+    },
+    {
+      "file": "seoul-night-left.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "0686667bb06a320a148b9e0c07c2c0974efea93ae9fdb40bc8ef0f02a2c55375",
+      "bytes": 2980670
+    },
+    {
+      "file": "seoul-night-center.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "d2a53441d5724c674af9165fb90d18f700c5452b74765fdcfa17a26dc8a48547",
+      "bytes": 3151367
+    },
+    {
+      "file": "seoul-night-right.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "4bbe5fa86a7f85ebe07e781157e5b8a922dbf6235b494ff456d536b2b8e96e70",
+      "bytes": 3305442
+    },
+    {
+      "file": "nasa-blue-marble-june.jpg",
+      "dimensions": [
+        5400,
+        2700
+      ],
+      "sha256": "dc059529b8ed1cfcdd59747a7c3f259c93c1322bf88ca1ec8bab1dd71fcc57f5",
+      "bytes": 1692239
+    }
+  ],
+  "earth_texture_source": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-base/june/world.200406.3x5400x2700.jpg",
+  "earth_texture_credit": "NASA Earth Observatory, Reto Stockli (NASA Goddard), Blue Marble Next Generation, June 2004 composite",
+  "composition": "review/consulting-flight-11/brand-pin-video/index.html",
+  "master_dimensions": [
+    3840,
+    2160
+  ],
+  "master_sha256": "65acad27986cc387aca067855334e4e8790872cfa350c344cde9b599bd33a51b",
+  "master_bytes": 178848303,
+  "output": "seoul-global-flight-brand.mp4",
+  "poster": "seoul-global-poster-brand.webp",
+  "dimensions": [
+    2560,
+    1440
+  ],
+  "duration_seconds": 16,
+  "fps": 60,
+  "frames": 960,
+  "audio": false,
+  "codec": "H264 yuv420p",
+  "encoder": "libx264 crf18, GOP15, no B frames, faststart, Lanczos downscale",
+  "output_sha256": "d621add98107fb0a494e4fecb1e4759782a09755ebf3c5e3f14774c0f6e58612",
+  "poster_sha256": "446ef6d14e487274c933742988481f679de8bb1223b55c50ae976ec9f0873a51",
+  "output_bytes": 61840413,
+  "poster_bytes": 836954,
+  "note": "AI-reconstructed city detail and illustrative global pins express future ambition, not current global merchant coverage or live aerial/satellite data",
+  "composition_sha256": "69df633b9bbcddfe339c55b45263d1b5c3587662bfddf6631827f69b4dcb0d32",
+  "logo": {
+    "input_reference": "review/consulting-flight-11/official-pin-reference.png",
+    "input_dimensions": [
+      506,
+      528
+    ],
+    "input_bytes": 19474,
+    "input_sha256": "d1deb9fcfbf9172a923d895ef515008a9f3e58a7f85ee246c11b400319365493",
+    "input_profile": "Display P3 ICC; dominant sRGB color #ff1956; screenshot has opaque dark background and center",
+    "generation_mode": "built-in imagegen reference edit; transparent_background=true",
+    "generation_prompt": "review/consulting-flight-11/IMAGE-PROMPT.md",
+    "requested_dimensions": [
+      2048,
+      2048
+    ],
+    "actual_dimensions": [
+      1254,
+      1254
+    ],
+    "source": "review/consulting-flight-11/brand-pin-video/assets/pingdom-pin-clean.png",
+    "source_bytes": 572991,
+    "source_sha256": "7642f9b9f9459c4eb21ea7a9b3371ff1ead8cdbae8c940e4f2dd14e2749bcaac",
+    "web_asset": "pingdom-pin-clean.webp",
+    "web_bytes": 342672,
+    "web_sha256": "1ad10d68a5626381ce978f0d1e2ad4d9e6c6adfde7ed0b521270a55d048f4657",
+    "web_encoding": "lossless WebP; decoded RGBA identical to generated PNG",
+    "alpha_bbox": [
+      142,
+      57,
+      1134,
+      1181
+    ],
+    "center_alpha": 0,
+    "tip_anchor": [
+      626,
+      1181
+    ],
+    "used_by": [
+      "city DOM markers",
+      "globe Sprite texture",
+      "web photo fallback marker"
+    ],
+    "note": "원본 실루엣과 비율을 참조한 생성 이미지이며 원본과 픽셀/색 완전 일치를 주장하지 않음"
+  }
+}

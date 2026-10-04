@@ -1,0 +1,24 @@
+# 본문용 로컬 산책 이미지 생성 기록
+
+- 생성 방식: 내장 image_gen 도구. CLI/API fallback을 사용하지 않았습니다.
+- 분류: photorealistic-natural.
+- 목적: 한국의 로컬을 발견하며 걷는 분위기를 전달하는 본문 사진 spread. 실제 서비스 장소나 실제 여행자의 사진으로 주장하지 않습니다.
+- 입력 이미지: 없음. 기존 히어로 야경 이미지를 재사용하지 않았습니다.
+- 생성 원본: /Users/azunox/.codex/generated_images/01a0f006-2f56-70c1-9a72-f190c532af72/exec-d866c31f-7f1b-4632-a1eb-9219a1bb163f.png (1672 x 941).
+- 배포용 가로 이미지: dist/assets/rebuild/local-walk.webp (1920 x 1080, Lanczos fit, WebP quality 75, 288228 bytes). 16:9 spread 용도입니다. 약 250KB 목표에 가깝게 압축하되 건물·포장 질감 보존을 위해 약 281KiB를 선택했습니다.
+- 배포용 모바일 이미지: dist/assets/rebuild/local-walk-mobile.webp (900 x 1200, 원본 crop x=645..1351 y=0..941 후 Lanczos resample, WebP quality 77, 167670 bytes). 여행자와 매장 앞을 중심으로 별도 세로 프레이밍했습니다.
+- 이미지 내부에 공식 로고, 실제 UI, 읽을 수 있는 생성 문구를 넣지 않았습니다. 실제 앱/웹 화면과 분리하여 사용합니다.
+- 검수: 생성 원본과 가로/세로 파생 파일을 직접 확인했습니다. 자연스러운 인물 비율과 보행 자세, 건물·보도 질감, 오른쪽 작은 여행자, 절제된 오후 빛, 읽히는 브랜드·글자 부재를 확인했습니다.
+
+## 최종 생성 프롬프트
+
+Use case: photorealistic-natural
+Asset type: a single editorial photographic spread for a Korean local-discovery service landing page, 16:9 wide landscape.
+Primary request: A credible, beautifully photographed Seoul neighborhood street, seen from behind a traveler who is discovering the local shops while walking. Early autumn, late afternoon approaching evening. A human-scale neighborhood alley with small independently operated restaurants and modest shops, lived-in architecture and realistic sidewalk texture.
+Subject: One small traveler walking away from the camera, with at most one additional distant pedestrian. Position the traveler around 62 percent from the left, occupying only a small part of the frame. Casual clothing with a small shoulder bag. This is a candid walk through the city, not a posed tourism advertisement.
+Composition/framing: A wide, calm cinematic photographer's view from standing eye level, realistic lens perspective and strong street depth. Buildings and street textures are the main subject; the small figure gives scale. Maintain believable natural proportions, no giant foreground subject. Frame the traveler and interesting shop frontage in the right-center so a thoughtful portrait crop around them remains possible. Preserve a generous left portion of the city scene. The frame is one continuous photograph, never a collage.
+Lighting/mood: Natural subtle warm-neutral western afternoon sunlight across charcoal-gray city surfaces, just before dusk. Soft realistic shadows, pleasant but understated. Shop interiors may have a little warm everyday light. The sky is a restrained pale gray-blue, not a saturated dramatic sunset.
+Materials/textures: Believable weathered brick, painted concrete, small glass-fronted shops, worn pavement, drains, doors and quiet everyday urban details. Editorial photo detail, natural imperfect surfaces, believable edges and human anatomy.
+Color palette: Warm neutral stone and muted wood, urban charcoal, subtle early autumn greenery. No brand-pink light or tinted wash.
+Constraints: Do not include an identifiable real brand or logo, do not create app interfaces or UI, do not add captions or typography. Store signs should be small blank/abstract or naturally out of focus with no readable generated letters. This is an imagined brand atmosphere image, not evidence of a specific real service location.
+Avoid: glossy CGI, hyper-polished concept art, ornamental architecture, luxury resort appearance, advertising exaggeration, pink neon, magenta lighting, glowing sky, unnatural bloom, lens flares, random shapes, decorative graphics, collage, duplicate people, crowd, large close-up person, watermarks.

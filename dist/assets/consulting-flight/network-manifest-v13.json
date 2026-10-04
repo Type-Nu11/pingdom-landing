@@ -1,0 +1,318 @@
+{
+  "version": 13,
+  "source": "User-provided Seoul night photograph, previously reconstructed v12 center image used as reference for a new far aerial panorama; NASA June 2004 surface sampled for geographic globe points",
+  "source_dimensions": [
+    900,
+    600
+  ],
+  "source_sha256": "73df6b0fa32d149fd851ff749e5abb0aeb304ef271bb37ffc00e59b40985ec19",
+  "processing": "One continuous far-away night panorama with lateral flight; full-bleed city handoff; rotating point globe with geographic hub, 32 restrained routes and final camera retreat; 4K render with 1440p web encode",
+  "sources": [
+    {
+      "file": "seoul-night-aerial-wide.png",
+      "bytes": 3165359,
+      "sha256": "f7811b72b6a8ff6a712b000eb48975cbba1fe2facb4df24c15a57a0b7bc2fa82",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "nasa-blue-marble-june.jpg",
+      "bytes": 1692239,
+      "sha256": "dc059529b8ed1cfcdd59747a7c3f259c93c1322bf88ca1ec8bab1dd71fcc57f5",
+      "dimensions": [
+        5400,
+        2700
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "earth_texture_source": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-base/june/world.200406.3x5400x2700.jpg",
+  "earth_texture_credit": "NASA Earth Observatory, Reto Stockli (NASA Goddard), Blue Marble Next Generation, June 2004 composite",
+  "composition": "review/consulting-flight-13/network-flight-video/index.html",
+  "master_dimensions": [
+    3840,
+    2160
+  ],
+  "master_sha256": "b40735ef6584cc5916afc10cca145be42b7c158720c5141d17b74c572e68eac6",
+  "master_bytes": 197715537,
+  "output": "seoul-global-flight-v13.mp4",
+  "poster": "seoul-global-poster-v13.webp",
+  "dimensions": [
+    2560,
+    1440
+  ],
+  "duration_seconds": 22,
+  "fps": 60,
+  "frames": 1320,
+  "audio": false,
+  "codec": "H264 yuv420p",
+  "encoder": "libx264 crf18, GOP15, no B frames, faststart, Lanczos downscale",
+  "output_sha256": "9c396ccad93192a55c36501c39d151f73f48828c454bada7fed1c8c4f1335fe7",
+  "poster_sha256": "360071defd0c34adce36b39010c3c6bdb204476b21e0257d1eda71cf51083fc9",
+  "output_bytes": 83800740,
+  "poster_bytes": 1085054,
+  "note": "AI-reconstructed city detail and illustrative network routes express future ambition, not current global merchant coverage or live aerial/satellite data",
+  "composition_sha256": "43db1843adfc050c9f488433599715bc1148c0ac53aa009daee7fef5a2b9155a",
+  "logo": {
+    "input_reference": "review/consulting-flight-11/official-pin-reference.png",
+    "input_dimensions": [
+      506,
+      528
+    ],
+    "input_bytes": 19474,
+    "input_sha256": "d1deb9fcfbf9172a923d895ef515008a9f3e58a7f85ee246c11b400319365493",
+    "input_profile": "Display P3 ICC; dominant sRGB color #ff1956; screenshot has opaque dark background and center",
+    "generation_mode": "built-in imagegen reference edit; transparent_background=true",
+    "generation_prompt": "review/consulting-flight-11/IMAGE-PROMPT.md",
+    "requested_dimensions": [
+      2048,
+      2048
+    ],
+    "actual_dimensions": [
+      1254,
+      1254
+    ],
+    "source": "review/consulting-flight-13/network-flight-video/assets/pingdom-pin-clean.png",
+    "source_bytes": 572991,
+    "source_sha256": "7642f9b9f9459c4eb21ea7a9b3371ff1ead8cdbae8c940e4f2dd14e2749bcaac",
+    "web_asset": "pingdom-pin-clean.webp",
+    "web_bytes": 342672,
+    "web_sha256": "1ad10d68a5626381ce978f0d1e2ad4d9e6c6adfde7ed0b521270a55d048f4657",
+    "web_encoding": "lossless WebP; decoded RGBA identical to generated PNG",
+    "alpha_bbox": [
+      142,
+      57,
+      1134,
+      1181
+    ],
+    "center_alpha": 0,
+    "tip_anchor": [
+      626,
+      1181
+    ],
+    "used_by": [
+      "city markers",
+      "geographic globe hub",
+      "official native illustration overlay"
+    ],
+    "note": "원본 실루엣과 비율을 참조한 생성 이미지이며 원본과 픽셀/색 완전 일치를 주장하지 않음"
+  },
+  "network_reference": {
+    "file": "review/consulting-flight-12/earth-network-reference.png",
+    "dimensions": [
+      1727,
+      739
+    ],
+    "bytes": 1019567,
+    "sha256": "cd546bed02b3f7a36134e5991cd8bf28827a17f9a84b6bbacf51edd59ab9b4d2",
+    "usage": "Large cropped globe, navy background and white points/grid direction only; reference page copy excluded"
+  },
+  "globe_geometry": {
+    "file": "review/consulting-flight-13/network-flight-video/assets/nasa-land-points.json",
+    "bytes": 972933,
+    "sha256": "657921bfdb7619fc1ce4575a4f59e9e3c4ba6e120753f6652a41e009f852034b",
+    "source_sha256": "dc059529b8ed1cfcdd59747a7c3f259c93c1322bf88ca1ec8bab1dd71fcc57f5",
+    "land_point_count": 34735,
+    "sampling": "equal-area Fibonacci sphere with fixed hash tangent disk jitter",
+    "samples": 120000,
+    "jitter_fraction": 0.3,
+    "jitter_radians_max": 0.0030699801238394655,
+    "hash_seed": 1346981447,
+    "method": "Equal-area Fibonacci sphere points, fixed-hash tangent disk jitter (30% of characteristic spacing), then land/ice colors re-read from the existing NASA June 2004 map; anti-aliased white point rendering"
+  },
+  "sequence": [
+    {
+      "start": 0,
+      "end": 7.8,
+      "scene": "far aerial city lateral flight"
+    },
+    {
+      "start": 7.8,
+      "end": 9.5,
+      "scene": "city handoff preparation"
+    },
+    {
+      "start": 9.5,
+      "end": 11.15,
+      "scene": "full-bleed city to globe reveal"
+    },
+    {
+      "start": 11.5,
+      "end": 20,
+      "scene": "sequential outward geographic network"
+    },
+    {
+      "start": 16,
+      "end": 20,
+      "scene": "additional globe camera retreat"
+    },
+    {
+      "start": 20,
+      "end": 22,
+      "scene": "settled global network hold"
+    }
+  ],
+  "master_file": "review/consulting-flight-13/network-flight-video/renders/network-flight-master.mp4",
+  "poster_frame_time_seconds": 0,
+  "poster_encoding": "Approved web video frame zero extracted to PNG, then Pillow WebP quality96 method6 format conversion; no creative image editing",
+  "source_freeze": {
+    "file": "review/consulting-flight-13/network-flight-video/source-freeze.sha256",
+    "bytes": 992,
+    "sha256": "d1c8716bfb33645912f93f98087b02b46ee3118b551e9c29031cac04cb6a9ce0",
+    "files": [
+      {
+        "file": "review/consulting-flight-13/network-flight-video/index.html",
+        "bytes": 14957,
+        "sha256": "43db1843adfc050c9f488433599715bc1148c0ac53aa009daee7fef5a2b9155a"
+      },
+      {
+        "file": "review/consulting-flight-13/network-flight-video/index.motion.json",
+        "bytes": 397,
+        "sha256": "f8819e9cfd2036bc9ccf3cdca71ebe128db13283facdf6b73525a305c201645b"
+      },
+      {
+        "file": "review/consulting-flight-13/network-flight-video/sample-land.py",
+        "bytes": 2670,
+        "sha256": "2ed015f759f5ddde6ec3bc18d683fe3b43a58c0936b8d29009e3ddd5680503b0"
+      },
+      {
+        "file": "review/consulting-flight-13/network-flight-video/assets/gsap.min.js",
+        "bytes": 72779,
+        "sha256": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+      },
+      {
+        "file": "review/consulting-flight-13/network-flight-video/assets/pretendard-variable.woff2",
+        "bytes": 2057688,
+        "sha256": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4"
+      },
+      {
+        "file": "review/consulting-flight-13/network-flight-video/assets/seoul-night-aerial-wide.png",
+        "bytes": 3165359,
+        "sha256": "f7811b72b6a8ff6a712b000eb48975cbba1fe2facb4df24c15a57a0b7bc2fa82"
+      },
+      {
+        "file": "review/consulting-flight-13/network-flight-video/assets/pingdom-pin-clean.png",
+        "bytes": 572991,
+        "sha256": "7642f9b9f9459c4eb21ea7a9b3371ff1ead8cdbae8c940e4f2dd14e2749bcaac"
+      },
+      {
+        "file": "review/consulting-flight-13/network-flight-video/assets/three.module.js",
+        "bytes": 626071,
+        "sha256": "1bb0b770bac5da2b59b21aa5fff4c547eeb864d4e408e4c36fbc6ced1dce0e9e"
+      },
+      {
+        "file": "review/consulting-flight-13/network-flight-video/assets/three.core.js",
+        "bytes": 1405971,
+        "sha256": "03fb6e9fa08628385a9096948593251ae473239c7039496d7c280cba73d84631"
+      },
+      {
+        "file": "review/consulting-flight-13/network-flight-video/assets/nasa-land-points.json",
+        "bytes": 972933,
+        "sha256": "657921bfdb7619fc1ce4575a4f59e9e3c4ba6e120753f6652a41e009f852034b"
+      },
+      {
+        "file": "review/consulting-flight-13/network-flight-video/assets/nasa-blue-marble-june.jpg",
+        "bytes": 1692239,
+        "sha256": "dc059529b8ed1cfcdd59747a7c3f259c93c1322bf88ca1ec8bab1dd71fcc57f5"
+      }
+    ],
+    "motion_source": {
+      "file": "review/consulting-flight-13/network-flight-video/index.motion.json",
+      "bytes": 397,
+      "sha256": "f8819e9cfd2036bc9ccf3cdca71ebe128db13283facdf6b73525a305c201645b"
+    },
+    "check_record": {
+      "file": "review/consulting-flight-13/network-flight-video/check.json",
+      "bytes": 4327,
+      "sha256": "e91c18da78f46ccb715bfc16c9056de5511d41283a818dbbca54bd1c78801377"
+    }
+  },
+  "imagegen": {
+    "prompt_record": {
+      "file": "review/consulting-flight-13/imagegen-prompts.md",
+      "bytes": 6156,
+      "sha256": "e0cff49e051574e550877efb16ff91ab76ae55cbe8d401a8fe2ae74ff89d2aee"
+    },
+    "city_input_reference": {
+      "file": "review/consulting-flight-12/network-flight-video/assets/seoul-night-center.png",
+      "bytes": 3151367,
+      "sha256": "d2a53441d5724c674af9165fb90d18f700c5452b74765fdcfa17a26dc8a48547",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    "city_generation_mode": "built-in imagegen reference generation; transparent_background=false",
+    "city_requested_dimensions": [
+      3840,
+      1280
+    ],
+    "city_actual_dimensions": [
+      2172,
+      724
+    ],
+    "city_generated_cache_basename": "exec-2232304e-2a40-4373-a089-06e969caeac1.png",
+    "neighborhood_input_reference": {
+      "file": "dist/assets/ai-refresh/consulting-neighborhood.webp",
+      "bytes": 312690,
+      "sha256": "69a32ee5d8194a3c4c8c09863852ab1f4c28671c7ca9aa7677052db960dbe2c3",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA"
+    },
+    "neighborhood_output": {
+      "file": "dist/assets/ai-refresh/consulting-neighborhood-base-v13.png",
+      "bytes": 1972673,
+      "sha256": "d072958aa306f77388e6f9963b8bf3ad88c96accccb4849be32300a5d3843c87",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_bbox": [
+        78,
+        21,
+        1489,
+        960
+      ],
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 917505,
+      "partial_alpha_pixels": 655359,
+      "opaque_pixels": 0
+    },
+    "neighborhood_generation_mode": "built-in imagegen reference edit; transparent_background=true",
+    "neighborhood_generated_cache_basename": "exec-3aa58d4f-5c86-44c7-890f-900d297b4e3d.png",
+    "note": "Actual image header sizes are distinct from requested/native 4K claims and rendered output size; generated scene detail and preserved illustration parts are not pixel-exact documentary evidence"
+  },
+  "design_references": {
+    "official_page": "https://toss.im/",
+    "official_implementation": "https://static.toss.im/frontend/new.toss.im/toss-im-new/_next/static/chunks/2652.10e9730b93fb1bbe.js",
+    "local_screenshot": {
+      "file": "review/consulting-flight-13/toss-global-reference.png",
+      "bytes": 124561,
+      "sha256": "b20422573bcf3815782c2337f5c11dd18cd2e05a24f2eeacfbd2af1ba00d5be5",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mode": "RGB"
+    },
+    "toss_assets_copied": false,
+    "usage": "Visual framing, rotation and restrained density reference only; original Toss data, imagery, video and code excluded from composition/production assets"
+  },
+  "network_routes": {
+    "count": 32,
+    "hub_latitude": 37.5665,
+    "hub_longitude": 126.978,
+    "meaning": "Conceptual future connection routes, not verified current merchant presence or sales"
+  }
+}

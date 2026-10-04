@@ -1,0 +1,85 @@
+{
+  "source": "dist/assets/app-place-source.png",
+  "source_size": [
+    1800,
+    3680
+  ],
+  "coordinate_format": "[left,top,right,bottom]; DOM backdrop-filter overlays, no source retouch",
+  "regions": [
+    {
+      "name": "place-name",
+      "box": [
+        150,
+        582,
+        720,
+        705
+      ],
+      "percent": {
+        "left": 8.333333,
+        "top": 15.815217,
+        "width": 31.666667,
+        "height": 3.342391
+      }
+    },
+    {
+      "name": "place-photo-first",
+      "box": [
+        159,
+        1048,
+        1130,
+        1788
+      ],
+      "percent": {
+        "left": 8.833333,
+        "top": 28.478261,
+        "width": 53.944444,
+        "height": 20.108696
+      }
+    },
+    {
+      "name": "place-photo-second",
+      "box": [
+        1190,
+        1048,
+        1704,
+        1788
+      ],
+      "percent": {
+        "left": 66.111111,
+        "top": 28.478261,
+        "width": 28.555556,
+        "height": 20.108696
+      }
+    },
+    {
+      "name": "place-address",
+      "box": [
+        260,
+        2110,
+        1400,
+        2220
+      ],
+      "percent": {
+        "left": 14.444444,
+        "top": 57.336957,
+        "width": 63.333333,
+        "height": 2.98913
+      }
+    },
+    {
+      "name": "place-contact",
+      "box": [
+        260,
+        2410,
+        1300,
+        2510
+      ],
+      "percent": {
+        "left": 14.444444,
+        "top": 65.48913,
+        "width": 57.777778,
+        "height": 2.717391
+      }
+    }
+  ]
+}

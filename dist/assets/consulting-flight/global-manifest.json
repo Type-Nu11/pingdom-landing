@@ -1,0 +1,83 @@
+{
+  "version": 10,
+  "source": "User-provided Seoul night photograph used as imagegen reference; three regenerated city panels and NASA textured sphere",
+  "source_dimensions": [
+    900,
+    600
+  ],
+  "source_sha256": "73df6b0fa32d149fd851ff749e5abb0aeb304ef271bb37ffc00e59b40985ec19",
+  "processing": "Built-in imagegen native-detail city reconstruction and horizontal expansion; HyperFrames/Three.js baked cinematic camera and illustrative pins",
+  "sources": [
+    {
+      "file": "seoul-night-ultrawide.png",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "sha256": "2db2feaa1f3446d89a05652dd087d2e64a1c48b3ffc2675953e44ff5915ed93f",
+      "bytes": 2919687
+    },
+    {
+      "file": "seoul-night-left.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "0686667bb06a320a148b9e0c07c2c0974efea93ae9fdb40bc8ef0f02a2c55375",
+      "bytes": 2980670
+    },
+    {
+      "file": "seoul-night-center.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "d2a53441d5724c674af9165fb90d18f700c5452b74765fdcfa17a26dc8a48547",
+      "bytes": 3151367
+    },
+    {
+      "file": "seoul-night-right.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "4bbe5fa86a7f85ebe07e781157e5b8a922dbf6235b494ff456d536b2b8e96e70",
+      "bytes": 3305442
+    },
+    {
+      "file": "nasa-blue-marble-june.jpg",
+      "dimensions": [
+        5400,
+        2700
+      ],
+      "sha256": "dc059529b8ed1cfcdd59747a7c3f259c93c1322bf88ca1ec8bab1dd71fcc57f5",
+      "bytes": 1692239
+    }
+  ],
+  "earth_texture_source": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-base/june/world.200406.3x5400x2700.jpg",
+  "earth_texture_credit": "NASA Earth Observatory, Reto Stockli (NASA Goddard), Blue Marble Next Generation, June 2004 composite",
+  "composition": "review/consulting-flight-10/global-flight-video/index.html",
+  "master_dimensions": [
+    3840,
+    2160
+  ],
+  "master_sha256": "3c722b158671fa32a7679eb4f0e734cb070b5d81b348cc923c5e6eaec08efbc4",
+  "master_bytes": 179397004,
+  "output": "seoul-global-flight.mp4",
+  "poster": "seoul-global-poster.webp",
+  "dimensions": [
+    2560,
+    1440
+  ],
+  "duration_seconds": 16,
+  "fps": 60,
+  "frames": 960,
+  "audio": false,
+  "codec": "H264 yuv420p",
+  "encoder": "libx264 crf18, GOP15, no B frames, faststart, Lanczos downscale",
+  "output_sha256": "8c6c9c6ae44b78202c44f92df0914bb67d6d12a2769d4ae7c14357acb8379b4b",
+  "poster_sha256": "97ceeddddcff970368c4f552c33cefceda4f6f53758dbd79ddf0caf2b6eff9eb",
+  "output_bytes": 61980621,
+  "poster_bytes": 839558,
+  "note": "AI-reconstructed city detail and illustrative global pins express future ambition, not current global merchant coverage or live aerial/satellite data"
+}

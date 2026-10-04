@@ -1,0 +1,33 @@
+{
+  "source": "user-provided Seoul night photograph",
+  "source_file": "codex-clipboard-448feadb-31e7-49d4-a4af-5ffa3f4f6f64.png",
+  "source_dimensions": [
+    900,
+    600
+  ],
+  "panorama_dimensions": [
+    2103,
+    748
+  ],
+  "processing": "imagegen restoration and horizontal panorama extension; HyperFrames camera flight and illustrative pins",
+  "composition": "review/consulting-flight-9/night-flight-video/index.html",
+  "output": "seoul-night-flight.mp4",
+  "poster": "seoul-night-poster.webp",
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "duration_seconds": 9,
+  "fps": 60,
+  "frames": 540,
+  "audio": false,
+  "codec": "H264 yuv420p",
+  "encoder": "libx264 crf18, GOP15, no B frames, faststart",
+  "source_sha256": "73df6b0fa32d149fd851ff749e5abb0aeb304ef271bb37ffc00e59b40985ec19",
+  "panorama_sha256": "a7db2d0568264b4e66127c5a623d35b09e638ef2e018ab51faa47a280ae1518f",
+  "output_sha256": "e3432551b97b2acc679cc22ff1619ef400e93ab748d789fed059a1ed099b01d5",
+  "poster_sha256": "e93a3e9f1a5836f0440fe1dcbf9261ec4c0b6adc3384e4bd3fdc4cc0e4103a01",
+  "output_bytes": 23674852,
+  "poster_bytes": 415116,
+  "note": "AI-restored detail and illustrative pins are not a live aerial capture or current merchant analysis data"
+}

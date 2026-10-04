@@ -1,198 +1,758 @@
 <!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080808">
-  <title>핑덤 — 한국에서 갈 곳을 더 쉽게</title>
-  <meta name="description" content="방한 여행자와 로컬을 연결하는 핑덤. 발견부터 확인, 방문까지.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23FF1956'/%3E%3Cpath d='M32 10c-12 0-20 9-20 20 0 14 20 26 20 26s20-12 20-26c0-11-8-20-20-20z' fill='white'/%3E%3Ccircle cx='32' cy='29' r='8' fill='%23FF1956'/%3E%3C/svg%3E">
-  <script>
-    (() => {
-      const root = document.documentElement;
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const returning = performance.getEntriesByType('navigation')[0]?.type === 'back_forward';
-      if (reduced.matches || returning || (location.hash && location.hash !== '#about')) return;
-      root.classList.add('intro-pending');
-      let fallback;
-      const finish = () => {
-        if (!root.classList.contains('intro-pending')) return;
-        root.classList.remove('intro-pending', 'intro-playing');
-        root.classList.add('intro-complete');
-        clearTimeout(fallback);
-        window.dispatchEvent(new Event('pingdom:intro-end'));
-      };
-      window.addEventListener('pingdom:intro-finish', finish, { once: true });
-      window.addEventListener('keydown', event => { if (event.key === 'Escape' || event.key === 'Tab') finish(); });
-      window.addEventListener('pageshow', event => { if (event.persisted) finish(); });
-      reduced.addEventListener('change', () => { if (reduced.matches) finish(); });
-      // 모듈 로딩이 실패하더라도 본문은 반드시 복구합니다.
-      fallback = setTimeout(finish, 10500);
-    })();
-  </script>
-  <link rel="preload" href="assets/pingdom-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=readable-2">
-  <link rel="stylesheet" href="cinematic.css?v=readable-2">
-  <link rel="stylesheet" href="cinematic-services.css?v=readable-2">
-  <script type="module" src="app.js?v=readable-2"></script>
-</head>
-<body>
-  <svg class="brand-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <!-- 원본의 무채색 배경은 투명하게 표시하고 심볼 윤곽에 브랜드 색을 적용합니다. -->
-      <filter id="ai-symbol-color" color-interpolation-filters="sRGB">
-        <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  1.108696 -1.108696 0 0 0" result="symbol-mask"/>
-        <feFlood flood-color="#FF1956"/>
-        <feComposite in2="symbol-mask" operator="in"/>
-      </filter>
-    </defs>
-  </svg>
-  <a class="skip-link" href="#main">본문 바로가기</a>
-  <main id="main">
-    <section class="hero" id="about" aria-labelledby="hero-title">
-      <div class="hero-art" aria-hidden="true">
-        <img src="assets/seoul-traffic-poster-highway-exposure.webp" alt="" width="1920" height="1080">
-        <video class="hero-background-video" muted playsinline loop preload="none" poster="assets/seoul-traffic-poster-highway-exposure.webp" data-desktop-src="assets/seoul-traffic-desktop-highway-exposure.mp4" data-mobile-src="assets/seoul-traffic-mobile-highway-exposure.mp4" tabindex="-1"></video>
-      </div>
-      <div class="hero-light" aria-hidden="true"></div>
-      <canvas class="intro-particles" aria-hidden="true"></canvas>
-      <img class="intro-logo-source" src="assets/pingdom-intro-symbol-source.png" alt="" width="342" height="396" hidden fetchpriority="high">
-      <div class="hero-copy"><h1 id="hero-title"><span class="hero-line-top">한국에서 <br class="hero-title-break">갈 곳을</span> <span class="hero-line-bottom">으로 <br class="hero-title-break">더 쉽게<span class="hero-period">.</span></span></h1></div>
-      <div class="hero-model" aria-hidden="true"><div class="portal-float"><img src="assets/pingdom-wordmark-chrome.webp" alt="" width="2172" height="724" fetchpriority="high"><canvas class="ring-flow-canvas" aria-hidden="true"></canvas></div></div>
-      <div class="hero-bottom"><a class="scroll-cue" href="#why" aria-label="아래 내용 보기"><span class="scroll-cue-label" aria-hidden="true">SCROLL</span><span class="scroll-cue-icon" aria-hidden="true"><svg viewBox="0 0 20 30" fill="none"><path d="M10 3v23M4 20l6 6 6-6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
-    </section>
-    <section class="product-intro" id="why" aria-labelledby="why-title">
-      <div class="product-intro-inner">
-        <p class="product-kicker">여행자를 위한 핑덤</p>
-        <h2 id="why-title">발견부터 방문까지,<br><span>여행의 흐름을 하나로.</span></h2>
-        <p class="product-intro-description">내 주변의 장소를 찾고, 방문할 곳을 확인하고.<br>쿠폰과 예약까지 핑덤에서 이어집니다.</p>
-      </div>
-    </section>
-    <section class="product-story" id="features" aria-label="핑덤 주요 기능">
-      <nav class="product-nav" aria-label="주요 기능 바로가기"><a href="#discover">장소 발견</a><a href="#check">정보 확인</a><a href="#visit">방문 준비</a><a href="#record">경험 공유</a></nav>
-      <article class="product-chapter chapter-discover" id="discover" data-scene aria-labelledby="discover-title">
-        <div class="product-stage">
-          <div class="product-copy"><p class="product-kicker"><span>01</span>장소 발견</p><h3 id="discover-title">내 주변에서,<br><span>내 취향에 맞는 곳.</span></h3><p class="product-description">지도와 추천 목록으로<br>가고 싶은 장소를 찾아보세요.</p></div>
-          <div class="product-visual">
-            <div class="product-orbit" aria-hidden="true" data-motion='[{"at":0,"r":-14,"s":0.85},{"at":1,"r":14,"s":1.1}]'><svg viewBox="0 0 720 720" fill="none"><path class="route-base" d="M60 430C90 200 245 130 345 170S590 440 590 235S390 20 240 110S95 630 470 600S715 355 640 275"/><path class="route-light" pathLength="1" d="M60 430C90 200 245 130 345 170S590 440 590 235S390 20 240 110S95 630 470 600S715 355 640 275"/><path class="route-tracer" pathLength="1" d="M60 430C90 200 245 130 345 170S590 440 590 235S390 20 240 110S95 630 470 600S715 355 640 275"/><circle cx="60" cy="430" r="7"/></svg></div>
-            <div class="product-handsets">
-              <figure class="product-handset handset-primary" data-motion='[{"at":0,"x":-0.035,"y":0.025,"r":-7,"ry":-12,"s":0.92},{"at":0.22,"x":0,"y":0,"r":-2,"ry":0,"s":1},{"at":0.85,"x":0,"y":0,"r":-2,"ry":0,"s":1},{"at":1,"x":0,"y":-0.015,"r":-2,"ry":0,"s":1}]'><button data-phone data-zoom="assets/app-map-source.png" data-zoom-title="핑덤 주변 지도 화면" aria-label="핑덤 주변 지도 화면 확대"><img src="assets/app-map-preview.webp" alt="핑덤 주변 지도 화면" width="960" height="1963" loading="lazy" decoding="async"></button><figcaption>주변 지도</figcaption></figure>
-              <figure class="product-handset handset-secondary" data-motion='[{"at":0,"x":0.035,"y":0.055,"r":9,"ry":14,"s":0.9},{"at":0.28,"x":0,"y":0,"r":3,"ry":0,"s":1},{"at":0.85,"x":0,"y":0,"r":3,"ry":0,"s":1},{"at":1,"x":0,"y":-0.015,"r":3,"ry":0,"s":1}]'><button data-phone data-zoom="assets/app-discover-source.png" data-zoom-title="핑덤 취향별 장소 추천 화면" aria-label="핑덤 취향별 장소 추천 화면 확대"><img src="assets/app-discover-preview.webp" alt="핑덤 취향별 장소 추천 화면" width="960" height="1963" loading="lazy" decoding="async"></button><figcaption>장소 추천</figcaption></figure>
-            </div>
-          </div>
-          <div class="product-chapter-line" aria-hidden="true"><i></i></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#080808" />
+    <title>핑덤 — 한국에서 갈 곳을 더 쉽게</title>
+    <meta
+      name="description"
+      content="방한 여행자와 로컬을 연결하는 핑덤. 발견부터 확인, 방문까지."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23FF1956'/%3E%3Cpath d='M32 10c-12 0-20 9-20 20 0 14 20 26 20 26s20-12 20-26c0-11-8-20-20-20z' fill='white'/%3E%3Ccircle cx='32' cy='29' r='8' fill='%23FF1956'/%3E%3C/svg%3E"
+    />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const returning =
+          performance.getEntriesByType("navigation")[0]?.type ===
+          "back_forward";
+        if (
+          reduced.matches ||
+          window.matchMedia("(max-width: 999px)").matches ||
+          returning ||
+          (location.hash && location.hash !== "#about")
+        )
+          return;
+        root.classList.add("intro-pending");
+        let fallback;
+        const finish = () => {
+          if (!root.classList.contains("intro-pending")) return;
+          root.classList.remove("intro-pending", "intro-playing");
+          root.classList.add("intro-complete");
+          clearTimeout(fallback);
+          window.dispatchEvent(new Event("pingdom:intro-end"));
+        };
+        window.addEventListener("pingdom:intro-finish", finish, { once: true });
+        window.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" || event.key === "Tab") finish();
+        });
+        window.addEventListener("pageshow", (event) => {
+          if (event.persisted) finish();
+        });
+        reduced.addEventListener("change", () => {
+          if (reduced.matches) finish();
+        });
+        // 모듈 로딩이 실패하더라도 본문은 반드시 복구합니다.
+        fallback = setTimeout(finish, 10500);
+      })();
+    </script>
+    <link
+      rel="preload"
+      href="assets/pingdom-sans.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="story.css?v=revision-33" />
+    <link rel="stylesheet" href="hero-preserved.css?v=revision-7" />
+    <link rel="stylesheet" href="desktop-motion.css?v=revision-17" />
+    <link rel="stylesheet" href="desktop-polish.css?v=revision-33" />
+    <link rel="stylesheet" href="ai-pages.css?v=revision-33-2" />
+    <link rel="stylesheet" href="visit-v2.css?v=revision-33" />
+    <link rel="stylesheet" href="strengths.css?v=revision-29" />
+    <link rel="stylesheet" href="commercial-v2.css?v=revision-33" />
+    <link rel="stylesheet" href="mobile.css?v=revision-33" />
+    <script type="module" src="app.js?v=revision-33"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문 바로가기</a>
+    <main id="main">
+      <section class="hero" id="about" aria-labelledby="hero-title">
+        <div class="hero-art" aria-hidden="true">
+          <img
+            src="assets/seoul-traffic-poster-highway-exposure.webp"
+            alt=""
+            width="1920"
+            height="1080"
+          />
+          <video
+            class="hero-background-video"
+            muted
+            playsinline
+            loop
+            preload="none"
+            poster="assets/seoul-traffic-poster-highway-exposure.webp"
+            data-desktop-src="assets/seoul-traffic-desktop-highway-exposure.mp4"
+            data-mobile-src="assets/seoul-traffic-mobile-highway-exposure.mp4"
+            tabindex="-1"
+          ></video>
         </div>
-      </article>
-      <article class="product-chapter chapter-check chapter-dark" id="check" data-scene aria-labelledby="check-title">
-        <div class="product-stage">
-          <div class="product-copy"><p class="product-kicker"><span>02</span>정보 확인</p><h3 id="check-title">가기 전에,<br><span>먼저 확인하세요.</span></h3><p class="product-description">영업 정보부터 방문자의 사진과 태그까지.<br>장소를 고르는 데 필요한 정보를 모았습니다.</p></div>
-          <div class="product-visual">
-            <div class="product-orbit" aria-hidden="true" data-motion='[{"at":0,"r":-14,"s":0.85},{"at":1,"r":14,"s":1.1}]'><svg viewBox="0 0 720 720" fill="none"><path class="route-base" d="M30 265C190 510 440 80 640 250S430 690 235 530S90 180 350 125S730 390 530 585"/><path class="route-light" pathLength="1" d="M30 265C190 510 440 80 640 250S430 690 235 530S90 180 350 125S730 390 530 585"/><path class="route-tracer" pathLength="1" d="M30 265C190 510 440 80 640 250S430 690 235 530S90 180 350 125S730 390 530 585"/><circle cx="30" cy="265" r="7"/></svg></div>
-            <div class="product-handsets">
-              <figure class="product-handset handset-primary" data-motion='[{"at":0,"x":-0.035,"y":0.025,"r":-7,"ry":-12,"s":0.92},{"at":0.22,"x":0,"y":0,"r":-2,"ry":0,"s":1},{"at":0.85,"x":0,"y":0,"r":-2,"ry":0,"s":1},{"at":1,"x":0,"y":-0.015,"r":-2,"ry":0,"s":1}]'><button data-phone data-zoom="assets/app-place-source.png" data-zoom-title="핑덤 장소 상세 정보 화면" aria-label="핑덤 장소 상세 정보 화면 확대"><img src="assets/app-place-preview.webp" alt="핑덤 장소 상세 정보 화면" width="960" height="1963" loading="lazy" decoding="async"></button><figcaption>영업 정보</figcaption></figure>
-              <figure class="product-handset handset-secondary" data-motion='[{"at":0,"x":0.035,"y":0.055,"r":9,"ry":14,"s":0.9},{"at":0.28,"x":0,"y":0,"r":3,"ry":0,"s":1},{"at":0.85,"x":0,"y":0,"r":3,"ry":0,"s":1},{"at":1,"x":0,"y":-0.015,"r":3,"ry":0,"s":1}]'><button data-phone data-zoom="assets/app-reviews-source.png" data-zoom-title="핑덤 방문자 후기와 태그 화면" aria-label="핑덤 방문자 후기와 태그 화면 확대"><img src="assets/app-reviews-preview.webp" alt="핑덤 방문자 후기와 태그 화면" width="960" height="1963" loading="lazy" decoding="async"></button><figcaption>사진 · 후기</figcaption></figure>
-            </div>
-          </div>
-          <div class="product-chapter-line" aria-hidden="true"><i></i></div>
+        <div class="hero-light" aria-hidden="true"></div>
+        <canvas class="intro-particles" aria-hidden="true"></canvas>
+        <img
+          class="intro-logo-source"
+          src="assets/pingdom-intro-symbol-source.png"
+          alt=""
+          width="342"
+          height="396"
+          hidden
+          fetchpriority="high"
+        />
+        <div class="hero-copy">
+          <h1 id="hero-title" aria-label="한국에서 갈 곳을 핑덤으로 더 쉽게.">
+            <span class="hero-line-top"
+              >한국에서 <br class="hero-title-break" />갈 곳을</span
+            >
+            <span class="hero-line-bottom"
+              >으로 <br class="hero-title-break" />더 쉽게<span
+                class="hero-period"
+                >.</span
+              ></span
+            >
+          </h1>
         </div>
-      </article>
-      <article class="product-chapter chapter-visit" id="visit" data-scene aria-labelledby="visit-title">
-        <div class="product-stage">
-          <div class="product-copy"><p class="product-kicker"><span>03</span>방문 준비</p><h3 id="visit-title">쿠폰을 챙기고,<br><span>예약까지 한 번에.</span></h3><p class="product-description">날짜와 인원, 시간을 고르고<br>다음 방문을 준비하세요.</p></div>
-          <div class="product-visual">
-            <div class="product-orbit" aria-hidden="true" data-motion='[{"at":0,"r":-14,"s":0.85},{"at":1,"r":14,"s":1.1}]'><svg viewBox="0 0 720 720" fill="none"><path class="route-base" d="M70 530C-20 310 220 25 440 120S660 310 505 435S155 280 195 510S640 630 670 250"/><path class="route-light" pathLength="1" d="M70 530C-20 310 220 25 440 120S660 310 505 435S155 280 195 510S640 630 670 250"/><path class="route-tracer" pathLength="1" d="M70 530C-20 310 220 25 440 120S660 310 505 435S155 280 195 510S640 630 670 250"/><circle cx="70" cy="530" r="7"/></svg></div>
-            <div class="product-handsets">
-              <figure class="product-handset handset-primary" data-motion='[{"at":0,"x":-0.035,"y":0.025,"r":-7,"ry":-12,"s":0.92},{"at":0.22,"x":0,"y":0,"r":-2,"ry":0,"s":1},{"at":0.85,"x":0,"y":0,"r":-2,"ry":0,"s":1},{"at":1,"x":0,"y":-0.015,"r":-2,"ry":0,"s":1}]'><button data-phone data-zoom="assets/app-booking-source.png" data-zoom-title="핑덤 날짜와 인원 예약 화면" aria-label="핑덤 날짜와 인원 예약 화면 확대"><img src="assets/app-booking-preview.webp" alt="핑덤 날짜와 인원 예약 화면" width="960" height="1963" loading="lazy" decoding="async"></button><figcaption>날짜 · 인원 예약</figcaption></figure>
-              <figure class="product-handset handset-secondary" data-motion='[{"at":0,"x":0.035,"y":0.055,"r":9,"ry":14,"s":0.9},{"at":0.28,"x":0,"y":0,"r":3,"ry":0,"s":1},{"at":0.85,"x":0,"y":0,"r":3,"ry":0,"s":1},{"at":1,"x":0,"y":-0.015,"r":3,"ry":0,"s":1}]'><button data-phone data-zoom="assets/app-coupons-source.png" data-zoom-title="핑덤 쿠폰 관리 화면" aria-label="핑덤 쿠폰 관리 화면 확대"><img src="assets/app-coupons-preview.webp" alt="핑덤 쿠폰 관리 화면" width="960" height="1963" loading="lazy" decoding="async"></button><figcaption>쿠폰함</figcaption></figure>
-            </div>
+        <div class="hero-model" aria-hidden="true">
+          <div class="portal-float">
+            <img
+              src="assets/pingdom-wordmark-chrome.webp"
+              alt=""
+              width="2172"
+              height="724"
+              fetchpriority="high"
+            /><canvas class="ring-flow-canvas" aria-hidden="true"></canvas>
           </div>
-          <div class="product-chapter-line" aria-hidden="true"><i></i></div>
         </div>
-      </article>
-      <article class="product-chapter chapter-record chapter-dark" id="record" data-scene aria-labelledby="record-title">
-        <div class="product-stage">
-          <div class="product-copy"><p class="product-kicker"><span>04</span>경험 공유</p><h3 id="record-title">다녀온 경험이,<br><span>다음 여행의 힌트로.</span></h3><p class="product-description">방문한 곳의 사진과 추천 태그를 남기고,<br>나의 방문 기록도 한눈에 확인하세요.</p></div>
-          <div class="product-visual">
-            <div class="product-orbit" aria-hidden="true" data-motion='[{"at":0,"r":-14,"s":0.85},{"at":1,"r":14,"s":1.1}]'><svg viewBox="0 0 720 720" fill="none"><path class="route-base" d="M50 435C170 645 615 645 655 370S400 45 185 165S220 545 465 420S700 140 515 75"/><path class="route-light" pathLength="1" d="M50 435C170 645 615 645 655 370S400 45 185 165S220 545 465 420S700 140 515 75"/><path class="route-tracer" pathLength="1" d="M50 435C170 645 615 645 655 370S400 45 185 165S220 545 465 420S700 140 515 75"/><circle cx="50" cy="435" r="7"/></svg></div>
-            <div class="product-handsets">
-              <figure class="product-handset handset-primary" data-motion='[{"at":0,"x":-0.035,"y":0.025,"r":-7,"ry":-12,"s":0.92},{"at":0.22,"x":0,"y":0,"r":-2,"ry":0,"s":1},{"at":0.85,"x":0,"y":0,"r":-2,"ry":0,"s":1},{"at":1,"x":0,"y":-0.015,"r":-2,"ry":0,"s":1}]'><button data-phone data-zoom="assets/app-verify-source.png" data-zoom-title="핑덤 사진과 태그 방문 확인 화면" aria-label="핑덤 사진과 태그 방문 확인 화면 확대"><img src="assets/app-verify-preview.webp" alt="핑덤 사진과 태그 방문 확인 화면" width="960" height="1963" loading="lazy" decoding="async"></button><figcaption>사진 · 추천 태그</figcaption></figure>
-              <figure class="product-handset handset-secondary" data-motion='[{"at":0,"x":0.035,"y":0.055,"r":9,"ry":14,"s":0.9},{"at":0.28,"x":0,"y":0,"r":3,"ry":0,"s":1},{"at":0.85,"x":0,"y":0,"r":3,"ry":0,"s":1},{"at":1,"x":0,"y":-0.015,"r":3,"ry":0,"s":1}]'><button data-phone data-zoom="assets/app-profile-source.png" data-zoom-title="핑덤 사용자 방문 기록 화면" aria-label="핑덤 사용자 방문 기록 화면 확대"><img src="assets/app-profile-preview.webp" alt="핑덤 사용자 방문 기록 화면" width="960" height="1963" loading="lazy" decoding="async"></button><figcaption>방문 기록</figcaption></figure>
-            </div>
-          </div>
-          <div class="product-chapter-line" aria-hidden="true"><i></i></div>
+        <div class="hero-bottom">
+          <a class="scroll-cue" href="#why" aria-label="아래 내용 보기"
+            ><span class="scroll-cue-label" aria-hidden="true">SCROLL</span
+            ><span class="scroll-cue-icon" aria-hidden="true"
+              ><svg viewBox="0 0 20 30" fill="none">
+                <path
+                  d="M10 3v23M4 20l6 6 6-6"
+                  stroke="currentColor"
+                  stroke-width="1.3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg></span
+          ></a>
         </div>
-      </article>
-    </section>
-    <section class="product-trust" aria-labelledby="verification-title">
-      <div class="product-trust-heading"><p class="product-kicker">장소를 이해하는 정보</p><h2 id="verification-title">한 가지 정보만으로<br>결정하지 않도록.</h2></div>
-      <div class="product-trust-list"><div><h3>상점주가 제공하는 정보</h3><p>장소의 기본 정보와 운영 소식.</p></div><div><h3>방문자가 남기는 경험</h3><p>사진과 태그로 확인하는 현장의 이야기.</p></div><div><h3>운영자가 관리하는 데이터</h3><p>장소와 사업자 정보를 관리하는 운영 도구.</p></div></div>
-    </section>
-    <section class="product-section services-section workspace section" id="workspace" aria-labelledby="workspace-title">
-      <div class="product-inner">
-        <div class="workspace-heading product-heading">
-          <h2 id="workspace-title">로컬을 움직이는<br>두 개의 시선.</h2>
-          <div class="workspace-tabs" role="tablist" aria-label="운영 화면 선택"><button role="tab" id="workspace-tab-0" data-workspace="0" aria-selected="true" aria-controls="workspace-panel">상점주</button><button role="tab" id="workspace-tab-1" data-workspace="1" aria-selected="false" aria-controls="workspace-panel" tabindex="-1">관리자</button></div>
-        </div>
-        <div class="workspace-panel" id="workspace-panel" role="tabpanel" aria-labelledby="workspace-tab-0" tabindex="0">
-            <div class="workspace-copy"><h3 id="workspace-name">내 가게의 시작부터,<br>새로운 방문까지.</h3><p id="workspace-detail">매장을 알리고, 혜택을 전하고.<br>로컬의 운영을 한곳에서.</p><div class="workspace-features" aria-label="운영 기능 선택"><button data-workspace-feature="0" aria-pressed="true"><span>01</span><strong>장소 등록</strong></button><button data-workspace-feature="1" aria-pressed="false"><span>02</span><strong>이벤트 관리</strong></button><button data-workspace-feature="2" aria-pressed="false"><span>03</span><strong>운영 권한</strong></button></div></div>
-            <div class="workspace-stage"><div class="workspace-browser"><div class="browser-toolbar" aria-hidden="true"><i></i><i></i><i></i><span id="workspace-browser-label">상점주 센터</span></div><button class="workspace-screen" data-zoom="assets/merchant-register.png" data-zoom-title="상점주 신규 장소 등록 화면" aria-label="상점주 신규 장소 등록 화면 확대"><img id="workspace-screen" src="assets/merchant-register.png" alt="매장 정보와 위치를 입력하는 실제 상점주 신규 장소 등록 화면" width="1864" height="1004" loading="lazy" decoding="async"></button></div></div>
-          </div>
-      </div>
-    </section>
-    <section class="product-section intelligence-services pingdom-ai section" id="ai" aria-labelledby="ai-title">
-      <div class="ai-backdrops" aria-hidden="true"><img class="ai-backdrop ai-backdrop-traveler" src="assets/ai-traveler-background.webp" srcset="assets/ai-traveler-background-mobile.webp 960w, assets/ai-traveler-background.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" loading="lazy" decoding="async" fetchpriority="low"><img class="ai-backdrop ai-backdrop-consulting" src="assets/ai-consulting-background.webp" srcset="assets/ai-consulting-background-mobile.webp 960w, assets/ai-consulting-background.webp 1672w" sizes="100vw" alt="" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low"></div>
-      <div class="product-inner">
-        <div class="ai-heading product-heading">
-          <h2 id="ai-title">Pingdom <span>AI</span></h2>
-          <div class="ai-tabs" role="tablist" aria-label="AI 서비스 선택"><button role="tab" id="ai-tab-0" data-ai="0" aria-selected="true" aria-controls="ai-panel">여행자 AI</button><button role="tab" id="ai-tab-1" data-ai="1" aria-selected="false" aria-controls="ai-panel" tabindex="-1">상권 컨설팅</button></div>
-        </div>
-        <div class="ai-panel" id="ai-panel" role="tabpanel" aria-labelledby="ai-tab-0" tabindex="0">
-            <div class="ai-copy"><h3 id="ai-headline">복잡한 검색 대신,<br>한 번의 대화.</h3></div>
-            <div class="traveler-demo" id="traveler-demo">
-              <div class="ai-question"><span class="question-dot" aria-hidden="true"></span><p id="ai-question-text">내 주변에서 오늘 가볼 만한 장소를 추천해줘.</p></div>
-              <div class="ai-response">
-                <div class="response-heading"><svg class="ai-logo" viewBox="60 37 258 258" aria-hidden="true"><image href="assets/pingdom-ai-symbol-source.png" width="364" height="350" filter="url(#ai-symbol-color)"/></svg><span>Pingdom AI</span><span class="demo-label">인터랙션 예시</span></div>
-                <p class="response-intro" id="ai-response-intro" aria-live="polite">취향에 따라 골라보는 세 가지 발견.</p>
-                <div class="place-results" aria-label="추천 장소 예시">
-                  <button class="place-card" data-place="0" aria-pressed="true"><span class="place-photo place-photo-cafe" aria-hidden="true"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span><span class="place-type">CAFE</span><strong>햇살이 머무는 카페</strong><span class="place-meta">조용한 공간 · 커피</span><span class="place-check" aria-hidden="true">✓</span></button>
-                  <button class="place-card" data-place="1" aria-pressed="false"><span class="place-photo place-photo-dining" aria-hidden="true"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span><span class="place-type">DINING</span><strong>골목 속 작은 식당</strong><span class="place-meta">로컬 다이닝 · 한 끼</span><span class="place-check" aria-hidden="true">✓</span></button>
-                  <button class="place-card" data-place="2" aria-pressed="false"><span class="place-photo place-photo-popup" aria-hidden="true"><img src="assets/ai-places-triptych-lossless.webp" alt="" width="2172" height="724" loading="lazy" decoding="async"></span><span class="place-type">POP-UP</span><strong>이번 주, 새로운 발견</strong><span class="place-meta">팝업 · 전시</span><span class="place-check" aria-hidden="true">✓</span></button>
-                </div>
-                <div class="place-insight"><p id="place-insight" aria-live="polite">원하는 분위기부터 주변 위치까지, 한 번에 좁혀보세요.</p></div>
-              </div>
-              <div class="ai-suggestions" aria-label="AI 질문 예시"><button data-question="0" aria-pressed="false">조용한 카페</button><button data-question="1" aria-pressed="false">로컬 음식점</button><button data-question="2" aria-pressed="false">색다른 팝업</button></div>
-              <p class="ai-demo-note">장소와 이미지는 서비스 소개를 위한 예시입니다.</p>
-            </div>
-            <div class="consulting-demo" id="consulting-demo" hidden>
-              <div class="consulting-summary"><span class="consulting-label">분석 대상</span><h4>내 가게를 위한<br>상권 분석.</h4><dl class="consulting-facts"><div><dt>관심 지역</dt><dd>성수동</dd></div><div><dt>업종</dt><dd>카페</dd></div></dl><p>위치와 업종에서 시작해,<br>고객과 운영 시간을 함께 살펴봅니다.</p></div>
-              <div class="report-stack"><article class="report-sheet" aria-labelledby="report-title"><div class="report-top"><span>상권 분석 리포트</span><span>분석 예시</span></div><h4 id="report-title">성수동 · 카페</h4><p class="report-subtitle">가게의 다음 결정을 위한 한 장.</p><div class="report-chart"><div class="report-chart-title">시간대별 방문 흐름 <span>예시</span></div><div class="report-bars" role="img" aria-label="오후 방문이 가장 많은 시간대별 방문 흐름 예시"><div><i style="--bar:42%"></i><span>오전</span></div><div><i style="--bar:72%"></i><span>점심</span></div><div><i style="--bar:94%"></i><span>오후</span></div><div><i style="--bar:60%"></i><span>저녁</span></div></div></div><div class="report-line"><span>살펴볼 고객</span><strong>오래 머무는 고객의 방문 동기</strong></div><div class="report-line"><span>운영의 관점</span><strong>체류 시간과 좌석 구성</strong></div><div class="report-foot"><span>입지 · 유동인구 · 고객 · 운영</span></div></article></div>
-              <p class="ai-demo-note">서비스 소개를 위한 리포트 예시이며, 실제 상권 분석 결과가 아닙니다.</p>
-            </div>
-          </div>
-      </div>
-    </section>
+      </section>
+      <div class="site-body">
+        <header class="site-header">
+          <a class="brand" href="#about" aria-label="핑덤 첫 화면"
+            ><img
+              src="assets/redesign/official-wordmark.svg"
+              alt="pingdom"
+              width="371"
+              height="86"
+          /></a>
+          <nav aria-label="페이지 안내">
+            <a href="#why">서비스</a>
+            <a href="#platform">플랫폼</a>
+            <a href="#ai">AI</a>
+          </nav>
+        </header>
 
-    <section class="team section" id="team" aria-labelledby="team-title">
-      <h2 id="team-title">함께 만드는,<br> 핑덤.</h2>
-      <div class="team-layout">
-      <div class="people-tabs" role="tablist" aria-label="팀원 선택">
-        <button role="tab" id="person-tab-0" data-person="0" aria-selected="true" aria-controls="person-panel"><span class="person-index" aria-hidden="true">01</span><span>김우성</span></button>
-        <button role="tab" id="person-tab-1" data-person="1" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">02</span><span>김일강</span></button>
-        <button role="tab" id="person-tab-2" data-person="2" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">03</span><span>우성민</span></button>
-        <button role="tab" id="person-tab-3" data-person="3" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">04</span><span>김태우</span></button>
-        <button role="tab" id="person-tab-4" data-person="4" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">05</span><span>조성혁</span></button>
-        <button role="tab" id="person-tab-5" data-person="5" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">06</span><span>이용인</span></button>
-        <button role="tab" id="person-tab-6" data-person="6" aria-selected="false" aria-controls="person-panel" tabindex="-1"><span class="person-index" aria-hidden="true">07</span><span>장준혁</span></button>
+        <section
+          class="journey-scene"
+          id="why"
+          data-scene="journey"
+          aria-labelledby="journey-title"
+        >
+          <div class="scene-stage journey-stage">
+            <figure class="local-photo" aria-hidden="true">
+              <picture
+                ><source
+                  media="(max-width: 760px)"
+                  srcset="assets/rebuild/local-walk-mobile.webp" />
+                <img
+                  src="assets/rebuild/local-walk.webp"
+                  data-desktop-hq="assets/desktop-polish/local-walk-native.webp"
+                  alt=""
+                  width="1920"
+                  height="1080"
+                  decoding="async"
+              /></picture>
+              <div class="photo-shade"></div>
+            </figure>
+            <div class="journey-opening" aria-hidden="true">
+              <p class="eyebrow">한국을 만나는 새로운 방법</p>
+              <p class="opening-title">
+                낯선 동네가,<br />나의 목적지가 됩니다.
+              </p>
+              <p class="opening-description">여행자와 로컬을 잇는 핑덤.</p>
+            </div>
+            <div class="journey-copy">
+              <p class="eyebrow">PINGDOM FOR TRAVELERS</p>
+              <h2 id="journey-title">
+                내 주변의 발견이,<br />여행의 시작이<br /> 됩니다.
+              </h2>
+              <p class="body-copy desktop-body">
+                지도에서 만나는 주변의 장소.<br />취향에 맞는 추천으로<br />오늘
+                가고 싶은 곳을 찾아보세요.
+              </p>
+              <p class="body-copy mobile-body">
+                주변의 장소를 찾고,<br />취향에 맞게 여행하세요.
+              </p>
+              <a class="text-link" href="#details"
+                >발견 이후의 여행도 살펴보기
+                <span aria-hidden="true">↓</span></a
+              >
+            </div>
+            <figure class="journey-product">
+              <img
+                src="assets/desktop-polish/app-map-native.webp"
+                  data-desktop-hq="assets/desktop-polish/app-map-native.webp"
+                alt="핑덤 실제 앱: 주변 지도와 카테고리, 추천 장소를 함께 보여주는 화면"
+                width="1800"
+                height="3680"
+                decoding="async"
+              />
+              <figcaption>주변 지도 · 장소 추천</figcaption>
+            </figure>
+            <p class="local-caption">DISCOVER YOUR LOCAL</p>
+          </div>
+        </section>
+
+        <section
+          class="details-section section-wrap"
+          id="details"
+          aria-labelledby="details-title"
+        >
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">BEFORE & AFTER YOUR VISIT</p>
+              <h2 id="details-title">발견이 끝나도,<br />여행은 계속되니까.</h2>
+            </div>
+            <p class="section-intro">
+              방문할 곳을 이해하고, 일정을 준비하고.<br />다녀온 순간까지 핑덤에
+              남겨보세요.
+            </p>
+          </div>
+          <div class="visit-grid" data-desktop-sequence="visit">
+            <article class="detail-card place-card">
+              <div class="card-copy" data-visit-copy="place">
+                <p class="card-label">장소 정보</p>
+                <h3>가기 전에,<br />알아두면 좋은 것들.</h3>
+                <p>영업시간과 위치, 방문자의 사진.<br />장소를 고를 때 필요한 정보를<br />한곳에서 확인하세요.</p>
+              </div>
+              <figure class="place-product" data-visit-product="place">
+                <img
+                  src="assets/product-hq-v17/app-place-hq-v17.webp"
+                  data-desktop-hq="assets/product-hq-v17/app-place-hq-v17.webp"
+                  alt="핑덤 장소 상세 화면: 영업 정보, 방문 사진, 편의 정보와 쿠폰"
+                  width="2250"
+                  height="4600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              <button class="mobile-image-open visit-mobile-zoom" type="button" data-mobile-screen aria-label="장소 정보 앱 화면 크게 보기">화면 크게 보기 <span aria-hidden="true">↗</span></button>
+              </figure>
+            </article>
+            <article class="detail-card community-card">
+              <div class="card-copy" data-visit-copy="community">
+                <p class="card-label">커뮤니티</p>
+                <h3>동네의 이야기가,<br />새로운 발견으로.</h3>
+                <p>스팟과 다이어리를 나누고,<br />동네의 새로운 소식을 만나보세요.</p>
+              </div>
+              <figure class="community-product" data-visit-product="community">
+                <img
+                  src="assets/product-hq-v17/app-community-hq-v17.webp"
+                  data-desktop-hq="assets/product-hq-v17/app-community-hq-v17.webp"
+                  alt="핑덤 커뮤니티 화면: 동네의 스팟과 다이어리, 게시글과 댓글"
+                  width="2250"
+                  height="4600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              <button class="mobile-image-open visit-mobile-zoom" type="button" data-mobile-screen aria-label="커뮤니티 앱 화면 크게 보기">화면 크게 보기 <span aria-hidden="true">↗</span></button>
+              </figure>
+            </article>
+            <article class="detail-card verification-card">
+              <div class="card-copy" data-visit-copy="verification">
+                <p class="card-label">방문 검증</p>
+                <h3>직접 다녀온 경험이,<br />믿을 수 있는 정보로.</h3>
+                <p>방문 사진과 추천 이유를 남겨<br />다음 방문자의 선택을 도와주세요.</p>
+              </div>
+              <figure class="verification-product" data-visit-product="verification">
+                <img
+                  src="assets/product-hq-v17/app-verification-hq-v17.webp"
+                  data-desktop-hq="assets/product-hq-v17/app-verification-hq-v17.webp"
+                  alt="핑덤 방문 검증 화면: 사진 첨부, 추천 이유와 후기 작성"
+                  width="2250"
+                  height="4600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              <button class="mobile-image-open visit-mobile-zoom" type="button" data-mobile-screen aria-label="방문 검증 앱 화면 크게 보기">화면 크게 보기 <span aria-hidden="true">↗</span></button>
+              </figure>
+            </article>
+            <article class="detail-card booking-card">
+              <div class="card-copy" data-visit-copy="booking">
+                <p class="card-label">예약과 혜택</p>
+                <h3>가고 싶은 날에,<br />조금 더 가볍게.</h3>
+                <p>날짜와 인원, 시간을 정해 예약하고<br />장소의 쿠폰도 함께 챙기세요.</p>
+              </div>
+              <figure class="booking-product" data-visit-product="booking">
+                <img
+                  src="assets/product-hq-v17/app-booking-hq-v17.webp"
+                  data-desktop-hq="assets/product-hq-v17/app-booking-hq-v17.webp"
+                  alt="핑덤 예약 화면: 인원과 날짜, 방문 시간 선택"
+                  width="2250"
+                  height="4600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              <button class="mobile-image-open visit-mobile-zoom" type="button" data-mobile-screen aria-label="예약 앱 화면 크게 보기">화면 크게 보기 <span aria-hidden="true">↗</span></button>
+              </figure>
+            </article>
+            <article class="detail-card memory-card">
+              <div class="card-copy" data-visit-copy="profile">
+                <p class="card-label">여행 기록</p>
+                <h3>다녀온 순간을,<br />나의 여행 기록으로.</h3>
+                <p>방문한 장소를 여행 달력에 모으고,<br />나의 경험을 다시 꺼내보세요.</p>
+              </div>
+              <figure class="memory-product" data-visit-product="profile">
+                <img
+                  src="assets/product-hq-v17/app-profile-hq-v17.webp"
+                  data-desktop-hq="assets/product-hq-v17/app-profile-hq-v17.webp"
+                  alt="핑덤 마이페이지 화면: 여행 달력과 검증한 장소"
+                  width="2250"
+                  height="4600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              <button class="mobile-image-open visit-mobile-zoom" type="button" data-mobile-screen aria-label="여행 기록 앱 화면 크게 보기">화면 크게 보기 <span aria-hidden="true">↗</span></button>
+              </figure>
+            </article>
+          </div>
+        </section>
+
+        <section class="strengths-scene" id="strengths" aria-labelledby="strengths-title">
+          <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><filter id="strength-ai-symbol-color" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  1.108696 -1.108696 0 0 0" result="symbol-mask"/><feFlood flood-color="#FF1956"/><feComposite in2="symbol-mask" operator="in"/></filter><symbol id="strength-pin" viewBox="0 0 64 72"><path fill-rule="evenodd" d="M32 1C15.43 1 2 14.43 2 31c0 12.5 7.3 21.4 17.1 29.7L32 71l12.9-10.3C54.7 52.4 62 43.5 62 31 62 14.43 48.57 1 32 1Zm0 20a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z"/></symbol><symbol id="strength-chat" viewBox="0 0 24 24"><path d="M5 3h14a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H9l-6 4v-4a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z"/></symbol></defs></svg>
+          <div class="strengths-stage">
+            <div class="strengths-heading">
+              <div><p class="strengths-kicker">핑덤만의 차이</p><h2 id="strengths-title">좋은 장소가,<br />좋은 경험으로 이어지도록.</h2></div>
+            </div>
+            <div class="mobile-strength-controls" aria-label="핑덤 강점 카드 이동"><button type="button" data-strength-direction="-1" aria-label="이전 강점 카드" disabled>←</button><button type="button" data-strength-direction="1" aria-label="다음 강점 카드">→</button></div>
+            <div class="strengths-viewport" data-strength-viewport role="region" aria-label="핑덤의 8가지 강점">
+              <ol class="strengths-track" data-strength-track>
+                <li class="strength-card" data-strength-card="discovery">
+                  <div class="strength-art strength-taste" aria-hidden="true"><img class="strength-photo" src="assets/strengths-v20/discovery-cafe-v20.png" alt="" width="1024" height="1536" loading="lazy" decoding="async"/></div>
+                  <div class="strength-overlay strength-prompt" aria-hidden="true"><div class="strength-glass strength-step-a"><div class="strength-prompt-label"><svg class="strength-ai-symbol" viewBox="60 37 258 258"><image href="assets/pingdom-ai-symbol-source.png" width="364" height="350" filter="url(#strength-ai-symbol-color)"/></svg>Pingdom AI</div><p>햇살이 좋고 조용한<br /><b>동네 카페를 찾아줘.</b></p></div></div>
+                  <div class="strength-card-copy"><h3>검색어보다,<br />내가 원하는 분위기.</h3></div>
+                </li>
+                <li class="strength-card" data-strength-card="context">
+                  <div class="strength-art strength-context" aria-hidden="true"><img class="strength-photo" src="assets/strengths-v20/context-shop-v20.png" alt="" width="1024" height="1536" loading="lazy" decoding="async"/></div>
+                  <div class="strength-overlay strength-place-info" aria-hidden="true"><div class="strength-glass strength-step-a"><div class="strength-info-top">오늘의 방문 준비<span class="strength-step-b"><i></i>영업 중</span></div><div class="strength-info-bottom strength-step-c"><svg viewBox="0 0 64 72"><use href="#strength-pin"/></svg><span>위치 · 운영 시간 · 편의 정보</span></div></div></div>
+                  <div class="strength-card-copy"><h3>가기 전 궁금한 것,<br />한눈에 확인하세요.</h3></div>
+                </li>
+                <li class="strength-card" data-strength-card="proof">
+                  <div class="strength-art strength-proof" aria-hidden="true"><img class="strength-photo" src="assets/strengths-v20/proof-gallery-v20.png" alt="" width="1024" height="1536" loading="lazy" decoding="async"/></div>
+                  <div class="strength-overlay strength-reasons" aria-hidden="true"><span class="strength-reason strength-step-a"><i>✓</i>사진 찍기 좋아요</span><span class="strength-reason strength-step-b"><i>✓</i>찾기 쉬워요</span><span class="strength-reason strength-step-c"><i>✓</i>친절해요</span></div>
+                  <div class="strength-card-copy"><h3>누군가의 방문이,<br />나의 발견이 됩니다.</h3></div>
+                </li>
+                <li class="strength-card" data-strength-card="visit">
+                  <div class="strength-art strength-visit" aria-hidden="true"><img class="strength-photo" src="assets/strengths-v20/booking-dinner-v20.png" alt="" width="1024" height="1536" loading="lazy" decoding="async"/></div>
+                  <div class="strength-overlay strength-glass strength-booking strength-step-a" aria-hidden="true"><div class="strength-booking-status"><svg viewBox="0 0 24 24"><path d="m6 12 4 4 8-8"/></svg><span>예약 완료</span></div><div class="strength-booking-detail strength-step-b"><b>7월 10일 · 오후 7:00</b></div><div class="strength-booking-guests strength-step-c"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6M21 20v-2a6 6 0 0 0-3-5.2"/></svg><span>2명 방문</span></div></div>
+                  <div class="strength-card-copy"><h3>가고 싶다는 마음을,<br />약속으로 바꾸는 순간.</h3></div>
+                </li>
+                <li class="strength-card" data-strength-card="memory">
+                  <div class="strength-art strength-memory" aria-hidden="true"><img class="strength-photo" src="assets/strengths-v20/neighborhood-walk-v20.png" alt="" width="1024" height="1536" loading="lazy" decoding="async"/></div>
+                  <div class="strength-overlay strength-community" aria-hidden="true"><div class="strength-glass strength-step-a"><div class="strength-community-label"><svg viewBox="0 0 24 24"><use href="#strength-chat"/></svg>동네의 새로운 이야기</div><p class="strength-step-b">오늘 걸었던 이 골목,<br />함께 발견하고 싶어요.</p><small class="strength-step-c">스팟 · 다이어리 · 커뮤니티</small></div></div>
+                  <div class="strength-card-copy"><h3>장소를 넘어,<br />이야기로 이어지는 연결.</h3></div>
+                </li>
+                <li class="strength-card" data-strength-card="business">
+                  <div class="strength-art strength-business" aria-hidden="true"><img class="strength-photo" src="assets/strengths-v20/business-owner-v20.png" alt="" width="1024" height="1536" loading="lazy" decoding="async"/></div>
+                  <div class="strength-overlay strength-news" aria-hidden="true"><div class="strength-glass strength-step-a"><div class="strength-news-label"><b>가게의 새로운 소식</b><span>상점주 센터</span></div><p class="strength-step-b">가게의 새로운 소식을 전했어요.</p><small class="strength-step-c">운영 정보 · 가게 소개 · 이벤트</small></div></div>
+                  <div class="strength-card-copy"><h3>가게의 소식이,<br />새로운 방문의 이유로.</h3></div>
+                </li>
+                <li class="strength-card" data-strength-card="travel">
+                  <div class="strength-art strength-travel" aria-hidden="true"><img class="strength-photo" src="assets/strengths-v26/travel-journal-v26.png" alt="" width="1024" height="1536" loading="lazy" decoding="async"/></div>
+                  <div class="strength-overlay strength-glass strength-calendar strength-step-a" aria-hidden="true"><div class="strength-calendar-heading"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 11h18"/></svg><b>나의 여행</b><span>7월</span></div><div class="strength-calendar-week strength-step-b"><span>7</span><span>8</span><span>9</span><b>10</b><span>11</span><span>12</span><span>13</span></div><div class="strength-calendar-memory strength-step-c"><i></i>방문한 장소를 여행 달력에</div></div>
+                  <div class="strength-card-copy"><h3>다녀온 장소가,<br />나만의 여행 달력으로.</h3></div>
+                </li>
+                <li class="strength-card" data-strength-card="consulting">
+                  <div class="strength-art strength-consulting" aria-hidden="true"><img class="strength-photo" src="assets/strengths-v26/consulting-cafe-v26.png" alt="" width="1024" height="1536" loading="lazy" decoding="async"/></div>
+                  <div class="strength-overlay strength-glass strength-conditions strength-step-a" aria-hidden="true"><div class="strength-prompt-label"><svg class="strength-ai-symbol" viewBox="60 37 258 258"><image href="assets/pingdom-ai-symbol-source.png" width="364" height="350" filter="url(#strength-ai-symbol-color)"/></svg>Pingdom Consulting</div><p class="strength-step-b"><b>내 가게에 맞춘 상권 상담</b></p><div class="strength-condition-tags strength-step-c"><span>카페</span><span>20·30대 고객</span><span>오후 운영</span></div></div>
+                  <div class="strength-card-copy"><h3>가게의 다음 질문,<br />내 조건에서 시작합니다.</h3></div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="platform-scene"
+          id="platform"
+          data-scene="platform"
+          aria-labelledby="platform-desktop-title"
+        >
+          <div class="scene-stage platform-stage">
+<div class="platform-triptych platform-editorial" aria-labelledby="platform-desktop-title">
+  <div class="platform-triptych-content">
+    <div class="platform-triptych-heading">
+      <h2 id="platform-desktop-title">좋은 장소를 만나는 순간,<br>사람과 사람이 이어집니다.</h2>
+    </div>
+    <div class="platform-card-grid">
+      <article class="platform-card" data-platform-card="0">
+        <div class="platform-card-art">
+          <img src="assets/revision/traveler-discovery.webp" loading="lazy" data-desktop-hq="assets/revision/traveler-discovery.webp" alt="동네 골목에서 새로운 장소를 발견하는 여행자" width="1536" height="1024" decoding="async">
+        </div>
+        <div class="platform-card-copy"><h3>발견이 여행이 되는 순간.</h3><p>원하는 장소를 찾고,<br>방문의 순간을 남기세요.</p></div>
+      </article>
+      <article class="platform-card" data-platform-card="1">
+        <div class="platform-card-art">
+          <img src="assets/revision/merchant-cafe.webp" loading="lazy" data-desktop-hq="assets/revision/merchant-cafe.webp" alt="밝은 동네 카페에서 방문자를 맞이하는 상점주" width="1536" height="1024" decoding="async">
+        </div>
+        <div class="platform-card-copy"><h3>소식이 방문이 되는 순간.</h3><p>가게의 정보와 이벤트를 등록하고,<br>새로운 손님을 맞이하세요.</p></div>
+      </article>
+      <article class="platform-card" data-platform-card="2">
+        <div class="platform-card-art">
+          <img src="assets/revision/operator-workspace.webp" loading="lazy" data-desktop-hq="assets/revision/operator-workspace.webp" alt="작업 공간에서 장소와 운영 정보를 확인하는 운영자" width="1536" height="1024" decoding="async">
+        </div>
+        <div class="platform-card-copy"><h3>연결을 믿을 수 있도록.</h3><p>장소와 사업자 정보를 검토하고,<br>서비스의 데이터를 관리합니다.</p></div>
+      </article>
+    </div>
+  </div>
+</div>
+
+            <div class="platform-board">
+              <div class="platform-heading">
+                <p class="eyebrow">ONE CONNECTED PLATFORM</p>
+                <h2 id="platform-title">
+                  좋은 장소와의 연결,<br />그 뒤의 사람들까지.
+                </h2>
+              </div>
+              <div class="platform-layout">
+                <div class="platform-roles">
+                  <article>
+                    <span class="role-index">01</span>
+                    <div>
+                      <h3>여행자</h3>
+                      <p>
+                        장소를 발견하고, 방문을 준비하고.<br />경험을 남기는
+                        모바일 앱.
+                      </p>
+                    </div>
+                  </article>
+                  <article>
+                    <span class="role-index">02</span>
+                    <div>
+                      <h3>상점주</h3>
+                      <p>
+                        장소 등록부터 운영 정보와 이벤트까지.<br />내 가게를
+                        관리하는 상점주 센터.
+                      </p>
+                    </div>
+                  </article>
+                  <article>
+                    <span class="role-index">03</span>
+                    <div>
+                      <h3>운영자</h3>
+                      <p>
+                        장소와 사업자 정보를 검토하고<br />데이터를 관리하는
+                        운영 콘솔.
+                      </p>
+                    </div>
+                  </article>
+                </div>
+                <figure class="platform-product">
+                  <div class="screen-caption">
+                    <span>운영자 콘솔</span><span>장소 관리</span>
+                  </div>
+                  <img
+                    src="assets/admin-places.png"
+                    alt="실제 핑덤 관리자 웹: 장소 목록과 지도, 정보 검증을 위한 운영 메뉴"
+                    width="1865"
+                    height="1004"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption>
+                    각자의 역할이 이어져, 하나의 장소 경험을 만듭니다.
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="platform-curtain" aria-hidden="true">
+              <p class="eyebrow">여행자에서 로컬까지</p>
+              <p class="platform-big">발견하는 사람.<br />맞이하는 사람.</p>
+              <p class="platform-small">서로의 일상을 잇는 하나의 플랫폼.</p>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="merchant-section section-wrap"
+          id="merchant"
+          data-desktop-sequence="merchant"
+          aria-labelledby="merchant-title"
+        >
+          <div class="merchant-copy">
+            <div class="merchant-lead">
+              <p class="eyebrow">PINGDOM FOR LOCAL BUSINESSES</p>
+              <h2 id="merchant-title">
+                내 가게의 소식이,<br />새로운 방문으로.
+              </h2>
+            </div>
+            <div class="merchant-beat merchant-register-copy">
+              <h3 class="desktop-extra">가게의 시작을,<br />한 화면에서.</h3>
+              <p class="body-copy">
+                가게의 위치와 운영 정보를 직접 등록하고,<br />이벤트와 혜택을
+                관리하세요.<br />장소 운영에 필요한 일을 웹에서 이어갑니다.
+              </p>
+              <div class="merchant-functions">
+                <span>장소 등록과 운영 권한</span><span>운영 정보와 공지</span
+                ><span>이벤트와 쿠폰</span><span>예약 운영</span>
+              </div>
+            </div>
+
+          </div>
+          <figure class="merchant-product">
+            <p class="screen-caption">상점주 센터 · 신규 장소 등록</p>
+            <div class="merchant-visual">
+              <div class="merchant-screen merchant-register-screen">
+                <img
+                  src="assets/product-hq-v15/merchant-register-v15.webp"
+                  data-desktop-hq="assets/desktop-polish/merchant-register-native.webp"
+                  alt="실제 핑덤 상점주 웹: 기본 정보와 위치를 등록하는 신규 장소 등록 화면"
+                  width="1864"
+                  height="1004"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <button class="mobile-image-open merchant-mobile-zoom" type="button" data-mobile-screen aria-label="장소 등록 웹 화면 크게 보기">화면 크게 보기 <span aria-hidden="true">↗</span></button>
+                <div
+                  class="merchant-panel-mask register-panel-mask desktop-extra"
+                  aria-hidden="true"
+                >
+              </div>
+                <img
+                  class="merchant-panel register-panel desktop-extra"
+                  data-desktop-src="assets/desktop-motion/merchant-register-panel.webp"
+                  alt=""
+                  width="1101"
+                  height="500"
+                  aria-hidden="true"
+                  decoding="async"
+                />
+              </div>
+            <div class="merchant-beat merchant-event-copy desktop-extra">
+              <p class="card-label">이벤트 관리</p>
+              <h3>새로운 소식을,<br />직접 전하는 곳.</h3>
+              <p class="body-copy">
+                이벤트의 일정과 내용을 등록하고,<br />이미지와 혜택을 함께
+                준비하세요.<br />상점주 센터에서 가게의 소식을 관리합니다.
+              </p>
+              <p class="merchant-screen-note">
+                실제 상점주 웹의 등록 전 화면입니다.
+              </p>
+            </div>
+              <div
+                class="merchant-screen merchant-event-screen desktop-extra"
+              >
+                <img
+                  src="assets/product-hq-v15/merchant-event-v15.webp"
+                  data-desktop-hq="assets/desktop-polish/merchant-event-native.webp"
+                  alt="실제 핑덤 상점주 웹의 새 이벤트 등록 화면"
+                  width="1864"
+                  height="1004"
+                  decoding="async"
+                />
+                <button class="mobile-image-open merchant-mobile-zoom" type="button" data-mobile-screen aria-label="이벤트 등록 웹 화면 크게 보기">화면 크게 보기 <span aria-hidden="true">↗</span></button>
+                <div
+                  class="merchant-panel-mask event-panel-mask"
+                  aria-hidden="true"
+                >
+              </div>
+                <img
+                  class="merchant-panel event-panel"
+                  data-desktop-src="assets/desktop-motion/merchant-event-panel.webp"
+                  alt=""
+                  width="581"
+                  height="635"
+                  aria-hidden="true"
+                  decoding="async"
+                />
+              </div>
+            </div>
+            <figcaption class="merchant-screen-note desktop-extra">
+              실제 상점주 웹 · 장소와 이벤트 등록
+            </figcaption>
+          </figure>
+<div class="merchant-desktop" aria-labelledby="merchant-v2-title" aria-hidden="true">
+  <div class="merchant-v2-stage">
+    <div class="merchant-v2-heading" id="merchant-v2-title">
+      <div class="merchant-v2-beat" data-merchant-copy="0" aria-hidden="true">
+        <h2>내 가게를<br>알리는 일,<br><span>간단하게.</span></h2>
       </div>
-      <div class="person-panel" id="person-panel" role="tabpanel" aria-labelledby="person-tab-0" tabindex="0">
-        <div class="person-photo"><img id="person-photo" src="assets/presentation-woosung.png" alt="발표자료의 김우성 프로필" width="164" height="166" loading="lazy"><span id="person-counter" aria-hidden="true">01 / 07</span></div>
-        <div class="person-intro"><p id="person-role">PM · Server Lead · Web</p><h3 id="person-name">김우성</h3><p id="person-description">핑덤을 직접 기획하고,<br> 서비스의 방향과 개발을 이끕니다.</p></div>
-        <ul class="person-work" id="person-work"><li><span>기획</span>서비스 기획 · 프로젝트 진행</li><li><span>서버</span>서버 개발 총괄</li><li><span>웹</span>상점주 웹 개발</li></ul>
+      <div class="merchant-v2-beat" data-merchant-copy="1" aria-hidden="false">
+        <h2>가게의 시작을,<br><span>한 화면에서.</span></h2>
+        <p class="merchant-v2-body">가게의 위치와 운영 정보를 직접 등록하고,<br>이벤트와 혜택을 관리하세요.</p>
       </div>
+      <div class="merchant-v2-beat" data-merchant-copy="2" aria-hidden="true">
+        <h2>새로운 소식이,<br><span>새로운 방문으로.</span></h2>
+        <p class="merchant-v2-body">이벤트의 일정과 내용을 등록하고,<br>이미지와 혜택을 함께 준비하세요.</p>
       </div>
-    </section>
-  </main>
-  <dialog id="screen-dialog" aria-labelledby="dialog-title"><div class="dialog-bar"><h2 id="dialog-title">화면 확대</h2><div><button id="zoom-toggle" aria-pressed="false">원본 크기</button><button id="dialog-close" aria-label="확대 화면 닫기">닫기 ×</button></div></div><div class="dialog-image"><img id="dialog-screen" alt="" width="1866" height="1003"></div></dialog>
-  <footer class="footer"><div><p>한국에서 갈 곳을 더 쉽게.</p><a href="#about">처음으로</a></div><div class="footer-word" aria-label="Pingdom">pingdom<span>.</span></div><div class="footer-meta"><span>© 2026 TYPE:NULL</span><a class="footer-contact" href="mailto:azunox9@gmail.com">contact : azunox9@gmail.com</a></div></footer>
-</body>
+    </div>
+    <figure class="merchant-v2-product">
+      <div class="merchant-v2-visual">
+        <div class="merchant-web-camera">
+        <div class="merchant-web-screen" data-merchant-screen="0" aria-hidden="false">
+          <img data-desktop-hq="assets/product-hq-v15/merchant-register-v15.webp" alt="기존 핑덤 상점주 신규 장소 등록 화면을 고해상도로 재제작한 UI: 장소 검색, 카테고리와 위치 확인" width="1864" height="1004" decoding="async">
+        </div>
+        <div class="merchant-web-screen" data-merchant-screen="1" aria-hidden="true">
+          <img data-desktop-hq="assets/product-hq-v15/merchant-event-v15.webp" alt="기존 핑덤 상점주 이벤트 관리 화면을 고해상도로 재제작한 UI: 이벤트 목록과 새 이벤트 등록" width="1864" height="1004" decoding="async">
+        </div>
+        </div>
+      </div>
+    </figure>
+  </div>
+</div>
+        </section>
+
+        <section
+          class="intelligence-section section-wrap"
+          id="ai"
+          aria-labelledby="ai-title"
+        >
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">PINGDOM INTELLIGENCE</p>
+              <h2 id="ai-title">더 많은 가능성은,<br />질문에서 시작합니다.</h2>
+            </div>
+            <p class="section-intro">
+              장소를 찾는 여행자에게도,<br />다음 결정을 준비하는 상점주에게도.
+            </p>
+          </div>
+          <div class="intelligence-grid">
+            <article>
+              <div class="ai-copy">
+                <span class="ai-label">FOR TRAVELERS</span>
+                <h3>취향을 말하면,<br />발견의 방향이 보입니다.</h3>
+                <p>
+                  원하는 분위기와 조건을 바탕으로<br />장소를 추천하는 Pingdom
+                  AI.
+                </p>
+              </div>
+              <figure>
+                <img
+                  src="assets/redesign/ai-traveler.webp"
+                  alt="핑덤 AI 여행자 서비스 예시: 방문 조건에 맞는 장소를 추천하는 응답"
+                  width="1439"
+                  height="645"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </article>
+            <article>
+              <div class="ai-copy">
+                <span class="ai-label">FOR LOCAL BUSINESSES</span>
+                <h3>가게의 고민에도,<br />데이터로 다음 질문을.</h3>
+                <p>
+                  업종과 고객, 운영 조건을 정리해<br />상권 상담으로 이어가는
+                  컨설팅 서비스.
+                </p>
+              </div>
+              <figure>
+                <img
+                  src="assets/web-report.webp"
+                  alt="실제 핑덤 상권 컨설팅 웹: 업종, 장소, 고객과 운영 시간에 대한 상담 정보를 확인하는 화면"
+                  width="1200"
+                  height="641"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </article>
+          </div>
+<div class="ai-pages desktop-extra">
+  <article class="ai-cinematic ai-traveler-page" id="ai-traveler" data-ai-page="traveler" aria-labelledby="ai-traveler-title">
+    <div class="ai-cinematic-stage">
+      <div class="ai-stage-copy">
+        <p class="ai-feature-label">Pingdom AI</p>
+        <h3 id="ai-traveler-title">말로 찾는,<br />나만의 장소.</h3>
+        <p class="ai-stage-description">원하는 분위기와 조건을 말하면,<br />Pingdom AI가 장소를 추천해요.</p>
+      </div>
+      <figure class="ai-product-visual ai-traveler-visual" data-ai-product>
+        <div class="ai-cosmos-backdrop" aria-hidden="true"><img data-desktop-src="assets/ai-traveler-background.webp" alt="" width="2560" height="1440" decoding="async" /></div>
+        <img class="ai-product-illustration" data-ai-required data-desktop-src="assets/ai-refresh/traveler-discovery.webp" alt="장소 추천 원리를 표현한 소개용 3D 일러스트: 투명한 지도와 핑크색 핀, 장소의 분위기를 담은 장면" width="1536" height="1024" decoding="async" />
+      </figure>
+    </div>
+  </article>
+  <article class="ai-cinematic ai-consulting-page" id="ai-consulting" data-ai-page="consulting" data-consulting-model aria-labelledby="ai-consulting-title">
+    <div class="ai-cinematic-stage">
+      <div class="ai-stage-copy">
+        <p class="ai-feature-label">Pingdom Consulting</p>
+        <h3 id="ai-consulting-title">내 가게를 위한<br />AI 상권 상담.</h3>
+        <p class="ai-stage-description">업종과 고객, 운영 조건을 담아<br />상권에 대한 고민을 상담하세요.</p>
+      </div>
+      <figure class="ai-product-visual ai-consulting-visual" data-ai-product>
+        <div class="ai-consulting-model-layer">
+          <img class="ai-product-illustration" data-ai-required data-desktop-src="assets/ai-refresh/consulting-neighborhood-base-v13.png" alt="동네의 가게와 건물을 표현한 상권 상담 소개용 3D 일러스트" width="1536" height="1024" decoding="async" />
+          <img class="ai-consulting-brand-pin" data-ai-required data-desktop-src="assets/consulting-flight/pingdom-pin-clean.webp" alt="" aria-hidden="true" width="1254" height="1254" decoding="async" />
+        </div>
+      </figure>
+    </div>
+  </article>
+  <article class="ai-cinematic ai-global-page" id="global-vision" data-ai-page="global" data-global-vision data-consulting-flight data-consulting-globe aria-labelledby="global-vision-title" aria-description="한국에서 시작한 좋은 장소의 발견이 전 세계로 확장되는 핑덤의 목표를 표현합니다.">
+    <div class="ai-cinematic-stage">
+      <div class="ai-stage-copy">
+        <p class="ai-feature-label">핑덤의 다음 여정</p>
+        <h3 id="global-vision-title">한 동네에서,<br />더 넓은 세상으로.</h3>
+        <p class="ai-stage-description">좋은 장소를 발견하는 경험이<br />한국을 넘어 세계로 이어지도록.</p>
+      </div>
+      <div class="global-vision-origin" aria-hidden="true">
+        <img data-ai-required data-desktop-src="assets/consulting-flight/korea-globe-poster-v29.webp" alt="" width="2560" height="1440" decoding="async" />
+      </div>
+      <div class="consulting-flight" aria-hidden="true">
+        <p class="consulting-globe-title"><span class="consulting-globe-title-korea">발견의 범위를.</span><span class="consulting-globe-title-global">전 세계로.</span></p>
+        <div class="consulting-flight-camera">
+          <video class="consulting-flight-video" data-flight-video data-desktop-src="assets/consulting-flight/korea-global-flight-v29.mp4" poster="assets/consulting-flight/korea-globe-poster-v29.webp" muted playsinline preload="auto" width="2560" height="1440"></video>
+          <img class="consulting-flight-image" data-flight-image data-desktop-src="assets/consulting-flight/global-globe-poster-v29.webp" alt="" width="2560" height="1440" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+        </section>
+
+        <footer class="site-footer section-wrap">
+          <div class="footer-contact">
+            <div>
+              <p class="eyebrow">LET'S CONNECT</p>
+              <h2>핑덤과 함께할<br />이야기가 있나요?</h2>
+            </div>
+            <a href="mailto:azunox9@gmail.com"
+              >azunox9@gmail.com <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div class="footer-bottom">
+            <img
+              src="assets/redesign/official-wordmark.svg"
+              alt="pingdom"
+              width="371"
+              height="86"
+            />
+            <p>© 2026 TYPE:NULL</p>
+            <a href="#about">맨 위로 <span aria-hidden="true">↑</span></a>
+          </div>
+        </footer>
+      </div>
+    </main>
+    <dialog id="mobile-screen-dialog" class="mobile-screen-dialog" aria-labelledby="mobile-screen-title">
+      <div class="mobile-screen-bar">
+        <h2 id="mobile-screen-title">핑덤 화면</h2>
+        <button type="button" data-mobile-close aria-label="화면 미리보기 닫기" autofocus>닫기 ×</button>
+      </div>
+      <div class="mobile-screen-tools"><p data-mobile-screen-hint>선명한 화면을 자세히 살펴보세요.</p><button type="button" data-mobile-zoom aria-pressed="false">확대</button></div>
+      <div class="mobile-screen-viewport"><img data-mobile-screen-image alt="" width="2250" height="4600" /></div>
+    </dialog>
+  </body>
 </html>

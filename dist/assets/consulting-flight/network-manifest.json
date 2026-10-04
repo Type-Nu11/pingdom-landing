@@ -1,0 +1,169 @@
+{
+  "version": 12,
+  "source": "User-provided Seoul night photograph reconstructed into city panels; NASA June 2004 surface sampled for geographic globe points; user reference for large lower-screen navy dome",
+  "source_dimensions": [
+    900,
+    600
+  ],
+  "source_sha256": "73df6b0fa32d149fd851ff749e5abb0aeb304ef271bb37ffc00e59b40985ec19",
+  "processing": "Constant lateral city flight, continuous hub handoff, large white-point globe with thin latitude/longitude grid and sequential outward network arcs; 4K render with 1440p web encode",
+  "sources": [
+    {
+      "file": "seoul-night-ultrawide.png",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "sha256": "2db2feaa1f3446d89a05652dd087d2e64a1c48b3ffc2675953e44ff5915ed93f",
+      "bytes": 2919687
+    },
+    {
+      "file": "seoul-night-left.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "0686667bb06a320a148b9e0c07c2c0974efea93ae9fdb40bc8ef0f02a2c55375",
+      "bytes": 2980670
+    },
+    {
+      "file": "seoul-night-center.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "d2a53441d5724c674af9165fb90d18f700c5452b74765fdcfa17a26dc8a48547",
+      "bytes": 3151367
+    },
+    {
+      "file": "seoul-night-right.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "4bbe5fa86a7f85ebe07e781157e5b8a922dbf6235b494ff456d536b2b8e96e70",
+      "bytes": 3305442
+    },
+    {
+      "file": "nasa-blue-marble-june.jpg",
+      "dimensions": [
+        5400,
+        2700
+      ],
+      "sha256": "dc059529b8ed1cfcdd59747a7c3f259c93c1322bf88ca1ec8bab1dd71fcc57f5",
+      "bytes": 1692239
+    }
+  ],
+  "earth_texture_source": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-base/june/world.200406.3x5400x2700.jpg",
+  "earth_texture_credit": "NASA Earth Observatory, Reto Stockli (NASA Goddard), Blue Marble Next Generation, June 2004 composite",
+  "composition": "review/consulting-flight-12/network-flight-video/index.html",
+  "master_dimensions": [
+    3840,
+    2160
+  ],
+  "master_sha256": "6627bcbf759fd010c23bc72c844d4b1b88312282c9978f041da7b952ddc4d434",
+  "master_bytes": 162697502,
+  "output": "seoul-network-flight.mp4",
+  "poster": "seoul-network-poster.webp",
+  "dimensions": [
+    2560,
+    1440
+  ],
+  "duration_seconds": 22,
+  "fps": 60,
+  "frames": 1320,
+  "audio": false,
+  "codec": "H264 yuv420p",
+  "encoder": "libx264 crf18, GOP15, no B frames, faststart, Lanczos downscale",
+  "output_sha256": "99b947605e95e4115dff6688895b4a794bbc9ba003c0ec5eaf12f72fd4adc185",
+  "poster_sha256": "a6d18e672e045ac97213cb475b974572adbabb7418ab5d9d2cdf61b5c2e9f4ba",
+  "output_bytes": 65363141,
+  "poster_bytes": 861870,
+  "note": "AI-reconstructed city detail and illustrative network routes express future ambition, not current global merchant coverage or live aerial/satellite data",
+  "composition_sha256": "e5cbc12c2fd3e10ceb0831a7fe2e9aa640ba044bfbeeac5b4a93067b1e4a005c",
+  "logo": {
+    "input_reference": "review/consulting-flight-11/official-pin-reference.png",
+    "input_dimensions": [
+      506,
+      528
+    ],
+    "input_bytes": 19474,
+    "input_sha256": "d1deb9fcfbf9172a923d895ef515008a9f3e58a7f85ee246c11b400319365493",
+    "input_profile": "Display P3 ICC; dominant sRGB color #ff1956; screenshot has opaque dark background and center",
+    "generation_mode": "built-in imagegen reference edit; transparent_background=true",
+    "generation_prompt": "review/consulting-flight-11/IMAGE-PROMPT.md",
+    "requested_dimensions": [
+      2048,
+      2048
+    ],
+    "actual_dimensions": [
+      1254,
+      1254
+    ],
+    "source": "review/consulting-flight-12/network-flight-video/assets/pingdom-pin-clean.png",
+    "source_bytes": 572991,
+    "source_sha256": "7642f9b9f9459c4eb21ea7a9b3371ff1ead8cdbae8c940e4f2dd14e2749bcaac",
+    "web_asset": "pingdom-pin-clean.webp",
+    "web_bytes": 342672,
+    "web_sha256": "1ad10d68a5626381ce978f0d1e2ad4d9e6c6adfde7ed0b521270a55d048f4657",
+    "web_encoding": "lossless WebP; decoded RGBA identical to generated PNG",
+    "alpha_bbox": [
+      142,
+      57,
+      1134,
+      1181
+    ],
+    "center_alpha": 0,
+    "tip_anchor": [
+      626,
+      1181
+    ],
+    "used_by": [
+      "city markers",
+      "central globe hub and restrained endpoints",
+      "web photo fallback marker"
+    ],
+    "note": "원본 실루엣과 비율을 참조한 생성 이미지이며 원본과 픽셀/색 완전 일치를 주장하지 않음"
+  },
+  "network_reference": {
+    "file": "review/consulting-flight-12/earth-network-reference.png",
+    "dimensions": [
+      1727,
+      739
+    ],
+    "bytes": 1019567,
+    "sha256": "cd546bed02b3f7a36134e5991cd8bf28827a17f9a84b6bbacf51edd59ab9b4d2",
+    "usage": "Large cropped globe, navy background and white points/grid direction only; reference page copy excluded"
+  },
+  "globe_geometry": {
+    "file": "review/consulting-flight-12/network-flight-video/assets/nasa-land-points.json",
+    "bytes": 771808,
+    "sha256": "d1c661b4479c183f24bde799adad1b2af8f345ca4afd268020ebc23f7f976cc8",
+    "source_sha256": "dc059529b8ed1cfcdd59747a7c3f259c93c1322bf88ca1ec8bab1dd71fcc57f5",
+    "sampling_step_degrees": 0.65,
+    "land_point_count": 27563,
+    "method": "Uniform angular sampling of land and ice colors in the existing NASA June 2004 map; rendered as anti-aliased white points"
+  },
+  "sequence": [
+    {
+      "start": 0,
+      "end": 8.5,
+      "scene": "lateral city flight"
+    },
+    {
+      "start": 8.5,
+      "end": 12,
+      "scene": "city to large digital globe"
+    },
+    {
+      "start": 12,
+      "end": 20,
+      "scene": "central hub to worldwide network routes"
+    },
+    {
+      "start": 20,
+      "end": 22,
+      "scene": "settled network hold"
+    }
+  ]
+}

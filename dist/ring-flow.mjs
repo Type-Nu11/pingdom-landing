@@ -1,4 +1,4 @@
-import { createHalftoneRenderer } from './halftone-renderer.mjs?v=halftone-1';
+import { createHalftoneRenderer } from './halftone-renderer.mjs?v=revision-7';
 
 export function createRingFlowRenderer(canvas, image) {
   return createHalftoneRenderer(canvas, image);

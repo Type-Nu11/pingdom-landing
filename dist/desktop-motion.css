@@ -1,0 +1,244 @@
+/* 추가 지면은 PC 모션을 켜는 경우에만 사용합니다. 기존 좁은 화면 지면은 보존합니다. */
+.desktop-extra {
+  display: none;
+}
+@media (min-width: 1000px) and (min-height: 701px) {
+  .desktop-motion-enabled .desktop-extra {
+    display: block;
+  }
+  .desktop-motion-enabled .details-section {
+    max-width: none;
+    background: #f6f6f8;
+    padding: 120px max(6%, calc((100vw - 1320px) / 2)) 0;
+  }
+  .desktop-motion-enabled .details-section .section-heading {
+    margin-bottom: 42px;
+  }
+  .desktop-motion-enabled .visit-grid {
+    display: grid;
+    grid-template-columns: 43% 57%;
+    grid-template-rows: repeat(5, 80svh);
+    gap: 0;
+    position: relative;
+  }
+  .desktop-motion-enabled .detail-card {
+    display: contents;
+    color: var(--ink);
+  }
+  .desktop-motion-enabled .visit-grid .card-copy {
+    grid-column: 1;
+    align-self: center;
+    position: relative;
+    width: 100%;
+    max-width: none;
+    padding-right: 5%;
+    opacity: var(--desktop-copy-opacity, 1);
+  }
+  .desktop-motion-enabled .place-card .card-copy {
+    grid-row: 1;
+  }
+  .desktop-motion-enabled .booking-card .card-copy {
+    grid-row: 4;
+  }
+  .desktop-motion-enabled .memory-card .card-copy {
+    grid-row: 5;
+  }
+  .desktop-motion-enabled .community-card .card-copy { grid-row: 2; }
+  .desktop-motion-enabled .verification-card .card-copy { grid-row: 3; }
+  .desktop-motion-enabled .visit-grid h3 {
+    color: var(--ink);
+    font-size: clamp(30px, 3vw, 46px);
+    margin: 20px 0 24px;
+    line-height: 1.25;
+  }
+  .desktop-motion-enabled .visit-grid .card-copy > p:not(.card-label) {
+    color: #60606a;
+    font-size: 17px;
+    line-height: 1.85;
+  }
+  .desktop-motion-enabled .visit-grid .quiet-list {
+    margin-top: 32px;
+    color: #686870;
+  }
+  .desktop-motion-enabled .visit-grid .memory-note {
+    color: #686870 !important;
+    font-size: 12px !important;
+    margin-top: 30px;
+  }
+  .desktop-motion-enabled .visit-grid [data-visit-product] {
+    grid-column: 2;
+    grid-row: 1 / 6;
+    align-self: start;
+    justify-self: center;
+    position: sticky;
+    top: calc(var(--nav-height) + (100svh - var(--nav-height)) * 0.1);
+    right: auto;
+    bottom: auto;
+    width: min(25vw, calc((100svh - var(--nav-height)) * 0.38));
+    max-width: 345px;
+    margin: 0;
+    overflow: visible;
+    border-radius: 0;
+    box-shadow: none;
+    filter: drop-shadow(0 18px 22px #22232c13);
+    opacity: 1;
+    visibility: var(--desktop-product-visibility, visible);
+    clip-path: var(--desktop-product-clip, inset(0));
+    transform: none;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .desktop-motion-enabled .visit-grid .memory-product img {
+    clip-path: none;
+  }
+  .desktop-motion-enabled .merchant-section {
+    display: grid;
+    max-width: none;
+    grid-template-columns: 37% 63%;
+    grid-template-rows: auto repeat(2, 78svh);
+    gap: 0;
+    padding: 120px 0 0 6%;
+    background: #f6f6f8;
+  }
+  .desktop-motion-enabled .merchant-copy {
+    display: contents;
+  }
+  .desktop-motion-enabled .merchant-lead {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    padding: 0 6% 60px 0;
+  }
+  .desktop-motion-enabled .merchant-lead h2 {
+    font-size: clamp(45px, 4.1vw, 70px);
+    line-height: 1.18;
+  }
+  .desktop-motion-enabled .merchant-beat {
+    grid-column: 1;
+    align-self: center;
+    padding: 0 8% 0 0;
+    opacity: var(--desktop-copy-opacity, 1);
+  }
+  .desktop-motion-enabled .merchant-register-copy {
+    grid-row: 2;
+  }
+  .desktop-motion-enabled .merchant-event-copy {
+    grid-row: 3;
+  }
+  .desktop-motion-enabled .merchant-beat h3 {
+    font-size: clamp(28px, 2.65vw, 42px);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1.25;
+    margin: 20px 0 24px;
+  }
+  .desktop-motion-enabled .merchant-beat .body-copy {
+    font-size: 16px;
+    margin-top: 0;
+    line-height: 1.85;
+  }
+  .desktop-motion-enabled .merchant-functions {
+    margin-top: 28px;
+  }
+  .desktop-motion-enabled .merchant-product {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    align-self: start;
+    position: sticky;
+    top: calc(var(--nav-height) + (100svh - var(--nav-height)) * 0.14);
+    padding-right: 2%;
+    padding-bottom: 30px;
+    z-index: 2;
+  }
+  .desktop-motion-enabled .merchant-product > .screen-caption {
+    display: none;
+  }
+  .desktop-motion-enabled .merchant-visual {
+    position: relative;
+    aspect-ratio: 1864 / 1004;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 20px 45px #2323300b;
+    border: 1px solid #e8e8ec;
+  }
+  .desktop-motion-enabled .merchant-screen {
+    position: absolute;
+    inset: 0;
+    opacity: 1;
+    visibility: var(--desktop-product-visibility, visible);
+    clip-path: var(--desktop-product-clip, inset(0));
+    transform: none;
+  }
+  .desktop-motion-enabled .merchant-screen > img:first-child {
+    border: none;
+    border-radius: 12px;
+    box-shadow: none;
+    width: 100%;
+  }
+  .desktop-motion-enabled .merchant-panel-mask,
+  .desktop-motion-enabled .merchant-panel {
+    position: absolute;
+    height: auto;
+  }
+  .desktop-motion-enabled .merchant-panel-mask {
+    background: #fff;
+  }
+  .desktop-motion-enabled .merchant-panel-mask,
+  .desktop-motion-enabled .merchant-panel {
+    display: none;
+  }
+  .desktop-motion-enabled .desktop-panel-ready .merchant-panel-mask,
+  .desktop-motion-enabled .desktop-panel-ready .merchant-panel {
+    display: block;
+  }
+  .desktop-motion-enabled .register-panel-mask,
+  .desktop-motion-enabled .register-panel {
+    left: 27.1459%;
+    top: 19.5219%;
+    width: 59.0665%;
+    aspect-ratio: 1101 / 500;
+  }
+  .desktop-motion-enabled .event-panel-mask,
+  .desktop-motion-enabled .event-panel {
+    left: 54.9893%;
+    top: 19.4417%;
+    width: 31.1695%;
+    aspect-ratio: 581 / 635;
+  }
+  .desktop-motion-enabled .merchant-panel {
+    border: none;
+    border-radius: 7px;
+    transform-origin: center;
+    transform: translate3d(
+        var(--desktop-panel-x, 0px),
+        var(--desktop-panel-y, 0px),
+        0
+      )
+      scale(var(--desktop-panel-scale, 1));
+    box-shadow: 0 18px 36px rgb(37 37 49 / var(--desktop-panel-shadow, 0));
+  }
+  .desktop-motion-enabled .merchant-screen-note {
+    font-size: 11px;
+    line-height: 1.7;
+    color: #6b6b75;
+    margin-top: 24px;
+  }
+  .desktop-motion-enabled .merchant-product figcaption {
+    padding-right: 4%;
+    text-align: right;
+  }
+  .desktop-motion-enabled .intelligence-section {
+    border-top: 0;
+    padding-top: 160px;
+  }
+  .desktop-motion-enabled .intelligence-section .section-heading {
+    display: block;
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .desktop-motion-enabled .intelligence-section .section-heading h2 {
+    font-size: clamp(43px, 4.3vw, 70px);
+  }
+  .desktop-motion-enabled .intelligence-section .section-intro {
+    margin-top: 28px;
+  }
+}

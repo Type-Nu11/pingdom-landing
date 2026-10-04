@@ -1,0 +1,95 @@
+.strengths-scene { background: #f7f6f3; color: #202124; }
+.strengths-stage { padding: 100px 0 80px; }
+.strengths-heading { margin: 0 6% 44px; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
+.strengths-kicker { margin: 0 0 14px; color: #ff1956; font-size: 11px; font-weight: 750; letter-spacing: .06em; }
+.strengths-heading h2 { margin: 0; font-size: clamp(32px, 3.5vw, 54px); line-height: 1.2; letter-spacing: -.055em; }
+.strengths-viewport { overflow: clip; }
+.strengths-track { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 0 6%; list-style: none; }
+.strength-card { position: relative; isolation: isolate; min-width: 0; height: 570px; overflow: hidden; border-radius: 24px; color: #fff; background: #28362f; }
+.strength-art { position: absolute; inset: 0; overflow: hidden; }
+.strength-photo { display: block; width: 100%; height: 100%; object-fit: cover; transform: none; }
+.strength-art::after { position: absolute; inset: 0; content: ''; background: linear-gradient(180deg, #07130c3b 0%, #07130c00 30%, #09110f15 45%, #0b1412a8 68%, #0b1412f5 100%); }
+.strength-taste .strength-photo { object-position: 38% 50%; }
+.strength-context .strength-photo { object-position: 67% 50%; }
+.strength-proof .strength-photo { object-position: 52% 50%; }
+.strength-memory .strength-photo { object-position: 50% 50%; }
+.strength-business .strength-photo { object-position: 65% 80%; }
+.strength-travel .strength-photo { object-position: 50% 50%; }
+.strength-consulting .strength-photo { object-position: 50% 50%; }
+.strength-card-copy { position: absolute; z-index: 2; left: 28px; right: 28px; bottom: 32px; }
+.strength-card-copy h3 { margin: 0; font-size: clamp(25px, 2.25vw, 35px); line-height: 1.23; letter-spacing: -.055em; font-weight: 750; }
+.strength-overlay { position: absolute; z-index: 2; left: 26px; right: 26px; top: auto; bottom: 185px; color: #202a24; }
+.strength-step-a, .strength-step-b, .strength-step-c { opacity: 1; transform: none; }
+.strength-glass { background: #fffffff0; border: 1px solid #fff9; border-radius: 15px; padding: 17px 19px; box-shadow: 0 6px 22px #0a191a12; }
+.strength-glass p { margin: 0; font-size: 15px; line-height: 1.6; letter-spacing: -.03em; }
+.strength-glass small { display: block; margin: 6px 0 0; font-size: 11px; line-height: 1.45; color: #858b87; }
+.strength-prompt { top: 23%; bottom: auto; }
+.strength-prompt .strength-glass { border-radius: 17px 17px 17px 4px; }
+.strength-ai-symbol { display: block; width: 18px; height: 18px; object-fit: contain; flex: none; }
+.strength-prompt-label { display: flex; align-items: center; gap: 6px; margin-bottom: 7px; font-size: 10px; color: #e51c52; font-weight: 700; letter-spacing: .025em; }
+
+.strength-info-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 13px; font-size: 13px; font-weight: 700; }
+.strength-info-top span { display: flex; align-items: center; gap: 5px; color: #218359; font-size: 11px; font-weight: 650; }
+.strength-info-top i { width: 5px; height: 5px; border-radius: 50%; background: #2ca775; }
+.strength-info-bottom { display: flex; gap: 9px; align-items: center; border-top: 1px solid #e6eae5; padding-top: 12px; color: #6b746e; font-size: 12px; }
+.strength-info-bottom svg { width: 14px; height: 16px; fill: #ff1956; }
+.strength-reasons { display: flex; flex-wrap: wrap; gap: 8px; }
+.strength-reason { display: inline-flex; align-items: center; gap: 8px; background: #fffffff2; border: 1px solid #ffffff80; padding: 11px 15px; border-radius: 40px; font-size: 13px; font-weight: 650; color: #353d38; }
+.strength-reason i { width: 15px; height: 15px; display: grid; place-items: center; background: #ff1956; border-radius: 50%; color: #fff; font-style: normal; font-size: 10px; }
+
+.strength-booking { padding: 19px 21px; border-radius: 18px; }
+.strength-booking-status { display: flex; align-items: center; gap: 7px; color: #e92759; font-size: 11px; font-weight: 700; }
+.strength-booking-status svg { width: 20px; height: 20px; padding: 3px; border-radius: 50%; background: #ffe7ee; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.strength-booking-detail { margin-top: 12px; }
+.strength-booking-detail b { font-size: 19px; line-height: 1.35; letter-spacing: -.04em; font-weight: 750; }
+.strength-booking-guests { display: flex; align-items: center; gap: 7px; margin-top: 12px; color: #7d8680; font-size: 12px; }
+.strength-booking-guests svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+.strength-community-label { display: flex; gap: 6px; align-items: center; margin-bottom: 9px; color: #d92454; font-size: 10px; font-weight: 700; }
+.strength-community-label svg { width: 14px; height: 14px; fill: currentColor; }
+.strength-community .strength-glass p { font-size: 14px; font-weight: 650; }
+
+.strength-news-label { display: flex; align-items: center; justify-content: space-between; margin-bottom: 9px; font-size: 10px; color: #858b87; }
+.strength-news-label b { color: #e92759; font-size: 11px; }
+.strength-news .strength-glass p { font-size: 14px; font-weight: 650; }
+
+.strength-calendar-heading { display: flex; align-items: center; gap: 7px; font-size: 13px; }
+.strength-calendar-heading svg { width: 17px; height: 17px; fill: none; stroke: #e92759; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.strength-calendar-heading span { margin-left: auto; color: #858b87; font-size: 11px; }
+.strength-calendar-week { display: grid; grid-template-columns: repeat(7, 1fr); align-items: center; margin-top: 15px; gap: 3px; text-align: center; color: #7d8680; font-size: 12px; }
+.strength-calendar-week b { display: grid; place-items: center; width: 30px; height: 30px; margin: auto; border-radius: 50%; background: #ff1956; color: #fff; font-weight: 750; }
+.strength-calendar-memory { display: flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 11px; color: #7d8680; }
+.strength-calendar-memory i { width: 5px; height: 5px; border-radius: 50%; background: #ff1956; }
+.strength-condition-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 11px; }
+.strength-condition-tags span { border-radius: 20px; background: #ffeaf0; color: #d92454; padding: 6px 9px; font-size: 10px; font-weight: 650; }
+
+@media (min-width: 1000px) and (min-height: 701px) {
+  .strengths-scene.strengths-motion { height: 550svh; }
+  .strengths-motion .strengths-stage { position: sticky; top: var(--nav-height, 72px); height: calc(100svh - var(--nav-height, 72px)); padding: 28px 0 24px; display: flex; flex-direction: column; justify-content: center; }
+  .strengths-motion .strengths-heading { margin-bottom: clamp(26px, 4svh, 40px); }
+  .strengths-motion .strengths-track { display: flex; gap: 24px; width: max-content; transform: translateX(var(--strength-x, 0px)); }
+  .strengths-motion .strength-card { flex: none; width: clamp(330px, 30vw, 460px); height: min(59svh, 610px); }
+}
+@media (max-width: 1100px) {
+  .strengths-track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .strengths-heading { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .strengths-motion .strengths-heading { flex-direction: row; align-items: flex-end; }
+}
+@media (min-width: 1000px) and (min-height: 701px) and (max-height: 800px) {
+  .strengths-motion .strengths-heading h2 { font-size: 36px; }
+  .strengths-motion .strengths-heading { margin-bottom: 24px; }
+  .strengths-motion .strengths-kicker { margin-bottom: 8px; font-size: 10px; }
+  .strengths-motion .strength-card { height: 59svh; }
+  .strengths-motion .strength-card-copy { left: 24px; right: 24px; bottom: 23px; }
+  .strengths-motion .strength-card-copy h3 { font-size: 28px; }
+  .strengths-motion .strength-overlay { left: 24px; right: 24px; bottom: 155px; }
+  .strengths-motion .strength-prompt { bottom: auto; }
+  .strengths-motion .strength-glass { padding: 14px 16px; }
+}
+@media (max-width: 650px) {
+  .strengths-stage { padding: 72px 0 56px; }
+  .strengths-heading { margin-bottom: 32px; }
+  .strengths-track { grid-template-columns: 1fr; gap: 20px; }
+  .strength-card { height: 540px; }
+  .strength-card-copy h3 { font-size: 30px; }
+}

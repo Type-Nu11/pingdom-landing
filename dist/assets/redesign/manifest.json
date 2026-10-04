@@ -1,0 +1,269 @@
+[
+  {
+    "file": "official-wordmark.webp",
+    "source": "dist/assets/pingdom-wordmark-source.png",
+    "source_size": [
+      422,
+      162
+    ],
+    "crop": [
+      27,
+      45,
+      398,
+      131
+    ],
+    "size": [
+      371,
+      86
+    ],
+    "bytes": 5852,
+    "pixel_exact": true,
+    "description": "공식 워드마크. 캡처 테두리와 바깥 흰 여백만 제외"
+  },
+  {
+    "file": "map-surface.webp",
+    "source": "dist/assets/app-map-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "crop": [
+      98,
+      750,
+      1704,
+      2045
+    ],
+    "size": [
+      1606,
+      1295
+    ],
+    "bytes": 279048,
+    "pixel_exact": true,
+    "description": "실제 지도와 장소 핀. 대구 구지면 캡처"
+  },
+  {
+    "file": "map-search.webp",
+    "source": "dist/assets/app-map-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "crop": [
+      126,
+      339,
+      1670,
+      749
+    ],
+    "size": [
+      1544,
+      410
+    ],
+    "bytes": 131956,
+    "pixel_exact": true,
+    "description": "실제 검색창 및 카테고리 바"
+  },
+  {
+    "file": "map-recommendations.webp",
+    "source": "dist/assets/app-map-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "crop": [
+      120,
+      2045,
+      1680,
+      3245
+    ],
+    "size": [
+      1560,
+      1200
+    ],
+    "bytes": 513928,
+    "pixel_exact": true,
+    "description": "실제 추천 장소 bottom sheet. 하단 탐색 바 제외"
+  },
+  {
+    "file": "discover-cards.webp",
+    "source": "dist/assets/app-discover-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "crop": [
+      159,
+      2119,
+      1641,
+      3010
+    ],
+    "size": [
+      1482,
+      891
+    ],
+    "bytes": 767806,
+    "pixel_exact": true,
+    "description": "실제 추천 장소 카드 2개. 사용자 화면에 포함된 반복 예시 유지"
+  },
+  {
+    "file": "place-details.webp",
+    "source": "dist/assets/app-place-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "crop": [
+      159,
+      574,
+      1704,
+      2918
+    ],
+    "size": [
+      1545,
+      2344
+    ],
+    "bytes": 917720,
+    "pixel_exact": true,
+    "description": "실제 장소명, 사진, 기본 정보 및 편의 정보"
+  },
+  {
+    "file": "booking-calendar.webp",
+    "source": "dist/assets/app-booking-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "crop": [
+      159,
+      1376,
+      1641,
+      3420
+    ],
+    "size": [
+      1482,
+      2044
+    ],
+    "bytes": 23004,
+    "pixel_exact": true,
+    "description": "실제 날짜 및 오전/오후 선택. 원본에서 기기 모서리에 가려진 시간 버튼은 제외"
+  },
+  {
+    "file": "coupon-list.webp",
+    "source": "dist/assets/app-coupons-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "crop": [
+      159,
+      725,
+      1641,
+      3115
+    ],
+    "size": [
+      1482,
+      2390
+    ],
+    "bytes": 15032,
+    "pixel_exact": true,
+    "description": "실제 쿠폰 4개. 화면 속 수량 및 예시 유효기간 유지"
+  },
+  {
+    "file": "review-tags.webp",
+    "source": "dist/assets/app-reviews-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "crop": [
+      159,
+      2111,
+      1641,
+      3400
+    ],
+    "size": [
+      1482,
+      1289
+    ],
+    "bytes": 23618,
+    "pixel_exact": true,
+    "description": "실제 방문 후기 태그. 원본의 참여 수와 태그 수 유지"
+  },
+  {
+    "file": "ai-traveler.webp",
+    "source": "dist/assets/ai-traveler-slide.png",
+    "source_size": [
+      1764,
+      934
+    ],
+    "crop": [
+      50,
+      217,
+      1489,
+      862
+    ],
+    "size": [
+      1439,
+      645
+    ],
+    "bytes": 412706,
+    "pixel_exact": true,
+    "description": "발표자료의 실제 AI 응답 패널. 장식 배경과 질문 바 제외"
+  },
+  {
+    "file": "ai-consulting.webp",
+    "source": "dist/assets/web-report.webp",
+    "source_size": [
+      1200,
+      641
+    ],
+    "crop": [
+      456,
+      0,
+      945,
+      557
+    ],
+    "size": [
+      489,
+      557
+    ],
+    "bytes": 23268,
+    "pixel_exact": true,
+    "description": "실제 상권 컨설팅 상담 정보 확인 패널. 목업 합성 이미지를 사용하지 않음"
+  },
+  {
+    "file": "neighborhood-dusk.webp",
+    "source": "/Users/azunox/.codex/generated_images/01a0efe2-c1ac-7bf2-89f4-6a8f4a672bfb/exec-0c717808-abea-47e3-a5b0-cbd75787b06c.png",
+    "source_size": [
+      1870,
+      841
+    ],
+    "size": [
+      1870,
+      841
+    ],
+    "quality": 88,
+    "bytes": 440660,
+    "description": "브랜드용 생성 동네 장면. 실제 장소 사진 아님"
+  },
+  {
+    "file": "neighborhood-dusk-mobile.webp",
+    "source": "/Users/azunox/.codex/generated_images/01a0efe2-c1ac-7bf2-89f4-6a8f4a672bfb/exec-0c717808-abea-47e3-a5b0-cbd75787b06c.png",
+    "source_size": [
+      1870,
+      841
+    ],
+    "crop": [
+      1170,
+      0,
+      1800,
+      840
+    ],
+    "size": [
+      900,
+      1200
+    ],
+    "quality": 88,
+    "bytes": 250938,
+    "description": "생성 장면의 오른쪽 가게 중심 모바일 파생 이미지"
+  }
+]

@@ -1,0 +1,370 @@
+{
+  "version": 24,
+  "source": "Natural Earth public-domain vector coastlines and preserved official brand pin; no land particles or photographs",
+  "meaning": "한국에서 전 세계로 확장하려는 미래 목표를 나타내는 개념 네트워크이며 현재 운영 국가, 상점 또는 실적을 뜻하지 않습니다.",
+  "composition": {
+    "file": "review/revision-24/globe-film/index.html",
+    "bytes": 17056,
+    "sha256": "56cb129a49159ae65698b53867633ba24f4354f1e8314951b9c316aaaa2711e9"
+  },
+  "master": {
+    "file": "review/revision-24/globe-film/renders/korea-global-master-v24.mp4",
+    "bytes": 53010980,
+    "sha256": "befc5c54ffc20f1913f0923b8607a8ef320ace9c2063e7e910225f5c43c14638"
+  },
+  "output": {
+    "file": "dist/assets/consulting-flight/korea-global-flight-v24.mp4",
+    "bytes": 18171668,
+    "sha256": "6d433a1f168a3e57bdb571a9dce295921d912d6d3bc606d2883219d5f440a80a"
+  },
+  "dimensions": [
+    2560,
+    1440
+  ],
+  "duration_seconds": 12,
+  "fps": 60,
+  "audio": false,
+  "encoding": {
+    "codec": "H.264",
+    "pixel_format": "yuv420p",
+    "crf": 18,
+    "gop_frames": 12,
+    "keyframe_interval_seconds": 0.2,
+    "b_frames": 0,
+    "faststart": true
+  },
+  "posters": [
+    {
+      "time_seconds": 0,
+      "encoding": "lossless WebP from decoded 4K master",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "file": "dist/assets/consulting-flight/korea-globe-poster-v24.webp",
+      "bytes": 371590,
+      "sha256": "3d4757c8a9e6015ae18176d086cb98e7c33fe35b987b2e95db7db144281b7859"
+    },
+    {
+      "time_seconds": 11.9,
+      "encoding": "lossless WebP from decoded 4K master",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "file": "dist/assets/consulting-flight/global-globe-poster-v24.webp",
+      "bytes": 660102,
+      "sha256": "b8b857feaa0abe5d2bc28013941ef20c26ee04d9a5d53e72130ebfce1211f763"
+    }
+  ],
+  "master_dimensions": [
+    3840,
+    2160
+  ],
+  "master_fps": 60,
+  "title": "No baked text; native website headline is owned by root runtime",
+  "sequence": [
+    {
+      "start": 0,
+      "end": 1.8,
+      "scene": "Korean peninsula coastline closeup and official Seoul pin"
+    },
+    {
+      "start": 1.8,
+      "end": 7.2,
+      "scene": "32 brand-pink outward routes and regional camera retreat"
+    },
+    {
+      "start": 7.2,
+      "end": 10.5,
+      "scene": "Additional camera retreat to global scale"
+    },
+    {
+      "start": 10.5,
+      "end": 12,
+      "scene": "Global line sphere network settled hold"
+    }
+  ],
+  "geography": {
+    "provenance": {
+      "file": "review/revision-24/globe-film/assets/coastline-provenance.json",
+      "bytes": 4909,
+      "sha256": "e5e3e09c1830f55c02731480745019bf651d1dbe9652acd29ea58e52c65413f7"
+    },
+    "provenance_values": {
+      "schema": "Array<Polyline>, Polyline = Array<[longitude_degrees, latitude_degrees]>",
+      "coordinate_reference_system": "WGS 84 geographic degrees",
+      "generated_on_utc": "2026-10-01",
+      "source": "Natural Earth coastline; public domain",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "sources": [
+        {
+          "zip_file": "sources/ne_50m_coastline.zip",
+          "zip_bytes": 455936,
+          "zip_sha256": "640f805509b822f57f4840a2e18d9ff2412cf1cf6976124701c2789436166fde",
+          "shp_sha256": "797d675af9613f80b51ab6049fa32e589974d7a97c6497ca56772965f179ed26",
+          "zip_internal_version": "4.1.0",
+          "crs_wkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"Degree\",0.017453292519943295]]",
+          "feature_count": 1428,
+          "polyline_count": 1429,
+          "point_count": 60416,
+          "download_url": "https://naturalearth.s3.amazonaws.com/50m_physical/ne_50m_coastline.zip",
+          "official_page_url": "https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-coastline/",
+          "official_page_display_version": "4.0.0"
+        },
+        {
+          "zip_file": "sources/ne_10m_coastline.zip",
+          "zip_bytes": 3069451,
+          "zip_sha256": "bfa04cdbcbef07ef90dfca1dabb48062eca29900a113df0f389303e255484017",
+          "shp_sha256": "459a4a97c09db19aadf5244026612de9d43748be27f83a360242b99f7fabb3c1",
+          "zip_internal_version": "5.0.0-pre9",
+          "crs_wkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]",
+          "feature_count": 4133,
+          "polyline_count": 4133,
+          "point_count": 410957,
+          "download_url": "https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip",
+          "official_page_url": "https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-coastline/",
+          "official_page_display_version": "4.1.0"
+        }
+      ],
+      "frozen_primary_pages": [
+        {
+          "file": "sources/coastline-10m.html",
+          "sha256": "ceb8418968768f2be6fd7904d712a47df6b6ca7dad4e7f16906a7ccb95bae839"
+        },
+        {
+          "file": "sources/coastline-50m.html",
+          "sha256": "6302362e669e136f50f1c75048d93d03057059f97b4003d788a17ee88a61f977"
+        },
+        {
+          "file": "sources/physical-10m.html",
+          "sha256": "6092669e62abfe164c00c9de59c77f24cb0182e9b56bfc395a7ea64ed31f752e"
+        },
+        {
+          "file": "sources/physical-50m.html",
+          "sha256": "e4ee5847574691e2019ff99dd16f799c1b87bc620068bd585dabc0c16aec02c0"
+        },
+        {
+          "file": "sources/terms-of-use.html",
+          "sha256": "c3ad0637aa8e813bd40c0b31cb10d0fc42fac5d4be0269b081c1a319b1103280"
+        }
+      ],
+      "source_version_note": "Official coastline page labels and the downloaded ZIP internal VERSION.txt differ; both are preserved without assigning a release label to the output.",
+      "outputs": [
+        {
+          "file": "coastline-world-50m.json",
+          "polyline_count": 1429,
+          "point_count": 63112,
+          "segment_count": 61683,
+          "bytes": 1439590,
+          "sha256": "e66f5a32e9a4cb51d507dd390327f8a6d7afbdd60facaf02371b988bd0a19877",
+          "maximum_segment_degrees": 0.24998198,
+          "densification_limit_degrees": 0.25,
+          "clip_bbox_lon_lat": null,
+          "clip_mode": "none"
+        },
+        {
+          "file": "coastline-east-asia-10m.json",
+          "polyline_count": 213,
+          "point_count": 17482,
+          "segment_count": 17269,
+          "bytes": 398632,
+          "sha256": "e44d2eebe65efc9efe7d667e98f98d33ae862b77fb7e19a7e1aefeb6c05b2f01",
+          "maximum_segment_degrees": 0.11997168,
+          "densification_limit_degrees": 0.12,
+          "clip_bbox_lon_lat": [
+            110.0,
+            25.0,
+            146.0,
+            52.0
+          ],
+          "clip_mode": "inside"
+        },
+        {
+          "file": "coastline-world-outside-east-asia-50m.json",
+          "polyline_count": 1382,
+          "point_count": 60869,
+          "segment_count": 59487,
+          "bytes": 1388430,
+          "sha256": "544191f762a70490ae07801c0f4963a08adea3f3e0a998753378ab4788e6c27b",
+          "maximum_segment_degrees": 0.24998198,
+          "densification_limit_degrees": 0.25,
+          "clip_bbox_lon_lat": [
+            110.0,
+            25.0,
+            146.0,
+            52.0
+          ],
+          "clip_mode": "outside"
+        }
+      ],
+      "region_bbox_lon_lat": [
+        110.0,
+        25.0,
+        146.0,
+        52.0
+      ],
+      "processing": [
+        "Retain SHP polyline parts; no country borders or arbitrary point-cloud joins.",
+        "Split anti-meridian crossings with interpolated +/-180 degree seam endpoints.",
+        "Clip original segments; do not append bounding-rectangle edges or close clipped parts.",
+        "Subdivide source lon/lat segments to bounded great-circle angular length.",
+        "Round to six decimal degrees; remove consecutive duplicate output coordinates."
+      ],
+      "validation": "Finite bounds, parts >= 2 points, no longitude jumps > 180, angular limits, region inclusion/exclusion: passed."
+    },
+    "world_outside_region": {
+      "file": "review/revision-24/globe-film/assets/coastline-world-outside-east-asia-50m.json",
+      "bytes": 1388430,
+      "sha256": "544191f762a70490ae07801c0f4963a08adea3f3e0a998753378ab4788e6c27b"
+    },
+    "east_asia_detail": {
+      "file": "review/revision-24/globe-film/assets/coastline-east-asia-10m.json",
+      "bytes": 398632,
+      "sha256": "e44d2eebe65efc9efe7d667e98f98d33ae862b77fb7e19a7e1aefeb6c05b2f01"
+    },
+    "coastline_data_audit": {
+      "file": "review/revision-24/globe-film/coastline-data-audit.json",
+      "bytes": 759,
+      "sha256": "664fd6f342b2fccc42610c9c6e6469a9bcf66f52108fb243fa55698bfe4aba2f"
+    },
+    "no_land_particles": true,
+    "no_coastline_overlap": true,
+    "lod_seam_note": "Source-scale endpoint difference at bbox is at most .079715 degrees; no artificial connector."
+  },
+  "network_routes": {
+    "count": 32,
+    "hub_latitude": 37.5665,
+    "hub_longitude": 126.978,
+    "meaning": "Conceptual future connections, not verified service availability"
+  },
+  "brand_pin": {
+    "file": "review/revision-24/globe-film/assets/pingdom-pin-clean.png",
+    "bytes": 572991,
+    "sha256": "7642f9b9f9459c4eb21ea7a9b3371ff1ead8cdbae8c940e4f2dd14e2749bcaac"
+  },
+  "runtime_validation": {
+    "file": "review/revision-24/globe-film/check.json",
+    "bytes": 2341,
+    "sha256": "00e861660216bec09fcc935e50f5d8304fa09c87f392575c9c8aeff25b5cf898"
+  },
+  "cli_version": "0.8.101",
+  "style": {
+    "file": "review/revision-24/globe-film/style-manifest.json",
+    "bytes": 1484,
+    "sha256": "4dad653653308e809d4a8c396a4cddada2f91ba5c3c83fdbc8cb6dee8e85fd8c"
+  },
+  "style_values": {
+    "version": 24,
+    "source": "review/revision-24/globe-film/index.html",
+    "base_version": 23,
+    "land_point_count": 0,
+    "region_point_count": 0,
+    "globe_surface": "smooth navy sphere with actual vector coastline and regular latitude/longitude lines",
+    "coastline_width_2k_px": {
+      "world": 1.1,
+      "east_asia": 1.2
+    },
+    "coastline_alpha": {
+      "world": 0.7,
+      "east_asia": [
+        0.86,
+        0.68
+      ]
+    },
+    "coastline_rgb": [
+      0.68,
+      0.84,
+      0.96
+    ],
+    "grid_lines": {
+      "latitude_step_deg": 30,
+      "longitude_step_deg": 30,
+      "alpha": [
+        0.1,
+        0.14
+      ],
+      "approx_width_2k_px": 0.667
+    },
+    "surface_alpha": [
+      0.4,
+      0.5
+    ],
+    "route_width_master_px": 2.55,
+    "route_width_2k_px": 1.7,
+    "route_brand_hex": "#FF1956",
+    "brand_token_source": "dist/styles.css:2 --pink:#FF1956",
+    "route_alpha_base": 0.76,
+    "route_alpha_pulse_add": 0.18,
+    "route_priority_alpha": [
+      1,
+      0.9
+    ],
+    "route_primary_count": 8,
+    "route_secondary_count": 24,
+    "moving_dot_2k_px": 2.5,
+    "moving_dot_alpha": 0.72,
+    "endpoint_2k_px": 3,
+    "endpoint_alpha": 0.82,
+    "hub_fade_2k_radius_px": 25,
+    "hub_fade": "screen-space smoothstep alpha only; geometry starts at actual pin tip",
+    "timeline_unchanged": true,
+    "camera_unchanged": true,
+    "routes": 32,
+    "no_coastline_overlap": "world50m clipped outside east-asia bbox; regional10m clipped inside bbox; no bbox-border lines"
+  },
+  "v23_contract": {
+    "file": "review/revision-24/globe-film/v23-contract-audit.json",
+    "bytes": 391,
+    "sha256": "afc79cce86a9ea851c6f80db6da8ff45ed5baca85d819be20a31e686095482dc"
+  },
+  "geometry_validation": {
+    "file": "review/revision-24/globe-film/geometry-audit.json",
+    "bytes": 127558,
+    "sha256": "edb4ab0da4134fc44a8ed936d1ce81916030f582774dbd05d6645b929d93cfba"
+  },
+  "web_comparison": {
+    "previous_v22_bytes": 33503121,
+    "inactive_v23_bytes": 38400407,
+    "v24_bytes": 18171668
+  },
+  "frame_validation": {
+    "frames": 720,
+    "keyframes": 60,
+    "b_frames": 0
+  },
+  "encoded_qa_frames": [
+    {
+      "requested_seconds": 0,
+      "file": "review/revision-24/globe-film/encoded-qa/frame-00-at-0s.png",
+      "bytes": 510101,
+      "sha256": "378c58bf3751a38685050a2b4e2a0061e2b4fc2cac5e58a2bd2b0090e3df4a6d"
+    },
+    {
+      "requested_seconds": 2.5,
+      "file": "review/revision-24/globe-film/encoded-qa/frame-01-at-2.5s.png",
+      "bytes": 599378,
+      "sha256": "3a9782148cef66ae05298f6bccc1f24ac3c1b21b2e2cda1d365a3b900751c63a"
+    },
+    {
+      "requested_seconds": 7.18,
+      "file": "review/revision-24/globe-film/encoded-qa/frame-02-at-7.18s.png",
+      "bytes": 1015729,
+      "sha256": "37ce785a0154267854a0d1b517949fc9e7cb990638d0a4a3b2aa4d24dc810873"
+    },
+    {
+      "requested_seconds": 11.9,
+      "file": "review/revision-24/globe-film/encoded-qa/frame-03-at-11.9s.png",
+      "bytes": 829377,
+      "sha256": "90015d2df19ed8a8bf11a403bcf9f6a76e01f23b6108839419bb69f29e6b6670"
+    }
+  ],
+  "visual_review": "0,2.5,7.18,11.9 seconds and CSS1331 resized encoded frames reviewed before dist export",
+  "asset_audit": {
+    "pass": true,
+    "source_hash_unchanged": true,
+    "preserved_v22_v23": true,
+    "max_keyframe_gap_seconds": 0.2,
+    "poster_lossless_pixel_match": true
+  }
+}

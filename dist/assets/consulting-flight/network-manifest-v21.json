@@ -1,0 +1,155 @@
+{
+  "version": 21,
+  "source": "Preserved NASA June 2004 land raster, world point geometry and existing official brand-pin derivative; no city photograph",
+  "meaning": "한국에서 전 세계로 확장하려는 미래 목표를 표현하는 개념 네트워크이며 현재 운영 국가, 상점 또는 실적을 뜻하지 않습니다.",
+  "composition": {
+    "file": "review/revision-21/globe-film/index.html",
+    "bytes": 13439,
+    "sha256": "c5bdcddcd6284aa0d0fb4340bdb30680cedd81fe59ac8a76bfd6a0e1c07a44fe"
+  },
+  "master": {
+    "file": "review/revision-21/globe-film/renders/korea-global-master-v21.mp4",
+    "bytes": 153788090,
+    "sha256": "900cb1814152d691e615048cba2eea5e8a15ba9e3290d4d1fa04751ed668e05e"
+  },
+  "output": {
+    "file": "dist/assets/consulting-flight/korea-global-flight-v21.mp4",
+    "bytes": 74204601,
+    "sha256": "53db0bc26408131439600c1d1eefca18ef283f403c53e6e60634dd4786582487"
+  },
+  "dimensions": [
+    2560,
+    1440
+  ],
+  "duration_seconds": 12,
+  "fps": 60,
+  "audio": false,
+  "encoding": {
+    "codec": "H.264",
+    "pixel_format": "yuv420p",
+    "crf": 18,
+    "gop_frames": 12,
+    "keyframe_interval_seconds": 0.2,
+    "b_frames": 0,
+    "faststart": true
+  },
+  "posters": [
+    {
+      "time_seconds": 0,
+      "file": "dist/assets/consulting-flight/korea-globe-poster-v21.webp",
+      "bytes": 2865556,
+      "sha256": "521c2fadd568fba3aa3777ee8fed88479c2ca04d4a2555b05ec9ae87eac21824"
+    },
+    {
+      "time_seconds": 11.9,
+      "file": "dist/assets/consulting-flight/global-globe-poster-v21.webp",
+      "bytes": 1157150,
+      "sha256": "8691765dfab94721dec5f38ccab594cd71660a87509624d45f5feb036e29d167"
+    }
+  ],
+  "title": "No baked text; native website headline is owned by root runtime",
+  "sequence": [
+    {
+      "start": 0,
+      "end": 1.8,
+      "scene": "Korean peninsula closeup and visible official Seoul pin"
+    },
+    {
+      "start": 1.8,
+      "end": 7.2,
+      "scene": "32 conceptual outward routes and regional camera retreat"
+    },
+    {
+      "start": 7.2,
+      "end": 10.5,
+      "scene": "Additional camera retreat to global scale"
+    },
+    {
+      "start": 10.5,
+      "end": 12,
+      "scene": "Global network settled hold"
+    }
+  ],
+  "geography": {
+    "source_url": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-base/june/world.200406.3x5400x2700.jpg",
+    "credit": "NASA Earth Observatory, Reto Stockli (NASA Goddard), Blue Marble Next Generation, June 2004 composite",
+    "raster": {
+      "file": "review/revision-21/globe-film/assets/nasa-blue-marble-june.jpg",
+      "bytes": 1692239,
+      "sha256": "dc059529b8ed1cfcdd59747a7c3f259c93c1322bf88ca1ec8bab1dd71fcc57f5"
+    },
+    "world_points": {
+      "file": "review/revision-21/globe-film/assets/nasa-land-points.json",
+      "bytes": 972933,
+      "sha256": "657921bfdb7619fc1ce4575a4f59e9e3c4ba6e120753f6652a41e009f852034b"
+    },
+    "world_land_count": 34735,
+    "korea_region_points": {
+      "file": "review/revision-21/globe-film/assets/nasa-east-asia-points.json",
+      "bytes": 2610210,
+      "sha256": "b72cd578a638f71bcdaac0998f947fa8ab3b65f9e705bf3c05f6492c146b69ea"
+    },
+    "region_land_count": 75256,
+    "region_sampling": {
+      "source": "NASA Blue Marble Next Generation June 2004",
+      "source_sha256": "dc059529b8ed1cfcdd59747a7c3f259c93c1322bf88ca1ec8bab1dd71fcc57f5",
+      "region": {
+        "latitude": [
+          25,
+          49
+        ],
+        "longitude": [
+          112,
+          148
+        ]
+      },
+      "latitude_step_degrees": 0.065,
+      "longitude_spacing": "latitude step / cos(latitude)",
+      "samples": 162655,
+      "count": 75256,
+      "method": "Same preserved NASA raster color criterion, fixed geographic grid, no synthetic coastline"
+    },
+    "regional_opacity": "High-density same-source dots fade only during camera retreat; land shape is never generated"
+  },
+  "network_routes": {
+    "count": 32,
+    "hub_latitude": 37.5665,
+    "hub_longitude": 126.978,
+    "meaning": "Conceptual future connections, not verified service availability"
+  },
+  "brand_pin": {
+    "file": "review/revision-21/globe-film/assets/pingdom-pin-clean.png",
+    "bytes": 572991,
+    "sha256": "7642f9b9f9459c4eb21ea7a9b3371ff1ead8cdbae8c940e4f2dd14e2749bcaac"
+  },
+  "runtime_validation": {
+    "file": "review/revision-21/globe-film/check.json",
+    "bytes": 2258,
+    "sha256": "7d3d039ce0333cf6a60bf343f3d5a4888646e456f5df54280b2a2004cd6acf02"
+  },
+  "cli_version": "0.8.99",
+  "master_dimensions": [
+    3840,
+    2160
+  ],
+  "master_fps": 60,
+  "web_comparison": {
+    "previous_v14_bytes": 25437581,
+    "v21_bytes": 74204601
+  },
+  "quality_comparison": {
+    "file": "review/revision-21/globe-film/quality-comparison.json",
+    "bytes": 1611,
+    "sha256": "03070a5b27a7ef69985fe71d9650d231108e8928f08b058367820aa514df9135"
+  },
+  "geometry_validation": {
+    "file": "review/revision-21/globe-film/geometry-audit.json",
+    "bytes": 127558,
+    "sha256": "edb4ab0da4134fc44a8ed936d1ce81916030f582774dbd05d6645b929d93cfba"
+  },
+  "frame_validation": {
+    "frames": 720,
+    "keyframes": 60,
+    "b_frames": 0
+  }
+}

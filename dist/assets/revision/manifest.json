@@ -1,0 +1,53 @@
+[
+  {
+    "file": "traveler-discovery.webp",
+    "source": "/Users/azunox/.codex/generated_images/01a0efe2-c1ac-7bf2-89f4-6a8f4a672bfb/exec-68a395d3-5d5c-42cb-808b-ce71e9af85d8.png",
+    "tool": "imagegen",
+    "purpose": "Illustrative editorial photograph; not an actual Pingdom user, partner location, operator or team member.",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "355e57295ceb0b4cede6f7afcf52a418adf1d8eed22e4ab5e07536f2df9625fb",
+    "brief": "Premium editorial photograph of two adult friends discovering a cafe on a Seoul neighborhood street. Warm neutral natural light, clean architecture, no text, logos or UI."
+  },
+  {
+    "file": "merchant-cafe.webp",
+    "source": "/Users/azunox/.codex/generated_images/01a0efe2-c1ac-7bf2-89f4-6a8f4a672bfb/exec-543083ac-e31b-4df0-8ede-2584de386483.png",
+    "tool": "imagegen",
+    "purpose": "Illustrative editorial photograph; not an actual Pingdom user, partner location, operator or team member.",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "ae3c8c8e198b3d5d6871025747c4cb2caedb34eaa788a5c7292f1ef965362d0e",
+    "brief": "Premium editorial photograph of an adult Korean cafe owner arranging pastries at an oak counter. Offwhite walls, soft daylight, muted pink flowers. No text, logos or UI."
+  },
+  {
+    "file": "operator-workspace.webp",
+    "source": "/Users/azunox/.codex/generated_images/01a0efe2-c1ac-7bf2-89f4-6a8f4a672bfb/exec-214f8799-33e5-4884-a9d0-a51063d2fcb6.png",
+    "tool": "imagegen",
+    "purpose": "Illustrative editorial photograph; not an actual Pingdom user, partner location, operator or team member.",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "e55b78e2d9e1c5c794649961a23b9166849dc32d4a332fd985ba095408c08246",
+    "brief": "Premium editorial closeup photograph of coworkers hands arranging photographs of cafes and neighborhoods on an office desk. Laptop softly out of focus, notebook without writing. No identifiable faces, text, numbers or charts."
+  },
+  {
+    "file": "local-culture.webp",
+    "source": "/Users/azunox/.codex/generated_images/01a0efe2-c1ac-7bf2-89f4-6a8f4a672bfb/exec-600352d3-dcbf-4987-be78-3ef161fdd2b3.png",
+    "tool": "imagegen",
+    "purpose": "Illustrative editorial photograph; not an actual Pingdom user, partner location, operator or team member.",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "3bed3df99484daf35c75e1be5e87ac6451857fb24fe5a565665760010135f63b",
+    "brief": "Premium editorial photograph of a Korean contemporary gallery with cream walls, light wood, skylight, three original abstract paintings in magenta yellow cobalt and two adult visitors from behind. No famous artworks, text, logos or UI."
+  },
+  {
+    "file": "ai-cosmos.webp",
+    "source": "/Users/azunox/Downloads/image 10.png",
+    "purpose": "사용자가 제공한 AI 소개 배경. 원본 구도와 색을 유지한 WebP 배포 변환.",
+    "kind": "user-provided",
+    "width": 7680,
+    "height": 4320,
+    "bytes": 1724582,
+    "sha256": "8441b892393e84ce48f1a3939c8ff58a7595296d1eaded57c0db8070403f8605",
+    "sourceSha256": "c9c31a35a4d7e7671723bdc8565512d63277feb09690f291af32263406a91244"
+  }
+]

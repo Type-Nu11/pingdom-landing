@@ -1,0 +1,268 @@
+.ai-pages { display: none; }
+.consulting-flight, .consulting-flight-video { display: none; }
+@media (min-width: 1000px) and (min-height: 701px) {
+  .desktop-polish #ai { max-width: none; padding: 0; margin: 0; background: #07080c; }
+  .desktop-polish #ai > .section-heading,
+  .desktop-polish #ai > .intelligence-grid { display: none; }
+  .desktop-polish .ai-pages { display: block; color: #f7f7fb; }
+  .ai-pages .ai-cinematic { position: relative; margin: 0; background: #07080c; }
+  .ai-pages .ai-consulting-page { background: #f8f9fb; color: #17191e; }
+  .ai-pages .ai-cinematic-stage { position: relative; min-height: calc(100svh - var(--nav-height, 72px)); padding: 30px 32px; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
+  .ai-pages p, .ai-pages h3, .ai-pages h4, .ai-pages h5, .ai-pages figure, .ai-pages blockquote { margin: 0; }
+  .ai-pages .ai-stage-copy { position: relative; z-index: 2; text-align: center; }
+  .ai-pages .ai-feature-label { font-size: 18px; font-weight: 550; line-height: 1.25; letter-spacing: -.015em; color: #ff779b; }
+  .ai-pages .ai-consulting-page .ai-feature-label { color: #da285c; }
+  .ai-pages .ai-stage-copy h3 { margin-top: 12px; font-size: clamp(56px, 5vw, 72px); line-height: 1.08; letter-spacing: -.055em; font-weight: 750; text-wrap: balance; }
+  .ai-pages .ai-stage-description { margin-top: 16px; font-size: 19px; line-height: 1.6; letter-spacing: -.025em; color: #aeb0bc; }
+  .ai-pages .ai-consulting-page .ai-stage-description { color: #646b73; }
+  .ai-pages .ai-product-visual { position: relative; flex: none; isolation: isolate; width: min(760px, 90vw); height: clamp(330px, 42svh, 410px); margin-top: 20px; transform-origin: 50% 65%; }
+  .ai-pages .ai-product-illustration { position: relative; z-index: 1; display: block; width: 100%; height: 100%; max-width: none; object-fit: contain; transform: scale(var(--ai-illustration-scale, 1)); }
+  .ai-pages .ai-cosmos-backdrop { position: absolute; z-index: -1; inset: -35px -160px -45px; overflow: hidden; mask-image: linear-gradient(to bottom, transparent 4%, #0007 36%, #000 74%, transparent 100%); }
+  .ai-pages .ai-cosmos-backdrop img { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 52% 57%; }
+  .ai-pages .ai-cosmos-backdrop::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, #07080c, transparent 28%, transparent 72%, #07080c); }
+  .ai-pages .ai-consulting-visual { width: min(820px, 90vw); --ai-illustration-scale: 1; }
+  .ai-pages .ai-consulting-model-layer { position: absolute; top: 0; left: 50%; height: 100%; aspect-ratio: 3 / 2; transform: translateX(-50%); transform-origin: 53.06% 42.87%; }
+  .ai-pages .ai-consulting-brand-pin { position: absolute; z-index: 2; left: 53.06%; top: 42.87%; width: 8%; height: auto; max-width: none; display: block; transform: translate(-49.92%, -94.18%); }
+  .ai-pages .ai-consulting-visual .ai-product-illustration { filter: drop-shadow(0 14px 24px #7481931c); }
+  .ai-pages .ai-asset-failed { visibility: hidden; }
+
+  .ai-pages-motion .ai-cinematic { height: 155svh; }
+  .ai-pages-motion .ai-cinematic-stage { position: sticky; top: var(--nav-height, 72px); height: calc(100svh - var(--nav-height, 72px)); min-height: 629px; }
+  .ai-pages-motion .ai-page-prepared:not(.ai-page-static) .ai-stage-copy { transform: translateY(var(--ai-copy-y, 12px)); }
+  .ai-pages-motion .ai-page-prepared:not(.ai-page-static) .ai-product-visual { opacity: var(--ai-visual-opacity, .9); transform: translateY(var(--ai-visual-y, 32px)) scale(var(--ai-visual-scale, .96)); }
+  .ai-pages-motion .ai-page-prepared:not(.ai-page-static) .ai-product-illustration { transform: translateY(calc(var(--ai-visual-y, 32px) * .2)) scale(var(--ai-illustration-scale, 1)); }
+  .ai-pages-motion .ai-page-prepared:not(.ai-page-static) .ai-consulting-model-layer { transform: translateX(-50%) translateY(calc(var(--ai-visual-y, 0px) * .2)) scale(calc(var(--ai-illustration-scale, 1) * var(--consult-model-scale, 1))); }
+  .ai-pages .ai-consulting-visual .ai-consulting-model-layer .ai-product-illustration { transform: none; }
+  .ai-pages-motion .ai-page-static:not(.ai-page-pending) { height: auto; }
+  .ai-pages-motion .ai-page-static:not(.ai-page-pending) .ai-cinematic-stage { position: relative; height: auto; }
+
+  /* 영상 준비와 관계없이 비행·글로벌 장면의 스크롤 길이를 유지합니다. */
+  .ai-pages-motion .ai-consulting-page[data-consulting-flight]:not(.ai-page-static),
+  .ai-pages-motion .ai-consulting-page[data-consulting-flight].ai-page-pending { height: 450svh; }
+  .ai-pages-motion .ai-consulting-page.flight-ready .ai-stage-copy {
+    opacity: var(--consult-copy-opacity, 1);
+    transform: translateY(var(--consult-copy-y, 0px));
+  }
+  .ai-pages-motion .ai-consulting-page.flight-ready .ai-consulting-visual {
+    z-index: 2;
+    transform-origin: 52% 43%;
+    opacity: var(--consult-model-opacity, 1);
+    transform: translateY(calc(var(--ai-visual-y, 0px) + var(--consult-model-y, 0px))) scale(var(--ai-visual-scale, 1));
+  }
+  .ai-pages-motion .ai-consulting-page.flight-ready .ai-consulting-visual .ai-product-illustration { filter: none; }
+  .ai-pages-motion :is(.ai-consulting-page, .ai-global-page).flight-ready .consulting-flight {
+    display: block; position: absolute; z-index: 3; inset: 0; overflow: hidden;
+    pointer-events: none; background: #142233;
+    opacity: var(--flight-opacity, 0); perspective: 1800px; isolation: isolate;
+  }
+  .consulting-flight-camera {
+    position: absolute; inset: -12%; transform-origin: 50% 50%;
+    transform: translate3d(var(--flight-x, 0%), var(--flight-y, 0%), 0) rotateX(8deg) rotateZ(var(--flight-bank, 0deg)) scale(var(--flight-scale, 1.65));
+    will-change: transform;
+  }
+  .ai-pages .consulting-flight-image { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; filter: saturate(.84) contrast(1.05); }
+  .consulting-flight-camera::after { position: absolute; inset: 0; content: ""; pointer-events: none; background: linear-gradient(150deg, #fff1, transparent 40%, #0c182622); }
+  .flight-pin { position: absolute; z-index: 1; left: var(--pin-x); top: var(--pin-y); width: 25px; height: 34px; }
+  .flight-pin-glyph {
+    position: absolute; inset: 0; transform-origin: 50% 100%;
+    opacity: var(--flight-pin-opacity, 0);
+    transform: translate(-50%, calc(-100% + var(--flight-pin-y, 0px))) rotateZ(calc(var(--flight-bank, 0deg) * -1)) scale(var(--flight-pin-scale, 0));
+    filter: drop-shadow(0 5px 3px #0b0c1745);
+  }
+  .flight-pin svg, .consulting-flight-focus svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  .flight-pin-ring {
+    position: absolute; left: 50%; top: 0; width: 42px; height: 20px;
+    border: 1px solid #ff8eb0; border-radius: 50%; background: #ff195620;
+    box-shadow: 0 0 12px #ff195675;
+    opacity: var(--flight-pin-ring-opacity, 0);
+    transform: translate(-50%, -50%) scale(var(--flight-pin-ring-scale, 0));
+  }
+  .consulting-flight-focus {
+    position: absolute; z-index: 2; left: 52%; top: 64%; width: 76px; height: 76px;
+    opacity: var(--flight-focus-opacity, 0); transform-origin: 50% 100%;
+    transform: translate(-50%, calc(-100% + var(--flight-focus-y, 0px))) scale(var(--flight-focus-scale, 1));
+    filter: drop-shadow(0 12px 16px #07091555);
+  }
+  .consulting-flight-focus img { display: block; width: 100%; height: 100%; max-width: none; object-fit: contain; }
+  .consulting-flight-veil {
+    position: absolute; z-index: 3; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 48%, transparent 26%, #09142265 100%);
+    opacity: var(--flight-veil-opacity, .2);
+  }
+
+
+  .ai-pages-motion :is(.ai-consulting-page, .ai-global-page).flight-video-ready .consulting-flight-camera {
+    inset: 0;
+    transform: none;
+  }
+  .ai-pages-motion :is(.ai-consulting-page, .ai-global-page).flight-video-ready .consulting-flight-image,
+  .ai-pages-motion :is(.ai-consulting-page, .ai-global-page).flight-video-ready .consulting-flight-focus,
+  .ai-pages-motion :is(.ai-consulting-page, .ai-global-page).flight-video-ready .consulting-flight-camera::after {
+    display: none;
+  }
+  .ai-pages-motion :is(.ai-consulting-page, .ai-global-page).flight-video-ready .consulting-flight-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+  }
+  .ai-pages-motion .ai-global-page.flight-final-frame .consulting-flight-image { display: block; }
+  .ai-pages-motion .ai-global-page.flight-final-frame .consulting-flight-video { display: none; }
+
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe] { background: #07080c; color: #f7f7fb; }
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe] .ai-feature-label { color: #ff779b; }
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe] .ai-stage-description { color: #aeb0bc; }
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe][data-consulting-model] { background: #f8f9fb; color: #17191e; }
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe][data-consulting-model] .ai-feature-label { color: #da285c; }
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe][data-consulting-model] .ai-stage-description { color: #646b73; }
+  .ai-pages-motion :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe]:not(.ai-page-static),
+  .ai-pages-motion :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe].ai-page-pending { height: 350svh; }
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe] .consulting-flight { background: #07080c; perspective: none; }
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe] .consulting-flight-camera { inset: 0; transform: none; will-change: auto; }
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe] .consulting-flight-camera::after { display: none; }
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe] .consulting-flight-image { filter: none; }
+  .consulting-globe-title {
+    position: absolute; z-index: 2; top: 5%; left: 0; width: 100%; height: 1.3em;
+    text-align: center; font-size: clamp(46px, 4.9vw, 72px); font-weight: 750;
+    line-height: 1.2; letter-spacing: -.055em; color: #f2f7ff; text-shadow: 0 2px 24px #04182a;
+  }
+  .consulting-globe-title span { position: absolute; inset: 0; }
+  .consulting-globe-title-korea {
+    opacity: var(--globe-korea-title, 0);
+    transform: translateY(calc((1 - var(--globe-korea-title, 0)) * -10px));
+  }
+  .consulting-globe-title-global {
+    opacity: var(--globe-global-title, 1);
+    transform: translateY(calc((1 - var(--globe-global-title, 1)) * 10px));
+  }
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe].ai-page-static .consulting-flight {
+    display: block; position: relative; width: min(100%, 1000px); height: clamp(330px, 52svh, 520px); margin-top: 24px;
+  }
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe].ai-page-static .consulting-flight-image { object-fit: contain; }
+  .ai-pages :is(.ai-consulting-page, .ai-global-page)[data-consulting-globe].ai-page-static .consulting-globe-title { top: 8%; font-size: 40px; }
+  .ai-page-static .consulting-globe-title-korea { opacity: 0; }
+  .ai-page-static .consulting-globe-title-global { opacity: 1; transform: none; }
+
+  .ai-pages .ai-global-page[data-consulting-globe] { background: #04182a; }
+  .ai-pages-motion .ai-global-page[data-consulting-globe]:not(.ai-page-static),
+  .ai-pages-motion .ai-global-page[data-consulting-globe].ai-page-pending { height: 300svh; }
+  .ai-pages .ai-global-page .ai-cinematic-stage {
+    background: radial-gradient(ellipse at 50% 110%, #092b48 0%, #04182a 68%);
+  }
+  .ai-pages .ai-global-page .ai-stage-copy { position: absolute; z-index: 4; top: 31%; left: 8%; width: 48%; text-align: left; }
+  .ai-pages .ai-global-page .ai-feature-label { color: #ff779b; font-size: 16px; font-weight: 600; }
+  .ai-pages .ai-global-page .ai-stage-copy h3 { margin-top: 24px; font-size: clamp(52px, 4.8vw, 74px); line-height: 1.16; letter-spacing: -.055em; }
+  .ai-pages .ai-global-page .ai-stage-description { margin-top: 28px; color: #b3c2ce; font-size: 19px; line-height: 1.65; }
+  .global-vision-origin { position: absolute; inset: 0; overflow: hidden; }
+  .global-vision-origin img { width: 100%; height: 100%; max-width: none; object-fit: cover; transform: translateX(var(--global-map-x, 22%)) scale(var(--global-map-scale, .92)); transform-origin: 50% 61.9%; }
+  .global-vision-origin::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #04182a 0%, #04182af0 26%, #04182a60 48%, transparent 67%); }
+  .ai-pages-motion .ai-global-page.flight-ready .ai-stage-copy {
+    opacity: var(--consult-copy-opacity, 1); transform: translateY(var(--consult-copy-y, 0px));
+  }
+  .ai-pages-motion .ai-global-page.flight-ready .global-vision-origin { opacity: var(--global-map-opacity, 1); }
+  .ai-pages-motion .ai-global-page.flight-ready .consulting-flight { background: transparent; }
+  .ai-pages-motion .ai-global-page.flight-ready .consulting-flight-camera { clip-path: none; }
+  .ai-pages-motion .ai-global-page.flight-ready .consulting-globe-title { opacity: var(--global-title-opacity, 0); }
+  .ai-pages .ai-global-page.ai-page-static .ai-stage-copy { position: relative; top: auto; left: auto; width: auto; text-align: center; }
+  .ai-pages .ai-global-page.ai-page-static .global-vision-origin { display: none; }
+
+  @media (max-height: 800px) {
+    .consulting-globe-title { top: 3%; font-size: 48px; }
+    .ai-pages .ai-cinematic-stage { padding: 12px 28px; }
+    .ai-pages .ai-stage-copy h3 { margin-top: 8px; font-size: 56px; }
+    .ai-pages .ai-stage-description { margin-top: 10px; font-size: 17px; line-height: 1.55; }
+    .ai-pages .ai-product-visual { height: 330px; margin-top: 12px; }
+    .ai-pages .ai-global-page .ai-stage-copy { top: 27%; }
+    .ai-pages .ai-global-page .ai-stage-copy h3 { margin-top: 20px; font-size: 56px; }
+    .ai-pages .ai-global-page .ai-stage-description { margin-top: 22px; font-size: 18px; }
+  }
+}
+
+/* 작은 화면에서도 동일한 소개·모델을 제공하고, 가로 영상의 전체 구도를 유지합니다. */
+@media (max-width: 999px), (max-height: 700px) {
+  #ai.intelligence-section { max-width: none; padding: 0; margin: 0; border: 0; }
+  #ai > .section-heading,
+  #ai > .intelligence-grid { display: none; }
+  #ai .ai-pages { display: block; color: #f7f7fb; }
+  .ai-pages .ai-cinematic { position: relative; margin: 0; background: #07080c; }
+  .ai-pages .ai-consulting-page { background: #f8f9fb; color: #17191e; }
+  .ai-pages p, .ai-pages h3, .ai-pages figure { margin: 0; }
+  .ai-pages .ai-cinematic-stage {
+    position: relative; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 36px; min-height: calc(100svh - var(--nav-height, 64px));
+    padding: 64px 20px 52px; overflow: hidden;
+  }
+  .ai-pages .ai-stage-copy { position: relative; z-index: 2; width: 100%; max-width: 560px; text-align: center; }
+  .ai-pages .ai-feature-label { color: #ff779b; font-size: 13px; font-weight: 650; line-height: 1.4; letter-spacing: -.01em; }
+  .ai-pages .ai-stage-copy h3 { margin-top: 14px; font-size: clamp(32px, 8.6vw, 46px); font-weight: 750; line-height: 1.19; letter-spacing: -.055em; text-wrap: balance; }
+  .ai-pages .ai-stage-description { margin-top: 22px; color: #acb0bb; font-size: 15px; line-height: 1.75; letter-spacing: -.025em; }
+  .ai-pages .ai-consulting-page .ai-feature-label { color: #da285c; }
+  .ai-pages .ai-consulting-page .ai-stage-description { color: #646b73; }
+  .ai-pages .ai-product-visual { position: relative; width: min(100%, 640px); aspect-ratio: 3 / 2; height: auto; flex: none; isolation: isolate; }
+  .ai-pages .ai-product-illustration { position: relative; z-index: 1; display: block; width: 100%; height: 100%; max-width: none; object-fit: contain; transform: none; }
+  .ai-pages .ai-cosmos-backdrop { position: absolute; z-index: -1; inset: -12% -20%; overflow: hidden; mask-image: linear-gradient(transparent, #0008 30%, #000 65%, transparent); }
+  .ai-pages .ai-cosmos-backdrop img { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+  .ai-pages .ai-cosmos-backdrop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #07080c, transparent 30%, transparent 70%, #07080c); }
+  .ai-pages .ai-consulting-model-layer { position: absolute; inset: 0; width: 100%; height: 100%; transform: none; }
+  .ai-pages .ai-consulting-brand-pin { position: absolute; z-index: 2; left: 53.06%; top: 42.87%; width: 8%; height: auto; max-width: none; display: block; transform: translate(-49.92%, -94.18%); }
+  .ai-pages .ai-asset-failed { visibility: hidden; }
+
+  .ai-pages .ai-global-page { background: #04182a; }
+  .ai-pages .ai-global-page .ai-cinematic-stage { background: radial-gradient(ellipse at 50% 100%, #092b48, #04182a 70%); }
+  .ai-pages .ai-global-page .ai-stage-description { color: #b3c2ce; }
+  .ai-pages .global-vision-origin { display: none; }
+  .ai-pages .consulting-flight { display: block; position: relative; width: min(100%, 760px); padding-top: 68px; background: #04182a; }
+  .ai-pages .consulting-flight-camera { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; transform: none; }
+  .ai-pages .consulting-flight-image,
+  .ai-pages .consulting-flight-video { display: block; width: 100%; height: 100%; max-width: none; object-fit: contain; filter: none; }
+  .ai-pages .consulting-flight-video { display: none; }
+  .ai-pages .consulting-globe-title { position: absolute; top: 0; left: 0; width: 100%; height: 1.3em; text-align: center; font-size: clamp(30px, 8.6vw, 44px); line-height: 1.2; letter-spacing: -.055em; font-weight: 750; color: #f2f7ff; }
+  .ai-pages .consulting-globe-title span { position: absolute; inset: 0; }
+  .ai-pages .consulting-globe-title-korea { opacity: 0; }
+  .ai-pages .consulting-globe-title-global { opacity: 1; }
+  .ai-pages .ai-global-page.ai-page-static .ai-cinematic-stage { min-height: auto; }
+
+  /* 장면을 멈추는 입력 처리는 사용하지 않고 현재 스크롤 위치를 바로 표시합니다. */
+  .ai-pages-mobile.ai-pages-motion .ai-global-page:not(.ai-page-static),
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.ai-page-pending { height: 210svh; }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page:not(.ai-page-static) .ai-cinematic-stage,
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.ai-page-pending .ai-cinematic-stage {
+    position: sticky; top: var(--nav-height, 64px); height: calc(100svh - var(--nav-height, 64px));
+    min-height: 0; padding: 0; gap: 0;
+  }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page:not(.ai-page-static) .ai-stage-copy,
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.ai-page-pending .ai-stage-copy { position: absolute; top: 44px; left: 20px; width: calc(100% - 40px); max-width: none; }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.flight-ready .ai-stage-copy { opacity: var(--consult-copy-opacity, 1); transform: translateY(var(--consult-copy-y, 0px)); }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page:not(.ai-page-static) .global-vision-origin,
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.ai-page-pending .global-vision-origin { display: block; position: absolute; left: 0; top: 47%; width: 100%; aspect-ratio: 16 / 9; }
+  .ai-pages .global-vision-origin img { display: block; width: 100%; height: 100%; max-width: none; object-fit: contain; }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.flight-ready .global-vision-origin { opacity: var(--global-map-opacity, 1); }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.flight-ready .consulting-flight { position: absolute; inset: 0; width: 100%; padding: 0; background: transparent; opacity: var(--flight-opacity, 0); pointer-events: none; }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.flight-ready .consulting-flight-camera { position: absolute; top: 47%; left: 0; width: 100%; aspect-ratio: 16 / 9; }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.flight-ready .consulting-globe-title { top: 23%; opacity: var(--global-title-opacity, 0); }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.flight-ready .consulting-globe-title-korea { opacity: var(--globe-korea-title, 0); }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.flight-ready .consulting-globe-title-global { opacity: var(--globe-global-title, 1); }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.flight-video-ready .consulting-flight-video { display: block; }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.flight-video-ready .consulting-flight-image { display: none; }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.flight-final-frame .consulting-flight-image { display: block; }
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.flight-final-frame .consulting-flight-video { display: none; }
+}
+
+@media (max-width: 999px) and (max-height: 619px), (min-width: 1000px) and (max-height: 700px) {
+  .ai-pages .ai-cinematic-stage { min-height: auto; padding-top: 48px; padding-bottom: 48px; gap: 24px; }
+  .ai-pages .ai-product-visual { max-width: 520px; }
+  .ai-pages .consulting-flight { max-width: 680px; }
+}
+
+/* 세로 휴대폰에서는 지구 윤곽이 읽히도록 중앙 구도를 넓히고 제목과 가깝게 둡니다. */
+@media (max-width: 699px) and (min-height: 620px) and (orientation: portrait) {
+  .ai-pages-mobile.ai-pages-motion .ai-global-page:not(.ai-page-static) .global-vision-origin,
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.ai-page-pending .global-vision-origin,
+  .ai-pages-mobile.ai-pages-motion .ai-global-page.flight-ready .consulting-flight-camera {
+    top: 40%; aspect-ratio: 4 / 3;
+  }
+  .ai-pages .ai-global-page .global-vision-origin img,
+  .ai-pages .ai-global-page .consulting-flight-image,
+  .ai-pages .ai-global-page .consulting-flight-video { object-fit: cover; }
+}

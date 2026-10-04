@@ -1,0 +1,821 @@
+{
+  "version": 29,
+  "operation": "Rerender v24 composition with white routes and integrated final distance 4.3; terminate at 7.2s",
+  "meaning": "한국에서 전 세계로 확장하려는 미래 목표를 나타내는 개념 네트워크이며 현재 운영 국가, 상점 또는 실적을 뜻하지 않습니다.",
+  "created_at_utc": "2026-10-01T08:10:36.713378+00:00",
+  "composition": {
+    "file": "review/revision-29/globe-film/index.html",
+    "bytes": 16954,
+    "sha256": "aa6415402b43cf1952570c2a0b3bdb8a73feddbb5c5511678b58983865df59d8"
+  },
+  "source_freeze": {
+    "file": "review/revision-29/globe-film/source-freeze.json",
+    "bytes": 502,
+    "sha256": "a172b59d8e185966496cfbc17ea745f6f0f8ba0a8871595e6fedaabf55824916"
+  },
+  "source_freeze_values": {
+    "version": 29,
+    "cli_version": "0.8.103",
+    "duration_seconds": 7.2,
+    "fps": 60,
+    "frames": 432,
+    "runtime_end_seconds": 7.184,
+    "index_sha256": "aa6415402b43cf1952570c2a0b3bdb8a73feddbb5c5511678b58983865df59d8",
+    "style_sha256": "7cdf99d71af7e136d33935afc03c83679303f1d43bf28c558d189c2ed8a0b6d6",
+    "motion_sha256": "2b662d3921f23da06b40c62d99a24ee8d4fecb29bd76d40cc0d0f67fdb26e37f",
+    "source_base": "review/revision-24/globe-film",
+    "created_at_utc": "2026-10-01T08:08:47.543779+00:00"
+  },
+  "source_master": {
+    "file": "review/revision-29/globe-film/renders/korea-global-master-v29.mp4",
+    "bytes": 28718197,
+    "sha256": "72cc954b835a6100dd909518ac0c98cd499d216aecdbbc7b21e423d25f0559e0"
+  },
+  "source_master_dimensions": [
+    3840,
+    2160
+  ],
+  "source_master_fps": 60,
+  "source_master_frames": 432,
+  "source_provenance_manifest": {
+    "file": "dist/assets/consulting-flight/global-flight-manifest-v28.json",
+    "bytes": 24408,
+    "sha256": "35b495d4f0dd37530d2058841adebad6b3e9587394b6e70efc63bee2bf3b0df4"
+  },
+  "source_base_provenance": {
+    "file": "review/revision-24/globe-film/exports/network-manifest-v24.json",
+    "bytes": 13226,
+    "sha256": "75c39c6c54e742613304b42b31c7efff3436ca78ef9844794a95f1d036cad23c"
+  },
+  "geography": {
+    "provenance": {
+      "file": "review/revision-24/globe-film/assets/coastline-provenance.json",
+      "bytes": 4909,
+      "sha256": "e5e3e09c1830f55c02731480745019bf651d1dbe9652acd29ea58e52c65413f7"
+    },
+    "provenance_values": {
+      "schema": "Array<Polyline>, Polyline = Array<[longitude_degrees, latitude_degrees]>",
+      "coordinate_reference_system": "WGS 84 geographic degrees",
+      "generated_on_utc": "2026-10-01",
+      "source": "Natural Earth coastline; public domain",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "sources": [
+        {
+          "zip_file": "sources/ne_50m_coastline.zip",
+          "zip_bytes": 455936,
+          "zip_sha256": "640f805509b822f57f4840a2e18d9ff2412cf1cf6976124701c2789436166fde",
+          "shp_sha256": "797d675af9613f80b51ab6049fa32e589974d7a97c6497ca56772965f179ed26",
+          "zip_internal_version": "4.1.0",
+          "crs_wkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"Degree\",0.017453292519943295]]",
+          "feature_count": 1428,
+          "polyline_count": 1429,
+          "point_count": 60416,
+          "download_url": "https://naturalearth.s3.amazonaws.com/50m_physical/ne_50m_coastline.zip",
+          "official_page_url": "https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-coastline/",
+          "official_page_display_version": "4.0.0"
+        },
+        {
+          "zip_file": "sources/ne_10m_coastline.zip",
+          "zip_bytes": 3069451,
+          "zip_sha256": "bfa04cdbcbef07ef90dfca1dabb48062eca29900a113df0f389303e255484017",
+          "shp_sha256": "459a4a97c09db19aadf5244026612de9d43748be27f83a360242b99f7fabb3c1",
+          "zip_internal_version": "5.0.0-pre9",
+          "crs_wkt": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]",
+          "feature_count": 4133,
+          "polyline_count": 4133,
+          "point_count": 410957,
+          "download_url": "https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip",
+          "official_page_url": "https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-coastline/",
+          "official_page_display_version": "4.1.0"
+        }
+      ],
+      "frozen_primary_pages": [
+        {
+          "file": "sources/coastline-10m.html",
+          "sha256": "ceb8418968768f2be6fd7904d712a47df6b6ca7dad4e7f16906a7ccb95bae839"
+        },
+        {
+          "file": "sources/coastline-50m.html",
+          "sha256": "6302362e669e136f50f1c75048d93d03057059f97b4003d788a17ee88a61f977"
+        },
+        {
+          "file": "sources/physical-10m.html",
+          "sha256": "6092669e62abfe164c00c9de59c77f24cb0182e9b56bfc395a7ea64ed31f752e"
+        },
+        {
+          "file": "sources/physical-50m.html",
+          "sha256": "e4ee5847574691e2019ff99dd16f799c1b87bc620068bd585dabc0c16aec02c0"
+        },
+        {
+          "file": "sources/terms-of-use.html",
+          "sha256": "c3ad0637aa8e813bd40c0b31cb10d0fc42fac5d4be0269b081c1a319b1103280"
+        }
+      ],
+      "source_version_note": "Official coastline page labels and the downloaded ZIP internal VERSION.txt differ; both are preserved without assigning a release label to the output.",
+      "outputs": [
+        {
+          "file": "coastline-world-50m.json",
+          "polyline_count": 1429,
+          "point_count": 63112,
+          "segment_count": 61683,
+          "bytes": 1439590,
+          "sha256": "e66f5a32e9a4cb51d507dd390327f8a6d7afbdd60facaf02371b988bd0a19877",
+          "maximum_segment_degrees": 0.24998198,
+          "densification_limit_degrees": 0.25,
+          "clip_bbox_lon_lat": null,
+          "clip_mode": "none"
+        },
+        {
+          "file": "coastline-east-asia-10m.json",
+          "polyline_count": 213,
+          "point_count": 17482,
+          "segment_count": 17269,
+          "bytes": 398632,
+          "sha256": "e44d2eebe65efc9efe7d667e98f98d33ae862b77fb7e19a7e1aefeb6c05b2f01",
+          "maximum_segment_degrees": 0.11997168,
+          "densification_limit_degrees": 0.12,
+          "clip_bbox_lon_lat": [
+            110.0,
+            25.0,
+            146.0,
+            52.0
+          ],
+          "clip_mode": "inside"
+        },
+        {
+          "file": "coastline-world-outside-east-asia-50m.json",
+          "polyline_count": 1382,
+          "point_count": 60869,
+          "segment_count": 59487,
+          "bytes": 1388430,
+          "sha256": "544191f762a70490ae07801c0f4963a08adea3f3e0a998753378ab4788e6c27b",
+          "maximum_segment_degrees": 0.24998198,
+          "densification_limit_degrees": 0.25,
+          "clip_bbox_lon_lat": [
+            110.0,
+            25.0,
+            146.0,
+            52.0
+          ],
+          "clip_mode": "outside"
+        }
+      ],
+      "region_bbox_lon_lat": [
+        110.0,
+        25.0,
+        146.0,
+        52.0
+      ],
+      "processing": [
+        "Retain SHP polyline parts; no country borders or arbitrary point-cloud joins.",
+        "Split anti-meridian crossings with interpolated +/-180 degree seam endpoints.",
+        "Clip original segments; do not append bounding-rectangle edges or close clipped parts.",
+        "Subdivide source lon/lat segments to bounded great-circle angular length.",
+        "Round to six decimal degrees; remove consecutive duplicate output coordinates."
+      ],
+      "validation": "Finite bounds, parts >= 2 points, no longitude jumps > 180, angular limits, region inclusion/exclusion: passed."
+    },
+    "world_outside_region": {
+      "file": "review/revision-24/globe-film/assets/coastline-world-outside-east-asia-50m.json",
+      "bytes": 1388430,
+      "sha256": "544191f762a70490ae07801c0f4963a08adea3f3e0a998753378ab4788e6c27b"
+    },
+    "east_asia_detail": {
+      "file": "review/revision-24/globe-film/assets/coastline-east-asia-10m.json",
+      "bytes": 398632,
+      "sha256": "e44d2eebe65efc9efe7d667e98f98d33ae862b77fb7e19a7e1aefeb6c05b2f01"
+    },
+    "coastline_data_audit": {
+      "file": "review/revision-24/globe-film/coastline-data-audit.json",
+      "bytes": 759,
+      "sha256": "664fd6f342b2fccc42610c9c6e6469a9bcf66f52108fb243fa55698bfe4aba2f"
+    },
+    "no_land_particles": true,
+    "no_coastline_overlap": true,
+    "lod_seam_note": "Source-scale endpoint difference at bbox is at most .079715 degrees; no artificial connector."
+  },
+  "brand_pin": {
+    "file": "review/revision-24/globe-film/assets/pingdom-pin-clean.png",
+    "bytes": 572991,
+    "sha256": "7642f9b9f9459c4eb21ea7a9b3371ff1ead8cdbae8c940e4f2dd14e2749bcaac"
+  },
+  "style": {
+    "file": "review/revision-29/globe-film/style-manifest.json",
+    "bytes": 1925,
+    "sha256": "7cdf99d71af7e136d33935afc03c83679303f1d43bf28c558d189c2ed8a0b6d6"
+  },
+  "style_values": {
+    "version": 29,
+    "source": "review/revision-29/globe-film/index.html",
+    "base_version": 24,
+    "land_point_count": 0,
+    "region_point_count": 0,
+    "globe_surface": "smooth navy sphere with actual vector coastline and regular latitude/longitude lines",
+    "coastline_width_2k_px": {
+      "world": 1.1,
+      "east_asia": 1.2
+    },
+    "coastline_alpha": {
+      "world": 0.7,
+      "east_asia": [
+        0.86,
+        0.86
+      ]
+    },
+    "coastline_rgb": [
+      0.68,
+      0.84,
+      0.96
+    ],
+    "grid_lines": {
+      "latitude_step_deg": 30,
+      "longitude_step_deg": 30,
+      "alpha": [
+        0.1,
+        0.14
+      ],
+      "approx_width_2k_px": 0.667
+    },
+    "surface_alpha": [
+      0.4,
+      0.5
+    ],
+    "route_width_master_px": 2.55,
+    "route_width_2k_px": 1.7,
+    "route_brand_hex": "#FFFFFF",
+    "brand_token_source": "dist/styles.css:2 --pink:#FF1956",
+    "route_alpha_base": 0.76,
+    "route_alpha_pulse_add": 0.18,
+    "route_priority_alpha": [
+      1,
+      0.9
+    ],
+    "route_primary_count": 8,
+    "route_secondary_count": 24,
+    "moving_dot_2k_px": 2.5,
+    "moving_dot_alpha": 0.72,
+    "endpoint_2k_px": 3,
+    "endpoint_alpha": 0.82,
+    "hub_fade_2k_radius_px": 25,
+    "hub_fade": "screen-space smoothstep alpha only; geometry starts at actual pin tip",
+    "timeline_unchanged": false,
+    "camera_unchanged": false,
+    "routes": 32,
+    "no_coastline_overlap": "world50m clipped outside east-asia bbox; regional10m clipped inside bbox; no bbox-border lines",
+    "route_color_reason": "최신 요청에 따라 연결선과 신호를 흰색으로 변경; 공식 브랜드 핀은 기존 pink 자산 유지",
+    "camera": {
+      "initial_distance": 2.12,
+      "final_distance": 4.3,
+      "v28_final_distance": 3.9,
+      "region_start_seconds": 1.8,
+      "region_end_seconds": 7.2,
+      "additional_pullback": false,
+      "end_runtime_seconds": 7.184
+    },
+    "duration_seconds": 7.2,
+    "brand_pin_hex": "#FF1956",
+    "route_color_hex": "#FFFFFF",
+    "hub_brand_hex": "#FF1956"
+  },
+  "output": {
+    "file": "dist/assets/consulting-flight/korea-global-flight-v29.mp4",
+    "bytes": 10759476,
+    "sha256": "553663863f82f48b56b680884cbc00977feeb9c7fbc88fe6972401d05d2dd82c"
+  },
+  "dimensions": [
+    2560,
+    1440
+  ],
+  "duration_seconds": 7.2,
+  "fps": 60,
+  "frames": 432,
+  "audio": false,
+  "runtime_end_seconds": 7.184,
+  "encoding": {
+    "codec": "H.264",
+    "profile": "High",
+    "pixel_format": "yuv420p",
+    "crf": 18,
+    "preset": "medium",
+    "gop_frames": 12,
+    "keyframe_interval_seconds": 0.2,
+    "b_frames": 0,
+    "faststart": true
+  },
+  "source_range": {
+    "start_frame": 0,
+    "end_frame_exclusive": 432,
+    "start_seconds": 0,
+    "end_seconds_exclusive": 7.2,
+    "max_pts_seconds": 7.183333
+  },
+  "runtime_contract": {
+    "end_requested_seconds": 7.184,
+    "end_decoded_frame_index": 431,
+    "end_decoded_pts_seconds": 7.183333,
+    "frame_selection": "Frame431 covers [7.1833333333,7.2); explicit select=eq(n,431)",
+    "scene_stop_ms": 250,
+    "scene_stop_runtime": "Owned by root; unchanged by media revision",
+    "baked_title": false,
+    "native_title": "Owned by root runtime",
+    "entry_poster": {
+      "file": "dist/assets/consulting-flight/korea-globe-poster-v29.webp",
+      "bytes": 274972,
+      "sha256": "e6197511b8ed8a8f5e9c9b7d5e5c102ffa485e11b3869f7d45ebca8a21c61ddd",
+      "requested_seconds": 0,
+      "decoded_frame_index": 0,
+      "decoded_pts_seconds": 0.0,
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "encoding": "Lossless WebP from decoded v29 web clip",
+      "lossless_pixel_match_to_decoded_new_clip": true,
+      "sha256_decoded_rgb_pixels": "b71d05db19bacc41281d4890c602cd96b8c3bebbf039a0d4ae43429fc2152377"
+    }
+  },
+  "entry_poster": {
+    "file": "dist/assets/consulting-flight/korea-globe-poster-v29.webp",
+    "bytes": 274972,
+    "sha256": "e6197511b8ed8a8f5e9c9b7d5e5c102ffa485e11b3869f7d45ebca8a21c61ddd",
+    "requested_seconds": 0,
+    "decoded_frame_index": 0,
+    "decoded_pts_seconds": 0.0,
+    "dimensions": [
+      2560,
+      1440
+    ],
+    "encoding": "Lossless WebP from decoded v29 web clip",
+    "lossless_pixel_match_to_decoded_new_clip": true,
+    "sha256_decoded_rgb_pixels": "b71d05db19bacc41281d4890c602cd96b8c3bebbf039a0d4ae43429fc2152377"
+  },
+  "final_poster": {
+    "file": "dist/assets/consulting-flight/global-globe-poster-v29.webp",
+    "bytes": 572702,
+    "sha256": "df498cb734d33b8152041ae9f66062bbfa76a886a8157928c8af7112535f63a3",
+    "requested_seconds": 7.184,
+    "decoded_frame_index": 431,
+    "decoded_pts_seconds": 7.183333,
+    "dimensions": [
+      2560,
+      1440
+    ],
+    "encoding": "Lossless WebP from decoded v29 web clip",
+    "lossless_pixel_match_to_decoded_new_clip": true,
+    "sha256_decoded_rgb_pixels": "575d53e38e2642b4df1e1dfc94b92de9866ac14598ded759207cedf4a48d1cf2"
+  },
+  "posters": [
+    {
+      "file": "dist/assets/consulting-flight/korea-globe-poster-v29.webp",
+      "bytes": 274972,
+      "sha256": "e6197511b8ed8a8f5e9c9b7d5e5c102ffa485e11b3869f7d45ebca8a21c61ddd",
+      "requested_seconds": 0,
+      "decoded_frame_index": 0,
+      "decoded_pts_seconds": 0.0,
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "encoding": "Lossless WebP from decoded v29 web clip",
+      "lossless_pixel_match_to_decoded_new_clip": true,
+      "sha256_decoded_rgb_pixels": "b71d05db19bacc41281d4890c602cd96b8c3bebbf039a0d4ae43429fc2152377"
+    },
+    {
+      "file": "dist/assets/consulting-flight/global-globe-poster-v29.webp",
+      "bytes": 572702,
+      "sha256": "df498cb734d33b8152041ae9f66062bbfa76a886a8157928c8af7112535f63a3",
+      "requested_seconds": 7.184,
+      "decoded_frame_index": 431,
+      "decoded_pts_seconds": 7.183333,
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "encoding": "Lossless WebP from decoded v29 web clip",
+      "lossless_pixel_match_to_decoded_new_clip": true,
+      "sha256_decoded_rgb_pixels": "575d53e38e2642b4df1e1dfc94b92de9866ac14598ded759207cedf4a48d1cf2"
+    }
+  ],
+  "entry_poster_reuse": {
+    "reused": false,
+    "reason": "v29 first source RGB differs from v24 by one pixel; new poster is lossless from exact new clip"
+  },
+  "sequence": [
+    {
+      "start": 0,
+      "end": 1.8,
+      "scene": "Korean peninsula coastline closeup and official Seoul pink pin"
+    },
+    {
+      "start": 1.8,
+      "end": 7.18,
+      "scene": "32 white routes spread; distance 2.12 to 4.3 within existing camera interval"
+    },
+    {
+      "start": 7.18,
+      "end_exclusive": 7.2,
+      "scene": "Complete route drawing; no subsequent pullback scene"
+    }
+  ],
+  "network_routes": {
+    "count": 32,
+    "hub_latitude": 37.5665,
+    "hub_longitude": 126.978,
+    "meaning": "Conceptual future connections, not verified service availability",
+    "last_route_draw_complete_seconds": 7.18,
+    "all_route_draws_complete_at_runtime_end": true,
+    "last_endpoint_fade_complete_seconds": 7.43,
+    "endpoint_fade_is_complete_at_runtime_end": false,
+    "destinations_lat_lon": [
+      [
+        35.6762,
+        139.6503
+      ],
+      [
+        39.9042,
+        116.4074
+      ],
+      [
+        31.2304,
+        121.4737
+      ],
+      [
+        25.033,
+        121.5654
+      ],
+      [
+        22.3193,
+        114.1694
+      ],
+      [
+        1.3521,
+        103.8198
+      ],
+      [
+        21.0278,
+        105.8342
+      ],
+      [
+        13.7563,
+        100.5018
+      ],
+      [
+        -6.2088,
+        106.8456
+      ],
+      [
+        14.5995,
+        120.9842
+      ],
+      [
+        -33.8688,
+        151.2093
+      ],
+      [
+        -37.8136,
+        144.9631
+      ],
+      [
+        28.6139,
+        77.209
+      ],
+      [
+        19.076,
+        72.8777
+      ],
+      [
+        27.7172,
+        85.324
+      ],
+      [
+        23.8103,
+        90.4125
+      ],
+      [
+        25.2048,
+        55.2708
+      ],
+      [
+        24.7136,
+        46.6753
+      ],
+      [
+        41.0082,
+        28.9784
+      ],
+      [
+        60.1699,
+        24.9384
+      ],
+      [
+        51.5074,
+        -0.1278
+      ],
+      [
+        48.8566,
+        2.3522
+      ],
+      [
+        52.52,
+        13.405
+      ],
+      [
+        40.4168,
+        -3.7038
+      ],
+      [
+        41.9028,
+        12.4964
+      ],
+      [
+        30.0444,
+        31.2357
+      ],
+      [
+        -1.2921,
+        36.8219
+      ],
+      [
+        -33.9249,
+        18.4241
+      ],
+      [
+        40.7128,
+        -74.006
+      ],
+      [
+        -22.9068,
+        -43.1729
+      ],
+      [
+        19.4326,
+        -99.1332
+      ],
+      [
+        34.0522,
+        -118.2437
+      ]
+    ],
+    "geometry_unchanged": true,
+    "route_color_hex": "#FFFFFF",
+    "hub_brand_hex": "#FF1956"
+  },
+  "camera_validation": {
+    "included_pts_range_seconds": [
+      0,
+      7.183333
+    ],
+    "initial_distance": 2.12,
+    "final_distance": 4.3,
+    "v28_final_distance": 3.9,
+    "region_start_seconds": 1.8,
+    "region_end_seconds": 7.2,
+    "additional_pullback_max": 0,
+    "additional_pullback_frames": 0,
+    "all_432_hub_samples_visible": true,
+    "end_hub_tip_1920x1080": {
+      "frame": 431,
+      "t": 7.183333333333334,
+      "x": 1106.1876263317592,
+      "y": 827.4792921811736,
+      "facing": 0.9684268638722416,
+      "visible": true
+    },
+    "nominal_sphere_tangent_diameter_ratio": 0.8933250005738372
+  },
+  "frame_validation": {
+    "frames": 432,
+    "keyframes": 36,
+    "max_keyframe_gap_seconds": 0.2,
+    "b_frames": 0
+  },
+  "cli_composition_version": "0.8.103",
+  "validation": {
+    "asset_audit_pass": true,
+    "source_v24_and_v28_preserved": true,
+    "poster_lossless_pixel_match": true,
+    "additional_pullback_frames": 0,
+    "check": {
+      "file": "review/revision-29/globe-film/check.json",
+      "bytes": 2321,
+      "sha256": "9133f725a7551151b8abc983f61718aedbf9ed1be6b4dcfdc0fec9a93c813ea9"
+    },
+    "source_contract": {
+      "file": "review/revision-29/globe-film/source-contract-audit.json",
+      "bytes": 755,
+      "sha256": "d39bf047044698be4fd456e65898082df3228655714c8585e79bc40814adff26"
+    },
+    "visual_review": "Decoded frames at 0,2.5,7.0 and frame431 reviewed at CSS1331; Korean outline, white routes, unchanged pink pin and slightly smaller final sphere confirmed",
+    "website_tests": "Not run; root owns runtime validation",
+    "history": "CLI begin/end completed; entry:null; explicit source-delta and source-freeze evidence retained",
+    "history_delta": {
+      "file": "review/revision-29/globe-film/history-delta.json",
+      "bytes": 1025,
+      "sha256": "9053186c19474d118d28fc4d7ccb9555354691b02e4946ec2640531c7d557545"
+    },
+    "history_end": {
+      "entry": null,
+      "parts": [],
+      "_meta": {
+        "version": "0.8.103",
+        "latestVersion": "0.8.103",
+        "updateAvailable": false
+      }
+    }
+  },
+  "commands": [
+    {
+      "label": "ffprobe-master-v29",
+      "argv": [
+        "/opt/homebrew/bin/ffprobe",
+        "-v",
+        "error",
+        "-show_streams",
+        "-show_format",
+        "-of",
+        "json",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/renders/korea-global-master-v29.mp4"
+      ],
+      "exit_code": 0,
+      "log": "review/revision-29/globe-film/ffprobe-master-v29.log"
+    },
+    {
+      "label": "encode-web-v29",
+      "argv": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-nostdin",
+        "-y",
+        "-i",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/renders/korea-global-master-v29.mp4",
+        "-vf",
+        "trim=start_frame=0:end_frame=432,setpts=PTS-STARTPTS,scale=2560:1440:flags=lanczos,fps=60",
+        "-frames:v",
+        "432",
+        "-an",
+        "-c:v",
+        "libx264",
+        "-profile:v",
+        "high",
+        "-preset",
+        "medium",
+        "-crf",
+        "18",
+        "-pix_fmt",
+        "yuv420p",
+        "-g",
+        "12",
+        "-keyint_min",
+        "12",
+        "-sc_threshold",
+        "0",
+        "-bf",
+        "0",
+        "-movflags",
+        "+faststart",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/exports/korea-global-flight-v29.mp4"
+      ],
+      "exit_code": 0,
+      "log": "review/revision-29/globe-film/encode-web-v29.log"
+    },
+    {
+      "label": "ffprobe-web-v29",
+      "argv": [
+        "/opt/homebrew/bin/ffprobe",
+        "-v",
+        "error",
+        "-show_streams",
+        "-show_format",
+        "-of",
+        "json",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/exports/korea-global-flight-v29.mp4"
+      ],
+      "exit_code": 0,
+      "log": "review/revision-29/globe-film/ffprobe-web-v29.log"
+    },
+    {
+      "label": "ffprobe-web-v29-frames",
+      "argv": [
+        "/opt/homebrew/bin/ffprobe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-show_frames",
+        "-show_entries",
+        "frame=key_frame,pict_type,best_effort_timestamp_time,width,height",
+        "-of",
+        "json",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/exports/korea-global-flight-v29.mp4"
+      ],
+      "exit_code": 0,
+      "log": "review/revision-29/globe-film/ffprobe-web-v29-frames.log"
+    },
+    {
+      "label": "decode-qa-0s",
+      "argv": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-nostdin",
+        "-y",
+        "-i",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/exports/korea-global-flight-v29.mp4",
+        "-vf",
+        "select=eq(n\\,0)",
+        "-fps_mode",
+        "vfr",
+        "-frames:v",
+        "1",
+        "-update",
+        "1",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/encoded-qa/frame-at-0s.png"
+      ],
+      "exit_code": 0,
+      "log": "review/revision-29/globe-film/decode-qa-0s.log"
+    },
+    {
+      "label": "decode-qa-2.5s",
+      "argv": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-nostdin",
+        "-y",
+        "-i",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/exports/korea-global-flight-v29.mp4",
+        "-vf",
+        "select=eq(n\\,150)",
+        "-fps_mode",
+        "vfr",
+        "-frames:v",
+        "1",
+        "-update",
+        "1",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/encoded-qa/frame-at-2.5s.png"
+      ],
+      "exit_code": 0,
+      "log": "review/revision-29/globe-film/decode-qa-2.5s.log"
+    },
+    {
+      "label": "decode-qa-7.0s",
+      "argv": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-nostdin",
+        "-y",
+        "-i",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/exports/korea-global-flight-v29.mp4",
+        "-vf",
+        "select=eq(n\\,420)",
+        "-fps_mode",
+        "vfr",
+        "-frames:v",
+        "1",
+        "-update",
+        "1",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/encoded-qa/frame-at-7.0s.png"
+      ],
+      "exit_code": 0,
+      "log": "review/revision-29/globe-film/decode-qa-7.0s.log"
+    },
+    {
+      "label": "decode-qa-7.184s",
+      "argv": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-nostdin",
+        "-y",
+        "-i",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/exports/korea-global-flight-v29.mp4",
+        "-vf",
+        "select=eq(n\\,431)",
+        "-fps_mode",
+        "vfr",
+        "-frames:v",
+        "1",
+        "-update",
+        "1",
+        "/Users/azunox/Documents/ChatGPT/핑덤 랭딩페이지/pingdom/review/revision-29/globe-film/encoded-qa/frame-at-7.184s.png"
+      ],
+      "exit_code": 0,
+      "log": "review/revision-29/globe-film/decode-qa-7.184s.log"
+    }
+  ],
+  "toolchain": {
+    "ffmpeg": "/opt/homebrew/bin/ffmpeg",
+    "ffprobe": "/opt/homebrew/bin/ffprobe",
+    "composition_rerendered": true,
+    "cli_version": "0.8.103",
+    "render_log": {
+      "file": "review/revision-29/globe-film/render.log",
+      "bytes": 19396,
+      "sha256": "38f96905b4e68b4a5efe8f83f940b2e7502bdcb1f39b7a8bd2baa75ec30a6371"
+    },
+    "export_script": {
+      "file": "review/revision-29/globe-film/export-web-v29.py",
+      "bytes": 13132,
+      "sha256": "e41659941fe2c189bacb15a660a0002dac20351400a64bb3ab114927597f34a7"
+    },
+    "finalize_script": {
+      "file": "review/revision-29/globe-film/finalize-v29.py",
+      "bytes": 2094,
+      "sha256": "2587917c7149a87e51000166777e517a35ed93b7ebc487286a22da6677ba1b6f"
+    }
+  },
+  "route_color_hex": "#FFFFFF",
+  "hub_brand_hex": "#FF1956"
+}

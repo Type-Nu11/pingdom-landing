@@ -1,0 +1,40 @@
+[
+  {
+    "file": "traveler-discovery.webp",
+    "source": "/Users/azunox/.codex/generated_images/01a0efe2-c1ac-7bf2-89f4-6a8f4a672bfb/exec-063a1f62-4a70-42fc-aeab-cbd0d18d3668.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "alpha_exact": true,
+    "bytes": 438546,
+    "sha256": "a95a50b1ebb4e8890b3e6da5980bbed18b54c4b52d149a00cb78f1088effef79",
+    "source_sha256": "41c565c8f21d300fab7fd6f8f206d35837b1ec38cd8e27292ef0c4182cd02d6f",
+    "encoding": "RGBA WebP quality95 method6; no resize/crop/recolor",
+    "kind": "generated fictional service-principle illustration; not actual UI, places or analysis results"
+  },
+  {
+    "file": "consulting-neighborhood.webp",
+    "source": "/Users/azunox/.codex/generated_images/01a0efe2-c1ac-7bf2-89f4-6a8f4a672bfb/exec-63c28351-5695-4cae-af36-cfae827e9c37.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "alpha_exact": true,
+    "bytes": 312690,
+    "sha256": "69a32ee5d8194a3c4c8c09863852ab1f4c28671c7ca9aa7677052db960dbe2c3",
+    "source_sha256": "884f9a80160183a36824e205b9fb87b2ef37e76ca9449b422f3b12042d5917f5",
+    "encoding": "RGBA WebP quality95 method6; no resize/crop/recolor",
+    "kind": "generated fictional service-principle illustration; not actual UI, places or analysis results"
+  }
+]

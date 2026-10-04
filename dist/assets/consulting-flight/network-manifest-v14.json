@@ -1,0 +1,436 @@
+{
+  "version": 14,
+  "source": "Preserved NASA June 2004 surface map and existing official brand-pin derivative; city photograph and building illustration excluded",
+  "processing": "Immediate point-globe reveal, 32 sequential conceptual routes from Seoul, final camera retreat and hold; 4K master render and 1440p web encode",
+  "sources": [
+    {
+      "file": "nasa-blue-marble-june.jpg",
+      "bytes": 1692239,
+      "sha256": "dc059529b8ed1cfcdd59747a7c3f259c93c1322bf88ca1ec8bab1dd71fcc57f5",
+      "dimensions": [
+        5400,
+        2700
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "earth_texture_source": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-base/june/world.200406.3x5400x2700.jpg",
+  "earth_texture_credit": "NASA Earth Observatory, Reto Stockli (NASA Goddard), Blue Marble Next Generation, June 2004 composite",
+  "media_provenance_record": {
+    "file": "review/consulting-flight-14/network-flight-video/MEDIA.md",
+    "bytes": 2203,
+    "sha256": "f71eecbf2c77bc8f3ce28ffc529c6656c79e780ba1e3bac61625caa65077e7ef"
+  },
+  "composition": "review/consulting-flight-14/network-flight-video/index.html",
+  "composition_sha256": "f2ec763e86328f3176f84af7875611e6d9577c19559ac33bb4925cba7a159147",
+  "master_file": "review/consulting-flight-14/network-flight-video/renders/network-flight-master.mp4",
+  "master_dimensions": [
+    3840,
+    2160
+  ],
+  "master_bytes": 65430843,
+  "master_sha256": "cc0888a5c175c8378a004678d42420275c3fbfdeabec9f2f2ebcb63f229feb0d",
+  "output": "seoul-globe-flight-v14.mp4",
+  "output_bytes": 25437581,
+  "output_sha256": "e442a85f6f0499ae1652065f7f538fd433d00dd911bfce175a84cf3f0dd361c6",
+  "poster": "seoul-globe-poster-v14.webp",
+  "poster_bytes": 1152698,
+  "poster_sha256": "e9545f03b2af151cfc274d2d58d559dcc8eadfff9447e1f1dc7a0da90d202258",
+  "poster_frame_time_seconds": 11,
+  "poster_encoding": "Decoded 4K master frame 660 at 11 seconds, Lanczos resized to 2560x1440, then lossless WebP format conversion; no creative image editing",
+  "poster_conversion_record": {
+    "file": "review/consulting-flight-14/network-flight-video/poster-summary.json",
+    "bytes": 314,
+    "sha256": "a4d8b2153944f9a687ab189e758078ae486769a87a1c2ba2fd42864000bd1f67"
+  },
+  "poster_conversion_source": {
+    "file": "review/consulting-flight-14/network-flight-video/decoded-master/frame-06.png",
+    "bytes": 3034125,
+    "sha256": "be32d69b1c84ef4d5a941ac131811fdc8de907b3492cbe34020fcdb7ce8882d6",
+    "dimensions": [
+      3840,
+      2160
+    ],
+    "mode": "RGB"
+  },
+  "dimensions": [
+    2560,
+    1440
+  ],
+  "duration_seconds": 12,
+  "fps": 60,
+  "frames": 720,
+  "audio": false,
+  "source_freeze": {
+    "file": "review/consulting-flight-14/network-flight-video/source-freeze.sha256",
+    "bytes": 891,
+    "sha256": "ffc682cbf2ac8d264fd015746171b8a86b174395c888242fb52f91279aac7eec",
+    "files": [
+      {
+        "file": "review/consulting-flight-14/network-flight-video/index.html",
+        "bytes": 12757,
+        "sha256": "f2ec763e86328f3176f84af7875611e6d9577c19559ac33bb4925cba7a159147"
+      },
+      {
+        "file": "review/consulting-flight-14/network-flight-video/index.motion.json",
+        "bytes": 246,
+        "sha256": "5a12331cb6ff43669fd57766e5c27cc8e397c4f70b97f442067e708734a72ec3"
+      },
+      {
+        "file": "review/consulting-flight-14/network-flight-video/sample-land.py",
+        "bytes": 2670,
+        "sha256": "2ed015f759f5ddde6ec3bc18d683fe3b43a58c0936b8d29009e3ddd5680503b0"
+      },
+      {
+        "file": "review/consulting-flight-14/network-flight-video/assets/gsap.min.js",
+        "bytes": 72779,
+        "sha256": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+      },
+      {
+        "file": "review/consulting-flight-14/network-flight-video/assets/pretendard-variable.woff2",
+        "bytes": 2057688,
+        "sha256": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4"
+      },
+      {
+        "file": "review/consulting-flight-14/network-flight-video/assets/pingdom-pin-clean.png",
+        "bytes": 572991,
+        "sha256": "7642f9b9f9459c4eb21ea7a9b3371ff1ead8cdbae8c940e4f2dd14e2749bcaac"
+      },
+      {
+        "file": "review/consulting-flight-14/network-flight-video/assets/three.module.js",
+        "bytes": 626071,
+        "sha256": "1bb0b770bac5da2b59b21aa5fff4c547eeb864d4e408e4c36fbc6ced1dce0e9e"
+      },
+      {
+        "file": "review/consulting-flight-14/network-flight-video/assets/three.core.js",
+        "bytes": 1405971,
+        "sha256": "03fb6e9fa08628385a9096948593251ae473239c7039496d7c280cba73d84631"
+      },
+      {
+        "file": "review/consulting-flight-14/network-flight-video/assets/nasa-land-points.json",
+        "bytes": 972933,
+        "sha256": "657921bfdb7619fc1ce4575a4f59e9e3c4ba6e120753f6652a41e009f852034b"
+      },
+      {
+        "file": "review/consulting-flight-14/network-flight-video/assets/nasa-blue-marble-june.jpg",
+        "bytes": 1692239,
+        "sha256": "dc059529b8ed1cfcdd59747a7c3f259c93c1322bf88ca1ec8bab1dd71fcc57f5"
+      }
+    ],
+    "file_count": 10,
+    "motion_source": {
+      "file": "review/consulting-flight-14/network-flight-video/index.motion.json",
+      "bytes": 246,
+      "sha256": "5a12331cb6ff43669fd57766e5c27cc8e397c4f70b97f442067e708734a72ec3"
+    },
+    "check_record": {
+      "file": "review/consulting-flight-14/network-flight-video/check.json",
+      "bytes": 3459,
+      "sha256": "2f23452dd34ef31dfd9a2ff20d7af263b508b8529a77850e6e35054944426c16"
+    }
+  },
+  "logo": {
+    "input_reference": "review/consulting-flight-11/official-pin-reference.png",
+    "input_dimensions": [
+      506,
+      528
+    ],
+    "input_bytes": 19474,
+    "input_sha256": "d1deb9fcfbf9172a923d895ef515008a9f3e58a7f85ee246c11b400319365493",
+    "input_profile": "Display P3 ICC; dominant sRGB color #ff1956; screenshot has opaque dark background and center",
+    "generation_mode": "built-in imagegen reference edit; transparent_background=true",
+    "generation_prompt": "review/consulting-flight-11/IMAGE-PROMPT.md",
+    "requested_dimensions": [
+      2048,
+      2048
+    ],
+    "actual_dimensions": [
+      1254,
+      1254
+    ],
+    "source": "review/consulting-flight-14/network-flight-video/assets/pingdom-pin-clean.png",
+    "source_bytes": 572991,
+    "source_sha256": "7642f9b9f9459c4eb21ea7a9b3371ff1ead8cdbae8c940e4f2dd14e2749bcaac",
+    "web_asset": "pingdom-pin-clean.webp",
+    "web_bytes": 342672,
+    "web_sha256": "1ad10d68a5626381ce978f0d1e2ad4d9e6c6adfde7ed0b521270a55d048f4657",
+    "web_encoding": "lossless WebP; decoded RGBA identical to generated PNG",
+    "alpha_bbox": [
+      142,
+      57,
+      1134,
+      1181
+    ],
+    "center_alpha": 0,
+    "tip_anchor": [
+      626,
+      1181
+    ],
+    "used_by": [
+      "geographic globe hub in rendered video"
+    ],
+    "note": "원본 실루엣과 비율을 참조한 생성 이미지이며 원본과 픽셀/색 완전 일치를 주장하지 않음"
+  },
+  "globe_geometry": {
+    "file": "review/consulting-flight-14/network-flight-video/assets/nasa-land-points.json",
+    "bytes": 972933,
+    "sha256": "657921bfdb7619fc1ce4575a4f59e9e3c4ba6e120753f6652a41e009f852034b",
+    "source_sha256": "dc059529b8ed1cfcdd59747a7c3f259c93c1322bf88ca1ec8bab1dd71fcc57f5",
+    "land_point_count": 34735,
+    "sampling": "equal-area Fibonacci sphere with fixed hash tangent disk jitter",
+    "samples": 120000,
+    "jitter_fraction": 0.3,
+    "jitter_radians_max": 0.0030699801238394655,
+    "hash_seed": 1346981447,
+    "method": "Equal-area Fibonacci sphere samples, fixed-hash tangent disk jitter at 30% characteristic spacing, then land/ice colors re-read from preserved NASA June 2004 map; white point rendering"
+  },
+  "network_reference": {
+    "file": "review/consulting-flight-12/earth-network-reference.png",
+    "dimensions": [
+      1727,
+      739
+    ],
+    "bytes": 1019567,
+    "sha256": "cd546bed02b3f7a36134e5991cd8bf28827a17f9a84b6bbacf51edd59ab9b4d2",
+    "usage": "Large cropped globe, navy background and white points/grid direction only; reference page copy excluded"
+  },
+  "design_references": {
+    "official_page": "https://toss.im/",
+    "official_implementation": "https://static.toss.im/frontend/new.toss.im/toss-im-new/_next/static/chunks/2652.10e9730b93fb1bbe.js",
+    "local_screenshot": {
+      "file": "review/consulting-flight-13/toss-global-reference.png",
+      "bytes": 124561,
+      "sha256": "b20422573bcf3815782c2337f5c11dd18cd2e05a24f2eeacfbd2af1ba00d5be5",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mode": "RGB"
+    },
+    "toss_assets_copied": false,
+    "usage": "Visual framing, rotation and restrained density reference only; original Toss data, imagery, video and code excluded from composition/production assets"
+  },
+  "network_routes": {
+    "count": 32,
+    "hub_latitude": 37.5665,
+    "hub_longitude": 126.978,
+    "meaning": "Conceptual future connection routes, not verified current merchant presence or sales"
+  },
+  "sequence": [
+    {
+      "start": 0,
+      "end": 1.8,
+      "scene": "globe reveal from visible first frame"
+    },
+    {
+      "start": 1.8,
+      "end": 7.18,
+      "scene": "32 sequential outward conceptual routes"
+    },
+    {
+      "start": 7.2,
+      "end": 10.5,
+      "scene": "additional globe camera retreat"
+    },
+    {
+      "start": 10.5,
+      "end": 12,
+      "scene": "settled global network hold"
+    }
+  ],
+  "runtime_snapshot": {
+    "revision": "revision-14.1",
+    "files": [
+      {
+        "file": "dist/index.html",
+        "bytes": 29411,
+        "sha256": "0e3e339d2c65ed1fca4c46142902e546aead08c1cdc1e8b7c54267e89fddaa73"
+      },
+      {
+        "file": "dist/app.js",
+        "bytes": 5386,
+        "sha256": "de21266b559c589ca3bdb50b6c72fc41eff1d548453a6a1fdf9fd003e44ff1bc"
+      },
+      {
+        "file": "dist/ai-pages.css",
+        "bytes": 9866,
+        "sha256": "1f98557c25ab3686240a1b7be731c2372615c2d0f03217cfbf907a99797a453d"
+      },
+      {
+        "file": "dist/ai-pages.mjs",
+        "bytes": 25469,
+        "sha256": "e964773cf6a873bdf8c4d02bbaf724760726b604d0e1cdefa83ded9750cf91f8"
+      },
+      {
+        "file": "dist/scroll-stops.mjs",
+        "bytes": 10904,
+        "sha256": "f4fb26b5c90fbb15f2fb17e490235ffab695b14171fd93a89fb7c68ca6c00b96"
+      },
+      {
+        "file": "dist/desktop-motion.mjs",
+        "bytes": 11599,
+        "sha256": "a495ffb0ecae6c75a5923e590a73a333a36170e86cd131b6bbe4b973a824a0b7"
+      },
+      {
+        "file": "dist/desktop-polish.mjs",
+        "bytes": 16515,
+        "sha256": "e2eff2b0826b21efbbd9883af6fe8afec17850cd50c5be3fcba9209a01034203"
+      },
+      {
+        "file": "dist/visit-v2.css",
+        "bytes": 3701,
+        "sha256": "6c0dcab63a483af5450136d9f185d79ebf3187dd12959581ba8e088825256d81"
+      },
+      {
+        "file": "dist/commercial-v2.css",
+        "bytes": 6504,
+        "sha256": "088050a084e9eacf27e835726f6f9ff041b8d26e31f88ce1c387996b42f271e9"
+      }
+    ],
+    "scope": "Snapshot after root runtime edits; file identity, not a browser-behavior test",
+    "cache_revisions": {
+      "app.js": "revision-14.1",
+      "desktop-polish.mjs": "revision-14.1",
+      "desktop-motion.mjs": "revision-14",
+      "ai-pages.mjs": "revision-14",
+      "scroll-stops.mjs": "revision-14",
+      "ai-pages.css": "revision-14",
+      "visit-v2.css": "revision-14",
+      "commercial-v2.css": "revision-14"
+    }
+  },
+  "product_display": {
+    "merchant_crops": [
+      {
+        "role": "production_lossless_crop",
+        "source": "dist/assets/merchant-register.png",
+        "source_dimensions": [
+          1864,
+          1004
+        ],
+        "source_bytes": 172393,
+        "source_sha256": "8a046e425d8ace3eba694a8479aaadbc7fd67ceadaaf98b80f7e12b2f56236d2",
+        "crop_ltrb": [
+          506,
+          196,
+          1606,
+          792
+        ],
+        "output": "dist/assets/desktop-polish/merchant-register-focus-v14.webp",
+        "output_dimensions": [
+          1100,
+          596
+        ],
+        "output_mode": "RGB",
+        "output_bytes": 37672,
+        "output_sha256": "1af8cc9835a9a72e5eafd7ea4acd4794a08a457c586b87822b543ea2d6347e5e",
+        "preview": "review/consulting-flight-14/merchant-register-focus-v14-preview.png",
+        "decoded_rgba_exact_native_crop": true,
+        "resize": false,
+        "product_ui_redrawn": false
+      },
+      {
+        "role": "production_lossless_crop",
+        "source": "dist/assets/merchant-event.png",
+        "source_dimensions": [
+          1864,
+          1003
+        ],
+        "source_bytes": 106220,
+        "source_sha256": "22faaa21632a6b026fdc625938f0c68bfdcad7594d28233ca2f3f96fc7c62b97",
+        "crop_ltrb": [
+          506,
+          196,
+          1606,
+          830
+        ],
+        "output": "dist/assets/desktop-polish/merchant-event-focus-v14.webp",
+        "output_dimensions": [
+          1100,
+          634
+        ],
+        "output_mode": "RGB",
+        "output_bytes": 14982,
+        "output_sha256": "2fdf3e82e6e7609242c566a18983135478e5749d465f5d39139185c22995bbbb",
+        "preview": "review/consulting-flight-14/merchant-event-focus-v14-preview.png",
+        "decoded_rgba_exact_native_crop": true,
+        "resize": false,
+        "product_ui_redrawn": false
+      }
+    ],
+    "merchant_crop_audit": {
+      "file": "review/consulting-flight-14/merchant-focus-assets-audit.json",
+      "bytes": 2951,
+      "sha256": "dce360a182fe4f2e241733e8c2dbcd064f5537ce7a9e60e58df70ecd51bee6b2"
+    },
+    "merchant_display": "Native no-resize crops, maximum 1100 CSS pixel width, camera zoom removed; no claim of infinite detail at higher DPR",
+    "place_native": {
+      "file": "dist/assets/desktop-polish/app-place-native.webp",
+      "bytes": 1324546,
+      "sha256": "1bec703fec73155fdc2ef357773b70737b164dd0853364f6a7dc4c9917083fed",
+      "dimensions": [
+        1800,
+        3680
+      ],
+      "mode": "RGBA"
+    },
+    "place_original": {
+      "file": "dist/assets/app-place-source.png",
+      "bytes": 2248389,
+      "sha256": "936e13386bbab0aa8ba2e66f6e9a670ae934f3b5b5dfa862dc3bfd53b8d7b19f",
+      "dimensions": [
+        1800,
+        3680
+      ],
+      "mode": "RGBA"
+    },
+    "place_photo_overlays": [
+      {
+        "file": "dist/assets/revision/merchant-cafe.webp",
+        "bytes": 320146,
+        "sha256": "ae3c8c8e198b3d5d6871025747c4cb2caedb34eaa788a5c7292f1ef965362d0e",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "mode": "RGB",
+        "usage": "non-identifying illustrative cafe overlay"
+      },
+      {
+        "file": "dist/assets/revision/traveler-discovery.webp",
+        "bytes": 577944,
+        "sha256": "355e57295ceb0b4cede6f7afcf52a418adf1d8eed22e4ab5e07536f2df9625fb",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "mode": "RGB",
+        "usage": "non-identifying illustrative local-street overlay"
+      }
+    ],
+    "photo_generation_record": {
+      "file": "dist/assets/revision/manifest.json",
+      "bytes": 3141,
+      "sha256": "35fd5816f8e0ec4420fe869e68855d6cae55a3ac40339c421a046cad137fa27b"
+    },
+    "photo_meaning": "Previously generated introduction images, not actual registered-place photographs; DOM overlay leaves original product source file unchanged",
+    "privacy": "Original name, address and contact redactions remain; old photographic blur regions are covered with non-identifying introduction images",
+    "phone_transition": "Exclusive whole-phone fade, one visible device at a time; additional synthetic side frame removed"
+  },
+  "note": "Illustrative network expresses future ambition, not current global merchant coverage, verified sales, or live satellite data; no city photo or building model is used in this v14 composition",
+  "runtime_patch": {
+    "revision": "revision-14.1",
+    "purpose": "Merchant first-stop progress can be 0.19997; settle at p>=0.19 to remove residual transform before the 0.20 reading stop",
+    "changed_files": [
+      "dist/app.js",
+      "dist/desktop-polish.mjs",
+      "dist/index.html"
+    ],
+    "initial_manifest_evidence": {
+      "file": "review/consulting-flight-14/network-manifest-v14-initial.json",
+      "bytes": 15434,
+      "sha256": "a112cef303f76608c0afe17cdc2bcd127eacc153d731b8c12560990d6de6854b"
+    },
+    "media_and_product_crops_unchanged": true
+  }
+}

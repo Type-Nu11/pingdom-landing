@@ -1,0 +1,490 @@
+[
+  {
+    "file": "app-booking-native.webp",
+    "source": "dist/assets/app-booking-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "source_sha256": "bc21df6f196e3a507f772bb8ea0b52c24d5425392ffc60465cbefc74c701aa53",
+    "size": [
+      1800,
+      3680
+    ],
+    "bytes": 469044,
+    "sha256": "2daaf9a1be801b2c5960f5de87020d77dff2c0ada5112f177be38c240a25b85f",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "앱 전체 원본. 기기 프레임과 UI, 원본 예시를 그대로 보존"
+  },
+  {
+    "file": "app-coupons-native.webp",
+    "source": "dist/assets/app-coupons-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "source_sha256": "3f8c8307c147fe666713dce728cd66aeabe63d1dfbddecd30e162e7604ea45f9",
+    "size": [
+      1800,
+      3680
+    ],
+    "bytes": 454596,
+    "sha256": "f468db3b8243345ef8ef62cb4e79672d812ca46f1a2260fb752628519626730d",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "앱 전체 원본. 기기 프레임과 UI, 원본 예시를 그대로 보존"
+  },
+  {
+    "file": "app-discover-native.webp",
+    "source": "dist/assets/app-discover-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "source_sha256": "339f9c580f34156eec374886aaa7c71c1cc905c513eb6b853e051a2b1404a441",
+    "size": [
+      1800,
+      3680
+    ],
+    "bytes": 2407378,
+    "sha256": "58023e7911aa735f7f13402e77ad0b8638e62ddffae9b8a14d6e250d8ba02210",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "앱 전체 원본. 기기 프레임과 UI, 원본 예시를 그대로 보존"
+  },
+  {
+    "file": "app-map-native.webp",
+    "source": "dist/assets/app-map-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "source_sha256": "03d6c1dc291d568f6b0ef86bfaf36e865cd9d56f779f37407d1e40cfc1c4b940",
+    "size": [
+      1800,
+      3680
+    ],
+    "bytes": 1411074,
+    "sha256": "621ce40c176289dbd1a01bfc00e8f30b0d56da7feaebaddf5579484600c780b7",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "앱 전체 원본. 기기 프레임과 UI, 원본 예시를 그대로 보존"
+  },
+  {
+    "file": "app-place-native.webp",
+    "source": "dist/assets/app-place-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "source_sha256": "936e13386bbab0aa8ba2e66f6e9a670ae934f3b5b5dfa862dc3bfd53b8d7b19f",
+    "size": [
+      1800,
+      3680
+    ],
+    "bytes": 1324546,
+    "sha256": "1bec703fec73155fdc2ef357773b70737b164dd0853364f6a7dc4c9917083fed",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "앱 전체 원본. 기기 프레임과 UI, 원본 예시를 그대로 보존"
+  },
+  {
+    "file": "app-profile-native.webp",
+    "source": "dist/assets/app-profile-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "source_sha256": "a3b129f8fc5f5b808423c3ab18aad79c2d9794e50817817a432f94e341e87390",
+    "size": [
+      1800,
+      3680
+    ],
+    "bytes": 1108728,
+    "sha256": "6e108deab66898a520e4c6b38cdaa41da89412493b8369ee581aa51552003e81",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "앱 전체 원본. 기기 프레임과 UI, 원본 예시를 그대로 보존"
+  },
+  {
+    "file": "app-reviews-native.webp",
+    "source": "dist/assets/app-reviews-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "source_sha256": "b5075abd1e51f12a79f20720e6d39301a5cafee0c6b8f38ae49f06ae9220f8ef",
+    "size": [
+      1800,
+      3680
+    ],
+    "bytes": 1321296,
+    "sha256": "1f0be8d64ccdbd0817e5b7f4c84a1364c4179fc85a39211a2e2429451295d876",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "앱 전체 원본. 기기 프레임과 UI, 원본 예시를 그대로 보존"
+  },
+  {
+    "file": "app-verify-native.webp",
+    "source": "dist/assets/app-verify-source.png",
+    "source_size": [
+      1800,
+      3680
+    ],
+    "source_sha256": "f203457d6cc4ad00dad5bd07870c5393a61064a276be1c3c474de865abffd7c6",
+    "size": [
+      1800,
+      3680
+    ],
+    "bytes": 471720,
+    "sha256": "13313911fdd4e0a8d078747f43c47751027572a5956c0ff56f0b759f302469bf",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "앱 전체 원본. 기기 프레임과 UI, 원본 예시를 그대로 보존"
+  },
+  {
+    "file": "merchant-register-native.webp",
+    "source": "dist/assets/merchant-register.png",
+    "source_size": [
+      1864,
+      1004
+    ],
+    "source_sha256": "8a046e425d8ace3eba694a8479aaadbc7fd67ceadaaf98b80f7e12b2f56236d2",
+    "size": [
+      1864,
+      1004
+    ],
+    "bytes": 60166,
+    "sha256": "8ab6bf881c2421fe8efe85487aba8871310456d6bd7642d1ac36f162bfd68ab7",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "실제 상점주 장소 등록 웹. 입력 전 원본 상태"
+  },
+  {
+    "file": "merchant-event-native.webp",
+    "source": "dist/assets/merchant-event.png",
+    "source_size": [
+      1864,
+      1003
+    ],
+    "source_sha256": "22faaa21632a6b026fdc625938f0c68bfdcad7594d28233ca2f3f96fc7c62b97",
+    "size": [
+      1864,
+      1003
+    ],
+    "bytes": 33922,
+    "sha256": "ca1852a46ac0304743c981294f72abf346bd317e278b5cae69133d8ffaa65257",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "실제 상점주 이벤트 등록 웹. 입력 전 원본 상태"
+  },
+  {
+    "file": "web-report-native.webp",
+    "source": "dist/assets/web-report.webp",
+    "source_size": [
+      1200,
+      641
+    ],
+    "source_sha256": "31eee536526d51b924197d64c072d1db6a4fe70551100ca4ccc934338e56d986",
+    "size": [
+      1200,
+      641
+    ],
+    "bytes": 37168,
+    "sha256": "3548d95bab0bdf578e0d810a5b0faecca3ab465d8a3afac2f76fd96a1f194a91",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "저장소의 최대 clean 상권 상담 UI. 원본 1200×641이며 확대 생성하지 않음",
+    "limitation": "저장소에 더 큰 clean UI가 없음. 기존WebP디코딩픽셀을 그대로 보존하며 기존압축손실을 복구하지 않음"
+  },
+  {
+    "file": "ai-traveler-response.webp",
+    "source": "dist/assets/ai-traveler-slide.png",
+    "source_size": [
+      1764,
+      934
+    ],
+    "source_sha256": "055d7e8afce5ba1f3044048557599fa8c262571289159f079ccd4c92f27e68f8",
+    "size": [
+      1439,
+      645
+    ],
+    "bytes": 412706,
+    "sha256": "1489af2bb67fda194fa8c5c65a73015d937983061c47c1be4ea871bcece7156d",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "실제 AI 응답 패널. 원본 크롭, 장식 배경과 바깥 질문 제외",
+    "crop": [
+      50,
+      217,
+      1489,
+      862
+    ],
+    "crop_format": "[left,top,right,bottom]; right/bottom excluded"
+  },
+  {
+    "file": "ai-traveler-header.webp",
+    "source": "dist/assets/ai-traveler-slide.png",
+    "source_size": [
+      1764,
+      934
+    ],
+    "source_sha256": "055d7e8afce5ba1f3044048557599fa8c262571289159f079ccd4c92f27e68f8",
+    "size": [
+      322,
+      44
+    ],
+    "bytes": 9030,
+    "sha256": "4b55fb111be2973b19f3467bfbb3af8f9782e857d8f5a888542d31752d6e44ad",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "원본 PingDom AI 아이콘 및 제목",
+    "crop": [
+      103,
+      259,
+      425,
+      303
+    ],
+    "crop_format": "[left,top,right,bottom]; right/bottom excluded"
+  },
+  {
+    "file": "ai-traveler-description.webp",
+    "source": "dist/assets/ai-traveler-slide.png",
+    "source_size": [
+      1764,
+      934
+    ],
+    "source_sha256": "055d7e8afce5ba1f3044048557599fa8c262571289159f079ccd4c92f27e68f8",
+    "size": [
+      1318,
+      151
+    ],
+    "bytes": 102970,
+    "sha256": "e4dcf1cd49eecfde3aa23959729e0132a2173d0ca708fef9c7e492b05bc72ace",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "원본 AI 추천 설명",
+    "crop": [
+      102,
+      663,
+      1420,
+      814
+    ],
+    "crop_format": "[left,top,right,bottom]; right/bottom excluded"
+  },
+  {
+    "file": "ai-traveler-question.webp",
+    "source": "dist/assets/ai-traveler-slide.png",
+    "source_size": [
+      1764,
+      934
+    ],
+    "source_sha256": "055d7e8afce5ba1f3044048557599fa8c262571289159f079ccd4c92f27e68f8",
+    "size": [
+      1292,
+      152
+    ],
+    "bytes": 42170,
+    "sha256": "204185e5309ada0f9e6ff1c62037226a2f8b688667a125a2df6e9be32885efa5",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "원본 질문 말풍선. 그림자 및 꼬리 일부 제외",
+    "crop": [
+      440,
+      27,
+      1732,
+      179
+    ],
+    "crop_format": "[left,top,right,bottom]; right/bottom excluded"
+  },
+  {
+    "file": "ai-consulting-panel.webp",
+    "source": "dist/assets/web-report.webp",
+    "source_size": [
+      1200,
+      641
+    ],
+    "source_sha256": "31eee536526d51b924197d64c072d1db6a4fe70551100ca4ccc934338e56d986",
+    "size": [
+      489,
+      557
+    ],
+    "bytes": 23268,
+    "sha256": "00a8f627b599a0ea3a2ad4abb9234b81a820d5e3fbc99d8f0e0f6b58a561eddd",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "실제 상권 상담 입력 확인 패널. 기존 크롭과 같은 원본 영역",
+    "crop": [
+      456,
+      0,
+      945,
+      557
+    ],
+    "crop_format": "[left,top,right,bottom]; right/bottom excluded"
+  },
+  {
+    "file": "ai-traveler-card-1.webp",
+    "source": "dist/assets/ai-traveler-slide.png",
+    "source_size": [
+      1764,
+      934
+    ],
+    "source_sha256": "055d7e8afce5ba1f3044048557599fa8c262571289159f079ccd4c92f27e68f8",
+    "size": [
+      221,
+      258
+    ],
+    "bytes": 50912,
+    "sha256": "70637404570a168e629e32f7208f9b614211e4b40eafb98883f45613c61844f5",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "실제 AI 응답의 추천 카드. 원본이 동일 예시 이미지인 점 유지",
+    "crop": [
+      103,
+      380,
+      324,
+      638
+    ],
+    "crop_format": "[left,top,right,bottom]; right/bottom excluded"
+  },
+  {
+    "file": "ai-traveler-card-2.webp",
+    "source": "dist/assets/ai-traveler-slide.png",
+    "source_size": [
+      1764,
+      934
+    ],
+    "source_sha256": "055d7e8afce5ba1f3044048557599fa8c262571289159f079ccd4c92f27e68f8",
+    "size": [
+      221,
+      258
+    ],
+    "bytes": 50414,
+    "sha256": "d2ee716fdedd330c4f985ec8819870440fbc0d2c51a3955446218c17e517bc2f",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "실제 AI 응답의 추천 카드. 원본이 동일 예시 이미지인 점 유지",
+    "crop": [
+      344,
+      380,
+      565,
+      638
+    ],
+    "crop_format": "[left,top,right,bottom]; right/bottom excluded"
+  },
+  {
+    "file": "ai-traveler-card-3.webp",
+    "source": "dist/assets/ai-traveler-slide.png",
+    "source_size": [
+      1764,
+      934
+    ],
+    "source_sha256": "055d7e8afce5ba1f3044048557599fa8c262571289159f079ccd4c92f27e68f8",
+    "size": [
+      223,
+      258
+    ],
+    "bytes": 51132,
+    "sha256": "0604106b1eac0d2904e50c08d8c623d058988c846e03362a4d8c567e1545f707",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "실제 AI 응답의 추천 카드. 원본이 동일 예시 이미지인 점 유지",
+    "crop": [
+      584,
+      380,
+      807,
+      638
+    ],
+    "crop_format": "[left,top,right,bottom]; right/bottom excluded"
+  },
+  {
+    "file": "ai-traveler-card-4.webp",
+    "source": "dist/assets/ai-traveler-slide.png",
+    "source_size": [
+      1764,
+      934
+    ],
+    "source_sha256": "055d7e8afce5ba1f3044048557599fa8c262571289159f079ccd4c92f27e68f8",
+    "size": [
+      223,
+      258
+    ],
+    "bytes": 51144,
+    "sha256": "b9b7ce2a7de319a71c972c1daa689e2ecfd3af1751530fe15cdef5773655f955",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "실제 AI 응답의 추천 카드. 원본이 동일 예시 이미지인 점 유지",
+    "crop": [
+      825,
+      380,
+      1048,
+      638
+    ],
+    "crop_format": "[left,top,right,bottom]; right/bottom excluded"
+  },
+  {
+    "file": "ai-traveler-card-5.webp",
+    "source": "dist/assets/ai-traveler-slide.png",
+    "source_size": [
+      1764,
+      934
+    ],
+    "source_sha256": "055d7e8afce5ba1f3044048557599fa8c262571289159f079ccd4c92f27e68f8",
+    "size": [
+      222,
+      258
+    ],
+    "bytes": 51020,
+    "sha256": "26b368395efa53e518d71f9946ef1548040ea2a5648e4d9261c3a0f3f949acce",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "실제 AI 응답의 추천 카드. 원본이 동일 예시 이미지인 점 유지",
+    "crop": [
+      1067,
+      380,
+      1289,
+      638
+    ],
+    "crop_format": "[left,top,right,bottom]; right/bottom excluded"
+  },
+  {
+    "file": "ai-consulting-web.webp",
+    "source": "dist/assets/web-report.webp",
+    "source_size": [
+      1200,
+      641
+    ],
+    "source_sha256": "31eee536526d51b924197d64c072d1db6a4fe70551100ca4ccc934338e56d986",
+    "size": [
+      1200,
+      641
+    ],
+    "bytes": 37168,
+    "sha256": "3548d95bab0bdf578e0d810a5b0faecca3ab465d8a3afac2f76fd96a1f194a91",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "실제 상권 상담 웹 전체. 기존web-report1200×641의 디코딩 픽셀 그대로",
+    "limitation": "저장소에 원본보다 큰 clean UI가 없으며 기존WebP의 압축손실은 복구하지 않음"
+  },
+  {
+    "file": "local-walk-native.webp",
+    "source": "/Users/azunox/.codex/generated_images/01a0f006-2f56-70c1-9a72-f190c532af72/exec-d866c31f-7f1b-4632-a1eb-9219a1bb163f.png",
+    "source_size": [
+      1672,
+      941
+    ],
+    "source_sha256": "17f46dd173c85ff497ad2dd9524e60b96b324a87212c44596c5438c007babc3b",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2164444,
+    "sha256": "17bc2470296f16c01372ac350dcfe5e56c1d9418338f17dd094da21b0436fe7d",
+    "pixel_exact": true,
+    "encoding": "lossless WebP, native pixels, no resize",
+    "description": "기존 생성 한국 동네 장면의 native1672×941 원본. 실제 핑덤 장소 사진 아님",
+    "limitation": "기존1920×1080 표시용 확대/quality75압축을 제거. 원본1672×941 이상의 디테일을 생성하거나 확대하지 않음",
+    "source_kind": "external-generated-original"
+  }
+]

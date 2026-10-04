@@ -1,226 +1,134 @@
-import { createImagePanel, warmImages } from './panel-images.mjs';
-import { startHeroIntro } from './hero-intro.mjs?v=traffic-gold-1';
-import { createRingFlow } from './ring-flow.mjs?v=halftone-1';
-import { createHeroBackground } from './hero-background.mjs?v=traffic-1';
-import { createCinematicScroll } from './cinematic-scroll.mjs?v=readable-2';
-const $ = selector => document.querySelector(selector);
-const $$ = selector => [...document.querySelectorAll(selector)];
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-function warmOnIntent(buttons, paths) {
-  buttons.forEach((button, index) => {
-    const warm = () => warmImages(paths(index));
-    button.addEventListener('pointerenter', warm, { passive: true });
-    button.addEventListener('focus', warm);
-  });
+import { mountPreservedHero } from "./hero-preserved.mjs?v=revision-33";
+import { createScrollStory } from "./story-scroll.mjs?v=revision-33";
+import { createDesktopMotion } from "./desktop-motion.mjs?v=revision-17";
+
+import { createDesktopPolish } from "./desktop-polish.mjs?v=revision-31";
+import { createAiPages } from "./ai-pages.mjs?v=revision-33";
+import { createStrengths } from "./strengths.mjs?v=revision-29";
+import { createScrollStops } from "./scroll-stops.mjs?v=revision-30";
+
+import { createMobileExperience } from "./mobile-experience.mjs?v=revision-33";
+
+const navigationType = performance.getEntriesByType('navigation')[0]?.type;
+const aiAnchorIds = new Set(['ai', 'ai-traveler', 'ai-consulting', 'global-vision']);
+const aiPositionKey = 'pingdom:ai-anchor-position';
+const restoresAiReload = navigationType === 'reload' && aiAnchorIds.has(location.hash.slice(1)) &&
+  window.matchMedia('(min-width: 1000px) and (min-height: 701px)').matches;
+let reloadAnchorOffset = 0;
+if (restoresAiReload) {
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(aiPositionKey));
+    if (saved?.url === location.href && saved.width === innerWidth && saved.height === innerHeight &&
+      Number.isFinite(saved.offset)) reloadAnchorOffset = saved.offset;
+  } catch { /* 저장소를 사용할 수 없으면 URL의 AI 앵커로 복구합니다. */ }
 }
-document.documentElement.classList.add('js');
-const scrollStory = createCinematicScroll({ reducedMotion, minWidth: 900 });
-const productLinks = $$('.product-nav a');
-const chapterObserver = new IntersectionObserver(entries => {
-  const active = entries.find(entry => entry.isIntersecting);
-  if (!active) return;
-  productLinks.forEach(link => {
-    if (link.hash === '#' + active.target.id) link.setAttribute('aria-current', 'location');
-    else link.removeAttribute('aria-current');
-  });
-}, { rootMargin: '-35% 0px -55% 0px' });
-$$('.product-chapter').forEach(chapter => chapterObserver.observe(chapter));
-const hero = $('.hero');
-const ringFlow = createRingFlow({ hero, reducedMotion });
-const heroBackground = createHeroBackground({ hero, reducedMotion });
-let heroVisible = false;
-function syncHeroMotion() {
-  const introPending = document.documentElement.classList.contains('intro-pending');
-  const paused = !heroVisible || document.hidden || introPending;
-  hero.classList.toggle('motion-paused', paused || reducedMotion.matches);
-  ringFlow.setPaused(paused);
-  heroBackground.sync({ visible: heroVisible, introPending });
-}
-// 화면 밖에서는 장식 애니메이션을 멈춰 불필요한 렌더링을 줄입니다.
-new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; syncHeroMotion(); }).observe(hero);
-document.addEventListener('visibilitychange', syncHeroMotion);
-reducedMotion.addEventListener('change', syncHeroMotion);
-window.addEventListener('pageshow', syncHeroMotion);
+
+// 모듈 정리 전에 AI 앵커와 읽던 위치의 차이를 저장합니다. 초기 높이로 위치가 잘려도 복원할 수 있습니다.
 window.addEventListener('pagehide', () => {
-  ringFlow.setPaused(true);
-  heroBackground.sync({ visible: false, introPending: false });
-});
-syncHeroMotion();
-reducedMotion.addEventListener('change', () => {
-  if (reducedMotion.matches) {
-    document.getAnimations().forEach(animation => animation.cancel());
-  }
-});
-
-startHeroIntro({ hero, reducedMotion, onComplete: syncHeroMotion });
-
-function animatePanel(element) {
-  if (reducedMotion.matches) return;
-  element.getAnimations().forEach(animation => animation.cancel());
-  element.animate([{opacity:0,transform:'translateY(15px)'},{opacity:1,transform:'translateY(0)'}],{duration:420,easing:'cubic-bezier(.22,1,.36,1)'});
-}
-function bindTabs(selector, panelSelector, render) {
-  const buttons = $$(selector);
-  function activate(index, focus = false) {
-    buttons.forEach((button, i) => { button.setAttribute('aria-selected', String(i === index)); button.tabIndex = i === index ? 0 : -1; });
-    $(panelSelector).setAttribute('aria-labelledby', buttons[index].id);
-    render(index);
-    scrollStory.refresh();
-    if (focus) buttons[index].focus();
-  }
-  buttons.forEach((button, i) => button.addEventListener('click', () => activate(i)));
-  buttons[0].parentElement.addEventListener('keydown', event => {
-    const current = buttons.indexOf(document.activeElement);
-    if (current < 0) return;
-    const next = {ArrowRight:(current+1)%buttons.length,ArrowDown:(current+1)%buttons.length,ArrowLeft:(current+buttons.length-1)%buttons.length,ArrowUp:(current+buttons.length-1)%buttons.length,Home:0,End:buttons.length-1}[event.key];
-    if (next !== undefined) { event.preventDefault(); activate(next, true); }
-  });
-}
-const workspaces = [
-  {name:'내 가게의 시작부터,<br>새로운 방문까지.',detail:'매장을 알리고, 혜택을 전하고.<br>로컬의 운영을 한곳에서.',label:'상점주 센터',features:[
-    {name:'장소 등록',image:'merchant-register.png',alt:'상점주 신규 장소 등록 화면'},
-    {name:'이벤트 관리',image:'merchant-event.png',alt:'상점주 이벤트 관리 화면'},
-    {name:'운영 권한',image:'merchant-claim.png',alt:'상점주 운영 장소 신청 화면'}
-  ]},
-  {name:'정확한 장소 정보,<br>신뢰할 수 있는 운영.',detail:'장소부터 사업자, 데이터 품질까지.<br>서비스의 기준을 지키는 도구.',label:'관리자 콘솔',features:[
-    {name:'장소 관리',image:'admin-places.png',alt:'관리자 지도와 장소 목록 화면'},
-    {name:'사업자 검증',image:'admin-owners.png',alt:'관리자 사업자 검증 화면'},
-    {name:'데이터 품질',image:'admin-quality.png',alt:'관리자 데이터 품질 관리 화면'}
-  ]}
-];
-let workspaceIndex = 0;
-const workspaceImages = createImagePanel($('.workspace-browser'));
-const workspaceFeatures = $$('[data-workspace-feature]');
-function selectWorkspaceFeature(index) {
-  const workspace = workspaces[workspaceIndex];
-  const feature = workspace.features[index];
-  workspaceFeatures.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
-  workspaceImages.show([{ target: $('#workspace-screen'), src: 'assets/' + feature.image, alt: feature.alt }], () => {
-    const screen = $('#workspace-screen');
-    screen.parentElement.dataset.zoom = screen.getAttribute('src');
-    screen.parentElement.dataset.zoomTitle = feature.alt;
-    screen.parentElement.setAttribute('aria-label', feature.alt + ' 확대');
-    $('#workspace-browser-label').textContent = workspace.label;
-    animatePanel($('.workspace-browser'));
-  });
-}
-workspaceFeatures.forEach((button, index) => button.addEventListener('click', () => selectWorkspaceFeature(index)));
-warmOnIntent(workspaceFeatures, index => ['assets/' + workspaces[workspaceIndex].features[index].image]);
-warmOnIntent($$('[data-workspace]'), index => ['assets/' + workspaces[index].features[0].image]);
-bindTabs('[data-workspace]', '#workspace-panel', index => {
-  workspaceIndex = index;
-  const workspace = workspaces[index];
-  $('#workspace-name').innerHTML = workspace.name;
-  $('#workspace-detail').innerHTML = workspace.detail;
-  $$('[data-workspace-feature] strong').forEach((label, i) => label.textContent = workspace.features[i].name);
-  selectWorkspaceFeature(0);
-  animatePanel($('.workspace-copy'));
-});
-const aiServices = [
-  {title:'Pingdom <span>AI</span>',headline:'복잡한 검색 대신,<br>한 번의 대화.'},
-  {title:'상권 <span>컨설팅</span>',headline:'감각에 데이터를 더해,<br>다음 결정을 명확하게.'}
-];
-bindTabs('[data-ai]', '#ai-panel', index => {
-  const service=aiServices[index];
-  $('#ai-title').innerHTML=service.title;
-  $('#ai-headline').innerHTML=service.headline;
-  $('#traveler-demo').hidden=index!==0;
-  $('#consulting-demo').hidden=index!==1;
-  $('#ai').classList.toggle('is-consulting',index===1);
-  animatePanel($('#ai-panel'));
-});
-const questionExamples = [
-  {question:'추천한 곳 중, 조용히 쉬어 갈 곳은 어디야?',response:'햇살이 머무는 카페에서 잠시 쉬어 가요.',insight:'원하는 분위기부터 주변 위치까지, 한 번에 좁혀보세요.'},
-  {question:'이 중에서 든든한 한 끼를 즐기고 싶어.',response:'골목 속 작은 식당을 살펴보세요.',insight:'위치와 영업 여부를 함께 물어보면, 방문할 곳을 고르기 쉬워져요.'},
-  {question:'조금 더 색다른 공간도 경험해보고 싶어.',response:'팝업과 전시에서 새로운 하루를 만나보세요.',insight:'취향과 일정을 말해주면, 새로운 장소를 만나는 기준이 생겨요.'}
-];
-function selectExamplePlace(index, scroll=false) {
-  const cards=$$('[data-place]');
-  cards.forEach((card,i)=>card.setAttribute('aria-pressed',String(i===index)));
-  $('#place-insight').textContent=questionExamples[index].insight;
-  if(scroll && innerWidth<=700) {
-    const strip=$('.place-results');
-    strip.scrollTo({left:cards[index].offsetLeft-cards[0].offsetLeft,behavior:reducedMotion.matches?'instant':'smooth'});
-  }
-}
-$$('[data-place]').forEach((button,index)=>button.addEventListener('click',()=>selectExamplePlace(index)));
-$$('[data-question]').forEach((button,index)=>button.addEventListener('click',()=>{
-  $$('[data-question]').forEach((item,i)=>item.setAttribute('aria-pressed',String(i===index)));
-  $('#ai-question-text').textContent=questionExamples[index].question;
-  $('#ai-response-intro').textContent=questionExamples[index].response;
-  selectExamplePlace(index,true);
-  animatePanel($('.ai-question'));
-  animatePanel($('.ai-response'));
-}));
-const people = [
-  {key:'woosung',name:'김우성',role:'PM · Server Lead · Web',description:'핑덤을 직접 기획하고,<br> 서비스의 방향과 개발을 이끕니다.',work:[['기획','서비스 기획 · 프로젝트 진행'],['서버','서버 개발 총괄'],['웹','상점주 웹 개발']]},
-  {key:'ilgang',photo:'presentation-yongin.png',name:'김일강',role:'Client Lead · App',description:'클라이언트 개발을 총괄하며,<br> 앱의 경험을 구현합니다.',work:[['총괄','클라이언트 개발 총괄'],['앱','모바일 앱 개발'],['협업','팀원과 기능 문제 해결']]},
-  {key:'sungmin',name:'우성민',role:'Design Lead · App',description:'핑덤의 UX/UI를 설계하고,<br> 앱 개발을 함께 담당합니다.',work:[['디자인','서비스 UX/UI 디자인 총괄'],['앱','모바일 앱 개발']]},
-  {key:'taewoo',name:'김태우',role:'Client · Web (Admin)',description:'관리자 웹을 개발해,<br> 서비스 운영을 위한 화면을 만듭니다.',work:[['웹','관리자 웹 개발'],['운영','관리 기능의 웹 화면 구현']]},
-  {key:'sunghyuk',name:'조성혁',role:'Server',description:'기획한 기능을 서버에서 구현하고,<br> 개발 과정의 문제를 해결합니다.',work:[['서버','서비스 서버 기능 개발'],['구현','기능 구현과 문제 해결']]},
-  {key:'yongin',photo:'presentation-ilgang.png',name:'이용인',role:'Server · Infrastructure',description:'서버 개발과 AWS 인프라를 맡아,<br> 서비스의 기반을 다집니다.',work:[['서버','서비스 서버 개발'],['인프라','AWS 인프라 구축 · 운영']]},
-  {key:'junhyuk',name:'장준혁',role:'MCP · Network',description:'MCP와 네트워크를 연결하고,<br> 서비스 트래픽의 흐름을 다룹니다.',work:[['MCP','MCP 서버 개발'],['네트워크','로드 밸런서 도입'],['운영','트래픽 제어']]}
-];
-const personImages = createImagePanel($('#person-panel'));
-const personPath = index => 'assets/' + (people[index].photo || 'presentation-' + people[index].key + '.png');
-warmOnIntent($$('[data-person]'), index => [personPath(index)]);
-// 작은 프로필 사진만 팀 영역에 가까워졌을 때 준비합니다.
-const personWarmup = new IntersectionObserver(entries => {
-  if (!entries.some(entry => entry.isIntersecting)) return;
-  warmImages(people.map((_, index) => personPath(index)));
-  personWarmup.disconnect();
-}, { rootMargin: '240px' });
-personWarmup.observe($('#person-panel'));
-bindTabs('[data-person]', '#person-panel', index => {
-  const person = people[index];
-  personImages.show([{ target: $('#person-photo'), src: personPath(index), alt: '발표자료의 ' + person.name + ' 프로필' }], () => {
-    $('#person-counter').textContent = '0'+(index+1)+' / 07';
-    $('#person-role').textContent = person.role;
-    $('#person-name').textContent = person.name;
-    $('#person-description').innerHTML = person.description;
-    $('#person-work').replaceChildren(...person.work.map(([area,description]) => {
-      const item=document.createElement('li');
-      const label=document.createElement('span');label.textContent=area;
-      item.append(label,document.createTextNode(description));return item;
+  if (!aiAnchorIds.has(location.hash.slice(1)) ||
+    !window.matchMedia('(min-width: 1000px) and (min-height: 701px)').matches) return;
+  const destination = document.getElementById(location.hash.slice(1));
+  if (!destination) return;
+  const header = document.querySelector('.site-header')?.offsetHeight ?? 0;
+  try {
+    sessionStorage.setItem(aiPositionKey, JSON.stringify({
+      url: location.href, width: innerWidth, height: innerHeight,
+      offset: header - destination.getBoundingClientRect().top,
     }));
-    animatePanel($('#person-panel'));
-  });
-});
-const screenDialog = $('#screen-dialog');
-const dialogImages = createImagePanel($('.dialog-image'));
-let zoomTrigger;
-document.addEventListener('click', event => {
-  const button=event.target.closest('[data-zoom]');
-  if (!button) return;
-  zoomTrigger=button;
-  $('#dialog-title').textContent=button.dataset.zoomTitle;
-  $('.dialog-image').classList.remove('is-zoomed');
-  $('.dialog-image').classList.toggle('is-phone', button.hasAttribute('data-phone'));
-  $('#zoom-toggle').setAttribute('aria-pressed','false');
-  $('#zoom-toggle').textContent='원본 크기';
-  document.body.classList.add('dialog-open');
-  $('#zoom-toggle').disabled = true;
-  screenDialog.showModal();
-  dialogImages.show([{ target: $('#dialog-screen'), src: button.dataset.zoom, alt: button.dataset.zoomTitle }], () => {
-    $('#zoom-toggle').disabled = false;
-  });
-});
-$('#dialog-close').addEventListener('click', () => screenDialog.close());
-screenDialog.addEventListener('click', event => {if(event.target===screenDialog)screenDialog.close();});
-screenDialog.addEventListener('close', () => {
-  dialogImages.cancel();
-  document.body.classList.remove('dialog-open');
-  zoomTrigger?.focus();
-});
-$('#zoom-toggle').addEventListener('click', () => {
-  const zoomed=$('.dialog-image').classList.toggle('is-zoomed');
-  $('#zoom-toggle').setAttribute('aria-pressed',String(zoomed));
-  $('#zoom-toggle').textContent=zoomed?'화면 맞춤':'원본 크기';
-});
+  } catch { /* 브라우저의 저장소 제한은 페이지 이동을 막지 않습니다. */ }
+}, { capture: true });
 
-// Keep the selected person's details in view after a touch selection.
-$$('[data-person]').forEach(button => button.addEventListener('click', () => {
-  if (window.matchMedia('(max-width: 700px)').matches) {
-    $('#person-panel').scrollIntoView({behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'start'});
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+mountPreservedHero({ reducedMotion });
+const story = createScrollStory();
+const desktopStory = createDesktopMotion();
+const polish = createDesktopPolish();
+const aiPages = createAiPages({ reducedMotion });
+const strengths = createStrengths();
+const scrollStops = createScrollStops();
+const mobileExperience = createMobileExperience({ reducedMotion });
+
+// 직접 링크와 AI 새로고침은 늦은 GPU·이미지 준비로 높이가 바뀌어도 목적지·읽던 위치를 유지합니다.
+// 사용자 입력은 보정을 끝내며, 그 밖의 새로고침·히스토리 복원은 브라우저의 위치를 우선합니다.
+if (location.hash && (navigationType === 'navigate' || restoresAiReload)) {
+  const initialHash = location.hash;
+  const intentEvents = ['wheel', 'touchstart', 'keydown', 'pointerdown'];
+  let restoreFrame = 0, restoreObserver, restoreTimer, restoreActive = true;
+  const finishRestore = () => {
+    restoreActive = false;
+    if (restoreFrame) cancelAnimationFrame(restoreFrame);
+    restoreObserver?.disconnect();
+    clearTimeout(restoreTimer);
+    intentEvents.forEach(type => window.removeEventListener(type, finishRestore));
+    window.removeEventListener('hashchange', finishRestore);
+    window.removeEventListener('pagehide', finishRestore);
+    window.removeEventListener('load', scheduleRestore);
+  };
+  const restoreDestination = () => {
+    restoreFrame = 0;
+    if (!restoreActive || location.hash !== initialHash) return;
+    const destination = document.getElementById(initialHash.slice(1));
+    if (!destination || (!document.documentElement.classList.contains('desktop-polish') &&
+      !window.matchMedia('(max-width: 999px)').matches)) return;
+    const header = destination.closest('.site-body') ? document.querySelector('.site-header')?.offsetHeight ?? 0 : 0;
+    const target = Math.min(document.documentElement.scrollHeight - innerHeight,
+      Math.max(0, scrollY + destination.getBoundingClientRect().top - header + reloadAnchorOffset));
+    if (Math.abs(scrollY - target) < 1) return;
+    window.dispatchEvent(new Event('pingdom:navigate'));
+    window.scrollTo({ top: target, behavior: 'instant' });
+  };
+  function scheduleRestore() {
+    if (restoreActive && !restoreFrame) restoreFrame = requestAnimationFrame(restoreDestination);
   }
-}));
+  intentEvents.forEach(type => window.addEventListener(type, finishRestore, { once: true, passive: true }));
+  window.addEventListener('hashchange', finishRestore, { once: true });
+  window.addEventListener('pagehide', finishRestore, { once: true });
+  window.addEventListener('load', scheduleRestore);
+  if (window.ResizeObserver) {
+    restoreObserver = new ResizeObserver(scheduleRestore);
+    restoreObserver.observe(document.documentElement);
+  }
+  document.fonts.ready.then(scheduleRestore);
+  restoreTimer = setTimeout(finishRestore, 5000);
+  scheduleRestore();
+}
+
+window.addEventListener("pagehide", (event) => {
+  if (event.persisted) {
+    story.stop();
+    desktopStory.stop();
+    polish.stop();
+    aiPages.stop();
+    strengths.stop();
+    scrollStops.stop();
+    mobileExperience.stop();
+
+  } else {
+    story.dispose();
+    desktopStory.dispose();
+    polish.dispose();
+    aiPages.dispose();
+    strengths.dispose();
+    scrollStops.dispose();
+    mobileExperience.dispose();
+
+  }
+});
+window.addEventListener("pageshow", () => {
+  story.start();
+  story.refresh();
+  desktopStory.start();
+  desktopStory.refresh();
+  polish.start();
+  polish.refresh();
+  aiPages.start();
+  aiPages.refresh();
+  strengths.start();
+  strengths.refresh();
+  scrollStops.start();
+  scrollStops.refresh();
+  mobileExperience.start();
+  mobileExperience.refresh();
+
+
+});

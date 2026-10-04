@@ -1,0 +1,223 @@
+/* PC에서만 새 장면을 사용하며 좁은 화면의 기존 문서는 유지합니다. */
+.merchant-desktop { display: none; }
+@media (min-width: 1000px) and (min-height: 701px) {
+  .desktop-polish .platform-scene { background: #fff; color: #191f28; }
+  .desktop-polish-motion .platform-scene { height: 205svh; }
+  .desktop-polish .platform-stage { height: calc(100svh - var(--nav-height)); background: #fff; }
+  .desktop-polish .platform-editorial { height: 100%; }
+  .desktop-polish .platform-editorial .platform-triptych-content {
+    width: 100%; max-width: none; height: 100%; padding: 24px 0;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .desktop-polish .platform-editorial .platform-triptych-heading { margin: 0 5% clamp(30px, 4svh, 42px); }
+  .desktop-polish .platform-editorial h2 { font-size: clamp(38px, 3.65vw, 56px); line-height: 1.2; font-weight: 750; letter-spacing: -.06em; }
+  .desktop-polish-motion .platform-editorial .platform-triptych-heading { opacity: 1; transform: none; }
+  .desktop-polish .platform-editorial .platform-card-grid {
+    gap: 0; grid-template-columns: var(--platform-col-0, 1fr) var(--platform-col-1, 1fr) var(--platform-col-2, 1fr);
+    width: 100%;
+  }
+  .desktop-polish .platform-editorial .platform-card { overflow: hidden; }
+  .desktop-polish-motion .platform-editorial .platform-card { opacity: 1; transform: none; }
+  .desktop-polish .platform-editorial .platform-card-art {
+    height: min(44svh, 470px); min-height: 0; border-radius: 0; background: #f2f4f6; clip-path: none;
+  }
+  .desktop-polish .platform-editorial .platform-card-art img {
+    /* 분수 픽셀의 열 경계와 이동 중에도 사진이 프레임 밖까지 덮도록 합니다. */
+    position: absolute; inset: -2px; display: block; width: calc(100% + 4px); max-width: none; height: calc(100% + 4px); object-fit: cover; object-position: center;
+    transform: translate3d(var(--platform-photo-x, 0%), 0, 0) scale(var(--platform-photo-scale, 1));
+  }
+  .desktop-polish .platform-editorial .platform-card:nth-child(1) .platform-card-art img { object-position: 54% center; }
+  .desktop-polish .platform-editorial .platform-card:nth-child(3) .platform-card-art img { object-position: right center; }
+  .desktop-polish .platform-editorial .platform-card-copy { height: 150px; overflow: hidden; padding: 27px clamp(22px, 3.5vw, 54px) 0; }
+  .desktop-polish-motion .platform-editorial .platform-card-copy { opacity: var(--platform-copy-opacity, 1); }
+  .desktop-polish .platform-editorial .platform-card-copy h3 { margin: 0 0 14px; font-size: clamp(24px, 1.95vw, 32px); line-height: 1.32; font-weight: 720; color: #191f28; white-space: nowrap; }
+  .desktop-polish .platform-editorial .platform-card-copy p { font-size: clamp(14px, 1.08vw, 17px); line-height: 1.75; color: #6b7684; }
+
+  .desktop-polish .merchant-section {
+    display: block; position: relative; max-width: none; padding: 0; margin: 0; background: #f4f4f5;
+    grid-template-columns: none; grid-template-rows: none; overflow: visible;
+  }
+  .desktop-polish-motion .merchant-section { height: 295svh; }
+  .desktop-polish .merchant-section > .merchant-copy,
+  .desktop-polish .merchant-section > .merchant-product { display: none !important; }
+  .desktop-polish .merchant-desktop { display: block; height: 100%; }
+  .desktop-polish .merchant-v2-stage {
+    position: sticky; top: var(--nav-height); height: calc(100svh - var(--nav-height));
+    display: grid; grid-template-columns: 32.5% 67.5%; align-items: center;
+    overflow: hidden; padding: 32px 0 32px 10%; background: #f4f4f5;
+  }
+  .desktop-polish .merchant-v2-heading { position: relative; height: 100%; min-height: 260px; z-index: 2; }
+  .desktop-polish .merchant-v2-beat {
+    position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center;
+    margin: 0; color: #191f28;
+  }
+  .desktop-polish .merchant-v2-beat h2 {
+    font-size: clamp(30px, 2.7vw, 44px); font-weight: 750; letter-spacing: -.065em; line-height: 1.3; margin: 0;
+  }
+  .desktop-polish .merchant-v2-beat[data-merchant-copy="0"] h2 {
+    font-size: clamp(44px, 4.05vw, 64px); line-height: 1.23;
+  }
+  .desktop-polish .merchant-v2-body {
+    font-size: clamp(13px, 1.1vw, 17px); font-weight: 400; letter-spacing: -.025em; line-height: 1.85;
+    margin: 20px 22px 0 0; color: #8b95a1;
+  }
+  .desktop-polish .merchant-v2-beat span { color: #ff1956; }
+  .desktop-polish .merchant-v2-beat[data-merchant-copy="0"] {
+    opacity: var(--merchant-intro-copy, 0); transform: translate3d(0, var(--merchant-intro-copy-y, 0px), 0);
+  }
+  .desktop-polish .merchant-v2-beat[data-merchant-copy="1"] {
+    opacity: var(--merchant-register-copy, 1); transform: translate3d(0, var(--merchant-register-copy-y, 0px), 0);
+  }
+  .desktop-polish .merchant-v2-beat[data-merchant-copy="2"] {
+    opacity: var(--merchant-event-copy, 0); transform: translate3d(0, var(--merchant-event-copy-y, 0px), 0);
+  }
+  .desktop-polish .merchant-v2-product { margin: 0; padding: 0; width: 100%; }
+  .desktop-polish-motion .merchant-section[data-merchant-settled="false"] .merchant-v2-product {
+    perspective: clamp(1400px, 115vw, 1800px); perspective-origin: 50% 50%;
+  }
+  .desktop-polish .merchant-v2-visual {
+    position: relative; width: 100%; aspect-ratio: 1864 / 1004; overflow: hidden; background: #fff;
+    border-radius: 20px; border: 0; outline: 1px solid #fff; box-shadow: 0 22px 60px #24324d0d;
+    transform: translate3d(var(--merchant-web-x, 0px), var(--merchant-web-y, 0px), var(--merchant-web-z, 0px)) rotateX(var(--merchant-web-rx, 0deg)) rotateY(var(--merchant-web-ry, 0deg)) rotateZ(var(--merchant-web-rz, 0deg)) scale(var(--merchant-web-scale, 1));
+    transform-origin: 50% 50%;
+  }
+  .desktop-polish .merchant-section[data-merchant-settled="true"] .merchant-v2-visual { transform: none; }
+  .desktop-polish .merchant-web-camera {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+  }
+  .desktop-polish .merchant-web-screen { position: absolute; inset: 0; margin: 0; opacity: calc(1 - var(--merchant-screen-blend, 0)); }
+  .desktop-polish .merchant-web-screen[data-merchant-screen="1"] { opacity: var(--merchant-screen-blend, 0); }
+  .desktop-polish .merchant-web-screen img { display: block; width: 100%; height: 100%; object-fit: contain; border: 0; border-radius: 0; box-shadow: none; }
+  .desktop-polish:not(.desktop-polish-motion) .platform-stage { height: auto; }
+  .desktop-polish:not(.desktop-polish-motion) .platform-editorial .platform-triptych-content { padding-block: 80px; }
+  .desktop-polish:not(.desktop-polish-motion) .merchant-section { padding: 0; }
+  .desktop-polish:not(.desktop-polish-motion) .merchant-v2-stage { min-height: calc(100svh - var(--nav-height)); height: auto; position: relative; top: auto; padding-block: 100px; }
+  .desktop-polish:not(.desktop-polish-motion) .merchant-v2-heading { height: 300px; }
+}
+
+/* 모바일은 PC 카메라 대신 공유 문서와 고해상도 화면을 세로로 표시합니다. */
+.merchant-mobile-zoom { display: none; }
+@media (max-width: 999px) {
+  .platform-scene, .motion-enabled .platform-scene {
+    height: auto; min-height: 0; color: #191f28; background: #fff;
+  }
+  .platform-stage, .motion-enabled .platform-stage {
+    position: relative; inset: auto; display: block;
+    height: auto; min-height: 0; background: #fff; overflow: visible;
+  }
+  .platform-scene :is(.platform-board, .platform-curtain) { display: none !important; }
+  .platform-scene .platform-triptych {
+    display: block; position: relative; height: auto;
+  }
+  .platform-triptych-content {
+    width: 100%; max-width: 960px; height: auto; margin: 0 auto;
+    padding: 76px clamp(20px, 5.5vw, 48px) 84px;
+  }
+  .platform-triptych-heading { margin: 0 0 36px; text-align: center; opacity: 1; transform: none; }
+  .platform-triptych-heading h2 {
+    font-size: clamp(28px, 5.6vw, 44px); line-height: 1.3;
+    font-weight: 740; letter-spacing: -.055em; word-break: keep-all;
+  }
+  .platform-card-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .platform-card { min-width: 0; opacity: 1; transform: none; }
+  .platform-card-art {
+    position: relative; width: 100%; height: auto; min-height: 0;
+    aspect-ratio: 3 / 2; overflow: hidden; border-radius: 20px;
+    background: #f2f4f6; clip-path: none;
+  }
+  .platform-card-art img {
+    display: block; position: absolute; inset: 0; width: 100%; height: 100%;
+    max-width: 100%; object-fit: cover; object-position: center; transform: none;
+  }
+  .platform-card:nth-child(1) .platform-card-art img { object-position: 54% center; }
+  .platform-card:nth-child(3) .platform-card-art img { object-position: right center; }
+  .platform-card-copy { height: auto; padding: 22px 4px 0; opacity: 1; }
+  .platform-card-copy h3 {
+    margin: 0 0 12px; font-size: clamp(23px, 4.8vw, 30px);
+    font-weight: 720; line-height: 1.35; letter-spacing: -.05em;
+    color: #191f28; white-space: normal; word-break: keep-all;
+  }
+  .platform-card-copy p { margin: 0; font-size: 15px; line-height: 1.8; color: #6b7684; word-break: keep-all; }
+
+  .merchant-section {
+    display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: none;
+    align-items: start; gap: 0; height: auto; min-height: 0; width: 100%; max-width: none;
+    margin: 0; padding: 76px clamp(20px, 5.5vw, 48px) 84px;
+    background: #f4f4f5; overflow: visible; perspective: none;
+  }
+  .merchant-section > .merchant-copy,
+  .merchant-section > .merchant-product,
+  .merchant-section .merchant-visual { display: contents; }
+  .merchant-section .merchant-lead {
+    grid-column: 1; grid-row: 1; width: 100%; max-width: 700px;
+    margin: 0 auto 44px; padding: 0; opacity: 1; transform: none;
+  }
+  .merchant-section .merchant-lead .eyebrow { display: none; }
+  .merchant-section .merchant-lead h2 {
+    font-size: clamp(32px, 6vw, 46px); font-weight: 740;
+    line-height: 1.28; letter-spacing: -.055em; word-break: keep-all;
+  }
+  .merchant-section .merchant-beat {
+    position: relative; inset: auto; width: 100%; max-width: 700px;
+    margin: 0 auto; padding: 0; opacity: 1; transform: none;
+  }
+  .merchant-section .merchant-register-copy { grid-column: 1; grid-row: 2; }
+  .merchant-section .merchant-event-copy { grid-column: 1; grid-row: 4; display: block; }
+  .merchant-section .merchant-register-copy > h3 { display: block; }
+  .merchant-section .merchant-beat h3 {
+    margin: 0; font-size: clamp(26px, 5.1vw, 36px); font-weight: 730;
+    line-height: 1.32; letter-spacing: -.055em; clip-path: none; word-break: keep-all;
+  }
+  .merchant-section .merchant-beat .body-copy {
+    margin: 18px 0 0; font-size: 15px; line-height: 1.85;
+    color: #6b7684; opacity: 1; transform: none; word-break: keep-all;
+  }
+  .merchant-section :is(.merchant-functions, .merchant-screen-note, .screen-caption, .merchant-panel-mask, .merchant-panel, .merchant-beat > .card-label) {
+    display: none !important;
+  }
+  .merchant-section .merchant-screen {
+    position: relative; inset: auto; display: block; width: 100%; max-width: 900px;
+    height: auto; margin: 24px auto 0; padding: 0 0 16px;
+    opacity: 1; transform: none; clip-path: none; overflow: hidden;
+    border: 1px solid #e6e9ed; border-radius: 16px; background: #fff;
+    box-shadow: 0 14px 32px #24324d0a;
+  }
+  .merchant-section .merchant-register-screen { grid-column: 1; grid-row: 3; margin-bottom: 56px; }
+  .merchant-section .merchant-event-screen { grid-column: 1; grid-row: 5; }
+  .merchant-section .merchant-screen > img:not(.merchant-panel) {
+    position: relative; inset: auto; display: block; width: 100%; max-width: 100%; height: auto;
+    object-fit: contain; clip-path: none; transform: none; opacity: 1;
+    border: 0; border-radius: 0; box-shadow: none;
+  }
+  .merchant-mobile-zoom {
+    display: flex; align-items: center; justify-content: center;
+    width: calc(100% - 32px); min-height: 48px; margin: 16px auto 0; padding: 12px 16px;
+    border: 1px solid #e4e8ed; border-radius: 12px; background: #f7f8fa;
+    color: #333d4b; font: inherit; font-size: 14px; font-weight: 600;
+    line-height: 1.5; cursor: pointer;
+  }
+  .merchant-mobile-zoom:focus-visible { outline: 3px solid #ff1956; outline-offset: 3px; }
+}
+@media (min-width: 700px) and (max-width: 999px) {
+  .platform-triptych-heading { margin-bottom: 44px; }
+  .platform-card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .platform-card-art { aspect-ratio: 4 / 5; border-radius: 16px; }
+  .platform-card-copy { padding-inline: 0; }
+  .platform-card-copy h3 { font-size: clamp(21px, 2.7vw, 26px); }
+  .platform-card-copy p { font-size: 14px; }
+  .platform-card-copy p br { display: none; }
+  .merchant-section .merchant-lead { margin-bottom: 56px; }
+  .merchant-section .merchant-beat .body-copy { font-size: 16px; }
+  .merchant-section .merchant-register-screen { margin-bottom: 64px; }
+}
+@media (min-width: 1000px) and (min-height: 701px) and (max-height: 800px) {
+  .desktop-polish .platform-editorial .platform-triptych-content { padding-block: 20px; }
+  .desktop-polish .platform-editorial .platform-triptych-heading { margin-bottom: 26px; }
+  .desktop-polish .platform-editorial h2 { font-size: 38px; }
+  .desktop-polish .platform-editorial .platform-card-art { height: 38svh; }
+  .desktop-polish .platform-editorial .platform-card-copy { height: 134px; padding: 22px 26px 0; }
+  .desktop-polish .platform-editorial .platform-card-copy h3 { font-size: 25px; margin-bottom: 10px; }
+  .desktop-polish .platform-editorial .platform-card-copy p { font-size: 14px; }
+  .desktop-polish .merchant-v2-beat[data-merchant-copy="0"] h2 { font-size: clamp(43px, 3.7vw, 52px); }
+  .desktop-polish .merchant-v2-heading { min-height: 220px; }
+}

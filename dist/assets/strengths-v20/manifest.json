@@ -1,0 +1,71 @@
+{
+  "revision": 20,
+  "photos": [
+    {
+      "path": "assets/strengths-v20/booking-dinner-v20.png",
+      "bytes": 2131935,
+      "sha256": "e6e9a779def4562979c16f462a80433d644bdbc8ec000a9d7056cfd9f141413d",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "built-in imagegen",
+      "role": "illustrative photograph; not an actual place or visit record"
+    },
+    {
+      "path": "assets/strengths-v20/business-owner-v20.png",
+      "bytes": 2049381,
+      "sha256": "c1f010c95b8af8377070551c5c13a7d1d895f41aedbcce42a996b6e481217259",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "built-in imagegen",
+      "role": "illustrative photograph; not an actual place or visit record"
+    },
+    {
+      "path": "assets/strengths-v20/context-shop-v20.png",
+      "bytes": 3415177,
+      "sha256": "0e1ef5db690c940b07f79c2db7a6086da17bef25116b68c04c91d002517869f6",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "built-in imagegen",
+      "role": "illustrative photograph; not an actual place or visit record"
+    },
+    {
+      "path": "assets/strengths-v20/discovery-cafe-v20.png",
+      "bytes": 2632120,
+      "sha256": "c2dfb2e1a930e2f60da57739167e50615ff6df2d113a9445d1a0ec8a4bad7029",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "built-in imagegen",
+      "role": "illustrative photograph; not an actual place or visit record"
+    },
+    {
+      "path": "assets/strengths-v20/neighborhood-walk-v20.png",
+      "bytes": 3495523,
+      "sha256": "d8e7e975fc6ea656aa0417c4a05d04e288a4d63ba6c861c57ca1d84debdbf8f6",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "built-in imagegen",
+      "role": "illustrative photograph; not an actual place or visit record"
+    },
+    {
+      "path": "assets/strengths-v20/proof-gallery-v20.png",
+      "bytes": 1887785,
+      "sha256": "72736afb9cae70850e5c532fad497f885fb8fd319fe9bbe9f3bdcf7d09ce2750",
+      "size": [
+        1024,
+        1536
+      ],
+      "source": "built-in imagegen",
+      "role": "illustrative photograph; not an actual place or visit record"
+    }
+  ]
+}
