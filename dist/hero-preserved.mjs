@@ -22,8 +22,8 @@ export function mountPreservedHero({
     const paused = !active || !visible || document.hidden || introPending;
     hero.classList.toggle("motion-paused", paused || reducedMotion.matches);
     // 동작 줄이기 설정에서도 하프톤의 정지 상태는 한 번 그립니다.
-    // 모바일은 선명한 원본 로고를 표시하고 보이지 않는 GPU 장면을 실행하지 않습니다.
-    ringFlow.setPaused(paused || mobile.matches);
+    // 화면 크기에 관계없이 같은 로고 전환을 사용하고, 화면 밖에서는 렌더링을 멈춥니다.
+    ringFlow.setPaused(paused);
     background.sync({
       visible: active && visible,
       introPending: active && introPending,

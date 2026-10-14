@@ -22,7 +22,6 @@
           "back_forward";
         if (
           reduced.matches ||
-          window.matchMedia("(max-width: 999px)").matches ||
           returning ||
           (location.hash && location.hash !== "#about")
         )
@@ -61,12 +60,12 @@
     <link rel="stylesheet" href="hero-preserved.css?v=revision-7" />
     <link rel="stylesheet" href="desktop-motion.css?v=revision-17" />
     <link rel="stylesheet" href="desktop-polish.css?v=revision-33" />
-    <link rel="stylesheet" href="ai-pages.css?v=revision-33-2" />
+    <link rel="stylesheet" href="ai-pages.css?v=revision-34" />
     <link rel="stylesheet" href="visit-v2.css?v=revision-33" />
     <link rel="stylesheet" href="strengths.css?v=revision-29" />
     <link rel="stylesheet" href="commercial-v2.css?v=revision-33" />
-    <link rel="stylesheet" href="mobile.css?v=revision-33" />
-    <script type="module" src="app.js?v=revision-33"></script>
+    <link rel="stylesheet" href="mobile.css?v=revision-34" />
+    <script type="module" src="app.js?v=revision-34"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">본문 바로가기</a>
@@ -611,6 +610,7 @@
         </div>
         </div>
       </div>
+      <button class="mobile-image-open" type="button" data-mobile-screen data-mobile-merchant aria-label="상점주 웹 화면 크게 보기">화면 크게 보기 <span aria-hidden="true">↗</span></button>
     </figure>
   </div>
 </div>

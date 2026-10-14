@@ -1,13 +1,14 @@
-import { mountPreservedHero } from "./hero-preserved.mjs?v=revision-33";
+import { mountPreservedHero } from "./hero-preserved.mjs?v=revision-34";
 import { createScrollStory } from "./story-scroll.mjs?v=revision-33";
 import { createDesktopMotion } from "./desktop-motion.mjs?v=revision-17";
 
 import { createDesktopPolish } from "./desktop-polish.mjs?v=revision-31";
-import { createAiPages } from "./ai-pages.mjs?v=revision-33";
-import { createStrengths } from "./strengths.mjs?v=revision-29";
+import { createAiPages } from "./ai-pages.mjs?v=revision-34";
+import { createStrengths } from "./strengths.mjs?v=revision-34";
 import { createScrollStops } from "./scroll-stops.mjs?v=revision-30";
 
-import { createMobileExperience } from "./mobile-experience.mjs?v=revision-33";
+import { createMobileMotion } from "./mobile-motion.mjs?v=revision-34";
+import { createMobileExperience } from "./mobile-experience.mjs?v=revision-34";
 
 const navigationType = performance.getEntriesByType('navigation')[0]?.type;
 const aiAnchorIds = new Set(['ai', 'ai-traveler', 'ai-consulting', 'global-vision']);
@@ -47,6 +48,7 @@ const aiPages = createAiPages({ reducedMotion });
 const strengths = createStrengths();
 const scrollStops = createScrollStops();
 const mobileExperience = createMobileExperience({ reducedMotion });
+const mobileMotion = createMobileMotion();
 
 // 직접 링크와 AI 새로고침은 늦은 GPU·이미지 준비로 높이가 바뀌어도 목적지·읽던 위치를 유지합니다.
 // 사용자 입력은 보정을 끝내며, 그 밖의 새로고침·히스토리 복원은 브라우저의 위치를 우선합니다.
@@ -101,6 +103,7 @@ window.addEventListener("pagehide", (event) => {
     aiPages.stop();
     strengths.stop();
     scrollStops.stop();
+    mobileMotion.stop();
     mobileExperience.stop();
 
   } else {
@@ -110,6 +113,7 @@ window.addEventListener("pagehide", (event) => {
     aiPages.dispose();
     strengths.dispose();
     scrollStops.dispose();
+    mobileMotion.dispose();
     mobileExperience.dispose();
 
   }
@@ -127,6 +131,8 @@ window.addEventListener("pageshow", () => {
   strengths.refresh();
   scrollStops.start();
   scrollStops.refresh();
+  mobileMotion.start();
+  mobileMotion.refresh();
   mobileExperience.start();
   mobileExperience.refresh();
 
