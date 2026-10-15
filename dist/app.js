@@ -9,6 +9,7 @@ import { createScrollStops } from "./scroll-stops.mjs?v=revision-30";
 
 import { createMobileMotion } from "./mobile-motion.mjs?v=revision-34";
 import { createMobileExperience } from "./mobile-experience.mjs?v=revision-34";
+import { createAboutIntro } from "./about-intro.mjs?v=revision-37";
 
 const navigationType = performance.getEntriesByType('navigation')[0]?.type;
 const aiAnchorIds = new Set(['ai', 'ai-traveler', 'ai-consulting', 'global-vision']);
@@ -41,6 +42,7 @@ window.addEventListener('pagehide', () => {
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 mountPreservedHero({ reducedMotion });
+const aboutIntro = createAboutIntro({ reducedMotion });
 const story = createScrollStory();
 const desktopStory = createDesktopMotion();
 const polish = createDesktopPolish();
@@ -115,6 +117,7 @@ window.addEventListener("pagehide", (event) => {
     scrollStops.dispose();
     mobileMotion.dispose();
     mobileExperience.dispose();
+    aboutIntro.dispose();
 
   }
 });

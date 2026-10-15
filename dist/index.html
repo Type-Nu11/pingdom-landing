@@ -65,6 +65,7 @@
     <link rel="stylesheet" href="strengths.css?v=revision-29" />
     <link rel="stylesheet" href="commercial-v2.css?v=revision-33" />
     <link rel="stylesheet" href="mobile.css?v=revision-35" />
+    <link rel="stylesheet" href="about-intro.css?v=revision-51" />
     <script type="module" src="app.js?v=revision-39"></script>
   </head>
   <body>
@@ -121,7 +122,7 @@
           </div>
         </div>
         <div class="hero-bottom">
-          <a class="scroll-cue" href="#why" aria-label="아래 내용 보기"
+          <a class="scroll-cue" href="#intro" aria-label="아래 내용 보기"
             ><span class="scroll-cue-label" aria-hidden="true">SCROLL</span
             ><span class="scroll-cue-icon" aria-hidden="true"
               ><svg viewBox="0 0 20 30" fill="none">
@@ -145,11 +146,215 @@
               height="86"
           /></a>
           <nav aria-label="페이지 안내">
+            <a href="#intro">소개</a>
             <a href="#why">서비스</a>
             <a href="#platform">플랫폼</a>
             <a href="#ai">AI</a>
           </nav>
         </header>
+
+        <section class="about-scene" id="intro" aria-labelledby="about-title">
+          <div class="about-wrap">
+            <header class="about-opening" data-about-reveal>
+              <p class="about-eyebrow">핑덤을 소개할게요</p>
+              <h2 id="about-title">
+                한국을 여행하는 당신을, <br />동네 가게까지 데려다줄게요.
+              </h2>
+              <p class="about-lead">
+                핑덤은 한국을 찾은 외국인 여행자를 위한 위치 기반 앱이에요.<br
+                  class="about-break"
+                />
+                현지인이 즐겨 찾는 가게를 발견하고, 지금 가도 되는지 확인하고,<br
+                  class="about-break"
+                />
+                혜택 저장부터 예약·길찾기까지 한 번에 이어져요.
+              </p>
+            </header>
+
+            <ol class="about-flow" aria-label="핑덤으로 이어지는 여행" data-about-reveal>
+              <li><span>01</span><strong>발견</strong><em>내 주변, 내 취향의 가게</em></li>
+              <li><span>02</span><strong>확인</strong><em>영업 상태와 방문자 검증</em></li>
+              <li><span>03</span><strong>예약</strong><em>쿠폰을 챙기고 자리를 잡고</em></li>
+              <li><span>04</span><strong>길찾기</strong><em>출발·도착을 눌러 바로</em></li>
+              <li><span>05</span><strong>기록</strong><em>다녀온 곳을 여행 일정에</em></li>
+            </ol>
+
+            <div class="about-why">
+              <header class="about-why-head" data-about-reveal>
+                <p class="about-kicker">왜 핑덤일까요?</p>
+                <h3>요즘 여행자는 랜드마크보다<br />한국인의 일상을 원해요.</h3>
+              </header>
+
+              <div class="about-chart" data-about-reveal>
+                <figure class="about-chart-figure">
+                  <div class="fx" style="aspect-ratio:766/470"><div class="fx-in" style="--w:766"><div class="fx-legend" style="top:0;right:0"><span style="font-size:max(10px,calc(var(--u)*13.578))"><i class="is-line"></i>전체 외래관광객 수</span><span style="font-size:max(10px,calc(var(--u)*13.578))"><i class="is-zone"></i>현지인 체험 타겟 구간</span></div><div class="fx-zone" style="left:calc(var(--u)*499);top:calc(var(--u)*34.95);width:calc(var(--u)*206);height:calc(var(--u)*370)"><p style="font-size:max(11px,calc(var(--u)*27.155));top:calc(var(--u)*184.43)">로컬 상권 &amp;<br />현지인 체험 중심<br />고속성장 구간</p></div><img alt="" src="assets/why/line-grid-v.svg" style="left:calc(var(--u)*82.6);top:calc(var(--u)*26);width:calc(var(--u)*380.171);height:calc(var(--u)*1.697);transform-origin:0 0;transform:translateX(calc(var(--u)*1.697)) rotate(90deg)" /><img alt="" src="assets/why/line-grid-h.svg" style="left:calc(var(--u)*82.62);top:calc(var(--u)*405.04);width:calc(var(--u)*681.14);height:calc(var(--u)*1.697)" /><img alt="" src="assets/why/line-data.svg" style="left:calc(var(--u)*83.73);top:calc(var(--u)*35.05);width:calc(var(--u)*682.272);height:calc(var(--u)*369.988)" /><div class="fx-col" style="left:calc(var(--u)*48.65);top:calc(var(--u)*26);width:calc(var(--u)*24.892);gap:calc(var(--u)*54.31);font-size:max(10px,calc(var(--u)*13.578))"><span>250</span><span>200</span><span>150</span><span>100</span><span>50</span><span>0</span></div><div class="fx-row" style="left:calc(var(--u)*128.99);top:calc(var(--u)*415.22);gap:calc(var(--u)*108.62);font-size:max(10px,calc(var(--u)*13.578))"><span>2017</span><span>2019</span><span>2021</span><span>2023</span><span>2025</span></div><p class="fx-t is-grey" style="left:calc(var(--u)*9);top:calc(var(--u)*178.24);transform:translateX(-50%) rotate(-90deg);font-size:max(10px,calc(var(--u)*13.578))">관광객 수(명)</p><p class="fx-t is-grey" style="left:calc(var(--u)*420.46);top:calc(var(--u)*443.51);transform:translateX(-50%);font-size:max(10px,calc(var(--u)*13.578))">연도</p></div></div>
+                </figure>
+                <div class="about-chart-copy">
+                  <p class="about-chart-tag">Data Analytics</p>
+                  <h4>현지인 체험 수요가<br />빠르게 늘고 있어요.</h4>
+                  <p>
+                    한국을 찾는 외국인 관광객은 꾸준히 늘었고, 2023년 이후에는
+                    로컬 상권과 현지인 체험을 중심으로 더 가파르게 늘고 있어요.
+                  </p>
+                  <cite>출처: 한국관광공사 관광통계 / 방한 외국인 관광객 동향 (2017-2025)</cite>
+                </div>
+              </div>
+
+              <div class="about-chart is-reverse" data-about-reveal>
+                <figure class="about-chart-figure">
+                  <div class="fx" style="aspect-ratio:1700/730"><div class="fx-in" style="--w:1700"><img alt="" src="assets/why/curve-area.svg" style="left:calc(var(--u)*652.5);top:calc(var(--u)*54);width:calc(var(--u)*782);height:calc(var(--u)*464)" /><div class="fx-rot" style="left:calc(var(--u)*25.85);top:calc(var(--u)*228.5);width:calc(var(--u)*1429.797);height:calc(var(--u)*372.573)"><div style="width:calc(var(--u)*1430.377);height:calc(var(--u)*123.282)"><img alt="" src="assets/why/curve-l1.svg" style="left:0;width:100%;top:-1.6%;height:103.22%" /></div></div><div class="fx-rot" style="left:calc(var(--u)*39.99);top:calc(var(--u)*359.81);width:calc(var(--u)*1403.913);height:calc(var(--u)*318.143)"><div style="width:calc(var(--u)*1413.408);height:calc(var(--u)*71.021)"><img alt="" src="assets/why/curve-l2.svg" style="left:0;width:100%;top:-2.77%;height:105.59%" /></div></div><div class="fx-rot" style="left:calc(var(--u)*39.99);top:calc(var(--u)*396.64);width:calc(var(--u)*1393.485);height:calc(var(--u)*391.416)"><div style="width:calc(var(--u)*1388.753);height:calc(var(--u)*149.849)"><img alt="" src="assets/why/curve-l3.svg" style="left:0;width:100%;top:-1.31%;height:102.64%" /></div></div><img alt="" src="assets/why/curve-base.svg" style="left:calc(var(--u)*40);top:calc(var(--u)*655);width:calc(var(--u)*1400);height:calc(var(--u)*4)" /><img alt="" src="assets/why/curve-group.svg" style="left:calc(var(--u)*7.48);top:calc(var(--u)*44.5);width:calc(var(--u)*1487.982);height:calc(var(--u)*682.461)" /><p class="fx-t is-pink fx-hide-m" style="left:calc(var(--u)*1230);top:calc(var(--u)*18);transform:translateX(-50%);font-size:max(13px,calc(var(--u)*36))">글로벌 POS 도입률<br />+312%</p><div class="fx-labels fx-hide-m" style="left:calc(var(--u)*1461);top:calc(var(--u)*120);width:calc(var(--u)*232);gap:calc(var(--u)*50);font-size:max(12px,calc(var(--u)*32))"><p>소규모<br />텍스리펀 가맹점 수<br />+215%</p><p>골목상권 외국인 매출액<br />+98%</p><p>전체 자영업<br />평균 매출<br />+18%</p></div><p class="fx-t is-grey" style="left:calc(var(--u)*97);top:calc(var(--u)*678);transform:translateX(-50%);font-size:max(11px,calc(var(--u)*24))">2026년 1월</p><p class="fx-t is-grey" style="left:calc(var(--u)*1381);top:calc(var(--u)*678);transform:translateX(-50%);font-size:max(11px,calc(var(--u)*24))">2026년 8월</p></div></div>
+                <ul class="fx-caption" aria-hidden="true">
+                    <li class="is-pink"><span>글로벌 POS 도입률</span><b>+312%</b></li>
+                    <li><span>소규모 택스리펀 가맹점 수</span><b>+215%</b></li>
+                    <li><span>골목상권 외국인 매출액</span><b>+98%</b></li>
+                    <li><span>전체 자영업 평균 매출</span><b>+18%</b></li>
+                  </ul>
+                </figure>
+                <div class="about-chart-copy">
+                  <p class="about-chart-tag">Data Analytics</p>
+                  <h4>동네 가게도<br />외국인 손님을 기다려요.</h4>
+                  <p>
+                    골목상권 점주의 글로벌 결제 단말기 도입률은 312%, 소규모
+                    택스리펀 가맹점 수는 215% 늘었어요. 골목상권의 외국인 매출도
+                    98% 늘어, 전체 자영업 평균(18%)을 크게 앞섰어요.
+                  </p>
+                  <cite>출처: 자영업자용 POS 분석 센터 (2026)</cite>
+                </div>
+              </div>
+
+              <div class="about-chart is-flow" data-about-reveal>
+                <div class="about-chart-copy">
+                  <p class="about-chart-tag">Insights</p>
+                  <h4>가게를 찾아도,<br />확인에서 멈춰요.</h4>
+                  <p>
+                    여행자의 로컬 상권 방문 여정을 살펴보니, 실제 방문을 막는
+                    병목은 '정보 검증' 단계였어요.
+                  </p>
+                </div>
+                <div class="about-flow-row">
+                  <figure class="about-chart-figure">
+                    <div class="fx" style="aspect-ratio:1010/610"><div class="fx-in" style="--w:1010"><img alt="" src="assets/why/cycle-donut.svg" style="left:calc(var(--u)*10);top:calc(var(--u)*0);width:calc(var(--u)*600);height:calc(var(--u)*600)" /><img alt="" src="assets/why/cycle-ring-arrow.svg" style="left:0;top:0;width:calc(var(--u)*1010);height:calc(var(--u)*610)" /><div class="fx-step" style="left:calc(var(--u)*224);top:calc(var(--u)*44);width:calc(var(--u)*172);font-size:calc(var(--u)*24)"><b style="font-size:max(12px,calc(var(--u)*24))">탐색</b><span style="font-size:max(10px,calc(var(--u)*20))">로컬 핫플 / 현지인 맛집 발견</span></div><div class="fx-step" style="left:calc(var(--u)*224);top:calc(var(--u)*459);width:calc(var(--u)*172);font-size:calc(var(--u)*24)"><b style="font-size:max(12px,calc(var(--u)*24))">현장 방문</b><span style="font-size:max(10px,calc(var(--u)*20))">매장 이동 및 진입</span></div><div class="fx-step" style="left:calc(var(--u)*31);top:calc(var(--u)*268);width:calc(var(--u)*172);font-size:calc(var(--u)*24)"><b style="font-size:max(12px,calc(var(--u)*24))">재방문/추천</b><span style="font-size:max(10px,calc(var(--u)*20))">로컬 상권 재방문</span></div><div class="fx-node" style="left:calc(var(--u)*431);top:calc(var(--u)*183);width:calc(var(--u)*220);height:calc(var(--u)*220)"><b style="font-size:max(12px,calc(var(--u)*24))">정보 검증</b><span style="font-size:max(10px,calc(var(--u)*20))">실시간 영업 여부,<br />대기 현황, 메뉴 확인</span></div><img alt="" src="assets/why/cycle-link.svg" style="left:calc(var(--u)*641);top:calc(var(--u)*275.95);width:calc(var(--u)*361.5);height:calc(var(--u)*22.092)" /><div class="fx-alert" style="left:calc(var(--u)*773);top:calc(var(--u)*265);width:calc(var(--u)*73)"><i style="width:calc(var(--u)*40);height:calc(var(--u)*40);font-size:max(12px,calc(var(--u)*24))">!</i><span style="font-size:max(10px,calc(var(--u)*20))">병목 발생</span></div></div></div>
+                    <ol class="fx-notes">
+                    <li><b>탐색</b><span>로컬 핫플 / 현지인 맛집 발견</span></li>
+                    <li class="is-key"><b>정보 검증</b><span>실시간 영업 여부, 대기 현황, 메뉴 확인</span></li>
+                    <li><b>현장 방문</b><span>매장 이동 및 진입</span></li>
+                    <li><b>재방문/추천</b><span>로컬 상권 재방문</span></li>
+                  </ol>
+                  </figure>
+                  <div class="about-flow-link" aria-hidden="true"><i>!</i><span>병목 발생</span></div>
+                  <div class="about-pain-panel">
+                    <p class="about-pain-title">로컬 방문 방해 요소</p>
+                    <dl class="about-pain">
+                      <div>
+                        <dt><span>Pain Point 1</span>실시간 정보 부재</dt>
+                        <dd class="is-split">
+                          <p>
+                            <b>무작정 방문</b>
+                            <span>조기 마감, 휴무로 인한<br />헛걸음 및 여행 동선 낭비</span>
+                            <em>불투명한 현장 정보</em>
+                          </p>
+                          <p>
+                            <b>방문 포기</b>
+                            <span>위험 부담 때문에 결국 뻔한<br />대형 랜드마크로 회귀</span>
+                            <em>동선 낭비나 체험을 포기</em>
+                          </p>
+                        </dd>
+                      </div>
+                      <div>
+                        <dt><span>Pain Point 2</span>현장 시스템 장벽</dt>
+                        <dd>
+                          <p>
+                            <b>현장 장벽으로 인한 최종 이용 실패</b>
+                            <span>한국어 전용 메뉴판, 국내 번호 인증 중심의<br />현장 웨이팅 시스템</span>
+                            <em>대기 등록 불가 및 주문 오류로 매장 진입 포기</em>
+                          </p>
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+
+              <p class="about-bridge" data-about-reveal>
+                그래서 핑덤은, 여행자와 가게 사이의<br />세 개의 벽을 넘어요.
+              </p>
+            </div>
+
+            <div class="about-walls">
+              <article class="about-wall" data-about-reveal>
+                <div class="about-wall-copy">
+                  <p class="about-wall-chip">01 · 언어의 벽</p>
+                  <blockquote>“가게와 게시글에 적힌 내용을 이해하기 어려워요.”</blockquote>
+                  <h3>내가 고른 언어로<br />읽는 동네 가게.</h3>
+                  <p>
+                    처음에 고른 언어로 가게 정보와 게시글을 보여줘요. 영어 응대,
+                    주차처럼 꼭 필요한 정보는 누구나 알아보는 아이콘으로
+                    표시해요.
+                  </p>
+                </div>
+                <figure class="about-wall-screen">
+                  <img
+                    src="assets/desktop-polish/app-language-select.png"
+                    alt="핑덤 언어 선택 화면: English, 한국어, 日本語, 中国人, Tiếng Việt, แบบไทย 중에서 고르기"
+                    width="556"
+                    height="1140"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              </article>
+              <article class="about-wall" data-about-reveal>
+                <div class="about-wall-copy">
+                  <p class="about-wall-chip">02 · 발견의 벽</p>
+                  <blockquote>“내가 좋아할 만한 로컬 가게는 어디 있을까요?”</blockquote>
+                  <h3>내 취향에 맞는 가게가<br />지도 위로.</h3>
+                  <p>
+                    내 위치와 취향, 요즘 뜨는 곳을 함께 살펴 장소를 추천해요.
+                    음식점·음악·팝업·패션 카테고리만 눌러도 원하는 종류의 장소가
+                    지도에 모여요.
+                  </p>
+                </div>
+                <figure class="about-wall-screen">
+                  <img
+                    src="assets/desktop-polish/app-map-native.webp"
+                    alt="핑덤 지도 화면: 카테고리 필터와 나만을 위한 추천 장소"
+                    width="1800"
+                    height="3680"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              </article>
+              <article class="about-wall" data-about-reveal>
+                <div class="about-wall-copy">
+                  <p class="about-wall-chip">03 · 확신의 벽</p>
+                  <blockquote>“이곳, 지금 가도 괜찮을까요?”</blockquote>
+                  <h3>먼저 다녀온 사람의 검증으로<br />확신을 더해요.</h3>
+                  <p>
+                    지금 영업 중인지, 몇 명이 직접 다녀와 검증했는지 보여줘요.
+                    방문자가 고른 좋은 점과 사진 리뷰로 가기 전에 판단할 수
+                    있어요.
+                  </p>
+                </div>
+                <figure class="about-wall-screen">
+                  <img
+                    src="assets/desktop-polish/app-reviews-native.webp"
+                    alt="핑덤 리뷰 화면: 23명이 검증한 장소와 방문자가 고른 좋은 점 통계"
+                    width="1800"
+                    height="3680"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              </article>
+            </div>
+
+            <p class="about-closing" data-about-reveal>
+              여행자에게는 헛걸음 없는 여행을,<br />동네 가게에는 새로운 손님을.
+              <a href="#why">핑덤 둘러보기 ↓</a>
+            </p>
+          </div>
+        </section>
 
         <section
           class="journey-scene"
