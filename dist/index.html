@@ -64,6 +64,7 @@
     <link rel="stylesheet" href="mobile.css?v=revision-35" />
     <link rel="stylesheet" href="about-intro.css?v=revision-51" />
     <link rel="stylesheet" href="dark-theme.css?v=revision-50" />
+    <link rel="stylesheet" href="ai-demo.css?v=revision-2" />
     <script type="module" src="app.js?v=revision-39"></script>
   </head>
   <body>
@@ -876,7 +877,7 @@
       <div class="ai-stage-copy">
         <p class="ai-feature-label">Pingdom AI</p>
         <h3 id="ai-traveler-title">말로 찾는,<br />나만의 장소.</h3>
-        <p class="ai-stage-description">원하는 분위기와 조건을 말하면,<br />Pingdom AI가 장소를 추천해요.</p>
+        <p class="ai-stage-description">원하는 분위기와 조건을 말하면,<br />Pingdom AI가 장소를 추천하고<br />처음이라면 앱 사용법도 알려줘요.</p>
       </div>
       <figure class="ai-product-visual ai-traveler-visual" data-ai-product>
         <div class="ai-cosmos-backdrop" aria-hidden="true"><img data-desktop-src="assets/ai-traveler-background.webp" alt="" width="2560" height="1440" decoding="async" /></div>
@@ -884,12 +885,37 @@
       </figure>
     </div>
   </article>
+  <section class="ai-demo is-traveler" aria-labelledby="ai-demo-traveler-title" data-about-reveal>
+    <div class="ai-demo-inner">
+      <header class="ai-demo-head">
+        <p class="ai-demo-kicker">이렇게 물어보세요</p>
+        <h4 id="ai-demo-traveler-title">조건을 말하면,<br />지금 갈 수 있는 곳만 골라줘요.</h4>
+      </header>
+      <div class="ai-chat" role="img" aria-label="Pingdom AI 대화 예시: 평점 4.8점 이상이고 지금 영업 중인 주변 장소를 요청하자 장소 카드 세 곳과 고른 이유를 답하는 화면">
+        <p class="ai-chat-ask">내 주변에 있는 곳 중에 평점이 4.8점 이상이고<br />현재 영업 중인 곳을 리스트업해줘</p>
+        <div class="ai-chat-answer">
+          <p class="ai-chat-brand"><i aria-hidden="true"></i>Pingdom AI</p>
+          <ul class="ai-chat-places">
+            <li style="--pos:0%"><span class="ai-chat-photo"></span><b>햇살 드는 골목 카페</b><small><em>영업 중</em> ★ 4.9 · 여기서 350m</small></li>
+            <li style="--pos:50%"><span class="ai-chat-photo"></span><b>노을 보이는 한식 밥집</b><small><em>영업 중</em> ★ 4.8 · 여기서 820m</small></li>
+            <li style="--pos:100%"><span class="ai-chat-photo"></span><b>동네 팝업 갤러리</b><small><em>영업 중</em> ★ 4.8 · 여기서 1.2km</small></li>
+          </ul>
+          <p class="ai-chat-reply">평점 4.8점 이상인 장소만 추린 뒤, 지금 영업 중인지 확인해 바로 방문할 수 있는 곳을 정리했어요. 거리와 이용자 평가, 최근 장소 정보를 함께 고려했어요.</p>
+        </div>
+      </div>
+      <ul class="ai-demo-points">
+        <li><b>조건으로 한 번에</b><span>평점·영업 여부·거리를<br />말 한마디로 걸러요.</span></li>
+        <li><b>지금 갈 수 있는 곳만</b><span>실시간 영업 정보를 반영해<br />헛걸음을 줄여요.</span></li>
+        <li><b>처음이어도 괜찮게</b><span>앱 사용법이 궁금하면<br />대화로 바로 알려줘요.</span></li>
+      </ul>
+    </div>
+  </section>
   <article class="ai-cinematic ai-consulting-page" id="ai-consulting" data-ai-page="consulting" data-consulting-model aria-labelledby="ai-consulting-title">
     <div class="ai-cinematic-stage">
       <div class="ai-stage-copy">
         <p class="ai-feature-label">Pingdom Consulting</p>
         <h3 id="ai-consulting-title">내 가게를 위한<br />AI 상권 상담.</h3>
-        <p class="ai-stage-description">업종과 고객, 운영 조건을 담아<br />상권에 대한 고민을 상담하세요.</p>
+        <p class="ai-stage-description">업종과 고객, 운영 조건을 담아 상담하고,<br />상권·입지 분석 보고서로 받아보세요.</p>
       </div>
       <figure class="ai-product-visual ai-consulting-visual" data-ai-product>
         <div class="ai-consulting-model-layer">
@@ -899,6 +925,23 @@
       </figure>
     </div>
   </article>
+  <section class="ai-demo is-consulting" aria-labelledby="ai-demo-consulting-title" data-about-reveal>
+    <div class="ai-demo-inner">
+      <div class="ai-demo-steps">
+        <p class="ai-demo-kicker">상담은 이렇게 진행돼요</p>
+        <h4 id="ai-demo-consulting-title">대화 몇 번이면,<br />상권 보고서가 나와요.</h4>
+        <ol>
+          <li><span>01</span><div><b>상담 정보 입력</b><p>업종, 희망 장소, 주요 고객층, 운영 시간을 대화로 알려주세요.</p></div></li>
+          <li><span>02</span><div><b>유동인구 데이터 분석</b><p>시간대·연령대별 유동인구로 그 자리의 손님 흐름을 살펴요.</p></div></li>
+          <li><span>03</span><div><b>상권·입지 분석 보고서</b><p>분석 결과를 한 장의 보고서로 정리해 다음 결정을 도와요.</p></div></li>
+        </ol>
+      </div>
+      <figure class="ai-demo-screen">
+        <div class="ai-demo-browser" aria-hidden="true"><i></i><i></i><i></i></div>
+        <img src="assets/web-report.webp" alt="실제 핑덤 상권 컨설팅 웹: 업종, 희망 장소, 고객층, 운영 시간을 확인하고 분석을 요청하는 화면" width="1200" height="641" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
   <article class="ai-cinematic ai-global-page" id="global-vision" data-ai-page="global" data-global-vision data-consulting-flight data-consulting-globe aria-labelledby="global-vision-title" aria-description="한국에서 시작한 좋은 장소의 발견이 전 세계로 확장되는 핑덤의 목표를 표현합니다.">
     <div class="ai-cinematic-stage">
       <div class="ai-stage-copy">
