@@ -282,8 +282,8 @@ export function createAiPages({ root = document, win = window, reducedMotion } =
     lastPaintTime = !immediate && Number.isFinite(timestamp) ? timestamp : null;
     let following = false;
     for (const scene of scenes) {
-      // 모바일의 두 AI 소개는 고정된 제품면으로 읽고, 글로벌 장면만 스크롤에 연결합니다.
-      const sceneMotion = motion && (!compact.matches || scene.type === "global");
+      // 모든 화면에서 같은 AI 소개와 글로벌 전환 상태를 사용합니다.
+      const sceneMotion = motion;
       // 모바일 초기 로드에 비행 영상을 포함하지 않고 가까워지는 구간에서 한 번 준비합니다.
       if (compact.matches && sceneMotion && scene.type === "global" && hasVideo(scene) &&
         !scene.video.getAttribute("src") && !scene.videoFailed &&
@@ -404,12 +404,13 @@ export function createAiPages({ root = document, win = window, reducedMotion } =
       section.setAttribute("aria-label", "핑덤 AI 서비스");
     }
     motion = !(reducedMotion?.matches ?? reducedMotion ?? reduced.matches) &&
-      (desktop.matches || (win.innerWidth < 1000 && win.innerHeight >= 620));
+      (desktop.matches || (win.innerWidth < 1000 && (win.innerHeight >= 620 ||
+        (win.innerHeight >= 520 && win.innerHeight >= win.innerWidth))));
     wrapper.classList.toggle("ai-pages-motion", motion);
     const headerHeight = root.querySelector(".site-header")?.getBoundingClientRect().height ?? 72;
     const viewport = Math.max(1, win.innerHeight - headerHeight);
     for (const scene of scenes) {
-      const sceneMotion = motion && (!compact.matches || scene.type === "global");
+      const sceneMotion = motion;
       const rect = scene.element.getBoundingClientRect();
       const videoNearby = desktop.matches || (rect.top < win.innerHeight * 2 && rect.top + rect.height > -viewport);
       for (const asset of scene.assets)

@@ -27,11 +27,8 @@ h1>span{display:block;position:absolute;animation:hero-in 1.3s var(--ease) backw
 .hero-title-break{display:none}
 .hero-period{color:var(--pink)}
 .hero-model{position:absolute;top:42%;left:50%;width:min(84.6vw,1440px);translate:-50% -50%;z-index:2;pointer-events:none;transform:none}
-.hero-model img{width:100%;height:auto;animation:sculpture-in 1.6s var(--ease) both;filter:drop-shadow(0 22px 40px #14091855)}
-.portal-float{position:relative;transform:none;transform-origin:center;filter:saturate(.84) brightness(.94) contrast(.94)}
-.ring-flow-canvas{position:absolute;inset:-6%;width:112%;height:112%;display:block;opacity:0;pointer-events:none}
-.ring-flow-ready .ring-flow-canvas{opacity:1}
-.ring-flow-ready .hero-model img{opacity:0;animation:none}
+.hero-model img{width:100%;height:auto;animation:sculpture-in 1.6s var(--ease) both}
+.portal-float{position:relative;transform:none;transform-origin:center}
 @keyframes sculpture-in{from{opacity:0;transform:scale(.88) rotate(9deg)}to{opacity:1;transform:scale(1) rotate(0)}}
 .hero.motion-paused *{animation-play-state:paused!important}
 .hero-bottom{position:absolute;z-index:4;bottom:28px;left:5%;right:5%;display:flex;justify-content:center}
@@ -41,8 +38,8 @@ h1>span{display:block;position:absolute;animation:hero-in 1.3s var(--ease) backw
 .scroll-cue-icon svg{width:18px;height:28px;animation:scroll-hint 2.8s ease-in-out infinite}
 .scroll-cue:hover .scroll-cue-icon{color:var(--pink)}.scroll-cue:hover .scroll-cue-label{color:var(--pink)}
 @keyframes scroll-hint{0%,100%{transform:translateY(-3px);opacity:.65}50%{transform:translateY(3px);opacity:1}}
-.intro-particles{display:none}
-.intro-pending .intro-particles{display:block;position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.intro-pop{display:none}
+.intro-pending .intro-pop{display:block;position:absolute;inset:0;z-index:-3;background:#ff0051;clip-path:circle(0 at 50% 50%);pointer-events:none}
 .intro-pending .hero-line-top,.intro-pending .hero-line-bottom,.intro-pending .hero-bottom{opacity:0;pointer-events:none}
 .intro-pending .hero-art,.intro-pending .hero-light{opacity:0;animation:none}
 .intro-pending h1>span,.intro-complete h1>span,.intro-pending .hero-model img,.intro-complete .hero-model img{animation:none}

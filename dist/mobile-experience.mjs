@@ -52,7 +52,9 @@ export function createMobileExperience({ root = document, win = window, reducedM
     }
     const button = event.target.closest?.('[data-mobile-screen]');
     if (button && dialog && preview) {
-      const image = button.parentElement.querySelector('img:not(.merchant-panel)');
+      const selector = button.getAttribute('data-mobile-merchant') !== null
+        ? '[data-merchant-screen][aria-hidden="false"] img' : 'img:not(.merchant-panel)';
+      const image = button.parentElement.querySelector(selector);
       if (!image?.currentSrc || !image.complete || !image.naturalWidth) return;
       invoker = button;
       preview.src = image.currentSrc;

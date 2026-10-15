@@ -26,7 +26,7 @@ export function createStrengths({ root = document, win = window } = {}) {
   if (!scene || !track || !viewport || cards.length !== STRENGTH_POINTS.length)
     return { start() {}, stop() {}, refresh() {}, dispose() {} };
   const total = String(cards.length).padStart(2, '0');
-  const desktop = win.matchMedia('(min-width: 1000px) and (min-height: 701px)');
+  const desktop = win.matchMedia('(min-width: 1000px) and (min-height: 701px), (max-width: 999px) and (min-height: 620px), (max-width: 999px) and (min-height: 520px) and (orientation: portrait)');
   const reduced = win.matchMedia('(prefers-reduced-motion: reduce)');
   const cleanups = [];
   let running = false, disposed = false, motion = false, frame = 0, resizeFrame = 0, observer;

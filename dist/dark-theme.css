@@ -1,0 +1,318 @@
+/*
+ * 발표자료와 같은 다크 테마입니다. 기존 화면 스타일을 그대로 두고 맨 마지막에 읽어 색만 덮어씁니다.
+ * 선택자 앞의 html은 같은 미디어 조건에서 기존 규칙보다 우선하도록 붙였습니다.
+ */
+:root {
+  --ink: #f5f5f7;
+  --label: #c9c9d1;
+  --muted: #9b9ba5;
+  --paper: #161618;
+  --dark-bg: #161618;
+  --dark-bg-alt: #1c1c1f;
+  --dark-card: #242428;
+  --dark-card-soft: #2b2b30;
+  --dark-line: #ffffff1a;
+  --dark-sub: #b4b4bd;
+  --dark-mute: #85858f;
+}
+
+html,
+html body,
+html .site-body {
+  background: var(--dark-bg);
+  color: var(--ink);
+}
+
+html .skip-link {
+  background: var(--dark-card);
+  color: var(--ink);
+}
+
+/* 상단 메뉴 */
+html .site-header {
+  background: #161618e6;
+  border-bottom-color: var(--dark-line);
+  color: var(--ink);
+}
+
+html .text-link {
+  border-bottom-color: #ffffff40;
+}
+
+/* 소개 섹션 */
+html .about-scene {
+  --about-ink: #f5f5f7;
+  --about-sub: #b4b4bd;
+  --about-mute: #85858f;
+  --about-soft: #2a1a20;
+  --about-line: #ffffff1a;
+  background: var(--dark-bg);
+}
+
+html .about-flow li,
+html .about-chart-figure {
+  background: var(--dark-card);
+}
+
+html .about-chart-tag {
+  background: #34343a;
+  color: #d6d6dd;
+}
+
+html .about-wall-screen {
+  background: radial-gradient(circle at 50% 42%, #4a1426 0%, #2a1820 46%, #1f1f23 100%);
+}
+
+html .about-wall-screen img {
+  filter: drop-shadow(0 30px 50px #00000080);
+}
+
+html .about-closing a {
+  background: #f5f5f7;
+  color: #161618;
+}
+
+html .about-closing a:hover {
+  background: var(--about-pink);
+  color: #fff;
+}
+
+html .about-bars li {
+  background: #393940;
+}
+
+/* 장소 발견 */
+html .journey-stage {
+  background: var(--dark-bg);
+}
+
+/* 방문 전후 기능 카드 */
+html .details-section,
+html.desktop-polish .details-section,
+html.desktop-motion-enabled .details-section {
+  background: var(--dark-bg-alt);
+}
+
+html .place-card,
+html .community-card,
+html .verification-card {
+  background: var(--dark-card);
+}
+
+html .booking-card {
+  background: #2c1a21;
+}
+
+html .memory-card {
+  background: #0f0f11;
+}
+
+html .quiet-list,
+html .local-caption,
+html .journey-product figcaption {
+  color: var(--dark-mute);
+}
+
+html.desktop-motion-enabled .visit-grid .card-copy > p:not(.card-label),
+html.desktop-polish .visit-grid .card-copy > p:not(.card-label) {
+  color: var(--dark-sub);
+}
+
+html.desktop-motion-enabled .visit-grid .quiet-list {
+  color: var(--dark-mute);
+}
+
+html.desktop-motion-enabled .visit-grid .memory-note {
+  color: var(--dark-mute) !important;
+}
+
+/* 핑덤만의 차이 */
+html .strengths-scene {
+  background: var(--dark-bg);
+  color: var(--ink);
+}
+
+/* 사진 위 유리 카드는 앱 화면 느낌을 살리도록 밝게 둡니다. */
+
+/* 플랫폼 */
+html .platform-scene,
+html .platform-stage,
+html.desktop-polish .platform-scene,
+html.desktop-polish .platform-stage {
+  background: var(--dark-bg-alt);
+  color: var(--ink);
+}
+
+html.desktop-polish .platform-editorial .platform-card-art {
+  background: var(--dark-card);
+}
+
+html.desktop-polish .platform-editorial .platform-card-copy h3 {
+  color: var(--ink);
+}
+
+html.desktop-polish .platform-editorial .platform-card-copy p,
+html .platform-card-copy p {
+  color: var(--dark-sub);
+}
+
+html .platform-triptych-heading .eyebrow,
+html .platform-card-copy > span {
+  color: var(--dark-mute);
+}
+
+/* 상점주 */
+html .merchant-section,
+html.desktop-polish .merchant-section,
+html.desktop-polish .merchant-v2-stage,
+html.desktop-motion-enabled .merchant-section {
+  background: var(--dark-bg);
+}
+
+html.desktop-polish .merchant-v2-beat {
+  color: var(--ink);
+}
+
+html.desktop-polish .merchant-v2-body {
+  color: var(--dark-sub);
+}
+
+html.desktop-polish .merchant-v2-visual,
+html.desktop-motion-enabled .merchant-visual,
+html.desktop-motion-enabled .merchant-panel-mask {
+  background: var(--dark-card);
+  border-color: var(--dark-line);
+}
+
+html .merchant-functions,
+html .merchant-product .screen-caption,
+html.desktop-motion-enabled .merchant-screen-note {
+  color: var(--dark-mute);
+}
+
+html .merchant-functions span {
+  border-bottom-color: var(--dark-line);
+}
+
+html .merchant-product img {
+  border-color: var(--dark-line);
+}
+
+/* AI */
+html .intelligence-section {
+  border-top-color: var(--dark-line);
+}
+
+html .intelligence-grid article {
+  background: var(--dark-card);
+}
+
+html .intelligence-grid figure {
+  background: var(--dark-bg-alt);
+  border-color: var(--dark-line);
+}
+
+/* 팀과 푸터 */
+html .team-section {
+  background: var(--dark-bg);
+  border-top-color: var(--dark-line);
+}
+
+html .team-list img {
+  background: var(--dark-card);
+}
+
+html.desktop-polish .team-list li {
+  border-top-color: var(--dark-line);
+}
+
+html .site-footer {
+  background: #0f0f11;
+  color: var(--ink);
+}
+
+html .footer-contact .eyebrow,
+html .footer-bottom {
+  color: var(--dark-mute);
+}
+
+html .footer-contact > a {
+  border-bottom-color: #ffffff40;
+}
+
+html .footer-bottom {
+  border-top-color: var(--dark-line);
+}
+
+/* 모바일 */
+@media (max-width: 999px) {
+  html .details-section {
+    background: var(--dark-bg-alt);
+  }
+
+  html .details-section .section-intro,
+  html .details-section .visit-grid .card-copy > p:not(.card-label),
+  html.mobile-motion .details-section .visit-grid .memory-card .card-copy > p:not(.card-label) {
+    color: var(--dark-sub);
+  }
+
+  html .visit-mobile-zoom,
+  html .merchant-mobile-zoom,
+  html .mobile-image-open,
+  html .mobile-strength-controls button {
+    background: var(--dark-card);
+    border-color: var(--dark-line);
+    color: var(--ink);
+  }
+
+  html .platform-scene,
+  html.motion-enabled .platform-scene,
+  html .platform-stage,
+  html.motion-enabled .platform-stage {
+    background: var(--dark-bg-alt);
+    color: var(--ink);
+  }
+
+  html .platform-card-art {
+    background: var(--dark-card);
+  }
+
+  html .platform-card-copy h3 {
+    color: var(--ink);
+  }
+
+  html .merchant-section {
+    background: var(--dark-bg);
+  }
+
+  html .merchant-section .merchant-beat .body-copy,
+  html.mobile-motion .merchant-v2-body {
+    color: var(--dark-sub);
+  }
+
+  html .merchant-section .merchant-screen,
+  html.mobile-motion .merchant-v2-visual {
+    background: var(--dark-card);
+    border-color: var(--dark-line);
+  }
+
+  html .mobile-screen-dialog {
+    background: var(--dark-bg-alt);
+    color: var(--ink);
+  }
+
+  html .mobile-screen-bar {
+    background: var(--dark-bg);
+    border-bottom-color: var(--dark-line);
+  }
+
+  html .mobile-screen-bar button,
+  html .mobile-screen-tools button {
+    background: var(--dark-card);
+    color: var(--ink);
+  }
+
+  html .mobile-screen-tools p {
+    color: var(--dark-mute);
+  }
+}
