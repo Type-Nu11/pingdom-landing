@@ -22,8 +22,6 @@
   .hero .hero-bottom { left: var(--mobile-gutter); right: var(--mobile-gutter); bottom: max(26px, env(safe-area-inset-bottom)); }
   .hero .scroll-cue { min-height: 44px; }
   .hero .portal-float { transform: none; }
-  .hero .ring-flow-canvas { display: block; }
-  .hero.ring-flow-ready .hero-model img { opacity: 0; }
   .hero h1 > span, .hero .hero-model img { animation: none; }
 
   .journey-scene, .motion-enabled .journey-scene { height: auto; }

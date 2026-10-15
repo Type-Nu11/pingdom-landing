@@ -1,4 +1,4 @@
-import { mountPreservedHero } from "./hero-preserved.mjs?v=revision-34";
+import { mountPreservedHero } from "./hero-preserved.mjs?v=revision-38";
 import { createScrollStory } from "./story-scroll.mjs?v=revision-33";
 import { createDesktopMotion } from "./desktop-motion.mjs?v=revision-17";
 

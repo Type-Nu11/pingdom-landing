@@ -1,5 +1,4 @@
-import { startHeroIntro } from "./hero-intro.mjs?v=traffic-gold-1";
-import { createRingFlow } from "./ring-flow.mjs?v=revision-7";
+import { startHeroIntro } from "./hero-intro.mjs?v=circle-pop-3";
 import { createHeroBackground } from "./hero-background.mjs?v=traffic-1";
 
 export function mountPreservedHero({
@@ -10,7 +9,6 @@ export function mountPreservedHero({
 
   const root = document.documentElement;
   const mobile = window.matchMedia("(max-width: 999px)");
-  const ringFlow = createRingFlow({ hero, reducedMotion });
   const background = createHeroBackground({ hero, reducedMotion });
   let active = true;
   let disposed = false;
@@ -21,9 +19,6 @@ export function mountPreservedHero({
     const introPending = root.classList.contains("intro-pending");
     const paused = !active || !visible || document.hidden || introPending;
     hero.classList.toggle("motion-paused", paused || reducedMotion.matches);
-    // 동작 줄이기 설정에서도 하프톤의 정지 상태는 한 번 그립니다.
-    // 화면 크기에 관계없이 같은 로고 전환을 사용하고, 화면 밖에서는 렌더링을 멈춥니다.
-    ringFlow.setPaused(paused);
     background.sync({
       visible: active && visible,
       introPending: active && introPending,
@@ -81,7 +76,6 @@ export function mountPreservedHero({
     window.removeEventListener("pageshow", onPageShow);
     window.removeEventListener("pagehide", onPageHide);
     finishIntro();
-    ringFlow.dispose();
     background.dispose();
     hero.classList.remove("motion-paused");
   }
