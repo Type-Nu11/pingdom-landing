@@ -295,3 +295,23 @@
 #ai-traveler .ai-cinematic-stage {
   position: relative; top: auto; height: auto; min-height: 0; padding: 140px 32px 24px;
 }
+
+/* 모바일: 포인트 카드를 가로로 넓은 박스로 세로 배치 */
+@media (max-width: 999px) {
+  .ai-demo-points {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .ai-demo-points li {
+    gap: 8px;
+    padding: 22px 24px 24px;
+    border-radius: 20px;
+  }
+
+  .ai-demo-points b { font-size: 18px; }
+  .ai-demo-points span { font-size: 15px; }
+
+  #ai-traveler .ai-cinematic-stage { padding: 88px 20px 24px; }
+}

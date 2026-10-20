@@ -1,0 +1,27 @@
+/* 모바일 터치 사용성 보정 (데스크톱 영향 없음) */
+@media (max-width: 999px) {
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  a, button, summary, [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  a:active, button:active { opacity: .72; transition: opacity .08s; }
+
+  .footer-contact a { display: flex; align-items: center; justify-content: space-between; min-height: 56px; }
+  .footer-bottom a { display: inline-flex; align-items: center; min-height: 44px; }
+  .site-footer { padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
+
+  .to-top {
+    position: fixed; z-index: 40; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    width: 48px; height: 48px; border: 1px solid #ffffff26; border-radius: 50%;
+    background: #1c1c20e6; color: #fff; font-size: 20px; line-height: 1; cursor: pointer;
+    box-shadow: 0 4px 16px #0004;
+    opacity: 0; transform: translateY(8px); pointer-events: none;
+    transition: opacity .2s, transform .2s;
+  }
+  .to-top[hidden] { display: none; }
+  .to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+  .intro-pending .to-top { display: none; }
+}
+@media (min-width: 1000px) { .to-top { display: none !important; } }
+@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }

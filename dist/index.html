@@ -36,6 +36,15 @@
         window.addEventListener("keydown", (event) => {
           if (event.key === "Escape" || event.key === "Tab") finish();
         });
+        // 터치 기기에서는 화면을 탭해 인트로를 건너뜁니다.
+        window.addEventListener(
+          "pointerdown",
+          (event) => {
+            if (event.pointerType === "touch" && performance.now() > 500)
+              finish();
+          },
+          { passive: true },
+        );
         window.addEventListener("pageshow", (event) => {
           if (event.persisted) finish();
         });
@@ -64,8 +73,10 @@
     <link rel="stylesheet" href="mobile.css?v=revision-35" />
     <link rel="stylesheet" href="about-intro.css?v=revision-51" />
     <link rel="stylesheet" href="dark-theme.css?v=revision-50" />
-    <link rel="stylesheet" href="ai-demo.css?v=revision-2" />
+    <link rel="stylesheet" href="ai-demo.css?v=revision-4" />
+    <link rel="stylesheet" href="mobile-ux.css?v=revision-1" />
     <script type="module" src="app.js?v=revision-39"></script>
+    <script type="module" src="mobile-ux.mjs?v=revision-1"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">본문 바로가기</a>
@@ -983,6 +994,7 @@
         </footer>
       </div>
     </main>
+    <button type="button" class="to-top" data-to-top aria-label="맨 위로 이동" hidden><span aria-hidden="true">↑</span></button>
     <dialog id="mobile-screen-dialog" class="mobile-screen-dialog" aria-labelledby="mobile-screen-title">
       <div class="mobile-screen-bar">
         <h2 id="mobile-screen-title">핑덤 화면</h2>
