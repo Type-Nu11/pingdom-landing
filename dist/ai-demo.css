@@ -289,3 +289,9 @@
     transition: none !important;
   }
 }
+
+/* 여행자 소개는 일러스트 없이 카피만 두므로 고정 스크롤 구간 없이 바로 데모로 이어집니다. */
+#ai-traveler { height: auto; }
+#ai-traveler .ai-cinematic-stage {
+  position: relative; top: auto; height: auto; min-height: 0; padding: 140px 32px 24px;
+}
