@@ -36,6 +36,15 @@
         window.addEventListener("keydown", (event) => {
           if (event.key === "Escape" || event.key === "Tab") finish();
         });
+        // 터치 기기에서는 화면을 탭해 인트로를 건너뜁니다.
+        window.addEventListener(
+          "pointerdown",
+          (event) => {
+            if (event.pointerType === "touch" && performance.now() > 500)
+              finish();
+          },
+          { passive: true },
+        );
         window.addEventListener("pageshow", (event) => {
           if (event.persisted) finish();
         });
@@ -64,8 +73,10 @@
     <link rel="stylesheet" href="mobile.css?v=revision-35" />
     <link rel="stylesheet" href="about-intro.css?v=revision-51" />
     <link rel="stylesheet" href="dark-theme.css?v=revision-50" />
-    <link rel="stylesheet" href="ai-demo.css?v=revision-2" />
+    <link rel="stylesheet" href="ai-demo.css?v=revision-4" />
+    <link rel="stylesheet" href="mobile-ux.css?v=revision-1" />
     <script type="module" src="app.js?v=revision-39"></script>
+    <script type="module" src="mobile-ux.mjs?v=revision-1"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">본문 바로가기</a>
@@ -879,10 +890,6 @@
         <h3 id="ai-traveler-title">말로 찾는,<br />나만의 장소.</h3>
         <p class="ai-stage-description">원하는 분위기와 조건을 말하면,<br />Pingdom AI가 장소를 추천하고<br />처음이라면 앱 사용법도 알려줘요.</p>
       </div>
-      <figure class="ai-product-visual ai-traveler-visual" data-ai-product>
-        <div class="ai-cosmos-backdrop" aria-hidden="true"><img data-desktop-src="assets/ai-traveler-background.webp" alt="" width="2560" height="1440" decoding="async" /></div>
-        <img class="ai-product-illustration" data-ai-required data-desktop-src="assets/ai-refresh/traveler-discovery.webp" alt="장소 추천 원리를 표현한 소개용 3D 일러스트: 투명한 지도와 핑크색 핀, 장소의 분위기를 담은 장면" width="1536" height="1024" decoding="async" />
-      </figure>
     </div>
   </article>
   <section class="ai-demo is-traveler" aria-labelledby="ai-demo-traveler-title" data-about-reveal>
@@ -987,6 +994,7 @@
         </footer>
       </div>
     </main>
+    <button type="button" class="to-top" data-to-top aria-label="맨 위로 이동" hidden><span aria-hidden="true">↑</span></button>
     <dialog id="mobile-screen-dialog" class="mobile-screen-dialog" aria-labelledby="mobile-screen-title">
       <div class="mobile-screen-bar">
         <h2 id="mobile-screen-title">핑덤 화면</h2>

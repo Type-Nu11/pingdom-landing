@@ -109,7 +109,7 @@
   aspect-ratio: 4 / 3;
   margin-bottom: 8px;
   border-radius: 16px;
-  background: url("assets/ai-places-triptych.png") var(--pos) 50% / 300% auto no-repeat #2a2a30;
+  background: url("assets/ai-places-triptych.webp") var(--pos) 50% / 300% auto no-repeat #2a2a30;
 }
 
 .ai-chat-places b { font-weight: 650; }
@@ -288,4 +288,30 @@
     transform: none !important;
     transition: none !important;
   }
+}
+
+/* 여행자 소개는 일러스트 없이 카피만 두므로 고정 스크롤 구간 없이 바로 데모로 이어집니다. */
+#ai-traveler { height: auto; }
+#ai-traveler .ai-cinematic-stage {
+  position: relative; top: auto; height: auto; min-height: 0; padding: 140px 32px 24px;
+}
+
+/* 모바일: 포인트 카드를 가로로 넓은 박스로 세로 배치 */
+@media (max-width: 999px) {
+  .ai-demo-points {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .ai-demo-points li {
+    gap: 8px;
+    padding: 22px 24px 24px;
+    border-radius: 20px;
+  }
+
+  .ai-demo-points b { font-size: 18px; }
+  .ai-demo-points span { font-size: 15px; }
+
+  #ai-traveler .ai-cinematic-stage { padding: 88px 20px 24px; }
 }
