@@ -1,7 +1,5 @@
 <img width="7680" height="4320" alt="Pingdom — Landing Page Repository" src="docs/assets/pingdom-landing-banner.png" />
 
----
-
 ## Overview
 
 이 저장소는 Pingdom 프로젝트의 **공식 랜딩페이지**를 관리합니다.
@@ -104,7 +102,7 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 
 브라우저에서 [http://localhost:4173](http://localhost:4173)을 엽니다.
 
-### Configuration
+## Configuration
 
 랜딩페이지를 실행하기 위한 API Key나 환경변수는 필요하지 않습니다.
 
@@ -158,6 +156,21 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 
 HTML 콘텐츠와 모듈 연결은 `index.html`·`app.js`에서 관리하고, 각 장면의 상태와 모션은 해당 ES Module에서 관리합니다. 화면 구성은 CSS, 이미지·영상 출처는 [ASSETS.md](ASSETS.md)에서 관리합니다.
 
+## Related Repositories
+
+| Repository | Relationship |
+|---|---|
+| [pingdom-api](https://github.com/Type-Nu11/pingdom-api) | 서비스 핵심 API와 비즈니스 로직 |
+| [pingdom-app](https://github.com/Type-Nu11/pingdom-app) | 사용자·사업자 모바일 애플리케이션 |
+| [pingdom-infra](https://github.com/Type-Nu11/pingdom-infra) | 서비스 요청 라우팅과 프록시 구성 |
+
+## Documentation
+
+| Document | Description |
+|---|---|
+| [Assets](ASSETS.md) | 이미지·영상 출처와 제작·가공 기록 |
+| [Design](REDESIGN.md) | 화면 설계와 모션 방향 |
+
 ## Release and Compatibility
 
 공개 사이트는 `dist/`의 정적 파일을 기준으로 배포합니다. 현재 `main`에 통합된 코드와 문서는 저장소의 commit 이력에서 확인할 수 있습니다.
@@ -166,12 +179,15 @@ HTML 콘텐츠와 모듈 연결은 `index.html`·`app.js`에서 관리하고, �
 
 생성 이미지와 영상은 브랜드 소개를 위한 시각 자료입니다. 실제 장소, 이용자, 업체 또는 분석 결과를 나타내는 데이터와 구분합니다. 자산 출처·가공 내역은 [ASSETS.md](ASSETS.md), 화면 설계 기준은 [REDESIGN.md](REDESIGN.md)를 참고하세요.
 
+## License
+
+이 저장소에는 별도의 프로젝트 `LICENSE` 파일이 없습니다. 사용 및 배포 조건은 관리 팀에 확인하세요.
+개별 자산의 출처와 이용 조건은 [ASSETS.md](ASSETS.md)와 해당 자산의 라이선스를 확인하세요.
+
 ---
 
 <div align="center">
 
-Part of Pingdom
-
-Developed and maintained by **Team Type:Null**.
+Part of **Pingdom**
 
 </div>
